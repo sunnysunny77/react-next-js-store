@@ -1,0 +1,90 @@
+header {
+    position: relative;
+    z-index: 1000;
+    h1 {
+        position: absolute;
+        width: fit-content;
+        background-color: $c9;
+        color: $c6;
+        width: 100%;
+        display: flex;
+        height: 83px;
+        @include min_md {
+            width: calc(100% - 300px);
+            bottom: initial;
+            align-items: center;
+        }
+    }
+    .shunt {
+        border-top: 0 solid $c5;
+        border-right: 0 solid $c5;
+        border-bottom: 25rem solid $c10;
+        border-left: 17rem solid $c5;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        @include min_md {
+            border-left: 25rem solid $c5;
+        }
+        @include min_xl {
+            left: 33.333333%;
+        }
+    }
+    p {
+        color: $c4;
+        letter-spacing: 0.05em;
+        font-size: clamp(18px, 2vw, 20px);
+        @include min_sm {
+            height: 100%;
+        }
+    }
+    .carousel {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        .carousel-indicators {
+            position: static;
+            order: 2;
+        }
+        .carousel-inner {
+            display: flex;
+            align-items: center;
+            order: 1;
+            width: 100%;
+            min-height: 180px;
+            max-width: 180px;
+            img {
+                display: flex;
+                margin: auto;
+                align-items: center;
+                width: 100%;
+                object-fit: scale-down;
+            }
+        }
+    }
+    a {
+        text-decoration: none;
+        color: $c4;
+        transition:
+            color 0.2s ease-in-out,
+            background-color 0.2s ease-in-out;
+        will-change: color, background-color;
+        &:hover {
+            color: $c10;
+            background-color: $c4;
+        }
+    }
+    .bg-1 {
+        background-color: $c1;
+        height: 162px;
+        @include min_md {
+            height: 212px;
+        }
+    }
+    .bg-11 {
+        background-color: $c10;
+        color: $c10;
+    }
+}

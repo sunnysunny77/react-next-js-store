@@ -1,0 +1,94 @@
+footer {
+    background-color: $c8;
+    color: $c9;
+    width: 100%;
+    a {
+        color: $c9;
+        font-style: oblique;
+        font-size: 15px;
+        text-decoration: underline;
+        text-decoration-color: $c5;
+        transition: text-decoration-color 0.2s;
+        will-change: text-decoration-color;
+        &:hover {
+            text-decoration-color: $c9;
+        }
+    }
+    a.active {
+        text-decoration-color: $c9;
+        text-underline-offset: 5px;
+    }
+    ul {
+        a {
+            font-size: 18px;
+            font-style: normal;
+        }
+    }
+    p,
+    address {
+        background-color: $c5;
+        color: $c9;
+    }
+    .footer-text {
+        font-size: clamp(15.5px, 2vw, 17px);
+    }
+    address,
+    .year {
+        font-size: 15.5px;
+    }
+    svg {
+        fill: $c4;
+        font-size: 20px;
+        width: 40px;
+        height: 40px;
+        @include min_sm {
+            width: 50px;
+            height: 50px;
+        }
+        @include min_md {
+            width: 45px;
+            height: 45px;
+        }
+        @include min_lg {
+            width: 55px;
+            height: 55px;
+        }
+    }
+    .top {
+        color: $c9;
+        height: 27px;
+        width: 27px;
+        background-color: $c1;
+        border: 1px solid;
+        border-color: $c9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 4px 0;
+        text-decoration: none;
+        line-height: 1;
+        font-style: normal;
+        border-radius: 50%;
+        transition: transform 0.5s;
+        transform: scale(1);
+        will-change: transform;
+        &:hover {
+            color: $c9;
+            transform: scale(0.9);
+        }
+        svg {
+            width: 12px;
+            height: 12px;
+        }
+    }
+    .bi {
+        width: 17px;
+        height: 17px;
+        opacity: 1;
+        transition: opacity 0.3s;
+        will-change: opacity;
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}

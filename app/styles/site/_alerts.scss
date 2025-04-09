@@ -1,0 +1,26 @@
+.alert-secondary,
+.alert-light {
+    text-align: center;
+    margin: auto;
+    color: $c6;
+}
+
+.alert-light {
+    background-color: $c5;
+    border: none;
+    min-height: calc(100vh - 246px);
+    word-wrap: break-word;
+    @include min_md {
+        min-height: calc(100vh - 212px);
+    }
+    svg {
+        width: 25%;
+    }
+    img {
+        display: block;
+        width: 75%;
+        height: 100%;
+        margin: auto;
+        max-width: 360px;
+    }
+}

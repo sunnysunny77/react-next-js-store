@@ -1,0 +1,49 @@
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-montserrat-regular);
+    font-size: 20px;
+    overflow-y: scroll;
+    position: relative;
+    background-color: $c9;
+    width: 100%;
+    @include min_hd {
+        max-width: 1920px;
+        margin: auto;
+        border-right: 1px solid $c6;
+        border-left: 1px solid $c6;
+    }
+}
+
+h1 {
+    font-size: inherit;
+    font-weight: 400;
+    width: 100%;
+}
+
+h2,
+h3 {
+    font-weight: 300;
+}
+
+p {
+    background-color: $c1;
+    color: $c4;
+}
+
+b {
+    font-weight: 500;
+}
+
+.hidden {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.PreText {
+    white-space: pre-line;
+}

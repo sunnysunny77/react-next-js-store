@@ -1,0 +1,35 @@
+.cta {
+    text-decoration: none;
+    background-color: $c10;
+    transition: background-color 0.3s ease-in-out;
+    will-change: background-color;
+    &:hover {
+        background-color: lighten($c10, 2%);
+
+        .div-button {
+            background-color: lighten($c11, 2%);
+            svg {
+                transform: translateX(50%);
+            }
+        }
+    }
+    p {
+        background-color: $c5;
+        color: $c4;
+    }
+    h2 {
+        color: $c4;
+    }
+    .div-button {
+        background-color: $c11;
+        border: none;
+        color: $c4;
+        transition: background-color 0.3s ease-in-out;
+        will-change: background-color;
+    }
+    svg {
+        transition: transform 0.3s;
+        will-change: transform;
+        transform: translateX(0);
+    }
+}
