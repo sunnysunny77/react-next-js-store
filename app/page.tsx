@@ -1,14 +1,14 @@
-import Anchor from "@/components/anchor";
-
-export default function Home() {
+const Home = () => {
 
   return (
 
     <>
 
-      <Anchor />
+      HOME
 
     </>
 
   );
 };
+
+export default Home;

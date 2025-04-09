@@ -1,6 +1,7 @@
-import Bootstrap from "@/components/bootstrap";
-import localFont from 'next/font/local'
 import type { Metadata } from "next";
+import localFont from 'next/font/local'
+import Bootstrap from "@/components/bootstrap";
+import Footer from "@/components/footer";
 import "@/styles/app.scss";
 
 const poppins = localFont({
@@ -14,11 +15,11 @@ export const metadata: Metadata = {
   description: "Store App",
 };
 
-export default function RootLayout({
+const RootLayout = ({
   children,
 }: {
   children: React.ReactNode,
-}) {
+}) => {
 
   return (
 
@@ -31,6 +32,8 @@ export default function RootLayout({
           {children}
 
         </main>
+
+        <Footer />
         
       </body>
 
@@ -40,3 +43,5 @@ export default function RootLayout({
 
   );
 };
+
+export default RootLayout;

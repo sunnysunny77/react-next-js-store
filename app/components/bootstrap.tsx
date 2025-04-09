@@ -1,7 +1,7 @@
 "use client"
 import { useEffect } from "react";
 
-export default function Bootstrap() {
+const Bootstrap = () => {
 
   useEffect(() => {
 
@@ -20,3 +20,5 @@ export default function Bootstrap() {
   
   return null;
 };
+
+export default Bootstrap;
