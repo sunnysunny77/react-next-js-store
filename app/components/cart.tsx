@@ -1,4 +1,4 @@
-"use-client"
+"use client"
 import { useState } from "react";
 import Basil from "./basil.webp";
 import Broccoli from "./broccoli.webp";
@@ -155,8 +155,7 @@ const Cart = () => {
           });
         }
       };
-    
-    
+  
       const [order, setOrder] = useState({
     
         ref: options[0],
@@ -175,7 +174,6 @@ const Cart = () => {
     
       const [cart, setCart] = useState({});
     
-
     return;
 };
 

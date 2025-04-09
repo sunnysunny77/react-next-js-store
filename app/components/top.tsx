@@ -1,5 +1,4 @@
 "use client"
-
 import { ArrowUp } from "react-bootstrap-icons";
 
 const Top = () => {
