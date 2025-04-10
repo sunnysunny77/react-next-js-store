@@ -1,10 +1,12 @@
+import Header from "@/components/header";
+
 const Auth = () => {
 
   return (
 
     <>
 
-      AUTH
+      <Header heading="STORE" />
 
     </>
 

@@ -1,4 +1,5 @@
 import Carousel from "@/components/carousel";
+import Cards from "@/components/cards";
 import Header from "@/components/header";
 import Link from "next/link";
 
@@ -26,7 +27,7 @@ const Home = () => {
 
                   </span>
 
-                  <Link href="/store" className="col-auto align-self-lg-end border rounded mt-4 mb-3 px-2 py-1" >
+                  <Link href="/store" className="col-auto align-self-lg-end border rounded mt-4 mb-3 px-2 py-1">
 
                     store
 
@@ -45,6 +46,13 @@ const Home = () => {
         </div>
 
       </Header>
+
+      <Cards
+
+        heading={`Vestibulum eu`}
+        link={true}
+
+      />
 
     </>
 

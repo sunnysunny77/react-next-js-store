@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AppWrapper } from "@/components/context";
 import localFont from "next/font/local";
 import Bootstrap from "@/components/bootstrap";
 import Footer from "@/components/footer";
@@ -30,8 +31,12 @@ const RootLayout = ({
         <Bootstrap />
 
         <main>
-          
-          {children}
+
+          <AppWrapper>
+
+            {children}
+
+          </AppWrapper>
 
         </main>
 
