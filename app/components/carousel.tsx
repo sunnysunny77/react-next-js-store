@@ -11,8 +11,7 @@ const Carousel = () => {
 
     useEffect(() => {
   
-      const { Carousel } = require("bootstrap");
-      const carousel = new Carousel(ref.current, {
+     const carousel = new window.bootstrap.Carousel(ref.current, {
         pause: false,
       });
       carousel.cycle();

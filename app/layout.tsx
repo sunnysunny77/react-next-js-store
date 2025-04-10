@@ -27,6 +27,8 @@ const RootLayout = ({
 
       <body className={poppins.variable}>
 
+        <Bootstrap />
+
         <main>
           
           {children}
@@ -36,8 +38,6 @@ const RootLayout = ({
         <Footer />
         
       </body>
-
-      <Bootstrap />
 
     </html>
 
