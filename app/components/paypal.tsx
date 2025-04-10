@@ -1,6 +1,6 @@
 /* trunk-ignore-all(prettier) */
 "use client"
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useCartContext } from "@/components/context";
 import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { ArrowDownShort } from "react-bootstrap-icons";
@@ -228,6 +228,19 @@ const Paypal = () => {
       obj.classList.remove("fade");
     }, 100)
   };
+
+  useEffect(() => {
+
+    if (outputBool) {
+
+      scroll_to(outputRef.current.offsetTop);
+
+      return () => {
+
+        setOutputBool(false);
+      }
+    }
+  }, [outputBool, scroll_to]);
 
   return (
 
