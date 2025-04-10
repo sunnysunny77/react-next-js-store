@@ -179,6 +179,11 @@ const Paypal = () => {
     scroll_to(storeRef.current.offsetTop);
   };
 
+  const selectOrder = (e) => {
+
+    cartOrder[e.value]();
+  };
+
   const addCart = () => {
 
     setCart({
@@ -276,7 +281,7 @@ const Paypal = () => {
 
                 value={order.ref}
 
-                onChange={(e)=>cartOrder[e.value]()}
+                onChange={selectOrder}
 
                 options={options}
 
