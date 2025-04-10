@@ -3,11 +3,11 @@ import { useAppContext } from "@/components/context";
 
 const Header = () => {
 
-  const { heading, large } = useAppContext();
+  const { heading, large, header } = useAppContext();
   
   return (
     
-    <header className="container-fluid row g-0">
+    <header ref={header} className="container-fluid row g-0">
     
         <div className="row position-relative overflow-hidden g-0">
 

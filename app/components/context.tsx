@@ -205,13 +205,17 @@ export const AppWrapper = ({
   children: React.ReactNode,
 }) => {
 
+  const header = useRef(null);
+
+  const footer = useRef(null);
+
   const [heading, setHeading] = useState("");
 
   const [large, setLarge] = useState(null);
 
   return (
 
-    <AppContext.Provider value={{ heading, setHeading, large, setLarge}}>
+    <AppContext.Provider value={{ header, footer, heading, setHeading, large, setLarge }}>
 
       {children}
 

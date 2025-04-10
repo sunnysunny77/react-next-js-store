@@ -13,6 +13,7 @@ const Store = () => {
     setHeading("STORE");
     setLarge(false);
   }, []);
+
   return (
 
     <>

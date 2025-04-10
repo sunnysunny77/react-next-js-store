@@ -1,4 +1,6 @@
 
+"use client"
+import { useAppContext } from "@/components/context";
 import { Linkedin } from "react-bootstrap-icons";
 import Link from "next/link";
 import Year from "@/components/year";
@@ -6,9 +8,11 @@ import Top from "@/components/top";
 
 const Footer = () => {
 
+  const { footer } = useAppContext();
+
   return (
   
-    <footer>
+    <footer ref={footer}>
 
       <div className="container-lg py-3 py-lg-5 g-0">
 
