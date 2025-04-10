@@ -20,7 +20,7 @@ const Paypal = () => {
   const outputRef = useRef(null);
 
   const SCRIPT_PROVIDER_OPTIONS = { 
-    clientId: "ATC45uskuRhBvbA6xP81JDqI9ayMoOYWsuyIHlKzKbGuIGHhajr9Zf_UDazUay7YbjHaxCZBOH6hL-6i", 
+    clientId: process.env.NEXT_PUBLIC_REACT_APP_PAYPAL_ID,
     currency: "AUD", 
     "data-csp-nonce": "1e31b6130c5be9ef4cbab7eb38df5491",
   };
