@@ -19,22 +19,22 @@
     }
     input[type="text"],
     textarea {
-        color: $c4;
+        color: $charlie;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 5px;
-        border: 1px solid $c1;
+        border: 1px solid $alfa;
         -webkit-appearance: none;
         appearance: none;
         outline: none;
-        background-color: $c11;
-        scrollbar-color: $c9 transparent;
+        background-color: $juliett;
+        scrollbar-color: $hotel transparent;
         &::-webkit-scrollbar {
             width: 15px;
         }
         &::-webkit-scrollbar-thumb {
-            background: $c9;
+            background: $hotel;
         }
         &::-webkit-scrollbar-track {
             background: transparent;
@@ -42,34 +42,34 @@
     }
     input[type="submit"] {
         width: fit-content;
-        color: $c4;
-        background-color: $c11;
+        color: $charlie;
+        background-color: $juliett;
         font-weight: 400;
-        border: 1px solid $c1;
+        border: 1px solid $alfa;
         transition:
             color 0.2s ease-in-out,
             background-color 0.2s ease-in-out;
         will-change: color, background-color;
         &:hover {
-            color: $c4;
-            background-color: $c1;
+            color: $charlie;
+            background-color: $alfa;
         }
     }
     input:-webkit-autofill,
     input:-webkit-autofill:hover,
     input:-webkit-autofill:focus,
     input:-webkit-autofill:active {
-        -webkit-text-fill-color: $c4;
-        -webkit-box-shadow: 0 0 0 5rem $c11 inset;
+        -webkit-text-fill-color: $charlie;
+        -webkit-box-shadow: 0 0 0 5rem $juliett inset;
         -webkit-background-clip: text;
     }
     input.error,
     textarea.error {
-        border-color: $c12;
+        border-color: $kilo;
     }
     p {
-        background-color: $c5;
-        color: $c6;
+        background-color: $delta;
+        color: $echo;
     }
     input::placeholder,
     textarea::placeholder {

@@ -1,5 +1,6 @@
 import Cards from "@/components/cards";
 import Header from "@/components/header";
+import Paypal from "@/components/paypal";
 
 const Store = () => {
 
@@ -15,6 +16,8 @@ const Store = () => {
         link={false}
 
       />
+
+      <Paypal />
 
     </>
 

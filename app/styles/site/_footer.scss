@@ -1,21 +1,21 @@
 footer {
-    background-color: $c8;
-    color: $c9;
+    background-color: $golf;
+    color: $hotel;
     width: 100%;
     a {
-        color: $c9;
+        color: $hotel;
         font-style: oblique;
         font-size: 15px;
         text-decoration: underline;
-        text-decoration-color: $c5;
+        text-decoration-color: $delta;
         transition: text-decoration-color 0.2s;
         will-change: text-decoration-color;
         &:hover {
-            text-decoration-color: $c9;
+            text-decoration-color: $hotel;
         }
     }
     a.active {
-        text-decoration-color: $c9;
+        text-decoration-color: $hotel;
         text-underline-offset: 5px;
     }
     ul {
@@ -26,8 +26,8 @@ footer {
     }
     p,
     address {
-        background-color: $c5;
-        color: $c9;
+        background-color: $delta;
+        color: $hotel;
     }
     .footer-text {
         font-size: clamp(15.5px, 2vw, 17px);
@@ -37,7 +37,7 @@ footer {
         font-size: 15.5px;
     }
     svg {
-        fill: $c4;
+        fill: $charlie;
         font-size: 20px;
         width: 40px;
         height: 40px;
@@ -55,12 +55,12 @@ footer {
         }
     }
     .top {
-        color: $c9;
+        color: $hotel;
         height: 27px;
         width: 27px;
-        background-color: $c1;
+        background-color: $alfa;
         border: 1px solid;
-        border-color: $c9;
+        border-color: $hotel;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -73,7 +73,7 @@ footer {
         transform: scale(1);
         will-change: transform;
         &:hover {
-            color: $c9;
+            color: $hotel;
             transform: scale(0.9);
         }
         svg {

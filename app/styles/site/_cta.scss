@@ -1,29 +1,28 @@
 .cta {
     text-decoration: none;
-    background-color: $c10;
+    background-color: $india;
     transition: background-color 0.3s ease-in-out;
     will-change: background-color;
     &:hover {
-        background-color: lighten($c10, 2%);
-
+        background-color: lighten($india, 2%);
         .div-button {
-            background-color: lighten($c11, 2%);
+            background-color: lighten($juliett, 2%);
             svg {
                 transform: translateX(50%);
             }
         }
     }
     p {
-        background-color: $c5;
-        color: $c4;
+        background-color: $delta;
+        color: $charlie;
     }
     h2 {
-        color: $c4;
+        color: $charlie;
     }
     .div-button {
-        background-color: $c11;
+        background-color: $juliett;
         border: none;
-        color: $c4;
+        color: $charlie;
         transition: background-color 0.3s ease-in-out;
         will-change: background-color;
     }

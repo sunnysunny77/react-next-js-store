@@ -1,8 +1,8 @@
 .two-row-feature {
-    background-color: $c1;
+    background-color: $alfa;
     h2 {
         line-height: 2rem;
-        color: $c9;
+        color: $hotel;
         font-size: clamp(18px, 3vw, 30px);
         @include min_md {
             line-height: 3rem;
@@ -11,11 +11,11 @@
             line-height: 4.5rem;
         }
         .lower {
-            color: $c4;
+            color: $charlie;
         }
     }
     p {
-        color: $c9;
+        color: $hotel;
         font-size: clamp(18px, 2vw, 22.5px);
         line-height: 1.6;
     }
@@ -24,7 +24,7 @@
         width: 100%;
         height: min-content;
         aspect-ratio: 1 / 1;
-        border: 6px solid $c9;
+        border: 6px solid $hotel;
         border-radius: 100%;
         margin-top: 2rem;
         @include min-xxl {
@@ -32,26 +32,26 @@
         }
     }
     .points {
-        background-color: $c2;
+        background-color: $bravo;
         border-radius: 5rem;
-        color: $c4;
+        color: $charlie;
         .tag {
-            color: $c9;
+            color: $hotel;
         }
     }
     h3 {
-        background-color: $c2;
+        background-color: $bravo;
         border-radius: 5rem;
-        color: $c4;
+        color: $charlie;
         font-size: 20px;
     }
     ul {
-        color: $c9;
+        color: $hotel;
         font-size: 16px;
     }
     svg {
-        fill: $c4;
+        fill: $charlie;
         border-radius: 50%;
-        border: 1px solid $c4;
+        border: 1px solid $charlie;
     }
 }

@@ -1,5 +1,5 @@
 "use client"
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useRef } from "react";
 import Basil from "../../public/basil.webp";
 import Broccoli from "../../public/broccoli.webp";
 import Chitto from "../../public/chitto.webp";
@@ -172,6 +172,8 @@ export const AppWrapper = ({
     description: items.cartOne.description,
   });
 
+  const storeRef = useRef(null);
+
   const [count, setCount] = useState(1);
 
   const [output, setOutput] = useState({});
@@ -182,7 +184,7 @@ export const AppWrapper = ({
 
   return (
 
-    <AppContext.Provider value={{ cartOrder, options, items }}>
+    <AppContext.Provider value={{ order, cartOrder, options, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, storeRef }}>
 
       {children}
 

@@ -3,20 +3,20 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    color: $c4;
+    color: $charlie;
     font-size: 17px;
     @include min_sm {
         font-size: 20px;
     }
     .bg {
-        background-color: $c1;
+        background-color: $alfa;
     }
     h3 {
-        color: $c6;
+        color: $echo;
     }
     .order-image {
         clip-path: circle(39%);
-        background-color: $c4;
+        background-color: $charlie;
         overflow: hidden;
         img {
             width: 100%;
@@ -31,7 +31,7 @@
         }
     }
     .counter {
-        color: $c4;
+        color: $charlie;
         font-size: 28px;
         span {
             width: 40px;
@@ -44,23 +44,23 @@
             }
         }
         input {
-            color: $c4;
+            color: $charlie;
             border: none;
             background: none;
-            -webkit-text-fill-color: $c4;
+            -webkit-text-fill-color: $charlie;
             opacity: 1;
             width: 40px;
             height: 40px;
             font-size: 24px;
         }
         input:disabled {
-            color: $c4;
+            color: $charlie;
         }
     }
     .spinner,
     .button-container-inner {
         height: 25px;
-        background-color: $c14;
+        background-color: $mike;
         border-radius: 13px;
         @include min_xxs {
             height: 35px;
@@ -88,7 +88,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        color: $c6;
+        color: $echo;
         font-weight: 500;
     }
 
@@ -112,8 +112,8 @@
         }
     }
     .remove {
-        background-color: $c5;
-        color: $c4;
+        background-color: $delta;
+        color: $charlie;
         font-size: 15px;
         opacity: 1;
         transition: opacity 0.3s;
@@ -134,23 +134,23 @@
         font-size: 15px;
     }
     label[for="select"] {
-        background-color: $c4;
-        color: $c6;
+        background-color: $charlie;
+        color: $echo;
         font-size: 17px;
     }
 
     table {
         width: 100%;
         font-size: 70%;
-        color: $c6;
+        color: $echo;
         th {
             position: absolute;
             clip: rect(0 0 0 0);
         }
         tr {
             display: block;
-            border-top: 1px solid $c4;
-            background-color: $c4;
+            border-top: 1px solid $charlie;
+            background-color: $charlie;
         }
         thead tr,
         tr:nth-child(1) {
@@ -171,7 +171,7 @@
                 margin: 0 0 1rem 0;
             }
             &:nth-child(odd) {
-                background-color: $c2;
+                background-color: $bravo;
             }
         }
     }

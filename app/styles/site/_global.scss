@@ -8,13 +8,13 @@ body {
     font-size: 20px;
     overflow-y: scroll;
     position: relative;
-    background-color: $c9;
+    background-color: $hotel;
     width: 100%;
     @include min_hd {
         max-width: 1920px;
         margin: auto;
-        border-right: 1px solid $c6;
-        border-left: 1px solid $c6;
+        border-right: 1px solid $echo;
+        border-left: 1px solid $echo;
     }
 }
 
@@ -30,8 +30,8 @@ h3 {
 }
 
 p {
-    background-color: $c1;
-    color: $c4;
+    background-color: $alfa;
+    color: $charlie;
 }
 
 b {

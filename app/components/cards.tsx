@@ -2,17 +2,28 @@
 import { useAppContext } from "@/components/context";
 import { ArrowRight } from 'react-bootstrap-icons';
 import Condition from "@/components/condition";
-import Image from 'next/image'
+import Image from "next/image";
 
 const Cards = (props) => {
 
   const { heading, link } = props;
 
-  const { cartOrder, options, items } = useAppContext();
+  const { order, cartOrder, options, items, storeRef } = useAppContext();
+
+  const scroll_to = (e) => {
+
+    window.scrollTo(0, e);
+  };
 
   const optionOrder = (e) => {
 
     cartOrder[e.currentTarget.getAttribute("data-value")]();
+
+    if (storeRef.current) {
+
+      scroll_to(storeRef.current.offsetTop);
+    }
+    console.log(order)
   };
 
   return (

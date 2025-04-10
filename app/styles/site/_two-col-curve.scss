@@ -1,5 +1,5 @@
 .two-col-curve {
-    background-color: $c11;
+    background-color: $juliett;
     img {
         object-fit: cover;
         width: 100%;
@@ -16,15 +16,15 @@
     }
     p,
     b {
-        color: $c4;
-        background-color: $c5;
+        color: $charlie;
+        background-color: $delta;
         font-weight: 400;
         letter-spacing: 0.075em;
         line-height: 1.35;
         font-size: clamp(18px, 2vw, 21px);
     }
     .curve {
-        background-color: $c5;
+        background-color: $delta;
         position: relative;
         z-index: 1;
         &::before {
@@ -32,7 +32,7 @@
             position: absolute;
             z-index: 2;
             border-bottom-left-radius: 50%;
-            border-left: 50rem solid $c1;
+            border-left: 50rem solid $alfa;
             top: 0;
             right: 0;
             bottom: 0;
@@ -41,10 +41,10 @@
                 border-bottom-left-radius: 67%;
             }
             @include min_xl {
-                border-left: 60rem solid $c1;
+                border-left: 60rem solid $alfa;
             }
             @include min_xxl {
-                border-left: 80rem solid $c1;
+                border-left: 80rem solid $alfa;
             }
         }
         .inner-curve {

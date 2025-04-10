@@ -13,19 +13,19 @@
         box-shadow: none;
     }
     .accordion-button {
-        background-color: $c1;
-        color: $c7;
+        background-color: $alfa;
+        color: $foxtrot;
     }
     .accordion-button::after {
         background-image: url("../../images/accordian-white.svg");
     }
     .accordion-item {
-        background-color: $c7;
-        color: $c8;
+        background-color: $foxtrot;
+        color: $golf;
         border: none;
     }
     .accordion {
-        border: 1px solid $c1;
+        border: 1px solid $alfa;
     }
     .accordion-body {
         padding: 2rem 1rem 1rem 1rem;
@@ -34,6 +34,6 @@
         }
     }
     button {
-        border-bottom: 1px solid $c1;
+        border-bottom: 1px solid $alfa;
     }
 }

@@ -1,13 +1,13 @@
 .two-col-text {
     h2 {
-        color: $c6;
+        color: $echo;
         position: relative;
         &::after {
             content: "";
             position: absolute;
             top: 0;
             left: 0;
-            background-color: $c1;
+            background-color: $alfa;
             background-repeat: repeat-x;
             width: 40px;
             height: 1px;
@@ -17,15 +17,15 @@
             position: absolute;
             top: 0;
             left: 0;
-            background-color: $c1;
+            background-color: $alfa;
             background-repeat: repeat-y;
             width: 1px;
             height: 40px;
         }
     }
     p {
-        background-color: $c5;
-        color: $c6;
+        background-color: $delta;
+        color: $echo;
         line-height: 1.75;
         font-size: clamp(18px, 2vw, 20px);
     }

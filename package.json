@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@paypal/react-paypal-js": "^8.8.2",
     "bootstrap": "^5.3.5",
     "next": "latest",
     "react": "latest",
     "react-bootstrap-icons": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-select": "^5.10.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "latest",

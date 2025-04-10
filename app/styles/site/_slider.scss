@@ -1,13 +1,13 @@
 .slider_9-container {
-    background-color: $c10;
+    background-color: $india;
 }
 
 .slider_9-small-col {
-    background-color: $c1;
+    background-color: $alfa;
 }
  
 .slider_9-inner {
-    background-color: $c9;
+    background-color: $hotel;
     height: 100%;
     position: relative;
     img {
@@ -43,15 +43,15 @@
 
 .slider_9-large-col {
     p {
-        background-color: $c5;
+        background-color: $delta;
         font-size: clamp(18px, 2vw, 20px);
     }
 }
 
 .slider_9-button-container {
-    background-color: $c1;
-    border-top: 1px solid $c9;
-    border-bottom: 1px solid $c9;
+    background-color: $alfa;
+    border-top: 1px solid $hotel;
+    border-bottom: 1px solid $hotel;
     @include min_sm {
         border: none;
     }
@@ -67,12 +67,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid $c9;
+    border: 1px solid $hotel;
     transition: transform 0.5s;
     transform: scale(1);
     will-change: transform;
     svg {
-        fill: $c4;
+        fill: $charlie;
         width: 20px;
         margin: 0;
         transition: opacity 0.2s ease;
