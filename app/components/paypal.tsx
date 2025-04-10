@@ -1,7 +1,7 @@
 /* trunk-ignore-all(prettier) */
 "use client"
 import { useState, useRef } from "react";
-import { useAppContext } from "@/components/context";
+import { useCartContext } from "@/components/context";
 import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { ArrowDownShort } from "react-bootstrap-icons";
 import dynamic from "next/dynamic";
@@ -13,7 +13,7 @@ const Select = dynamic(() => import("react-select/creatable"), { ssr: false });
 
 const Paypal = () => {
 
-  const { order, cartOrder, options, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, storeRef } = useAppContext();
+  const { order, cartOrder, options, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, storeRef } = useCartContext();
 
   const [outputBool, setOutputBool] = useState(false);
 

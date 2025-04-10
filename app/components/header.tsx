@@ -1,6 +1,9 @@
-const Header = (props) => {
+"use client"
+import { useAppContext } from "@/components/context";
 
-  const { heading, children } = props;
+const Header = () => {
+
+  const { heading, large } = useAppContext();
   
   return (
     
@@ -22,7 +25,7 @@ const Header = (props) => {
 
         </div>
 
-        {children}
+        {large}
 
     </header>
 

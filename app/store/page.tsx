@@ -1,27 +1,30 @@
+"use client"
+import { useEffect } from "react";
+import { useAppContext } from "@/components/context";
 import Cards from "@/components/cards";
-import Header from "@/components/header";
 import Paypal from "@/components/paypal";
 
 const Store = () => {
 
+  const { setHeading, setLarge } = useAppContext();
+
+  useEffect(() => {
+
+    setHeading("STORE");
+    setLarge(false);
+  }, []);
   return (
 
     <>
 
-      <Header heading="STORE" />
+      <Cards
 
-      <main className="d-flex flex-column">
+        heading={`Vestibulum eu`}
+        link={false}
 
-        <Cards
+      />
 
-          heading={`Vestibulum eu`}
-          link={false}
-
-        />
-
-        <Paypal />
-
-      </main>
+      <Paypal />
 
     </>
 

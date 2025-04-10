@@ -1,5 +1,5 @@
 "use client"
-import { useAppContext } from "@/components/context";
+import { useCartContext } from "@/components/context";
 import { ArrowRight } from 'react-bootstrap-icons';
 import Condition from "@/components/condition";
 import Image from "next/image";
@@ -8,7 +8,7 @@ const Cards = (props) => {
 
   const { heading, link } = props;
 
-  const { order, cartOrder, options, items, storeRef } = useAppContext();
+  const { cartOrder, options, items, storeRef } = useCartContext();
 
   const scroll_to = (e) => {
 
@@ -23,7 +23,6 @@ const Cards = (props) => {
 
       scroll_to(storeRef.current.offsetTop);
     }
-    console.log(order)
   };
 
   return (

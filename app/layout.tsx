@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { AppWrapper } from "@/components/context";
+import { AppWrapper, CartWrapper } from "@/components/context";
 import localFont from "next/font/local";
 import Bootstrap from "@/components/bootstrap";
+import Header from "@/components/header";
 import Footer from "@/components/footer";
 import "@/styles/app.scss";
 
@@ -32,11 +33,21 @@ const RootLayout = ({
 
           <AppWrapper>
 
-            {children}
+            <Header />
+
+            <main className="d-flex flex-column">
+
+              <CartWrapper>
+
+                {children}
+
+              </CartWrapper>
+
+            </main>
+
+            <Footer />
 
           </AppWrapper>
-
-        <Footer />
         
       </body>
 

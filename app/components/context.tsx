@@ -8,8 +8,9 @@ import Fruits from "../../public/fruits.webp";
 import Schwab from "../../public/schwab.webp";
 
 const AppContext = createContext(null);
+const CartContext = createContext(null);
 
-export const AppWrapper = ({
+export const CartWrapper = ({
   children,
 }: {
   children: React.ReactNode,
@@ -184,7 +185,33 @@ export const AppWrapper = ({
 
   return (
 
-    <AppContext.Provider value={{ order, cartOrder, options, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, storeRef }}>
+    <CartContext.Provider value={{ order, cartOrder, options, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, storeRef }}>
+
+      {children}
+
+    </CartContext.Provider>
+
+  );
+};
+
+export const useCartContext = () => {
+
+  return useContext(CartContext);
+};
+
+export const AppWrapper = ({
+  children,
+}: {
+  children: React.ReactNode,
+}) => {
+
+  const [heading, setHeading] = useState("");
+
+  const [large, setLarge] = useState(null);
+
+  return (
+
+    <AppContext.Provider value={{ heading, setHeading, large, setLarge}}>
 
       {children}
 
