@@ -8,6 +8,10 @@ const Auth = () => {
 
       <Header heading="STORE" />
 
+      <main className="d-flex flex-column">
+
+      </main>
+
     </>
 
   );

@@ -30,15 +30,11 @@ const RootLayout = ({
 
         <Bootstrap />
 
-        <main>
-
           <AppWrapper>
 
             {children}
 
           </AppWrapper>
-
-        </main>
 
         <Footer />
         

@@ -10,14 +10,18 @@ const Store = () => {
 
       <Header heading="STORE" />
 
-      <Cards
+      <main className="d-flex flex-column">
 
-        heading={`Vestibulum eu`}
-        link={false}
+        <Cards
 
-      />
+          heading={`Vestibulum eu`}
+          link={false}
 
-      <Paypal />
+        />
+
+        <Paypal />
+
+      </main>
 
     </>
 
