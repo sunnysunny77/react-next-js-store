@@ -1,16 +1,16 @@
 {
   "compilerOptions": {
+    "baseUrl": "app/",
+    "paths": {
+      "@/styles/*": ["styles/*"],
+      "@/components/*": ["components/*"],
+    },
     "target": "ES2017",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
-    "baseUrl": "app/",
-    "paths": {
-      "@/styles/*": ["styles/*"],
-      "@/components/*": ["components/*"],
-    },
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
