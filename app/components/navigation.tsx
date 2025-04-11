@@ -209,7 +209,7 @@ const Navigation = () => {
 
       <div className="row w-100 justify-content-between m-0 g-0">
 
-        <Link className="col-auto m-3"  href="/">
+        <Link scroll={false} className="col-auto m-3"  href="/">
 
           <svg aria-label="Super Foods" viewBox="0 0 100 100" width="50" height="50">
 
@@ -261,7 +261,7 @@ const Navigation = () => {
 
             <li>
               
-              <Link href="/"> 
+              <Link scroll={false} href="/">
               
                 Home 
                 
@@ -271,22 +271,12 @@ const Navigation = () => {
 
             <li>
               
-              <Link href="/store"> 
+              <Link scroll={false} href="/store">
               
                 Store 
                 
               </Link>
               
-            </li>
-
-            <li>  
-                
-              <Link href="/store"> 
-            
-                Sign in 
-                
-              </Link>         
-          
             </li>
         
           </ul>

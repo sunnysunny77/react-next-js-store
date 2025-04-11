@@ -1,8 +1,37 @@
 "use client"
 import { useCartContext } from "@/components/context";
 import { ArrowRight } from 'react-bootstrap-icons';
-import Condition from "@/components/condition";
+import Link from "next/link";
 import Image from "next/image";
+
+const CardsType = (props) => {
+
+  const { link, classes, onClick, data_value, children } = props;
+
+  return link ? (
+
+    <Link
+      scroll={false}
+      className={classes}
+      onClick={onClick}
+      data-value={data_value}
+      href="/store"
+    >
+      {children}
+    </Link>
+
+  ) : (
+
+    <div
+        className={classes}
+        onClick={onClick}
+        data-value={data_value}
+    >
+      {children}
+    </div>
+
+  );
+};
 
 const Cards = (props) => {
 
@@ -43,7 +72,7 @@ const Cards = (props) => {
 
         <div className="col-12 col-sm-11 col-lg-12 d-flex flex-wrap justify-content-center justify-content-sm-between justify-content-lg-evenly px-lg-5 px-xl-4">
 
-          <Condition
+          <CardsType
 
             link={link}
 
@@ -91,9 +120,9 @@ const Cards = (props) => {
 
             </div>
 
-          </Condition>
+          </CardsType>
 
-          <Condition
+          <CardsType
 
             link={link}
 
@@ -141,9 +170,9 @@ const Cards = (props) => {
 
             </div>
 
-          </Condition>
+          </CardsType>
 
-          <Condition
+          <CardsType
 
             link={link}
 
@@ -191,9 +220,9 @@ const Cards = (props) => {
 
             </div>
 
-          </Condition>
+          </CardsType>
 
-          <Condition
+          <CardsType
 
             link={link}
 
@@ -241,9 +270,9 @@ const Cards = (props) => {
 
             </div>
 
-          </Condition>
+          </CardsType>
 
-          <Condition
+          <CardsType
 
             link={link}
 
@@ -291,9 +320,9 @@ const Cards = (props) => {
 
             </div>
 
-          </Condition>
+          </CardsType>
 
-          <Condition
+          <CardsType
 
             link={link}
 
@@ -341,7 +370,7 @@ const Cards = (props) => {
 
             </div>
 
-          </Condition>
+          </CardsType>
 
         </div>
 

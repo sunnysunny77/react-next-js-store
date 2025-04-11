@@ -30,7 +30,7 @@ const Footer = () => {
 
                   <div className="col-auto pb-3 ps-1 pe-3">
 
-                    <Link href="/">
+                    <Link scroll={false} href="/">
                     
                       <svg aria-label="Super Foods" viewBox="0 0 100 100" width="40" height="40">
 
@@ -88,7 +88,7 @@ const Footer = () => {
 
                   <li>
 
-                    <Link href="/"> 
+                    <Link scroll={false} href="/">
                     
                       Home 
                     
@@ -98,7 +98,7 @@ const Footer = () => {
 
                   <li>
 
-                    <Link href="/store"> 
+                    <Link scroll={false} href="/store">
                     
                       Store 
                       
