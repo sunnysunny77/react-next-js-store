@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@paypal/react-paypal-js": "latest",
+    "bcrypt": "latest",
     "bootstrap": "^5.3.5",
+    "mysql2": "latest",
     "next": "latest",
     "react": "latest",
     "react-bootstrap-icons": "latest",
