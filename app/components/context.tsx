@@ -211,9 +211,11 @@ export const AppWrapper = ({
 
   const footerRef = useRef(null);
 
+  const [scrollingRef, setScrollingRef] = useState(0);
+
   return (
 
-    <AppContext.Provider value={{ mainRef, footerRef }}>
+    <AppContext.Provider value={{ mainRef, footerRef, scrollingRef, setScrollingRef }}>
 
       {children}
 

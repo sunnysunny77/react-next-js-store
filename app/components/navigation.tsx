@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const Navigation = () => {
 
-  const { mainRef, footerRef } = useAppContext();
+  const { mainRef, footerRef, scrollingRef, setScrollingRef } = useAppContext();
 
   const pathname = usePathname()
   const navbar = useRef(null);
@@ -51,7 +51,7 @@ const Navigation = () => {
     });
   };
   
-  const toogle = () => {
+  const toggle = () => {
 
     let max_height = !hasCollapse ? height : navbar.current.scrollHeight;
     
@@ -144,7 +144,7 @@ const Navigation = () => {
   
       obj.zIndex = "999";
       obj.position = "fixed";
-      obj.top = "0px";
+      obj.top = Number.isInteger(scrollingRef) ? `-${height}px` : "0px";
       obj.width = "100%";
       obj.borderBottom = "1px solid #dee2e6";
       obj.transition = "top 0.375s, max-height 0.375s";
@@ -161,6 +161,11 @@ const Navigation = () => {
 
       setPositive(false);
     };
+
+    if (scroll_pos === scrollingRef) {
+
+      setScrollingRef(false);
+    }
 
     setScrollY(scroll_pos);
 
@@ -180,6 +185,7 @@ const Navigation = () => {
       setCollapse(height);
       handle_bars(true);
     }
+    setScrollingRef(0);
   }, [pathname]);
 
   useEffect(() => {
@@ -234,7 +240,7 @@ const Navigation = () => {
 
         </Link>
 
-        <div ref={navbar_toggler} onClick={toogle} aria-label="menu" role="button" className="col-auto d-flex align-items-center slider_8-navbar-toggler navbar-toggler p-4" >
+        <div ref={navbar_toggler} onClick={toggle} aria-label="menu" role="button" className="col-auto d-flex align-items-center slider_8-navbar-toggler navbar-toggler p-4" >
 
           <div>
 

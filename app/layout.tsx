@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import Bootstrap from "@/components/bootstrap";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import Scroll from "@/components/scroll";
 import "@/styles/app.scss";
 
 const poppins = localFont({
@@ -32,6 +33,8 @@ const RootLayout = ({
         <Bootstrap />
 
           <AppWrapper>
+
+            <Scroll />
 
             <Navigation />
 
