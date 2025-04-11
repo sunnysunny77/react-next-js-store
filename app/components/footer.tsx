@@ -8,11 +8,11 @@ import Top from "@/components/top";
 
 const Footer = () => {
 
-  const { footer } = useAppContext();
+  const { footerRef } = useAppContext();
 
   return (
   
-    <footer ref={footer}>
+    <footer ref={footerRef}>
 
       <div className="container-lg py-3 py-lg-5 g-0">
 

@@ -1,20 +1,22 @@
 "use client"
+import { useEffect } from "react";
 import { useCartContext } from "@/components/context";
 import { ArrowRight } from 'react-bootstrap-icons';
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 
 const CardsType = (props) => {
 
-  const { link, classes, onClick, data_value, children } = props;
+  const { cardsType, classes, onClick, data_value, children } = props;
 
-  return link ? (
+  return cardsType ? (
 
     <Link
-      scroll={false}
       className={classes}
       onClick={onClick}
       data-value={data_value}
+      scroll={false}
       href="/store"
     >
       {children}
@@ -35,9 +37,11 @@ const CardsType = (props) => {
 
 const Cards = (props) => {
 
-  const { heading, link } = props;
+  const { heading, cardsType } = props;
 
-  const { cartOrder, options, items, storeRef } = useCartContext();
+  const { cartOrder, options, items, storeRef, scrollRef, setScrollRef } = useCartContext();
+
+  const pathname = usePathname();
 
   const scroll_to = (e) => {
 
@@ -48,11 +52,26 @@ const Cards = (props) => {
 
     cartOrder[e.currentTarget.getAttribute("data-value")]();
 
-    if (storeRef.current) {
+    if (cardsType) {
+
+      setScrollRef(true);
+    } else if (!cardsType) {
 
       scroll_to(storeRef.current.offsetTop);
     }
   };
+
+  useEffect(() => {
+
+    if (scrollRef && pathname === "/store") {
+
+      scroll_to(storeRef.current.offsetTop);
+      return () => {
+
+        setScrollRef(false);
+      };
+    };
+  }, [pathname]);
 
   return (
     
@@ -74,11 +93,11 @@ const Cards = (props) => {
 
           <CardsType
 
-            link={link}
+            cardsType={cardsType}
+
+            onClick={optionOrder}
 
             classes="card d-flex flex-column justify-content-between mt-5 mt-sm-4 mt-lg-3"
-
-            onClick={(e)=>optionOrder(e)}
 
             data_value={options[0].value}
 
@@ -124,11 +143,11 @@ const Cards = (props) => {
 
           <CardsType
 
-            link={link}
+            cardsType={cardsType}
+
+            onClick={optionOrder}
 
             classes="card d-flex flex-column justify-content-between mt-5 mt-sm-4 mt-lg-3"
-
-            onClick={(e)=>optionOrder(e)}
 
             data_value={options[1].value}
 
@@ -174,11 +193,11 @@ const Cards = (props) => {
 
           <CardsType
 
-            link={link}
+            cardsType={cardsType}
+
+            onClick={optionOrder}
 
             classes="card d-flex flex-column justify-content-between mt-5 mt-sm-4 mt-lg-3"
-
-            onClick={(e)=>optionOrder(e)}
 
             data_value={options[2].value}
 
@@ -224,11 +243,11 @@ const Cards = (props) => {
 
           <CardsType
 
-            link={link}
+            cardsType={cardsType}
+
+            onClick={optionOrder}
 
             classes="card d-flex flex-column justify-content-between mt-5 mt-sm-4 mt-lg-3"
-
-            onClick={(e)=>optionOrder(e)}
 
             data_value={options[3].value}
 
@@ -274,11 +293,11 @@ const Cards = (props) => {
 
           <CardsType
 
-            link={link}
+            cardsType={cardsType}
+
+            onClick={optionOrder}
 
             classes="card d-flex flex-column justify-content-between mt-5 mt-sm-4 mt-lg-3"
-
-            onClick={(e)=>optionOrder(e)}
 
             data_value={options[4].value}
 
@@ -324,11 +343,11 @@ const Cards = (props) => {
 
           <CardsType
 
-            link={link}
+            cardsType={cardsType}
+
+            onClick={optionOrder}
 
             classes="card d-flex flex-column justify-content-between mt-5 mt-sm-4 mt-lg-3"
-
-            onClick={(e)=>optionOrder(e)}
 
             data_value={options[5].value}
 

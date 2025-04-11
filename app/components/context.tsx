@@ -183,9 +183,11 @@ export const CartWrapper = ({
 
   const [cart, setCart] = useState({});
 
+  const [scrollRef, setScrollRef] = useState(false);
+
   return (
 
-    <CartContext.Provider value={{ order, cartOrder, options, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, storeRef }}>
+    <CartContext.Provider value={{ order, cartOrder, options, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, storeRef, scrollRef, setScrollRef }}>
 
       {children}
 
@@ -205,17 +207,13 @@ export const AppWrapper = ({
   children: React.ReactNode,
 }) => {
 
-  const header = useRef(null);
+  const mainRef = useRef(null);
 
-  const footer = useRef(null);
-
-  const [heading, setHeading] = useState("");
-
-  const [large, setLarge] = useState(null);
+  const footerRef = useRef(null);
 
   return (
 
-    <AppContext.Provider value={{ header, footer, heading, setHeading, large, setLarge }}>
+    <AppContext.Provider value={{ mainRef, footerRef }}>
 
       {children}
 

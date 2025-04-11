@@ -1,13 +1,10 @@
-"use client"
-import { useAppContext } from "@/components/context";
+const Header = (props) => {
 
-const Header = () => {
-
-  const { heading, large, header } = useAppContext();
+  const { heading, children } = props;
   
   return (
     
-    <header ref={header} className="container-fluid row g-0">
+    <header className="container-fluid row g-0">
     
         <div className="row position-relative overflow-hidden g-0">
 
@@ -25,7 +22,7 @@ const Header = () => {
 
         </div>
 
-        {large}
+        {children}
 
     </header>
 

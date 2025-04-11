@@ -176,7 +176,6 @@ const Paypal = () => {
   const optionOrder = (e) => {
 
     cartOrder[e.currentTarget.getAttribute("data-value")]();
-    scroll_to(storeRef.current.offsetTop);
   };
 
   const selectOrder = (e) => {
@@ -234,13 +233,12 @@ const Paypal = () => {
     if (outputBool) {
 
       scroll_to(outputRef.current.offsetTop);
-
-      return () => {
-
-        setOutputBool(false);
-      }
     }
-  }, [outputBool, scroll_to]);
+    return () => {
+
+      setOutputBool(false);
+    }
+  }, [outputBool]);
 
   return (
 

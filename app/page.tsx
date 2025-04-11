@@ -1,17 +1,17 @@
 "use client"
-import { useEffect } from "react";
 import { useAppContext } from "@/components/context";
 import Carousel from "@/components/carousel";
 import Cards from "@/components/cards";
+import Header from "@/components/header";
 import Link from "next/link";
 
 const Home = () => {
 
-  const { setHeading, setLarge } = useAppContext();
+  const { mainRef } = useAppContext();
 
   const heading = "HOME";
 
-  const large = (
+  const children = (
 
     <div className="col-12 bg-11 p-4 p-sm-5 ps-md-5 pt-md-5 pb-md-5 pe-md-0 pe-xl-5">
 
@@ -48,22 +48,26 @@ const Home = () => {
     </div>
   );
 
-  useEffect(() => {
-
-    setHeading(heading);
-    setLarge(large);
-  }, []);
-
   return (
 
     <>
 
-      <Cards
+      <Header heading={heading}>
 
-        heading={`Vestibulum eu`}
-        link={true}
+        {children}
 
-      />
+      </Header>
+
+      <main ref={mainRef}>
+
+        <Cards
+
+          heading={`Vestibulum eu`}
+          cardsType={true}
+
+        />
+
+      </main>
 
     </>
 

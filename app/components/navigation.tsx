@@ -1,12 +1,12 @@
 "use client"
 import { useAppContext } from "@/components/context";
 import { useRef, useEffect, useState, useCallback } from "react";
-import { usePathname } from 'next/navigation'
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 const Navigation = () => {
 
-  const { header, footer } = useAppContext();
+  const { mainRef, footerRef } = useAppContext();
 
   const pathname = usePathname()
   const navbar = useRef(null);
@@ -127,7 +127,7 @@ const Navigation = () => {
       setCollapse(height);
       handle_bars(true);
       document.body.style.paddingTop = window.innerWidth >= 768 ? "" : `${height}px`;
-    } else if ((scroll_pos > top + height && positive) || ( scroll_pos > footer.current.offsetTop - height)) {
+    } else if ((scroll_pos > top + height && positive) || ( scroll_pos > footerRef.current.offsetTop - height)) {
 
       obj.zIndex = "999";
       obj.position = "fixed";
@@ -184,7 +184,7 @@ const Navigation = () => {
 
   useEffect(() => {
 
-    setTop(header.current.scrollHeight + (navbar.current.scrollHeight - navbar_collapse.current.scrollHeight));
+    setTop(mainRef.current.offsetTop + (navbar.current.scrollHeight - navbar_collapse.current.scrollHeight));
     window.addEventListener("scroll", handle_navigationigation, { passive: true });
     window.addEventListener("wheel", handle_navigationigation, { passive: true });
     window.addEventListener("resize", handle_navigationigation, { passive: true });
