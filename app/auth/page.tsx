@@ -6,10 +6,14 @@ const Auth = () => {
 
   const { setHeading, setLarge } = useAppContext();
 
+  const heading = "STORE";
+
+  const large = false;
+
   useEffect(() => {
 
-    setHeading("STORE");
-    setLarge(false);
+    setHeading(heading);
+    setLarge(large);
   }, []);
 
   return (
