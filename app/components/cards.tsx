@@ -2,7 +2,6 @@
 import { useEffect } from "react";
 import { useCartContext } from "@/components/context";
 import { ArrowRight } from 'react-bootstrap-icons';
-import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -41,8 +40,6 @@ const Cards = (props) => {
 
   const { cartOrder, options, items, storeRef, scrollRef, setScrollRef } = useCartContext();
 
-  const pathname = usePathname();
-
   const scroll_to = (e) => {
 
     window.scrollTo(0, e);
@@ -63,7 +60,7 @@ const Cards = (props) => {
 
   useEffect(() => {
 
-    if (scrollRef && pathname === "/store") {
+    if (scrollRef && !cardsType) {
 
       scroll_to(storeRef.current.offsetTop);
       return () => {
@@ -71,7 +68,7 @@ const Cards = (props) => {
         setScrollRef(false);
       };
     };
-  }, [pathname]);
+  }, [scrollRef]);
 
   return (
     
