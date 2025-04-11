@@ -12,15 +12,14 @@ const Navigation = () => {
   const navbar = useRef(null);
   const navbar_toggler = useRef(null);
   const navbar_collapse = useRef(null);
-  const [height, setHeight] = useState(0);
-  const [top, setTop] = useState(0);
   const [scrollY, setScrollY] = useState(0);
   const [positive, setPositive] = useState(true);
-  const [collapse, setCollapse] = useState(82);
+  const [collapse, setCollapse] = useState(0);
   const [hasCollapse, setHasCollapse] = useState(true);
-  const [style, setStyle] = useState(null);
+  const [top, setTop] = useState(0);
+  const height = 83;
 
-  const handle_children = (has_collapsed) => {
+  const handle_bars = (has_collapsed) => {
 
     const wins = window.innerWidth < 768;
 
@@ -64,29 +63,13 @@ const Navigation = () => {
 
     setHasCollapse(!hasCollapse);
     setCollapse(max_height);
-    handle_children(!hasCollapse);
+    handle_bars(!hasCollapse);
   };
-
-  useEffect(() => {
-
-    if (!navbar_toggler.current.classList.contains("has-collapsed")) {
-
-      Object.assign(navbar.current.style, {
-
-        transition: "top 0.375s, max-height 0.375s",
-        maxHeight: `${height}px`,
-      });
-  
-      setHasCollapse(true);
-      setCollapse(height);
-      handle_children(true);
-    }
-  }, [height, pathname]);
 
   const handle_navigationigation = useCallback(() => {
 
-    let obj: { 
-      zIndex: number, 
+    const obj: {
+      zIndex: string,
       top: string, 
       width: string,
       position: string, 
@@ -94,22 +77,20 @@ const Navigation = () => {
       transition: string,
       maxHeight: string,
     }  = {
-      zIndex: 0,
-      top: "",
-      width: "",
-      position: "",
-      borderBottom: "",
-      transition: "",
-      maxHeight: ""
+      zIndex: "1001",
+      position: window.innerWidth >= 768 ? "absolute" : "static",
+      top: window.innerWidth >= 768 ? "0px" : "initial",
+      width: window.innerWidth >= 768 ? "300px" : "100%",
+      borderBottom: window.innerWidth >= 768 ? "none" : "1px solid #dee2e6",
+      transition: "max-height 0.375s",
+      maxHeight: `${height}px`,
     };
 
-    const body = document.body;
+    const scroll_pos = window.scrollY;
 
-    let scroll_pos = window.scrollY; 
+    if (scroll_pos < height) {
 
-    if (scroll_pos < height) {  
-
-      obj.zIndex = 1001;
+      obj.zIndex = "1001";
       obj.position = window.innerWidth >= 768 ? "absolute" : "static";
       obj.top = window.innerWidth >= 768 ? "0px" : "initial";
       obj.width = window.innerWidth >= 768 ? "300px" : "100%";
@@ -118,11 +99,11 @@ const Navigation = () => {
       obj.maxHeight = `${height}px`;
       setHasCollapse(true);
       setCollapse(height);
-      handle_children(true);
-      body.style.paddingTop = "";
+      handle_bars(true);
+      document.body.style.paddingTop = "";
     } else if (scroll_pos > top && scroll_pos < top + height && !positive) {
 
-      obj.zIndex = 999;
+      obj.zIndex = "999";
       obj.position = "fixed";
       obj.top = `-${height}px`;
       obj.width = "100%";
@@ -131,11 +112,11 @@ const Navigation = () => {
       obj.maxHeight = `${height}px`;
       setHasCollapse(true);
       setCollapse(height);
-      handle_children(true);
-      body.style.paddingTop = window.innerWidth >= 768 ? "" : `${height}px`;
-    } else if (scroll_pos > height && scroll_pos < top + height) {  
+      handle_bars(true);
+      document.body.style.paddingTop = window.innerWidth >= 768 ? "" : `${height}px`;
+    } else if (scroll_pos > height && scroll_pos < top + height) {
 
-      obj.zIndex = 999;
+      obj.zIndex = "999";
       obj.position = "fixed";
       obj.top = `-${height}px`;
       obj.width = "100%";
@@ -144,11 +125,11 @@ const Navigation = () => {
       obj.maxHeight = `${height}px`;
       setHasCollapse(true);
       setCollapse(height);
-      handle_children(true);
-      body.style.paddingTop = window.innerWidth >= 768 ? "" : `${height}px`;
+      handle_bars(true);
+      document.body.style.paddingTop = window.innerWidth >= 768 ? "" : `${height}px`;
     } else if ((scroll_pos > top + height && positive) || ( scroll_pos > footer.current.offsetTop - height)) {
 
-      obj.zIndex = 999;
+      obj.zIndex = "999";
       obj.position = "fixed";
       obj.top = `-${height}px`;
       obj.width = "100%";
@@ -157,22 +138,21 @@ const Navigation = () => {
       obj.maxHeight = "0px";
       setHasCollapse(true);
       setCollapse(height);
-      handle_children(true);
-      body.style.paddingTop = window.innerWidth >= 768 ? "" : `${height}px`;
-      console.log(1)
+      handle_bars(true);
+      document.body.style.paddingTop = window.innerWidth >= 768 ? "" : `${height}px`;
     } else {
   
-      obj.zIndex = 999;
+      obj.zIndex = "999";
       obj.position = "fixed";
       obj.top = "0px";
       obj.width = "100%";
       obj.borderBottom = "1px solid #dee2e6";
       obj.transition = "top 0.375s, max-height 0.375s";
       obj.maxHeight = `${collapse}px`;
-      body.style.paddingTop = window.innerWidth >= 768 ? "" : `${height}px`;
+      document.body.style.paddingTop = window.innerWidth >= 768 ? "" : `${height}px`;
     };
 
-    if (obj !== style) Object.assign(navbar.current.style, obj);
+    Object.assign(navbar.current.style, obj);
 
     if (scroll_pos > scrollY) {
 
@@ -184,24 +164,37 @@ const Navigation = () => {
 
     setScrollY(scroll_pos);
 
-    if (obj !== style) setStyle(obj);
-  },[collapse, footer, height, positive, scrollY, style, top]);
+  },[scrollY]);
 
   useEffect(() => {
 
-    setHeight(navbar.current.scrollHeight - navbar_collapse.current.scrollHeight);
+    if (!navbar_toggler.current.classList.contains("has-collapsed")) {
+
+      Object.assign(navbar.current.style, {
+
+        transition: "top 0.375s, max-height 0.375s",
+        maxHeight: `${height}px`,
+      });
+
+      setHasCollapse(true);
+      setCollapse(height);
+      handle_bars(true);
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+
     setTop(header.current.scrollHeight + (navbar.current.scrollHeight - navbar_collapse.current.scrollHeight));
     window.addEventListener("scroll", handle_navigationigation, { passive: true });
     window.addEventListener("wheel", handle_navigationigation, { passive: true });
     window.addEventListener("resize", handle_navigationigation, { passive: true });
-
     return () => {
 
       window.removeEventListener("scroll", handle_navigationigation);
       window.removeEventListener("wheel", handle_navigationigation);
       window.removeEventListener("resize", handle_navigationigation);
     };
-  }, [handle_navigationigation, header]);
+  }, [handle_navigationigation]);
 
   return (  
 
