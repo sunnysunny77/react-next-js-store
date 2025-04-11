@@ -1,9 +1,9 @@
 "use client"
 import { useRef, useEffect } from "react";
 import Image from "next/image";
-import Finance from "../../public/finance.webp";
-import Transport from "../../public/transport.webp";
-import Warehouse from "../../public/warehouse.webp";
+import Finance from "@/images/finance.webp";
+import Transport from "@/images/transport.webp";
+import Warehouse from "@/images/warehouse.webp";
 
 const Carousel = () => {
 

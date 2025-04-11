@@ -4,6 +4,8 @@
     "paths": {
       "@/styles/*": ["styles/*"],
       "@/components/*": ["components/*"],
+      "@/images/*": ["../public/images/*"],
+      "@/module/*": ["styles/module/*"],
     },
     "target": "ES2017",
     "lib": [

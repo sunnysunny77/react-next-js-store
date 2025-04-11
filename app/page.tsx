@@ -14,13 +14,13 @@ import Cta from "@/components/cta";
 import Enquiry from "@/components/enquiry";
 import Link from "next/link";
 import Image from "next/image";
-import Store from "../public/store.webp";
-import Lemons from "../public/lemons.webp";
-import Vegies from "../public/vegies.webp";
-import Greens from "../public/greens.webp";
-import Platter from "../public/platter.webp";
-import Roast from "../public/roast.webp";
-import Aus from "../public/australian-made.svg";
+import Store from "@/images/store.webp";
+import Lemons from "@/images/lemons.webp";
+import Vegies from "@/images/vegies.webp";
+import Greens from "@/images/greens.webp";
+import Platter from "@/images/platter.webp";
+import Roast from "@/images/roast.webp";
+import Aus from "@/images/australian-made.svg";
 
 const Home = () => {
 

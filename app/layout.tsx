@@ -7,10 +7,10 @@ import Footer from "@/components/footer";
 import Scroll from "@/components/scroll";
 import "@/styles/app.scss";
 
-const poppins = localFont({
+const montserrat = localFont({
   display: "swap",
   variable: "--font-montserrat-regular",
-  src: "/styles/fonts/Montserrat-Regular.ttf",
+  src: "../public/fonts/Montserrat-Regular.ttf",
 })
 
 export const metadata: Metadata = {
@@ -28,7 +28,7 @@ const RootLayout = ({
 
     <html lang="en">
 
-      <body className={poppins.variable}>
+      <body className={montserrat.variable}>
 
         <Bootstrap />
 

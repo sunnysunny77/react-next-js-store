@@ -6,8 +6,8 @@ import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@pa
 import { ArrowDownShort } from "react-bootstrap-icons";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import styles from "../styles/module/paypal.module.scss";
-import Spinner from "../../public/load.gif";
+import styles from "@/module/paypal.module.scss";
+import Spinner from "@/images/load.gif";
 
 const Select = dynamic(() => import("react-select/creatable"), { ssr: false });
 

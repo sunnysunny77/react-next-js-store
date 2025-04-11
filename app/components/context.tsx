@@ -1,11 +1,11 @@
 "use client"
 import { createContext, useContext, useState, useRef } from "react";
-import Basil from "../../public/basil.webp";
-import Broccoli from "../../public/broccoli.webp";
-import Chitto from "../../public/chitto.webp";
-import Cucumbers from "../../public/cucumbers.webp";
-import Fruits from "../../public/fruits.webp";
-import Schwab from "../../public/schwab.webp";
+import Basil from "@/images/basil.webp";
+import Broccoli from "@/images/broccoli.webp";
+import Chitto from "@/images/chitto.webp";
+import Cucumbers from "@/images/cucumbers.webp";
+import Fruits from "@/images/fruits.webp";
+import Schwab from "@/images/schwab.webp";
 
 const AppContext = createContext(null);
 const CartContext = createContext(null);
