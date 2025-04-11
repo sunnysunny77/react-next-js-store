@@ -24,6 +24,7 @@ const Bootstrap = () => {
     // require("bootstrap/js/dist/toast");
     // require("bootstrap/js/dist/tooltip");
 
+    require("bootstrap/js/dist/collapse");
     const Carousel = require("bootstrap/js/dist/carousel");
 
     window.bootstrap = { Carousel };

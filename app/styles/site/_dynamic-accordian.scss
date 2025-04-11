@@ -1,4 +1,4 @@
-.accordian-heading {
+.dynamic-accordian {
     .accordion-item:last-of-type > .accordion-header .accordion-button.collapsed {
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
@@ -15,9 +15,11 @@
     .accordion-button {
         background-color: $alfa;
         color: $foxtrot;
+        border: none;
+        box-shadow: none;
     }
     .accordion-button::after {
-        background-image: url("../../images/accordian-white.svg");
+        background-image: url("../../../public/accordian-white.svg");
     }
     .accordion-item {
         background-color: $foxtrot;
