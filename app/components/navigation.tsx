@@ -76,7 +76,7 @@ const Navigation = () => {
       borderBottom: string,
       transition: string,
       maxHeight: string,
-    }  = {
+    } = {
       zIndex: "1001",
       position: window.innerWidth >= 768 ? "absolute" : "static",
       top: window.innerWidth >= 768 ? "0px" : "initial",
