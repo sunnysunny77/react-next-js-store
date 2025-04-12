@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const Navigation = () => {
 
-  const { mainRef, footerRef, scrollingRef, setScrollingRef } = useAppContext();
+  const { mainRef, footerRef, scrollingRef, setScrollingRef, auth } = useAppContext();
 
   const pathname = usePathname()
   const navbar = useRef(null);
@@ -260,7 +260,7 @@ const Navigation = () => {
 
             <li>
               
-              <Link scroll={false} href="/">
+              <Link className="navigation-link" scroll={false} href="/">
               
                 Home 
                 
@@ -270,12 +270,34 @@ const Navigation = () => {
 
             <li>
               
-              <Link scroll={false} href="/store">
+              <Link className="navigation-link" scroll={false} href={auth ? "/store" : "/auth"}>
               
                 Store 
                 
               </Link>
               
+            </li>
+
+            <li>
+
+              {auth ? (
+
+                <a className="navigation-link">
+
+                  Sign Out
+
+                </a>
+
+              ) : (
+
+              <Link className="navigation-link" scroll={false} href="/auth">
+
+                Sign In
+
+              </Link>
+
+              )}
+
             </li>
         
           </ul>

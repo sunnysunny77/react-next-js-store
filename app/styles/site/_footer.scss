@@ -2,7 +2,8 @@ footer {
     background-color: $golf;
     color: $hotel;
     width: 100%;
-    a {
+    a,
+    .footer-link {
         color: $hotel;
         font-style: oblique;
         font-size: 15px;
@@ -19,7 +20,8 @@ footer {
         text-underline-offset: 5px;
     }
     ul {
-        a {
+        a,
+        .footer-link {
             font-size: 18px;
             font-style: normal;
         }

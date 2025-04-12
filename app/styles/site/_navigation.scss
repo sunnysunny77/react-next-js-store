@@ -20,7 +20,8 @@
             border: none;
         }
     }
-    a {
+    a,
+    .navigation-liink {
         color: $hotel;
         letter-spacing: 0.0125em;
         text-decoration: underline;

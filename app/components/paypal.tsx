@@ -1,4 +1,3 @@
-/* trunk-ignore-all(prettier) */
 "use client"
 import { useState, useRef, useEffect } from "react";
 import { useCartContext } from "@/components/context";

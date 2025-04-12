@@ -8,6 +8,8 @@ import Image from "next/image";
 
 const CardsType = (props) => {
 
+  const { auth } = useAppContext();
+
   const { cardsType, classes, onClick, data_value, children } = props;
 
   return cardsType ? (
@@ -17,7 +19,7 @@ const CardsType = (props) => {
       onClick={onClick}
       data-value={data_value}
       scroll={false}
-      href="/store"
+      href={auth ? "/store" : "/auth"}
     >
       {children}
     </Link>

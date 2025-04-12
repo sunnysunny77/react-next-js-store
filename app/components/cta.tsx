@@ -6,7 +6,7 @@ const CtaType = (props) => {
 
   const { ctaType, classes, children } = props;
 
-  const { setScrollingRef, itemsRef } = useAppContext();
+  const { setScrollingRef, itemsRef, auth } = useAppContext();
 
   const scroll_to = () => {
 
@@ -20,7 +20,7 @@ const CtaType = (props) => {
     <Link
       className={classes}
       scroll={false}
-      href="/store"
+      href={auth ? "/store" : "/auth"}
     >
       {children}
     </Link>

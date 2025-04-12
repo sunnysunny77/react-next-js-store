@@ -26,7 +26,7 @@
 //@import "bootstrap/scss/breadcrumb";
 //@import "bootstrap/scss/pagination";
 //@import "bootstrap/scss/badge";
-//@import "bootstrap/scss/alert";
+@import "bootstrap/scss/alert";
 //@import "bootstrap/scss/progress";
 //@import "bootstrap/scss/list-group";
 //@import "bootstrap/scss/close";
@@ -55,4 +55,6 @@
 @import "site/cards";
 @import "site/dynamic-accordian";
 @import "site/paypal";
+@import "site/auth";
+@import "site/alerts";
 @import "site/footer";

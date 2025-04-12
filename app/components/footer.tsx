@@ -8,7 +8,7 @@ import Top from "@/components/top";
 
 const Footer = () => {
 
-  const { footerRef } = useAppContext();
+  const { footerRef, auth } = useAppContext();
 
   return (
   
@@ -88,7 +88,7 @@ const Footer = () => {
 
                   <li>
 
-                    <Link scroll={false} href="/">
+                    <Link className="footer-link" scroll={false} href="/">
                     
                       Home 
                     
@@ -98,12 +98,33 @@ const Footer = () => {
 
                   <li>
 
-                    <Link scroll={false} href="/store">
+                    <Link className="footer-link" scroll={false} href={auth ? "/store" : "/auth"}>
                     
                       Store 
                       
                     </Link>
 
+                  </li>
+
+                  <li>
+
+                  {auth ? (
+
+                    <a className="footer-link">
+
+                      Sign Out
+
+                    </a>
+
+                    ) : (
+
+                    <Link className="footer-link" scroll={false} href="/auth">
+
+                    Sign In
+
+                    </Link>
+
+                    )}
                   </li>
 
                 </ul>

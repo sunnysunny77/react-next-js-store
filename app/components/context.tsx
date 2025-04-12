@@ -215,9 +215,11 @@ export const AppWrapper = ({
 
   const [scrollingRef, setScrollingRef] = useState(0);
 
+  const [auth, setAuth] = useState(false);
+
   return (
 
-    <AppContext.Provider value={{ mainRef, footerRef, itemsRef, scrollingRef, setScrollingRef }}>
+    <AppContext.Provider value={{ mainRef, footerRef, itemsRef, scrollingRef, setScrollingRef, auth, setAuth }}>
 
       {children}
 
