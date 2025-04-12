@@ -75,7 +75,7 @@ const Slider= (props) => {
 
     <div className="slider_9-container g-0">
 
-      <div className="row pt-5 mt-5 mt-lg-0 pt-lg-0 g-0">
+      <div className="row pt-5 pt-lg-0 g-0">
 
         <div className="slider_9-small-col col-lg-1 d-none d-lg-block py-5"></div>
 

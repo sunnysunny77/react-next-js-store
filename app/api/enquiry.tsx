@@ -1,4 +1,5 @@
 "use server"
+import nodemailer from 'nodemailer';
 
 type StateEnquiry = {
     name: string,
@@ -13,8 +14,6 @@ type StateEnquiry = {
   };
 
 export const GetEnquiry = async (stateEnquiry: StateEnquiry, formData: FormData) => {
-
-  console.log(formData)
 
   const data = {
     name: formData.get("name"),
@@ -34,47 +33,39 @@ export const GetEnquiry = async (stateEnquiry: StateEnquiry, formData: FormData)
 
     error = true;
     nameMessage = "Enter your name";
-
   } else {
 
     nameMessage = "";
-
   };
 
   if (!/^\+?\d{3,15}$/.test(data.phone as string)) {
   
     error = true;
     phoneMessage = "+###############";
-
   } else {
 
     phoneMessage = "";
-
   };
 
   if (!/^[\w.-]+@[\w.-]+\.[A-Za-z]{2,6}$/.test(data.email as string)) {
   
     error = true;
     emailMessage = "Enter your email";
- 
   } else {
 
     emailMessage = "";
-
   };
 
   if (!/[\dA-Za-z]/.test(data.text as string)) {
   
     error = true;
     textMessage = "Enter your message";
-
   } else {
 
     textMessage = "";
   };
 
   if (error) return {
-
     name: data.name as string,
     nameMessage: nameMessage,
     phone: data.phone as string,
@@ -86,8 +77,55 @@ export const GetEnquiry = async (stateEnquiry: StateEnquiry, formData: FormData)
     response: "",
   };
 
-  return {
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.REACT_APP_NODEMAILER_EMAIL,
+      pass: process.env.REACT_APP_NODEMAILER_PASSWORD,
+    }
+  });
 
+  const mailOptions = {
+    from: process.env.REACT_APP_NODEMAILER_EMAIL_FROM,
+    to: process.env.REACT_APP_NODEMAILER_EMAIL_TO,
+    subject: "You have a message from the enquiry page on your website:",
+    html: `
+    <html lang="en">
+      <body>
+        <div><b>Name:</b></div>
+        <p>${data.name}</p>
+        <div><b>Phone:</b></div>
+        <p>${data.phone}</p>
+        <div><b>Email:</b></div>
+        <p>${data.email}</p>
+        <div><b>Message:</b></div>
+        <p>${data.text}</p>
+      </body>
+    </html>
+    `,
+  };
+
+  const info = await transporter.sendMail({
+    from: process.env.REACT_APP_NODEMAILER_EMAIL_FROM,
+    to: process.env.REACT_APP_NODEMAILER_EMAIL_TO,
+    subject: "You have a message from the enquiry page on your website:",
+    html: `
+    <html lang="en">
+      <body>
+        <div><b>Name:</b></div>
+        <p>${data.name}</p>
+        <div><b>Phone:</b></div>
+        <p>${data.phone}</p>
+        <div><b>Email:</b></div>
+        <p>${data.email}</p>
+        <div><b>Message:</b></div>
+        <p>${data.text}</p>
+      </body>
+    </html>
+    `,
+  });
+
+  return {
     name: data.name as string,
     nameMessage: nameMessage,
     phone: data.phone as string,

@@ -1,5 +1,7 @@
 import { GetEnquiry } from "@/api/enquiry";
 import { useActionState } from "react";
+import Image from "next/image";
+import Spinner from "@/images/load.gif";
 
 const Enquiry = () => {
 
@@ -166,9 +168,13 @@ const Enquiry = () => {
 
                     <div className="col-12 col-sm-8">
 
-                      <p className="mb-5 m-sm-0">
+                      <p className="mb-4 m-sm-0">
 
                         {stateEnquiry?.response ? stateEnquiry?.response : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."}
+
+                        <br />
+
+                        <span className="spinnerSpan">{isPending ? <Image className="spinner" width="40" height="40" src={Spinner} alt="Spinner" /> : ""} </span>
 
                       </p>
 

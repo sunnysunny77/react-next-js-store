@@ -75,4 +75,18 @@
     textarea::placeholder {
         color: inherit;
     }
+    .spinnerSpan {
+        height: 30px;
+        display: inline-block;
+        .spinner {
+            height: 30px;
+            width: fit-content;
+            display: block;
+            margin: auto;
+            border: none;
+            background-color: $lima;
+            border-radius: 50%;
+            padding: 0.2rem;
+        }
+    }
 }
