@@ -1,5 +1,8 @@
 "use client"
 import { createContext, useContext, useState, useRef } from "react";
+import { redirect } from 'next/navigation';
+import LogOut from  "@/api/log-out";
+import GetCookie from  "@/api/get-cookie";
 import Basil from "@/images/basil.webp";
 import Broccoli from "@/images/broccoli.webp";
 import Chitto from "@/images/chitto.webp";
@@ -217,9 +220,22 @@ export const AppWrapper = ({
 
   const [auth, setAuth] = useState(false);
 
+  const log_out = () => {
+
+    LogOut();
+    setAuth(false);
+    redirect("/");
+  };
+
+  const checkCookie = async () => {
+
+    const cookie = await GetCookie();
+    setAuth(cookie);
+  };
+
   return (
 
-    <AppContext.Provider value={{ mainRef, footerRef, itemsRef, scrollingRef, setScrollingRef, auth, setAuth }}>
+    <AppContext.Provider value={{ mainRef, footerRef, itemsRef, scrollingRef, setScrollingRef, auth, log_out, checkCookie }}>
 
       {children}
 

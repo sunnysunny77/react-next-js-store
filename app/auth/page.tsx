@@ -1,13 +1,15 @@
 "use client";
 import { useActionState, useEffect } from "react";
-import { redirect } from 'next/navigation';
 import { useAppContext } from "@/components/context";
 import { GetSignIn } from "@/api/auth";
+import { redirect } from 'next/navigation';
 import Header from "@/components/header";
+import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
 
 const Auth = () => {
 
-  const { mainRef, setAuth } = useAppContext();
+  const { mainRef, checkCookie } = useAppContext();
 
   const heading = "STORE";
 
@@ -20,16 +22,19 @@ const Auth = () => {
 
   useEffect(() => {
 
-   if (stateSignIn.auth === true) {
-
-    setAuth(true);
-    redirect("/store");
-   }
+    if (stateSignIn.auth) redirect("/store");
   }, [stateSignIn.auth]);
+
+  useEffect(() => {
+
+    checkCookie();
+  }, []);
 
   return (
 
     <>
+
+      <Navigation />
 
       <Header heading={heading} />
 
@@ -121,6 +126,8 @@ const Auth = () => {
         </div>
 
       </main>
+
+      <Footer />
 
     </>
 

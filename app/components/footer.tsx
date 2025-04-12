@@ -8,7 +8,7 @@ import Top from "@/components/top";
 
 const Footer = () => {
 
-  const { footerRef, auth } = useAppContext();
+  const { footerRef, auth, log_out } = useAppContext();
 
   return (
   
@@ -110,7 +110,7 @@ const Footer = () => {
 
                   {auth ? (
 
-                    <a className="footer-link">
+                    <a onClick={log_out} className="footer-link">
 
                       Sign Out
 

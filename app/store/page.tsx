@@ -1,20 +1,30 @@
 "use client"
+import { useEffect } from "react";
 import { useAppContext } from "@/components/context";
 import Cards from "@/components/cards";
 import Header from "@/components/header";
 import Paypal from "@/components/paypal";
 import DynamicAccordian from "@/components/dynamic-accordian";
 import Cta from "@/components/cta";
+import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
 
 const Store = () => {
 
-  const { mainRef, itemsRef } = useAppContext();
+  const { mainRef, itemsRef, checkCookie } = useAppContext();
 
   const heading = "STORE";
+
+  useEffect(() => {
+
+    checkCookie();
+  }, []);
 
   return (
 
     <>
+
+      <Navigation />
 
       <Header heading={heading} />
 
@@ -96,6 +106,8 @@ const Store = () => {
         </div>
 
       </main>
+
+      <Footer />
 
     </>
 

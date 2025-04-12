@@ -1,8 +1,11 @@
 "use client"
+import { useEffect } from "react";
 import { useAppContext } from "@/components/context";
 import Carousel from "@/components/carousel";
 import Cards from "@/components/cards";
 import Header from "@/components/header";
+import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
 import TwoColText from "@/components/two-col-text";
 import TwoColCurve from "@/components/two-col-curve";
 import TwoRowFeature from "@/components/two-row-feature";
@@ -24,7 +27,7 @@ import Aus from "@/images/australian-made.svg";
 
 const Home = () => {
 
-  const { mainRef, auth } = useAppContext();
+  const { mainRef, auth, checkCookie } = useAppContext();
 
   const heading = "HOME";
 
@@ -65,9 +68,16 @@ const Home = () => {
     </div>
   );
 
+  useEffect(() => {
+
+    checkCookie();
+  }, []);
+
   return (
 
     <>
+
+      <Navigation />
 
       <Header heading={heading}>
 
@@ -306,6 +316,8 @@ const Home = () => {
         <Enquiry />
 
       </main>
+
+      <Footer />
 
     </>
 

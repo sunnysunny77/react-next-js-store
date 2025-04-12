@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const Navigation = () => {
 
-  const { mainRef, footerRef, scrollingRef, setScrollingRef, auth } = useAppContext();
+  const { mainRef, footerRef, scrollingRef, setScrollingRef, auth, log_out } = useAppContext();
 
   const pathname = usePathname()
   const navbar = useRef(null);
@@ -282,7 +282,7 @@ const Navigation = () => {
 
               {auth ? (
 
-                <a className="navigation-link">
+                <a onClick={log_out} className="navigation-link">
 
                   Sign Out
 

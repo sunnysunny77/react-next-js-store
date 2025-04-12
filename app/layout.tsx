@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { AppWrapper, CartWrapper } from "@/components/context";
 import localFont from "next/font/local";
 import Bootstrap from "@/components/bootstrap";
-import Navigation from "@/components/navigation";
-import Footer from "@/components/footer";
 import Scroll from "@/components/scroll";
 import "@/styles/app.scss";
 
@@ -32,21 +30,17 @@ const RootLayout = ({
 
         <Bootstrap />
 
-          <AppWrapper>
+        <Scroll />
 
-            <Scroll />
+        <AppWrapper>
 
-            <Navigation />
+          <CartWrapper>
 
-            <CartWrapper>
+            {children}
 
-              {children}
+          </CartWrapper>
 
-            </CartWrapper>
-
-            <Footer />
-
-          </AppWrapper>
+        </AppWrapper>
         
       </body>
 
