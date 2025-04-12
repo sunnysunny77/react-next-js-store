@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useActionState, useEffect } from "react";
 import { redirect } from 'next/navigation';
 import { useAppContext } from "@/components/context";
@@ -15,13 +15,16 @@ const Auth = () => {
     message: "",
     password: "",
     email: "",
-    auth: false
+    auth: false,
   });
 
   useEffect(() => {
 
-    setAuth(stateSignIn.auth)
-    if (stateSignIn.auth) redirect("/store");
+   if (stateSignIn.auth === true) {
+
+    setAuth(true);
+    redirect("/store");
+   }
   }, [stateSignIn.auth]);
 
   return (

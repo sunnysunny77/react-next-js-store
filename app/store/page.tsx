@@ -1,6 +1,4 @@
 "use client"
-import { useEffect } from "react";
-import { redirect } from 'next/navigation';
 import { useAppContext } from "@/components/context";
 import Cards from "@/components/cards";
 import Header from "@/components/header";
@@ -10,14 +8,9 @@ import Cta from "@/components/cta";
 
 const Store = () => {
 
-  const { mainRef, itemsRef, auth } = useAppContext();
+  const { mainRef, itemsRef } = useAppContext();
 
   const heading = "STORE";
-
-  useEffect(() => {
-
-    if (!auth) redirect("/auth");
-  }, []);
 
   return (
 

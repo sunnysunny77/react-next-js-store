@@ -30,7 +30,7 @@ export const GetSignIn = async (stateSignIn: StateSignIn, formData: FormData) =>
 
       const cookieStore = await cookies();
 
-      cookieStore.set("Store App", "let", { secure: false, httpOnly: true, sameSite: 'strict', expires: new Date(Date.now() + (120*60))})
+      cookieStore.set("Store-App", "token", { secure: true, httpOnly: true, sameSite: 'strict'})
 
       return { 
         password: "",
