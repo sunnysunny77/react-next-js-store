@@ -1,108 +1,19 @@
-import { useState, useRef } from "react";
+import { GetEnquiry } from "@/api/enquiry";
+import { useActionState } from "react";
 
 const Enquiry = () => {
 
-    const resRef = useRef(null);
-    const nameRef = useRef(null);
-    const telRef = useRef(null);
-    const emailRef = useRef(null);
-    const textRef = useRef(null);
-  
-    const [name, setName] = useState("");
-    const [tel, setTel] = useState("");
-    const [email, setEmail] = useState("");
-    const [text, setText] = useState("");
-  
-    const handleSubmit = async (e) => {
-  
-      e.preventDefault();
-      
-      let error = false;
-  
-      if (!/^[ '.a-z-]{2,40}$/i.test(name)) {
-  
-        error = true;
-        nameRef.current.innerHTML = "Enter your name";
-        e.target.name.classList.add("error");
-      } else {
-  
-        nameRef.current.innerHTML = "";
-        e.target.name.classList.remove("error");
-      };
-  
-      if (!/^\+?\d{3,15}$/.test(tel)) {
-  
-        error = true;
-        telRef.current.innerHTML = "+###############";
-        e.target.tel.classList.add("error");
-      } else {
-  
-        telRef.current.innerHTML = "";
-        e.target.tel.classList.remove("error");
-      };
-  
-      if (!/^[\w.-]+@[\w.-]+\.[A-Za-z]{2,6}$/.test(email)) {
-  
-        error = true;
-        emailRef.current.innerHTML = "Enter your email";
-        e.target.email.classList.add("error");
-      } else {
-  
-        emailRef.current.innerHTML = "";
-        e.target.email.classList.remove("error");
-      };
-  
-      if (!/[\dA-Za-z]/.test(text)) {
-  
-        error = true;
-        textRef.current.innerHTML = "Enter your message";
-        e.target.text.classList.add("error");
-      } else {
-  
-        textRef.current.innerHTML = "";
-        e.target.text.classList.remove("error");
-      };
-  
-      if (error) return;
-  
-      const form_data = new FormData();
-  
-      form_data.append("name", name);
-      form_data.append("tel", tel);
-      form_data.append("email", email);
-      form_data.append("text", text);
-  
-      const token = localStorage.getItem("token");
-  
-      let res = await fetch(`/api/?controller=enquiry&token=${token}`, { 
-        
-        method: "POST", 
-        body: form_data,
-      });
-  
-      if (!res.ok) { 
-        
-        let err = await res.text();
-        console.log(err);
-        return;
-      };
-  
-      let json = await res.json();
-  
-      if (json.key === btoa(process.env.REACT_APP_KEY)) {
-  
-        resRef.current.innerHTML = json.message;
-  
-        setTimeout(() => {
-          
-          resRef.current.innerHTML = "";
-          setName("");
-          setTel("");
-          setEmail("");
-          setText("");
-        }, 6000);
-      };
-    };
+    const [stateEnquiry, actionEnquiry, isPending] = useActionState(GetEnquiry, {
+      name: "",
+      nameMessage: "",
+      phone: "",
+      phoneMessage: "",
+      email: "",
+      emailMessage: "",
+      text: "",
+      textMessage: "",
+      response: "",
+    });
   
   return (
     
@@ -114,7 +25,7 @@ const Enquiry = () => {
 
           <hr className="mb-5"/>
 
-          <form className="enquiry" onSubmit={handleSubmit}>
+          <form className="enquiry" action={actionEnquiry}>
 
             <fieldset className="row justify-content-between g-0">
 
@@ -122,7 +33,7 @@ const Enquiry = () => {
 
                 Enquiry
 
-                <b ref={resRef} className="ms-4"></b>
+                <b className="ms-4"></b>
 
               </legend>
 
@@ -146,17 +57,16 @@ const Enquiry = () => {
 
                     </span>
 
-                    <span ref={nameRef}></span>
+                    <span>{stateEnquiry?.nameMessage}</span>
 
                     <input
 
-                        className="ps-2"
+                        className={`ps-2 ${stateEnquiry?.nameMessage ? "error" : ""}`}
                         type="text"
                         name="name"
-                        value={name}
                         placeholder="* Name"
                         autoComplete="on"
-                        onChange={(e) => setName(e.target.value)}
+                        defaultValue={stateEnquiry?.name}
 
                     />
 
@@ -174,17 +84,16 @@ const Enquiry = () => {
 
                     </span>
 
-                    <span ref={telRef}></span>
+                    <span>{stateEnquiry?.phoneMessage}</span>
 
                     <input
 
-                        className="ps-2"
+                        className={`ps-2 ${stateEnquiry?.phoneMessage ? "error" : ""}`}
                         type="text"
-                        name="tel"
-                        value={tel}
+                        name="phone"
                         placeholder="* Phone"
                         autoComplete="on"
-                        onChange={(e) => setTel(e.target.value)}
+                        defaultValue={stateEnquiry?.phone}
 
                     />
 
@@ -202,17 +111,16 @@ const Enquiry = () => {
 
                     </span>
 
-                    <span ref={emailRef}></span>
+                    <span>{stateEnquiry?.emailMessage}</span>
 
                     <input
 
-                        className="ps-2"
+                        className={`ps-2 ${stateEnquiry?.emailMessage ? "error" : ""}`}
                         type="text"
                         name="email"
-                        value={email}
                         placeholder="* Email"
                         autoComplete="on"
-                        onChange={(e) => setEmail(e.target.value)}
+                        defaultValue={stateEnquiry?.email}
 
                     />
 
@@ -230,17 +138,16 @@ const Enquiry = () => {
 
                   </span>
 
-                  <span ref={textRef}></span>
+                  <span>{stateEnquiry?.textMessage}</span>
 
                   <textarea
 
                       id="text"
-                      className="ps-2"
+                      className={`ps-2 ${stateEnquiry?.textMessage ? "error" : ""}`}
                       name="text"
-                      value={text}
                       placeholder="* Message"
-                      onChange={(e) => setText(e.target.value)}
                       rows={6}
+                      defaultValue={stateEnquiry?.text}
 
                   >
                   </textarea>
@@ -261,8 +168,7 @@ const Enquiry = () => {
 
                       <p className="mb-5 m-sm-0">
 
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                          sed do eiusmod tempor incididunt.
+                        {stateEnquiry?.response ? stateEnquiry?.response : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."}
 
                       </p>
 

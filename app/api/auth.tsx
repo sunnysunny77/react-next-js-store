@@ -3,14 +3,14 @@ import Connection from "@/lib/db/connection";
 import { cookies } from "next/headers";
 import bcrypt from "bcrypt";
 
-type State = {
+type StateSignIn = {
   message: string;
   email: string;
   password: string;
   auth: boolean;
 };
 
-export const GetSignIn = async (state: State, formData: FormData) => {
+export const GetSignIn = async (stateSignIn: StateSignIn, formData: FormData) => {
 
   const data = {
     password: formData.get("password"),
@@ -33,8 +33,8 @@ export const GetSignIn = async (state: State, formData: FormData) => {
       cookieStore.set("Store App", "let", { secure: false, httpOnly: true, sameSite: 'strict', expires: new Date(Date.now() + (120*60))})
 
       return { 
-        password: data.password,
-        email: data.email,
+        password: "",
+        email: "",
         message: "",
         auth: true,
        };
@@ -42,8 +42,8 @@ export const GetSignIn = async (state: State, formData: FormData) => {
   } catch {
 
     return { 
-      password: data.password,
-      email: data.email,
+      password: data.password as string,
+      email: data.email as string,
       message: "Incorrect",
       auth: false,
      };

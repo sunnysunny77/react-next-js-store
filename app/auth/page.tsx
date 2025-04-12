@@ -29,13 +29,13 @@ const Auth = () => {
 
           <form action={actionSignIn}>
 
-            <input defaultValue={stateSignIn.email as string} type="email" required autoComplete="" name="email" placeholder="Email:" />
+            <input defaultValue={stateSignIn?.email} type="email" required autoComplete="on" name="email" placeholder="Email:" />
 
-            <input defaultValue={stateSignIn.password as string} type="password" required autoComplete="" name="password" placeholder="Password:" />
+            <input defaultValue={stateSignIn?.password} type="password" required autoComplete="on" name="password" placeholder="Password:" />
 
             <button type="submit">Send</button>
 
-            {isPending ? "Loading..." : stateSignIn.message}
+            {isPending ? "Loading..." : stateSignIn?.message}
 
           </form>
 
