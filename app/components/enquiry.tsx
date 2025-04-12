@@ -13,9 +13,9 @@ const Enquiry = () => {
     const [email, setEmail] = useState("");
     const [text, setText] = useState("");
   
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (e) => {
   
-      event.preventDefault();
+      e.preventDefault();
       
       let error = false;
   
@@ -23,44 +23,44 @@ const Enquiry = () => {
   
         error = true;
         nameRef.current.innerHTML = "Enter your name";
-        event.target.name.classList.add("error");
+        e.target.name.classList.add("error");
       } else {
   
         nameRef.current.innerHTML = "";
-        event.target.name.classList.remove("error");
+        e.target.name.classList.remove("error");
       };
   
       if (!/^\+?\d{3,15}$/.test(tel)) {
   
         error = true;
         telRef.current.innerHTML = "+###############";
-        event.target.tel.classList.add("error");
+        e.target.tel.classList.add("error");
       } else {
   
         telRef.current.innerHTML = "";
-        event.target.tel.classList.remove("error");
+        e.target.tel.classList.remove("error");
       };
   
       if (!/^[\w.-]+@[\w.-]+\.[A-Za-z]{2,6}$/.test(email)) {
   
         error = true;
         emailRef.current.innerHTML = "Enter your email";
-        event.target.email.classList.add("error");
+        e.target.email.classList.add("error");
       } else {
   
         emailRef.current.innerHTML = "";
-        event.target.email.classList.remove("error");
+        e.target.email.classList.remove("error");
       };
   
       if (!/[\dA-Za-z]/.test(text)) {
   
         error = true;
         textRef.current.innerHTML = "Enter your message";
-        event.target.text.classList.add("error");
+        e.target.text.classList.add("error");
       } else {
   
         textRef.current.innerHTML = "";
-        event.target.text.classList.remove("error");
+        e.target.text.classList.remove("error");
       };
   
       if (error) return;
@@ -156,7 +156,7 @@ const Enquiry = () => {
                         value={name}
                         placeholder="* Name"
                         autoComplete="on"
-                        onChange={(event) => setName(event.target.value)}
+                        onChange={(e) => setName(e.target.value)}
 
                     />
 
@@ -184,7 +184,7 @@ const Enquiry = () => {
                         value={tel}
                         placeholder="* Phone"
                         autoComplete="on"
-                        onChange={(event) => setTel(event.target.value)}
+                        onChange={(e) => setTel(e.target.value)}
 
                     />
 
@@ -212,7 +212,7 @@ const Enquiry = () => {
                         value={email}
                         placeholder="* Email"
                         autoComplete="on"
-                        onChange={(event) => setEmail(event.target.value)}
+                        onChange={(e) => setEmail(e.target.value)}
 
                     />
 
@@ -239,7 +239,7 @@ const Enquiry = () => {
                       name="text"
                       value={text}
                       placeholder="* Message"
-                      onChange={(event) => setText(event.target.value)}
+                      onChange={(e) => setText(e.target.value)}
                       rows={6}
 
                   >
