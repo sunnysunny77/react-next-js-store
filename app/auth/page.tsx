@@ -1,17 +1,28 @@
 "use client";
-import { useActionState, useEffect } from "react";
+import { useActionState, useEffect, useState, useRef } from "react";
 import { useAppContext } from "@/components/context";
 import { GetSignIn } from "@/api/auth";
-import { redirect } from 'next/navigation';
+import { redirect } from 'next/navigation'
+import { SetCaptcha, GetCaptcha } from "@/api/captcha";
+import Image from "next/image";
 import Header from "@/components/header";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import Spinner from "@/images/load.gif";
 
 const Auth = () => {
 
   const { mainRef, checkCookie } = useAppContext();
 
+  const captchaRef = useRef(null);
+
   const heading = "STORE";
+
+  const spinner = <Image className="spinner" width="40" height="40" src={Spinner} alt="Spinner"  />
+
+  const [captchaSrc, setCaptchaSrc] = useState(null);
+  const [captchaForm, setCaptchaForm] = useState(true);
+  const [captchaRes, setCaptchaRes] = useState(null);
 
   const [stateSignIn, actionSignIn, isPending] = useActionState(GetSignIn, {
     message: "",
@@ -19,6 +30,25 @@ const Auth = () => {
     email: "",
     auth: false,
   });
+
+  const get_cookie = async() => {
+
+    setCaptchaRes(spinner);
+
+    const res = await GetCaptcha(captchaRef.current.value);
+
+    if (res) {
+
+      setCaptchaForm(false);
+      return;
+    }
+
+    setCaptchaRes("Incorrect");
+  };
+
+  const init = async () => {
+    setCaptchaSrc( await SetCaptcha());
+  };
 
   useEffect(() => {
 
@@ -28,6 +58,8 @@ const Auth = () => {
   useEffect(() => {
 
     checkCookie();
+    init();
+
   }, []);
 
   return (
@@ -114,12 +146,80 @@ const Auth = () => {
 
                 <div className="accordion-body p-5">
 
+                {captchaForm ? (
+
+                  <>
+
+                    <p id="responseCaptcha">
+
+                      Please enter captcha
+
+                    </p>
+
+                    <img src={captchaSrc} alt="canvas" />
+
+                    <label className="d-none" htmlFor="txtInput">
+
+                      Captcha
+
+                    </label>
+
+                    <input
+
+                      className="rounded w-100  mt-1 mb-2 ps-2"
+                      type="text"
+                      id="txtInput"
+                      ref={captchaRef}
+
+                    />
+
+                    <button
+
+                      className="btnn py-1 w-100 rounded mt-2"
+                      onClick={get_cookie}
+
+                    >
+
+                      Submit
+
+                    </button>
+
+                    <button
+                      className="btnn py-1 w-100 rounded mb-3 mt-2"
+                      onClick={init}
+                    >
+
+                      Refresh
+
+                    </button>
+
+                    <p className={`alert alert-secondary ${captchaRes ? "display" : "displayNone" }`} role="alert">
+
+                      {captchaRes}
+
+                    </p>
+
+                  </>
+
+                ) : (
+
+                  <>
+
+                  </>
+
+                )}
 
                 </div>
 
               </div>
 
             </div>
+
+            <p className='rady p-3 mt-3'>
+
+              Ut enim ad ed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+
+            </p>
 
           </div>
 

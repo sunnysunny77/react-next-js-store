@@ -12,6 +12,7 @@
     "@paypal/react-paypal-js": "latest",
     "bcrypt": "latest",
     "bootstrap": "^5.3.5",
+    "canvas": "latest",
     "mysql2": "latest",
     "next": "latest",
     "nodemailer": "latest",
