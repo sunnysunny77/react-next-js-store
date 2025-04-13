@@ -5,6 +5,7 @@ import { GetSignIn } from "@/api/auth";
 import { GetFactor, SetFactor } from "@/api/factor";
 import { redirect } from 'next/navigation'
 import { SetCaptcha, GetCaptcha } from "@/api/captcha";
+import Registraion from "@/api/registraion";
 import Image from "next/image";
 import Header from "@/components/header";
 import Navigation from "@/components/navigation";
@@ -19,7 +20,7 @@ const Auth = () => {
 
   const heading = "STORE";
 
-  const spinner = <Image className="spinner" width="40" height="40" src={Spinner} alt="Spinner"  />
+  const spinner = <Image className="spinner" width="40" height="40" src={Spinner} alt="Spinner" />
 
   const [stateSignIn, actionSignIn, isPendingSign] = useActionState(GetSignIn, {
     message: "",
@@ -27,9 +28,8 @@ const Auth = () => {
     email: "",
     auth: false,
   });
-
   const [captchaSrc, setCaptchaSrc] = useState(null);
-  const [captchaForm, setCaptchaForm] = useState(false);
+  const [captchaForm, setCaptchaForm] = useState(true);
   const [response, setResponse] = useState(null);
   const [stateGetFactor, actionGetFactor, isPendingGetFactor] = useActionState(GetFactor, {
     message: "",
@@ -41,7 +41,11 @@ const Auth = () => {
     code: "",
     setcode: true,
   });
-
+  const [stateRegistraion, actionRegistraion, isPendingRegistraion] = useActionState(Registraion, {
+    message: "",
+    password: "",
+    auth: false,
+  });
 
   const get_cookie = async() => {
 
@@ -64,14 +68,13 @@ const Auth = () => {
 
   useEffect(() => {
 
-    if (stateSignIn.auth) redirect("/store");
-  }, [stateSignIn.auth]);
+    if (stateSignIn.auth || stateRegistraion.auth) redirect("/store");
+  }, [stateSignIn.auth, stateRegistraion.auth]);
 
   useEffect(() => {
 
     checkCookie();
     init();
-
   }, []);
 
   return (
@@ -288,10 +291,47 @@ const Auth = () => {
 
                   ) : (
 
+                    <form action={actionRegistraion} className="Auth-form">
 
-                    <>
+                    <label>
 
-                    </>
+                      Create Password
+
+                      <input
+
+                        type="password"
+                        className="rounded w-100 mt-1 mb-2 ps-2"
+                        placeholder="Enter password"
+                        autoComplete="on"
+                        id="password"
+                        name="password"
+                        defaultValue={stateRegistraion?.password}
+
+                      />
+
+                      <input
+
+                        type="hidden"
+                        name="email"
+                        defaultValue={stateGetFactor?.email}
+
+                      />
+
+                    </label>
+
+                    <button id="submit" type="submit" className="btnn py-1 w-100 rounded mt-2">
+
+                      Submit
+
+                    </button>
+
+                    <p className={`alert alert-secondary display ${isPendingRegistraion || stateRegistraion?.message ?  "d-block" : "d-none"}`} role="alert">
+
+                        {isPendingRegistraion ? spinner : stateRegistraion?.message}
+
+                    </p>
+
+                  </form>
 
                   )
 

@@ -61,8 +61,7 @@ export const GetFactor = async (stateGetFactor: StateGetFactor, formData: FormDa
     <html>
       <h1>G'day, paste the code back into the website</h1> 
       <b>Authentication code: </b> ${token} 
-    </html>
-    `,
+    </html>`,
   });
 
   return { 
