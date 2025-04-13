@@ -1,4 +1,4 @@
-const EmptyResults = (results) => {
+const EmptyResults = (results: any[]) => {
   if (!results.length) {
     return false;
   }
