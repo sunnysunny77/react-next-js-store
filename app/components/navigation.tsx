@@ -282,11 +282,11 @@ const Navigation = () => {
 
               {auth ? (
 
-                <Link href="" onClick={log_out} className="navigation-link">
+                <div onClick={log_out} className="navigation-link">
 
                   Sign Out
 
-                </Link>
+                </div>
 
               ) : (
 
