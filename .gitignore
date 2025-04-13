@@ -2,3 +2,4 @@
 /.next
 /.trunk
 .env
+.env.development
