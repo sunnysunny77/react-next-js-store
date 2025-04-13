@@ -81,16 +81,14 @@ export const SetCaptcha = async () => {
   const salt = bcrypt.genSaltSync(10);
   const hash = bcrypt.hashSync(text, salt);
   const cookieStore = await cookies();
-  cookieStore.set("captcha", hash, { secure: true, httpOnly: true, sameSite: 'strict'});
+  cookieStore.set("Store-App-Captcha", hash, { secure: true, httpOnly: true, sameSite: 'strict'});
   return res;
 };
 
 export const GetCaptcha = async (e) => {
 
-
-
   const cookieStore = await cookies();
-  const cookie = cookieStore.get("captcha").value;
+  const cookie = cookieStore.get("Store-App-Captcha").value;
   const text = e;
   const match = await bcrypt.compare(text, String(cookie));
 

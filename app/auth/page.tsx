@@ -2,6 +2,7 @@
 import { useActionState, useEffect, useState, useRef } from "react";
 import { useAppContext } from "@/components/context";
 import { GetSignIn } from "@/api/auth";
+import { GetFactor, SetFactor } from "@/api/factor";
 import { redirect } from 'next/navigation'
 import { SetCaptcha, GetCaptcha } from "@/api/captcha";
 import Image from "next/image";
@@ -20,20 +21,31 @@ const Auth = () => {
 
   const spinner = <Image className="spinner" width="40" height="40" src={Spinner} alt="Spinner"  />
 
-  const [captchaSrc, setCaptchaSrc] = useState(null);
-  const [captchaForm, setCaptchaForm] = useState(true);
-  const [captchaRes, setCaptchaRes] = useState(null);
-
-  const [stateSignIn, actionSignIn, isPending] = useActionState(GetSignIn, {
+  const [stateSignIn, actionSignIn, isPendingSign] = useActionState(GetSignIn, {
     message: "",
     password: "",
     email: "",
     auth: false,
   });
 
+  const [captchaSrc, setCaptchaSrc] = useState(null);
+  const [captchaForm, setCaptchaForm] = useState(false);
+  const [response, setResponse] = useState(null);
+  const [stateGetFactor, actionGetFactor, isPendingGetFactor] = useActionState(GetFactor, {
+    message: "",
+    email: "",
+    getcode: true,
+  });
+  const [stateSetFactor, actionSetFactor, isPendingSetFactor] = useActionState(SetFactor, {
+    message: "",
+    code: "",
+    setcode: true,
+  });
+
+
   const get_cookie = async() => {
 
-    setCaptchaRes(spinner);
+    setResponse(spinner);
 
     const res = await GetCaptcha(captchaRef.current.value);
 
@@ -43,7 +55,7 @@ const Auth = () => {
       return;
     }
 
-    setCaptchaRes("Incorrect");
+    setResponse("Incorrect");
   };
 
   const init = async () => {
@@ -116,9 +128,9 @@ const Auth = () => {
 
                     </button>
 
-                    <p className={`alert alert-secondary display ${isPending || stateSignIn?.message ?  "d-block" : "d-none"}`} role="alert">
+                    <p className={`alert alert-secondary display ${isPendingSign || stateSignIn?.message ?  "d-block" : "d-none"}`} role="alert">
 
-                        {isPending ? "Loading..." : stateSignIn?.message}
+                        {isPendingSign ? spinner : stateSignIn?.message}
 
                     </p>
 
@@ -193,19 +205,95 @@ const Auth = () => {
 
                     </button>
 
-                    <p className={`alert alert-secondary ${captchaRes ? "display" : "displayNone" }`} role="alert">
+                    <p className={`alert alert-secondary ${response ? "display" : "displayNone" }`} role="alert">
 
-                      {captchaRes}
+                      {response}
 
                     </p>
 
                   </>
 
-                ) : (
+                ) : (stateGetFactor.getcode || stateSetFactor.setcode ? (
 
                   <>
 
+                    <form action={actionGetFactor} className="Auth-form mb-3">
+
+                      <label>
+
+                        Get Authentication code
+
+                        <input
+
+                          type="email"
+                          className="rounded w-100 mt-1 mb-2 ps-2"
+                          placeholder="Enter email"
+                          autoComplete="on"
+                          id="email"
+                          name="email"
+                          defaultValue={stateGetFactor?.email}
+
+                        />
+
+                      </label>
+
+                      <button id="submit" type="submit" className="btnn py-1 w-100 rounded mt-2">
+
+                        Submit
+
+                      </button>
+
+                      <p className={`alert alert-secondary display ${isPendingGetFactor || stateGetFactor?.message ?  "d-block" : "d-none"}`} role="alert">
+
+                        {isPendingGetFactor ? spinner : stateGetFactor?.message}
+
+                      </p>
+
+                    </form>
+
+                    <form action={actionSetFactor} className="Auth-form">
+
+                      <label>
+
+                        Enter authentication code
+
+                        <input
+
+                          type="text"
+                          className="rounded w-100 mt-1 mb-2 ps-2"
+                          placeholder="Paste code"
+                          id="code"
+                          name="code"
+                          defaultValue={stateSetFactor?.code}
+
+                        />
+
+                      </label>
+
+                      <button id="submit" type="submit" className="btnn py-1 w-100 rounded mt-2">
+
+                        Submit
+
+                      </button>
+
+                      <p className={`alert alert-secondary display ${isPendingSetFactor || stateSetFactor?.message ?  "d-block" : "d-none"}`} role="alert">
+
+                        {isPendingSetFactor ? spinner : stateSetFactor?.message}
+
+                      </p>
+
+                    </form>
+
                   </>
+
+                  ) : (
+
+
+                    <>
+
+                    </>
+
+                  )
 
                 )}
 

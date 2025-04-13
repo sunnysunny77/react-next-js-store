@@ -85,26 +85,6 @@ export const GetEnquiry = async (stateEnquiry: StateEnquiry, formData: FormData)
     }
   });
 
-  const mailOptions = {
-    from: process.env.REACT_APP_NODEMAILER_EMAIL_FROM,
-    to: process.env.REACT_APP_NODEMAILER_EMAIL_TO,
-    subject: "You have a message from the enquiry page on your website:",
-    html: `
-    <html lang="en">
-      <body>
-        <div><b>Name:</b></div>
-        <p>${data.name}</p>
-        <div><b>Phone:</b></div>
-        <p>${data.phone}</p>
-        <div><b>Email:</b></div>
-        <p>${data.email}</p>
-        <div><b>Message:</b></div>
-        <p>${data.text}</p>
-      </body>
-    </html>
-    `,
-  };
-
   const info = await transporter.sendMail({
     from: process.env.REACT_APP_NODEMAILER_EMAIL_FROM,
     to: process.env.REACT_APP_NODEMAILER_EMAIL_TO,
