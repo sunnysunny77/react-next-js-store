@@ -9,7 +9,7 @@ const montserrat = localFont({
   display: "swap",
   variable: "--font-montserrat-regular",
   src: "../public/fonts/Montserrat-Regular.ttf",
-})
+});
 
 export const metadata: Metadata = {
   title: "Store App",

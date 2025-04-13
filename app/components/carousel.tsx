@@ -11,7 +11,8 @@ const Carousel = () => {
 
     useEffect(() => {
   
-     const carousel = new window.bootstrap.Carousel(ref.current, {
+
+      const carousel = new window.bootstrap.Carousel(ref.current, {
         pause: false,
       });
       carousel.cycle();
@@ -19,25 +20,25 @@ const Carousel = () => {
 
     return (
 
-      <div ref={ref} className="carousel slide col-6 col-md-4 mx-auto mx-xl-0">
+      <div ref={ref} data-bs-ride="carousel" data-bs-pause="false" className="carousel slide col-6 col-md-4 mx-auto mx-xl-0">
 
         <div className="carousel-inner">
 
           <div className="carousel-item active">
 
-            <Image src={Finance} alt="Finance" width="150" height="150" />
+            <Image className="d-block w-100" src={Finance} alt="Finance" width="150" height="150" />
 
           </div>
 
           <div className="carousel-item">
 
-            <Image src={Transport} alt="Transport" width="150" height="120" />
+            <Image className="d-block w-100" src={Transport} alt="Transport" width="150" height="120" />
 
           </div>
 
           <div className="carousel-item">
 
-            <Image src={Warehouse} alt="Warehouse" width="150" height="150" />
+            <Image className="d-block w-100" src={Warehouse} alt="Warehouse" width="150" height="150" />
 
           </div>
 
