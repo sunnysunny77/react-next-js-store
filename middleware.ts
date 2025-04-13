@@ -6,7 +6,7 @@ export function middleware(request){
     
     if (request.nextUrl.pathname.startsWith("/store") && !token) {
 
-        return NextResponse.redirect( new URL("/auth", request.url) );
+        return NextResponse.redirect( new URL("/", request.url) );
     };
    
     if (request.nextUrl.pathname.startsWith("/auth") && token) {

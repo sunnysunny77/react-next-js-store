@@ -110,7 +110,7 @@ const Footer = () => {
 
                   {auth ? (
 
-                    <div href=":" onClick={log_out} className="footer-link">
+                    <div onClick={log_out} className="footer-link">
 
                       Sign Out
 
