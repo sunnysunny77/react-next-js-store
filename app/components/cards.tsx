@@ -1,5 +1,5 @@
 "use client"
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { useCartContext } from "@/components/context";
 import { useAppContext } from "@/components/context";
 import { ArrowRight } from 'react-bootstrap-icons';
@@ -45,11 +45,11 @@ const Cards = (props) => {
 
   const { setScrollingRef } = useAppContext();
 
-  const scroll_to = (e) => {
+  const scroll_to = useCallback((e) => {
 
     window.scrollTo(0, e);
     setScrollingRef(e);
-  };
+  },[setScrollingRef]);
 
   const optionOrder = (e) => {
 
@@ -74,7 +74,7 @@ const Cards = (props) => {
         setScrollRef(false);
       };
     };
-  }, [scrollRef]);
+  }, [scrollRef, cardsType, scroll_to, setScrollRef, storeRef]);
 
   return (
     

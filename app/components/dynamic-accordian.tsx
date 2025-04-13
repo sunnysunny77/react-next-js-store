@@ -1,6 +1,14 @@
+"use client"
+import { useEffect } from "react";
+
 const DynamicAccordian = (props) => {
 
     const { content } = props;
+
+    useEffect(() => {
+
+      import("bootstrap/js/dist/collapse");
+    }, []);
   
     return (
   

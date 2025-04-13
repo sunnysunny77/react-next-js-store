@@ -23,7 +23,7 @@ const ButtonSlider = (props) => {
       index.current.style.transform = "";
     };
   };
-  
+
   const transform_item = (count) => {
 
     for (const index of sliderItems) {
@@ -179,18 +179,18 @@ const ButtonSlider = (props) => {
       <div className="slider_1-outer position-relative">
 
           <div className="slider-container slider_1-row row d-flex flex-nowrap justify-content-start g-0">
-                    
+
             {items.map((index, i) => { 
                                       
-              const { heading, bold, paragraph } = index;  
-                    
+              const { heading, bold, paragraph } = index;
+
               const ref = createRef();
 
               sliderItems.push(ref);
 
               return (
 
-                <div ref={ref} key={i} className="slider-item slider_1-item">
+                <div ref={ref as React.RefObject<HTMLDivElement>}  key={i} className="slider-item slider_1-item">
 
                   <div className="slider_1-item-padding slider-padding h-100">
 

@@ -5,17 +5,23 @@ import Finance from "@/images/finance.webp";
 import Transport from "@/images/transport.webp";
 import Warehouse from "@/images/warehouse.webp";
 
-const Carousel = () => {
+const CarouselSlider = () => {
 
     const ref = useRef(null);
 
     useEffect(() => {
-  
 
-      const carousel = new window.bootstrap.Carousel(ref.current, {
+      const sync = async () => {
+
+      const { Carousel } = await import("bootstrap");
+
+      const inst = new Carousel(ref.current, {
         pause: false,
       });
-      carousel.cycle();
+
+      inst.cycle();
+    }
+    sync();
     }, []);
 
     return (
@@ -49,4 +55,4 @@ const Carousel = () => {
     );
 };
 
-export default Carousel;
+export default CarouselSlider;

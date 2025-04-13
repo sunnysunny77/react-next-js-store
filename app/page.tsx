@@ -1,7 +1,7 @@
 "use client"
 import { useEffect } from "react";
 import { useAppContext } from "@/components/context";
-import Carousel from "@/components/carousel";
+import CarouselSlider from "@/components/carousel";
 import Cards from "@/components/cards";
 import Header from "@/components/header";
 import Navigation from "@/components/navigation";
@@ -61,7 +61,7 @@ const Home = () => {
 
         </div>
 
-        <Carousel />
+        <CarouselSlider />
 
       </div>
 
@@ -71,7 +71,7 @@ const Home = () => {
   useEffect(() => {
 
     checkCookie();
-  }, []);
+  }, [checkCookie]);
 
   return (
 

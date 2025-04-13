@@ -82,9 +82,9 @@ const Registraion = async (stateRegistraion : StateRegistraion , formData: FormD
     }
   });
 
-  const info = await transporter.sendMail({
+  await transporter.sendMail({
     from: process.env.REACT_APP_NODEMAILER_EMAIL_FROM,
-    to: process.env.REACT_APP_NODEMAILER_EMAIL_TO,
+    to: data.email as string,
     subject: "Welcome to Secure Website",
     html: `
     <html lang="en">

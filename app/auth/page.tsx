@@ -73,9 +73,15 @@ const Auth = () => {
 
   useEffect(() => {
 
-    checkCookie();
+    import("bootstrap/js/dist/collapse");
     init();
   }, []);
+
+  useEffect(() => {
+
+    checkCookie();
+
+  }, [checkCookie]);
 
   return (
 

@@ -85,7 +85,7 @@ export const GetEnquiry = async (stateEnquiry: StateEnquiry, formData: FormData)
     }
   });
 
-  const info = await transporter.sendMail({
+  await transporter.sendMail({
     from: process.env.REACT_APP_NODEMAILER_EMAIL_FROM,
     to: process.env.REACT_APP_NODEMAILER_EMAIL_TO,
     subject: "You have a message from the enquiry page on your website:",

@@ -53,9 +53,9 @@ export const GetFactor = async (stateGetFactor: StateGetFactor, formData: FormDa
     }
   });
 
-  const info = await transporter.sendMail({
+  await transporter.sendMail({
     from: process.env.REACT_APP_NODEMAILER_EMAIL_FROM,
-    to: process.env.REACT_APP_NODEMAILER_EMAIL_TO,
+    to: data.email as string,
     subject: "Secure Website - Authentication",
     html: `
     <html>

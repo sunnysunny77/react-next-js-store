@@ -53,7 +53,7 @@ const Navigation = () => {
   
   const toggle = () => {
 
-    let max_height = !hasCollapse ? height : navbar.current.scrollHeight;
+    const max_height = !hasCollapse ? height : navbar.current.scrollHeight;
     
     Object.assign(navbar.current.style, {
 
@@ -169,7 +169,7 @@ const Navigation = () => {
 
     setScrollY(scroll_pos);
 
-  },[scrollY]);
+  },[scrollY, collapse, footerRef, positive, scrollingRef, setScrollingRef, top]);
 
   useEffect(() => {
 
@@ -186,7 +186,7 @@ const Navigation = () => {
       handle_bars(true);
     }
     setScrollingRef(0);
-  }, [pathname]);
+  }, [pathname, setScrollingRef]);
 
   useEffect(() => {
 
@@ -200,7 +200,7 @@ const Navigation = () => {
       window.removeEventListener("wheel", handle_navigationigation);
       window.removeEventListener("resize", handle_navigationigation);
     };
-  }, [handle_navigationigation]);
+  }, [handle_navigationigation, mainRef]);
 
   return (  
 
@@ -282,11 +282,11 @@ const Navigation = () => {
 
               {auth ? (
 
-                <a onClick={log_out} className="navigation-link">
+                <Link href="" onClick={log_out} className="navigation-link">
 
                   Sign Out
 
-                </a>
+                </Link>
 
               ) : (
 

@@ -88,7 +88,7 @@ const Paypal = () => {
       address += `${addressObj[index]} `;
     };
 
-    let itemsOutput = {};
+    const itemsOutput = {};
 
     for (const index in itemsObj) {
 

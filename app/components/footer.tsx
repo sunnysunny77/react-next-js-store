@@ -110,11 +110,11 @@ const Footer = () => {
 
                   {auth ? (
 
-                    <a onClick={log_out} className="footer-link">
+                    <Link href="" onClick={log_out} className="footer-link">
 
                       Sign Out
 
-                    </a>
+                    </Link>
 
                     ) : (
 
@@ -149,17 +149,17 @@ const Footer = () => {
 
                 </address>
 
-                <a href="tel:+61435987875">+61 435 987 875</a>
+                <Link href="tel:+61435987875">+61 435 987 875</Link>
 
               </div>
 
               <div className="col-8 d-flex mt-3">
 
-                <a aria-label="LinkedIn" href="/"> 
+                <Link aria-label="LinkedIn" href="/">
                         
                   <Linkedin />
         
-                </a>
+                </Link>
 
               </div>
 

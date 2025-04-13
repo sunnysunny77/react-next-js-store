@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { AppWrapper, CartWrapper } from "@/components/context";
 import localFont from "next/font/local";
-import Bootstrap from "@/components/bootstrap";
 import Scroll from "@/components/scroll";
 import "@/styles/app.scss";
 
@@ -27,8 +26,6 @@ const RootLayout = ({
     <html lang="en">
 
       <body className={montserrat.variable}>
-
-        <Bootstrap />
 
         <Scroll />
 
