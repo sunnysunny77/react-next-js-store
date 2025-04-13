@@ -32,7 +32,7 @@
     "css-loader": "latest",
     "eslint": "latest",
     "eslint-config-next": "latest",
-    "postcss-loader":  "latest",
+    "postcss-loader": "latest",
     "postcss-reporter": "latest",
     "sass": "latest",
     "sass-loader": "latest",
