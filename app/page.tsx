@@ -1,7 +1,7 @@
 "use client"
 import { useEffect } from "react";
 import { useAppContext } from "@/components/context";
-import CarouselSlider from "@/components/carousel";
+import CarouselSlider from "@/components/carousel-slider";
 import Cards from "@/components/cards";
 import Header from "@/components/header";
 import Navigation from "@/components/navigation";
