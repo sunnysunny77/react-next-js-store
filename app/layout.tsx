@@ -4,6 +4,9 @@ import localFont from "next/font/local";
 import Scroll from "@/components/scroll";
 import "@/styles/app.scss";
 
+//csp for build in production
+export const dynamic = 'force-dynamic';
+
 const montserrat = localFont({
   display: "swap",
   variable: "--font-montserrat-regular",

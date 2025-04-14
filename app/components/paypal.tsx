@@ -8,6 +8,7 @@ import Image from "next/image";
 import styles from "@/module/paypal.module.scss";
 import Spinner from "@/images/load.gif";
 
+// fixed hydradion bug waiting for update
 const Select = dynamic(() => import("react-select/creatable"), { ssr: false });
 
 const Paypal = () => {
@@ -21,7 +22,6 @@ const Paypal = () => {
   const SCRIPT_PROVIDER_OPTIONS = { 
     clientId: process.env.NEXT_PUBLIC_REACT_APP_PAYPAL_ID,
     currency: "AUD", 
-    "data-csp-nonce": "1e31b6130c5be9ef4cbab7eb38df5491",
   };
 
   const total = () => {
