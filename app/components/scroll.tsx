@@ -1,15 +1,14 @@
 "use client"
 import { useEffect } from "react";
-import { usePathname } from "next/navigation";
 
-const Scroll = () => {
+const Scroll = (props) => {
 
-  const pathname = usePathname()
+  const { obj } = props;
 
   useEffect(() => {
 
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    obj.current.scrollIntoView({ behavior: 'smooth' });
+  }, [obj]);
 
   return null;
 };

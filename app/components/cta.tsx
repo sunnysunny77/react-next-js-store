@@ -4,15 +4,15 @@ import { ArrowRightCircleFill } from "react-bootstrap-icons";
 
 const CtaType = (props) => {
 
-  const { ctaType, classes, children } = props;
+  const { ctaType, classes, children, obj } = props;
 
-  const { setScrollingRef, itemsRef, auth } = useAppContext();
+  const { setScrollingRef, auth } = useAppContext();
 
   const scroll_to = () => {
 
-    const ref = itemsRef.current.offsetTop;
-    window.scrollTo(0, ref);
-    setScrollingRef(ref);
+    const ref = obj.current;
+    ref.scrollIntoView({ behavior: 'smooth' })
+    setScrollingRef(ref.offsetTop);
   };
 
   return ctaType ? (
@@ -27,26 +27,25 @@ const CtaType = (props) => {
 
   ) : (
 
-    <div
+    <button
         className={classes}
         onClick={scroll_to}
     >
       {children}
-    </div>
+    </button>
 
   );
 };
 
-
 const Cta = (props) => {
 
-  const { ctaType, heading, bold, paragraph, button } = props;
+  const { ctaType, heading, bold, paragraph, button, obj } = props;
 
   return (
 
     <>  
 
-    <CtaType ctaType={ctaType} classes="cta row justify-content-center justify-content-lg-between g-0">
+    <CtaType obj={obj} ctaType={ctaType} classes="cta row justify-content-center justify-content-lg-between g-0">
 
         <div className="col-10 col-md-4 col-lg-12 d-flex align-items-xl-center">
 

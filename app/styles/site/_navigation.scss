@@ -20,6 +20,7 @@
             border: none;
         }
     }
+    div.navigation-link,
     .navigation-link {
         color: $hotel;
         letter-spacing: 0.0125em;
@@ -27,6 +28,10 @@
         text-decoration-color: $delta;
         transition: text-decoration-color 0.2s;
         will-change: text-decoration-color;
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+        padding: inherit;
         &:hover {
             text-decoration-color: $hotel;
         }

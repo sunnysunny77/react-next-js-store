@@ -1,20 +1,22 @@
 "use client"
 import { ArrowUp } from "react-bootstrap-icons";
 
-const Top = () => {
+const Top = (props) => {
+
+  const { obj } = props;
 
   const scroll_to = () => {
 
-    window.scrollTo(0, 0);
+    obj.current.scrollIntoView({ behavior: 'smooth' });
   }
   
   return (
 
-    <div onClick={scroll_to} className="top" aria-label="Return to top">
+    <button onClick={scroll_to} className="top" aria-label="Return to top">
                   
       <ArrowUp />
       
-    </div>
+    </button>
 
   );
 };

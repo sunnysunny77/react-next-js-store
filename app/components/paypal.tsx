@@ -13,7 +13,7 @@ const Select = dynamic(() => import("react-select/creatable"), { ssr: false });
 
 const Paypal = () => {
 
-  const { order, cartOrder, options, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, storeRef } = useCartContext();
+  const { order, cartOrder, options, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled } = useCartContext();
 
   const [outputBool, setOutputBool] = useState(false);
 
@@ -169,7 +169,7 @@ const Paypal = () => {
   
   const scroll_to = (e) => {
 
-    window.scrollTo(0, e);
+    e.scrollIntoView({ behavior: 'smooth' });
   };
 
   const optionOrder = (e) => {
@@ -231,7 +231,7 @@ const Paypal = () => {
 
     if (outputBool) {
 
-      scroll_to(outputRef.current.offsetTop);
+      scroll_to(outputRef.current);
     }
     return () => {
 
@@ -241,7 +241,7 @@ const Paypal = () => {
 
   return (
 
-    <div ref={storeRef} className="paypal container-md d-flex align-items-center pt-5 px-4 px-sm-5 px-md-0 my-sm-4 g-0">
+    <div className="paypal container-md d-flex align-items-center pt-5 px-4 px-sm-5 px-md-0 my-sm-4 g-0">
             
       <div className="row justify-content-center w-100 g-0">
 
@@ -599,11 +599,13 @@ const Paypal = () => {
 
         </div>
 
-          <div className="col-12 col-md-10" ref={outputRef}></div>
+        <span ref={outputRef}></span>
+
+        <div className="col-12 col-md-10"></div>
 
           {Object.keys(output).length > 0  &&
 
-            <section ref={outputRef} className="col-12 col-md-10">    
+            <section className="col-12 col-md-10">
 
               <h3 className="m-0 pb-4 pt-5">
 

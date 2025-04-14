@@ -282,11 +282,11 @@ const Navigation = () => {
 
               {auth ? (
 
-                <div onClick={log_out} className="navigation-link">
+                <button onClick={log_out} className="navigation-link">
 
                   Sign Out
 
-                </div>
+                </button>
 
               ) : (
 

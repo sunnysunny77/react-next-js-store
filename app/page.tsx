@@ -1,7 +1,8 @@
 "use client"
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useAppContext } from "@/components/context";
 import CarouselSlider from "@/components/carousel-slider";
+import Scroll from "@/components/scroll";
 import Cards from "@/components/cards";
 import Header from "@/components/header";
 import Navigation from "@/components/navigation";
@@ -26,6 +27,8 @@ import Roast from "@/images/roast.webp";
 import Aus from "@/images/australian-made.svg";
 
 const Home = () => {
+
+  const navbarRef = useRef(null);
 
   const { mainRef, auth, checkCookie } = useAppContext();
 
@@ -77,7 +80,11 @@ const Home = () => {
 
     <>
 
+      <span ref={navbarRef}></span>
+
       <Navigation />
+
+      <Scroll obj={navbarRef} />
 
       <Header heading={heading}>
 
@@ -317,7 +324,7 @@ const Home = () => {
 
       </main>
 
-      <Footer />
+      <Footer obj={navbarRef} />
 
     </>
 

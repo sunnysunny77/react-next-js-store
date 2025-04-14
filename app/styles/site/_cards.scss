@@ -2,6 +2,11 @@
     .card {
         cursor: pointer;
         width: 83.33%;
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+        padding: initial;
+        text-align: initial;
         @include min_sm {
             width: 48%;
         }

@@ -26,29 +26,29 @@ const CardsType = (props) => {
 
   ) : (
 
-    <div
+    <button
         className={classes}
         onClick={onClick}
         data-value={data_value}
     >
       {children}
-    </div>
+    </button>
 
   );
 };
 
 const Cards = (props) => {
 
-  const { heading, cardsType } = props;
+  const { heading, cardsType, obj} = props;
 
-  const { cartOrder, options, items, storeRef, scrollRef, setScrollRef } = useCartContext();
+  const { cartOrder, options, items, scrollRef, setScrollRef } = useCartContext();
 
   const { setScrollingRef } = useAppContext();
 
   const scroll_to = useCallback((e) => {
 
-    window.scrollTo(0, e);
-    setScrollingRef(e);
+    e.scrollIntoView({ behavior: 'smooth' });
+    setScrollingRef(e.offsetTop);
   },[setScrollingRef]);
 
   const optionOrder = (e) => {
@@ -60,7 +60,7 @@ const Cards = (props) => {
       setScrollRef(true);
     } else if (!cardsType) {
 
-      scroll_to(storeRef.current.offsetTop);
+      scroll_to(obj.current);
     }
   };
 
@@ -68,13 +68,13 @@ const Cards = (props) => {
 
     if (scrollRef && !cardsType) {
 
-      scroll_to(storeRef.current.offsetTop);
+      scroll_to(obj.current);
       return () => {
 
         setScrollRef(false);
       };
     };
-  }, [scrollRef, cardsType, scroll_to, setScrollRef, storeRef]);
+  }, [scrollRef, cardsType, scroll_to, setScrollRef, obj]);
 
   return (
     

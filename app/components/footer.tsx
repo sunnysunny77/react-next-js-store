@@ -6,7 +6,9 @@ import Link from "next/link";
 import Year from "@/components/year";
 import Top from "@/components/top";
 
-const Footer = () => {
+const Footer = (props) => {
+
+  const { obj } = props;
 
   const { footerRef, auth, log_out } = useAppContext();
 
@@ -110,11 +112,11 @@ const Footer = () => {
 
                   {auth ? (
 
-                    <div onClick={log_out} className="footer-link">
+                    <button onClick={log_out} className="footer-link">
 
                       Sign Out
 
-                    </div>
+                    </button>
 
                     ) : (
 
@@ -149,7 +151,7 @@ const Footer = () => {
 
                 </address>
 
-                <Link href="tel:+61435987875">+61 435 987 875</Link>
+                <Link className="footer-link" href="tel:+61435987875">+61 435 987 875</Link>
 
               </div>
 
@@ -171,7 +173,7 @@ const Footer = () => {
 
               <div className="col-12 d-flex flex-wrap justify-content-end mt-3">
 
-                <Top />
+                <Top obj={obj} />
 
               </div>
 

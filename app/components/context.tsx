@@ -176,8 +176,6 @@ export const CartWrapper = ({
     description: items.cartOne.description,
   });
 
-  const storeRef = useRef(null);
-
   const [count, setCount] = useState(1);
 
   const [output, setOutput] = useState({});
@@ -190,7 +188,7 @@ export const CartWrapper = ({
 
   return (
 
-    <CartContext.Provider value={{ order, cartOrder, options, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, storeRef, scrollRef, setScrollRef }}>
+    <CartContext.Provider value={{ order, cartOrder, options, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, scrollRef, setScrollRef }}>
 
       {children}
 
@@ -214,8 +212,6 @@ export const AppWrapper = ({
 
   const footerRef = useRef(null);
 
-  const itemsRef = useRef(null);
-
   const [scrollingRef, setScrollingRef] = useState(0);
 
   const [auth, setAuth] = useState(false);
@@ -235,7 +231,7 @@ export const AppWrapper = ({
 
   return (
 
-    <AppContext.Provider value={{ mainRef, footerRef, itemsRef, scrollingRef, setScrollingRef, auth, log_out, checkCookie }}>
+    <AppContext.Provider value={{ mainRef, footerRef, scrollingRef, setScrollingRef, auth, log_out, checkCookie }}>
 
       {children}
 

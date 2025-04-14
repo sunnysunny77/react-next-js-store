@@ -1,6 +1,7 @@
 "use client"
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useAppContext } from "@/components/context";
+import Scroll from "@/components/scroll";
 import Cards from "@/components/cards";
 import Header from "@/components/header";
 import Paypal from "@/components/paypal";
@@ -11,7 +12,13 @@ import Footer from "@/components/footer";
 
 const Store = () => {
 
-  const { mainRef, itemsRef, checkCookie } = useAppContext();
+  const { mainRef, checkCookie } = useAppContext();
+
+  const navbarRef = useRef(null);
+
+  const itemsRef = useRef(null);
+
+  const storeRef = useRef(null);
 
   const heading = "STORE";
 
@@ -24,18 +31,25 @@ const Store = () => {
 
     <>
 
+      <span ref={navbarRef}></span>
+
       <Navigation />
+
+      <Scroll obj={navbarRef} />
 
       <Header heading={heading} />
 
       <main ref={mainRef}>
 
-        <div ref={itemsRef} className="container-fluid pt-4 mt-lg-4 pb-lg-5">
+        <span ref={itemsRef}></span>
+
+        <div className="container-fluid pt-4 mt-lg-4 pb-lg-5">
 
           <Cards
 
             heading={`Vestibulum eu`}
             cardsType={false}
+            obj={storeRef}
 
           />
 
@@ -82,6 +96,8 @@ const Store = () => {
 
         </div>
 
+        <span ref={storeRef}></span>
+
         <Paypal />
 
         <div className="container-xl px-4 pb-5 px-sm-5 px-xl-0 mb-lg-5  pt-5 mt-lg-5 g-0">
@@ -101,13 +117,15 @@ const Store = () => {
 
             button={`Vestibulum eu`}
 
+            obj={itemsRef}
+
           />
 
         </div>
 
       </main>
 
-      <Footer />
+      <Footer obj={navbarRef} />
 
     </>
 
