@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import { useAppContext } from "@/components/context";
 import { ArrowRightCircleFill } from "react-bootstrap-icons";

@@ -1,3 +1,4 @@
+"use client"
 import { useState, useRef } from "react";
 import { ArrowLeft } from "react-bootstrap-icons";
 import { ArrowRight } from "react-bootstrap-icons";

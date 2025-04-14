@@ -1,3 +1,4 @@
+"use client"
 import { GetEnquiry } from "@/api/enquiry";
 import { useActionState } from "react";
 import Image from "next/image";

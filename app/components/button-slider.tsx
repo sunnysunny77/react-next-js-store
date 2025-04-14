@@ -1,3 +1,4 @@
+"use client"
 import { useEffect, useState, useCallback, createRef, useRef } from "react";
 import { ArrowRight } from "react-bootstrap-icons";
 import PreText from "@/components/pretext";
