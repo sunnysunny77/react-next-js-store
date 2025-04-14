@@ -260,7 +260,7 @@ const Navigation = () => {
 
             <li>
               
-              <Link className="navigation-link" scroll={false} href="/">
+              <Link className="navigation-link" href="/">
               
                 Home 
                 
@@ -270,7 +270,7 @@ const Navigation = () => {
 
             <li>
               
-              <Link className="navigation-link" scroll={false} href={auth ? "/store" : "/auth"}>
+              <Link className="navigation-link" href={auth ? "/store" : "/auth"}>
               
                 Store 
                 

@@ -47,7 +47,7 @@ const Cards = (props) => {
 
   const scroll_to = useCallback((e) => {
 
-    e.scrollIntoView({ behavior: 'smooth' });
+    scroll({ top: e.offsetTop, behavior: 'smooth' });
     setScrollingRef(e.offsetTop);
   },[setScrollingRef]);
 

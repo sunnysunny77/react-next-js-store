@@ -7,7 +7,7 @@ const Scroll = (props) => {
 
   useEffect(() => {
 
-    obj.current.scrollIntoView({ behavior: 'smooth' });
+    scroll({ top: obj.current.offsetTop, behavior: 'smooth' });
   }, [obj]);
 
   return null;

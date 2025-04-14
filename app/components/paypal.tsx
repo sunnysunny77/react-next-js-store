@@ -169,7 +169,7 @@ const Paypal = () => {
   
   const scroll_to = (e) => {
 
-    e.scrollIntoView({ behavior: 'smooth' });
+    scroll({ top: e.offsetTop,  behavior: 'smooth' });
   };
 
   const optionOrder = (e) => {

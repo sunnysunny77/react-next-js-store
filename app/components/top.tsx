@@ -7,7 +7,7 @@ const Top = (props) => {
 
   const scroll_to = () => {
 
-    obj.current.scrollIntoView({ behavior: 'smooth' });
+    scroll({ top:  obj.current.offsetTop, behavior: 'smooth' });
   }
   
   return (

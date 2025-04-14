@@ -90,7 +90,7 @@ const Footer = (props) => {
 
                   <li>
 
-                    <Link className="footer-link" scroll={false} href="/">
+                    <Link className="footer-link" href="/">
                     
                       Home 
                     
@@ -100,7 +100,7 @@ const Footer = (props) => {
 
                   <li>
 
-                    <Link className="footer-link" scroll={false} href={auth ? "/store" : "/auth"}>
+                    <Link className="footer-link" href={auth ? "/store" : "/auth"}>
                     
                       Store 
                       
