@@ -40,7 +40,7 @@ const DynamicAccordian = (props) => {
    
                       <div className="accordion-body">
 
-                        <ul>
+                        <ul className="ps-3">
     
                           {body.map((index, i) => { 
                             

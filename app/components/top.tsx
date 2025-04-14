@@ -10,11 +10,11 @@ const Top = () => {
   
   return (
 
-    <a onClick={scroll_to} className="top" aria-label="Return to top">
+    <div onClick={scroll_to} className="top" aria-label="Return to top">
                   
       <ArrowUp />
       
-    </a>
+    </div>
 
   );
 };

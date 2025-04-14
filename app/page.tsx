@@ -246,6 +246,15 @@ const Home = () => {
 
           items={[
             {
+              heading: "Torquent malesuada",
+              bold: "primis rhoncus",
+              paragraph:
+
+                `Aliquam nulla habitant vitae euismod viverra penatibus congue potenti. Ipsum eros odio sollicitudin feugiat leo montes magnis quis.
+
+                Dignissim aenean nec; blandit hac in cras integer tincidunt. Accumsan magna neque venenatis senectus curabitur penatibus velit. Litora fames rhoncus elementum; sollicitudin aliquet consectetur.`,
+            },
+            {
               heading: "Tristique mus",
               bold: "venenatis ad",
               paragraph:
@@ -279,15 +288,6 @@ const Home = () => {
                 `Nullam class nisi imperdiet tincidunt egestas id nibh ornare orci. Mus nulla primis, curae nisi nunc ornare. Sagittis posuere lorem ornare urna consectetur tellus.
 
                 Cubilia montes ex efficitur ut, consequat convallis? Adipiscing volutpat arcu sed auctor ultrices aliquet?`,
-            },
-            {
-              heading: "Torquent malesuada",
-              bold: "primis rhoncus",
-              paragraph:
-
-                `Aliquam nulla habitant vitae euismod viverra penatibus congue potenti. Ipsum eros odio sollicitudin feugiat leo montes magnis quis.
-
-                Dignissim aenean nec; blandit hac in cras integer tincidunt. Accumsan magna neque venenatis senectus curabitur penatibus velit. Litora fames rhoncus elementum; sollicitudin aliquet consectetur.`,
             },
           ]}
 
