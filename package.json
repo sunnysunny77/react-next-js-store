@@ -17,7 +17,7 @@
     "canvas": "latest",
     "mysql2": "latest",
     "next": "latest",
-    "next-pwa": "^5.6.0",
+    "next-pwa": "latest",
     "nodemailer": "latest",
     "react": "latest",
     "react-bootstrap-icons": "latest",
