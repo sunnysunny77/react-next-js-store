@@ -212,12 +212,13 @@ export const AppWrapper = ({
 
   const footerRef = useRef(null);
 
-  const [scrollingRef, setScrollingRef] = useState(0);
+  const [scrollingRef, setScrollingRef] = useState(null);
 
   const [auth, setAuth] = useState(false);
 
   const log_out = () => {
 
+    setScrollingRef(0);
     LogOut();
     setAuth(false);
     redirect("/");

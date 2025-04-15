@@ -5,12 +5,43 @@
     will-change: top, max-height;
     max-height: 83px;
     border-bottom: 1px solid $hotel;
+    transition: top 0.375s, max-height 0.375s;
     @include min_md {
         width: 300px;
         position: absolute;
         right: 0;
         border: none;
         z-index: 1001;
+    }
+    &.has-float {
+        z-index: 999;
+        position: fixed;
+        top: -83px;
+        width: 100%;
+        border-bottom: 1px solid $hotel;
+        transition: "none";
+        max-height: "83px";
+    }
+    &.has-positive {
+        z-index: 999;
+        position: fixed;
+        top: -83px;
+        width: 100%;
+        border-bottom: 1px solid $hotel;
+        transition: top 0.375s, max-height 0.375s;
+        max-height: 0px;
+    }
+    &.has-negative {
+        z-index: 999;
+        position: fixed;
+        top: 0px;
+        width: 100%;
+        border-bottom: 1px solid $hotel;
+        transition: top 0.375s, max-height 0.375s;
+        max-height: 83px;
+    }
+    &.has-collapsed {
+        max-height: 212px;
     }
     .navbar-collapse {
         background-color: inherit;
@@ -62,6 +93,22 @@
         background-color: $hotel;
         margin: 4px 0;
         border-radius: 1.5px;
-        will-change: transform;
+        border-radius: 1.5px;
+        will-change: transform, opacity;
+        transition:
+            transform 0.375s,
+            opacity 0.375s;
+        opacity: 1;
+    }
+    &.has-collapsed {
+        .slider_nav-bar-1 {
+            transform: translate(0, 7px) rotate(-45deg);
+        }
+        .slider_nav-bar-2 {
+            opacity: 0;
+        }
+        .slider_nav-bar-3 {
+            transform: translate(0, -7px) rotate(45deg);
+        }
     }
 }

@@ -92,7 +92,7 @@ const Home = () => {
 
       </Header>
 
-      <main ref={mainRef}>
+      <main className="d-flex flex-column" ref={mainRef}>
 
         <TwoColText
 

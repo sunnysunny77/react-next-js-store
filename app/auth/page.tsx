@@ -98,7 +98,7 @@ const Auth = () => {
 
       <Header heading={heading} />
 
-      <main ref={mainRef}>
+      <main className="d-flex flex-column" ref={mainRef}>
 
         <div className="Auth-form-container w-100">
 

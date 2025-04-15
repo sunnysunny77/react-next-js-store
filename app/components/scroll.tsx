@@ -7,7 +7,7 @@ const Scroll = (props) => {
 
   useEffect(() => {
 
-    scroll({ top: obj.current.offsetTop, behavior: 'smooth' });
+    scroll({ top: obj.current.offsetTop, behavior: "smooth" });
   }, [obj]);
 
   return null;

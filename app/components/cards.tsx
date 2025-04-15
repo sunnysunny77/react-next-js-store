@@ -39,7 +39,7 @@ const CardsType = (props) => {
 
 const Cards = (props) => {
 
-  const { heading, cardsType, obj} = props;
+  const { heading, cardsType, obj } = props;
 
   const { cartOrder, options, items, scrollRef, setScrollRef } = useCartContext();
 
@@ -47,7 +47,7 @@ const Cards = (props) => {
 
   const scroll_to = useCallback((e) => {
 
-    scroll({ top: e.offsetTop, behavior: 'smooth' });
+    scroll({ top: e.offsetTop, behavior: "smooth" });
     setScrollingRef(e.offsetTop);
   },[setScrollingRef]);
 

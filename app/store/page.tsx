@@ -39,7 +39,7 @@ const Store = () => {
 
       <Header heading={heading} />
 
-      <main ref={mainRef}>
+      <main className="d-flex flex-column" ref={mainRef}>
 
         <span ref={itemsRef}></span>
 

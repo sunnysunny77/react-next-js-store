@@ -6,7 +6,7 @@ const Top = (props) => {
 
   const scroll_to = () => {
 
-    scroll({ top:  obj.current.offsetTop, behavior: 'smooth' });
+    scroll({ top:  obj.current.offsetTop, behavior: "smooth" });
   }
   
   return (

@@ -10,7 +10,12 @@ const Footer = (props) => {
 
   const { obj } = props;
 
-  const { footerRef, auth, log_out } = useAppContext();
+  const { footerRef, auth, log_out, setScrollingRef } = useAppContext();
+
+  const set_scroll = () => {
+
+    setScrollingRef(0);
+  };
 
   return (
   
@@ -90,7 +95,7 @@ const Footer = (props) => {
 
                   <li>
 
-                    <Link className="footer-link" href="/">
+                    <Link onClick={set_scroll} className="footer-link" href="/">
                     
                       Home 
                     
@@ -100,7 +105,7 @@ const Footer = (props) => {
 
                   <li>
 
-                    <Link className="footer-link" href={auth ? "/store" : "/auth"}>
+                    <Link onClick={set_scroll} className="footer-link" href={auth ? "/store" : "/auth"}>
                     
                       Store 
                       
@@ -120,7 +125,7 @@ const Footer = (props) => {
 
                     ) : (
 
-                    <Link className="footer-link" scroll={false} href="/auth">
+                    <Link onClick={set_scroll} className="footer-link" scroll={false} href="/auth">
 
                     Sign In
 
