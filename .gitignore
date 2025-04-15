@@ -3,3 +3,6 @@
 /.trunk
 .env
 .env.development
+certificates
+/public/workbox-*.js
+/public/sw.js

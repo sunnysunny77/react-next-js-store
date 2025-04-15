@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev-https": "next dev --experimental-https",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -16,6 +17,7 @@
     "canvas": "latest",
     "mysql2": "latest",
     "next": "latest",
+    "next-pwa": "^5.6.0",
     "nodemailer": "latest",
     "react": "latest",
     "react-bootstrap-icons": "latest",
@@ -29,6 +31,7 @@
     "@types/react-dom": "latest",
     "eslint": "latest",
     "eslint-config-next": "latest",
+    "fs": "latest",
     "sass": "latest",
     "typescript": "latest"
   }

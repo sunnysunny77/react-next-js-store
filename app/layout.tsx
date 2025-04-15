@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { AppWrapper, CartWrapper } from "@/components/context";
 import localFont from "next/font/local";
+import "@/lib/register";
 import "@/styles/app.scss";
 
 //csp for build in production
@@ -15,6 +16,12 @@ const montserrat = localFont({
 export const metadata: Metadata = {
   title: "Store App",
   description: "Store App",
+  icons: {
+    icon: ["images/favicon.ico"],
+    apple: ["images/apple-icon.png"],
+    shortcut: ["images/pwa-logo-small.webp"],
+  },
+  manifest: "manifest.json"
 };
 
 const RootLayout = ({
