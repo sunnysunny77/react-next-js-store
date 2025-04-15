@@ -14,7 +14,7 @@ const nextConfig = {
       "import",
       "color-functions",
       "global-builtin",
-      "legacy-js-api"
+      "legacy-js-api",
     ],
   },
 };
