@@ -12,6 +12,10 @@ const Navigation = () => {
   const navbar = useRef(null);
   const navbar_toggler = useRef(null);
   const navbar_collapse = useRef(null);
+  const navbar_list = useRef(null);
+  const bar_one = useRef(null);
+  const bar_two = useRef(null);
+  const bar_three = useRef(null);
   const [scrollY, setScrollY] = useState(0);
   const [positive, setPositive] = useState(true);
   const [collapse, setCollapse] = useState(0);
@@ -23,7 +27,7 @@ const Navigation = () => {
 
     const wins = window.innerWidth < 768;
 
-    for (const index of navbar_collapse.current.children[0].children) {
+    for (const index of navbar_list.current.children) {
 
       Object.assign(index.style, {
 
@@ -32,19 +36,19 @@ const Navigation = () => {
       });
     };
 
-    Object.assign(navbar_toggler.current.children[0].children[0].style, {
+    Object.assign(bar_one.current.style, {
 
       transition: "transform 0.375s",
       transform: has_collapsed ? "none" : "translate(0, 7px) rotate(-45deg)",
     });
 
-    Object.assign(navbar_toggler.current.children[0].children[1].style, {
+    Object.assign(bar_two.current.style, {
 
       transition: "opacity 0.375s",
       opacity: has_collapsed ? 1 : 0,
     });
 
-    Object.assign(navbar_toggler.current.children[0].children[2].style, {
+    Object.assign(bar_three.current.style, {
 
       transition: "transform 0.375s",
       transform: has_collapsed ? "none" : "translate(0, -7px) rotate(45deg)",
@@ -244,11 +248,11 @@ const Navigation = () => {
 
           <div>
 
-              <div className="slider_8-bar"></div>
+              <div ref={bar_one} className="slider_8-bar"></div>
 
-              <div className="slider_8-bar"></div>
+              <div ref={bar_two} className="slider_8-bar"></div>
 
-              <div className="slider_8-bar"></div>
+              <div ref={bar_three} className="slider_8-bar"></div>
 
           </div>
 
@@ -256,7 +260,7 @@ const Navigation = () => {
 
         <div ref={navbar_collapse} className="col-12 slider_8-navbar-collapse navbar-collapse py-1">
 
-          <ul className="list-unstyled ms-3 my-3">
+          <ul ref={navbar_list} className="list-unstyled ms-3 my-3">
 
             <li>
               

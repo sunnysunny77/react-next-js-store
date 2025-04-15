@@ -32,7 +32,7 @@
 
 .slider_1-item-padding {
     margin: auto;
-    width: calc(100% - 85px);
+    width: 80%;
     @include min_sm {
         width: 70%;
     }
