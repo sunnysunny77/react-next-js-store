@@ -7,18 +7,26 @@ const Navigation = () => {
 
   const { mainRef, footerRef, scrollingRef, setScrollingRef, auth, log_out } = useAppContext();
 
-  const navbar = useRef(null);
-  const navbar_toggler = useRef(null);
-  const navbar_collapse = useRef(null);
-  const navbar_list = useRef(null);
+  const navbar_static = useRef(null);
+  const navbar_toggler_static = useRef(null);
+  const navbar_collapse_static = useRef(null);
+  const navbar_fixed = useRef(null);
+  const navbar_toggler_fixed = useRef(null);
+  const navbar_collapse_fixed = useRef(null);
   const [scrollY, setScrollY] = useState(0);
   const [positive, setPositive] = useState(true);
   const height = 83;
 
-  const toggle = () => {
+  const toggle_static = () => {
 
-    navbar_toggler.current.classList.toggle("has-collapsed");
-    navbar.current.classList.toggle("has-collapsed");
+    navbar_toggler_static.current.classList.toggle("has-collapsed");
+    navbar_static.current.classList.toggle("has-collapsed");
+  };
+
+  const toggle_fixed = () => {
+
+    navbar_toggler_fixed.current.classList.toggle("has-collapsed");
+    navbar_fixed.current.classList.toggle("has-collapsed");
   };
 
   const handle_navigationigation = useCallback(() => {
@@ -27,7 +35,6 @@ const Navigation = () => {
 
     const scroll_pos = window.scrollY;
 
-    console.log(scrollingRef)
     if (scroll_pos === scrollingRef) {
 
       setScrollingRef(null);
@@ -35,38 +42,31 @@ const Navigation = () => {
 
     if (scrollingRef !== null) {
 
-      navbar.current.classList.remove("has-float");
-      navbar.current.classList.add("has-positive");
-      navbar.current.classList.remove("has-negative");
+      navbar_fixed.current.classList.remove("has-float");
+      navbar_fixed.current.classList.add("has-positive");
+      navbar_fixed.current.classList.remove("has-negative");
        return;
     }
 
-    if (scroll_pos < height) {
+    if (scroll_pos > 0 && scroll_pos < (top - height )) {
 
-      navbar.current.classList.remove("has-float");
-      navbar.current.classList.remove("has-positive");
-      navbar.current.classList.remove("has-negative");
-      navbar_toggler.current.classList.remove("has-collapsed");
-      navbar.current.classList.remove("has-collapsed");
-    }  else if (scroll_pos > height && scroll_pos < (top - height )) {
-
-      navbar.current.classList.add("has-float");
-      navbar.current.classList.remove("has-positive");
-      navbar.current.classList.remove("has-negative");
-      navbar_toggler.current.classList.remove("has-collapsed");
-      navbar.current.classList.remove("has-collapsed");
+      navbar_fixed.current.classList.add("has-float");
+      navbar_fixed.current.classList.remove("has-positive");
+      navbar_fixed.current.classList.remove("has-negative");
+      navbar_toggler_fixed.current.classList.remove("has-collapsed");
+      navbar_fixed.current.classList.remove("has-collapsed");
     } else if (scroll_pos > (top - height) && positive || scroll_pos > (footerRef.current.offsetTop - height)) {
 
-      navbar.current.classList.remove("has-float");
-      navbar.current.classList.add("has-positive");
-      navbar.current.classList.remove("has-negative");
-      navbar_toggler.current.classList.remove("has-collapsed");
-      navbar.current.classList.remove("has-collapsed");
+      navbar_fixed.current.classList.remove("has-float");
+      navbar_fixed.current.classList.add("has-positive");
+      navbar_fixed.current.classList.remove("has-negative");
+      navbar_toggler_fixed.current.classList.remove("has-collapsed");
+      navbar_fixed.current.classList.remove("has-collapsed");
     } else if (scroll_pos > (top - height) && !positive) {
 
-      navbar.current.classList.remove("has-float");
-      navbar.current.classList.remove("has-positive");
-      navbar.current.classList.add("has-negative");
+      navbar_fixed.current.classList.remove("has-float");
+      navbar_fixed.current.classList.remove("has-positive");
+      navbar_fixed.current.classList.add("has-negative");
     };
 
     if (scroll_pos > scrollY) {
@@ -88,119 +88,225 @@ const Navigation = () => {
   useEffect(() => {
 
     window.addEventListener("scroll", handle_navigationigation, { passive: true });
-    window.addEventListener("resize", handle_navigationigation, { passive: true });
     return () => {
 
       window.removeEventListener("scroll", handle_navigationigation);
-      window.removeEventListener("resize", handle_navigationigation);
     };
   }, [handle_navigationigation]);
 
-  return (  
+  return (
 
-    <nav ref={navbar} className="container-fluid slider_8-navigation navigation d-flex align-items-start p-0">
+    <>
 
-      <div className="row w-100 justify-content-between m-0 g-0">
+      <nav ref={navbar_static} className="container-fluid slider_8-navigation navigation navigation-static d-flex align-items-start p-0">
 
-        <Link scroll={false} className="col-auto m-3"  href="/">
+        <div className="row w-100 justify-content-between m-0 g-0">
 
-          <svg aria-label="Super Foods" viewBox="0 0 100 100" width="50" height="50">
+          <Link scroll={false} className="col-auto m-3"  href="/">
 
-            <defs>
+            <svg aria-label="Super Foods" viewBox="0 0 100 100" width="50" height="50">
 
-                <path 
+              <defs>
 
-                  id="circle"
-                  d="M 50, 50
-                  m -37, 0
-                  a 37,37 0 1,1 74,0
-                  a 37,37 0 1,1 -74,0"
-                    
-                />
+                  <path
 
-            </defs>
+                    id="circle"
+                    d="M 50, 50
+                    m -37, 0
+                    a 37,37 0 1,1 74,0
+                    a 37,37 0 1,1 -74,0"
 
-            <text className="font">
+                  />
 
-                <textPath href="#circle">
+              </defs>
 
-                  Super --- Food ----------
+              <text className="font">
 
-                </textPath>
+                  <textPath href="#circle">
 
-            </text>
+                    Super --- Food ----------
 
-          </svg>
+                  </textPath>
 
-        </Link>
+              </text>
 
-        <div ref={navbar_toggler} onClick={toggle} aria-label="menu" role="button" className="col-auto d-flex align-items-center slider_8-navbar-toggler navbar-toggler  p-4" >
+            </svg>
 
-          <div>
+          </Link>
 
-              <div className="slider_8-bar slider_nav-bar-1"></div>
+          <div ref={navbar_toggler_static} onClick={toggle_static} aria-label="menu" role="button" className="col-auto d-flex align-items-center slider_8-navbar-toggler navbar-toggler  p-4" >
 
-              <div className="slider_8-bar slider_nav-bar-2"></div>
+            <div>
 
-              <div className="slider_8-bar slider_nav-bar-3"></div>
+                <div className="slider_8-bar slider_nav-bar-1"></div>
+
+                <div className="slider_8-bar slider_nav-bar-2"></div>
+
+                <div className="slider_8-bar slider_nav-bar-3"></div>
+
+            </div>
+
+          </div>
+
+          <div ref={navbar_collapse_static} className="col-12 slider_8-navbar-collapse navbar-collapse py-1">
+
+            <ul className="list-unstyled ms-3 my-3">
+
+              <li>
+
+                <Link scroll={false} onClick={set_scroll} className="navigation-link" href="/">
+
+                  Home
+
+                </Link>
+
+              </li>
+
+              <li>
+
+                <Link scroll={false} onClick={set_scroll} className="navigation-link" href={auth ? "/store" : "/auth"}>
+
+                  Store
+
+                </Link>
+
+              </li>
+
+              <li>
+
+                {auth ? (
+
+                  <button onClick={log_out} className="navigation-link">
+
+                    Sign Out
+
+                  </button>
+
+                ) : (
+
+                <Link scroll={false} onClick={set_scroll} className="navigation-link" href="/auth">
+
+                  Sign In
+
+                </Link>
+
+                )}
+
+              </li>
+
+            </ul>
 
           </div>
 
         </div>
 
-        <div ref={navbar_collapse} className="col-12 slider_8-navbar-collapse navbar-collapse py-1">
+      </nav>
 
-          <ul ref={navbar_list} className="list-unstyled ms-3 my-3">
+      <nav ref={navbar_fixed} className="container-fluid slider_8-navigation navigation navigation-fixed d-flex align-items-start p-0">
 
-            <li>
-              
-              <Link onClick={set_scroll} className="navigation-link" href="/">
-              
-                Home 
+        <div className="row w-100 justify-content-between m-0 g-0">
+
+          <Link scroll={false} className="col-auto m-3"  href="/">
+
+            <svg aria-label="Super Foods" viewBox="0 0 100 100" width="50" height="50">
+
+              <defs>
+
+                  <path
+
+                    id="circle"
+                    d="M 50, 50
+                    m -37, 0
+                    a 37,37 0 1,1 74,0
+                    a 37,37 0 1,1 -74,0"
+
+                  />
+
+              </defs>
+
+              <text className="font">
+
+                  <textPath href="#circle">
+
+                    Super --- Food ----------
+
+                  </textPath>
+
+              </text>
+
+            </svg>
+
+          </Link>
+
+          <div ref={navbar_toggler_fixed} onClick={toggle_fixed} aria-label="menu" role="button" className="col-auto d-flex align-items-center slider_8-navbar-toggler navbar-toggler  p-4" >
+
+            <div>
+
+                <div className="slider_8-bar slider_nav-bar-1"></div>
+
+                <div className="slider_8-bar slider_nav-bar-2"></div>
+
+                <div className="slider_8-bar slider_nav-bar-3"></div>
+
+            </div>
+
+          </div>
+
+          <div ref={navbar_collapse_fixed} className="col-12 slider_8-navbar-collapse navbar-collapse py-1">
+
+            <ul className="list-unstyled ms-3 my-3">
+
+              <li>
                 
-              </Link>
-              
-            </li>
-
-            <li>
-              
-              <Link onClick={set_scroll} className="navigation-link" href={auth ? "/store" : "/auth"}>
-              
-                Store 
+                <Link scroll={false} onClick={set_scroll} className="navigation-link" href="/">
                 
-              </Link>
-              
-            </li>
+                  Home
 
-            <li>
+                </Link>
 
-              {auth ? (
+              </li>
 
-                <button onClick={log_out} className="navigation-link">
+              <li>
 
-                  Sign Out
+                <Link scroll={false} onClick={set_scroll} className="navigation-link" href={auth ? "/store" : "/auth"}>
 
-                </button>
+                  Store
 
-              ) : (
+                </Link>
 
-              <Link onClick={set_scroll} className="navigation-link" scroll={false} href="/auth">
+              </li>
 
-                Sign In
+              <li>
 
-              </Link>
+                {auth ? (
 
-              )}
+                  <button onClick={log_out} className="navigation-link">
 
-            </li>
-        
-          </ul>
+                    Sign Out
+
+                  </button>
+
+                ) : (
+
+                <Link scroll={false} onClick={set_scroll} className="navigation-link" href="/auth">
+
+                  Sign In
+
+                </Link>
+
+                )}
+
+              </li>
+
+            </ul>
+
+          </div>
 
         </div>
 
-      </div>
+      </nav>
 
-    </nav>
+    </>
     
   );
 };

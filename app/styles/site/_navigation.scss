@@ -13,7 +13,7 @@
         border: none;
         z-index: 1001;
     }
-    &.has-float {
+    &.has-float.navigation-fixed {
         z-index: 999;
         position: fixed;
         top: -83px;
@@ -22,7 +22,7 @@
         transition: "none";
         max-height: "83px";
     }
-    &.has-positive {
+    &.has-positive.navigation-fixed {
         z-index: 999;
         position: fixed;
         top: -83px;
@@ -31,7 +31,7 @@
         transition: top 0.375s, max-height 0.375s;
         max-height: 0px;
     }
-    &.has-negative {
+    &.has-negative.navigation-fixed {
         z-index: 999;
         position: fixed;
         top: 0px;
@@ -40,7 +40,8 @@
         transition: top 0.375s, max-height 0.375s;
         max-height: 83px;
     }
-    &.has-collapsed {
+    &.has-collapsed,
+    &.has-collapsed.navigation-fixed {
         max-height: 212px;
     }
     .navbar-collapse {

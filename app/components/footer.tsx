@@ -95,7 +95,7 @@ const Footer = (props) => {
 
                   <li>
 
-                    <Link onClick={set_scroll} className="footer-link" href="/">
+                    <Link scroll={false} onClick={set_scroll} className="footer-link" href="/">
                     
                       Home 
                     
@@ -105,7 +105,7 @@ const Footer = (props) => {
 
                   <li>
 
-                    <Link onClick={set_scroll} className="footer-link" href={auth ? "/store" : "/auth"}>
+                    <Link scroll={false} onClick={set_scroll} className="footer-link" href={auth ? "/store" : "/auth"}>
                     
                       Store 
                       
@@ -125,7 +125,7 @@ const Footer = (props) => {
 
                     ) : (
 
-                    <Link onClick={set_scroll} className="footer-link" scroll={false} href="/auth">
+                    <Link scroll={false} onClick={set_scroll} className="footer-link" href="/auth">
 
                     Sign In
 

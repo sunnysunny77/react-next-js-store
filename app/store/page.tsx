@@ -41,7 +41,7 @@ const Store = () => {
 
       <main className="d-flex flex-column" ref={mainRef}>
 
-        <span ref={itemsRef}></span>
+        <div ref={itemsRef}></div>
 
         <div className="container-fluid pt-4 mt-lg-4 pb-lg-5">
 
@@ -96,7 +96,7 @@ const Store = () => {
 
         </div>
 
-        <span ref={storeRef}></span>
+        <div ref={storeRef}></div>
 
         <Paypal />
 

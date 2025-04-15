@@ -599,7 +599,7 @@ const Paypal = () => {
 
         </div>
 
-        <span ref={outputRef}></span>
+        <div ref={outputRef}></div>
 
         <div className="col-12 col-md-10"></div>
 
