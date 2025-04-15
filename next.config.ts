@@ -8,7 +8,14 @@ const {
 const nextConfig = {
   reactStrictMode: true,
   sassOptions: {
-    silenceDeprecations: ["legacy-js-api"],
+    quietDeps: true,
+    silenceDeprecations: [
+      "mixed-decls",
+      "import",
+      "color-functions",
+      "global-builtin",
+      "legacy-js-api"
+    ],
   },
 };
 
