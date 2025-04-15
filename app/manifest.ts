@@ -1,4 +1,8 @@
-{
+
+import type { MetadataRoute } from "next";
+ 
+export default function manifest(): MetadataRoute.Manifest {
+  return {
     "name": "Store App",
     "short_name": "Store App",
     "start_url": "/",
@@ -15,7 +19,7 @@
             "src": "images/pwa-logo-small.webp",
             "sizes": "192x192",
             "type": "image/webp"
-        }
-    ]
-   
-}
+        },
+    ],
+  };
+};

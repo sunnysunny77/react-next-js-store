@@ -1,6 +1,21 @@
 "use client"
+import { useEffect } from "react";
 
-async function Register() {
-  const registration = await navigator.serviceWorker.register("/sw.js", {});
+const registerServiceWorker = async () => {
+
+  await navigator.serviceWorker.register("/sw.js", {});
 };
-Register();
+
+const Register = () => {
+
+  useEffect(() => {
+
+    if ('serviceWorker' in navigator && 'PushManager' in window) {
+      registerServiceWorker();
+    }
+  }, []);
+
+  return null;
+};
+
+export default Register;

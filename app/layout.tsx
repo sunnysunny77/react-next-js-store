@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { AppWrapper, CartWrapper } from "@/components/context";
 import localFont from "next/font/local";
-import "@/lib/register";
+import Register from "@/lib/register";
 import "@/styles/app.scss";
 
 //csp for build in production
@@ -19,9 +19,7 @@ export const metadata: Metadata = {
   icons: {
     icon: ["images/favicon.ico"],
     apple: ["images/apple-icon.png"],
-    shortcut: ["images/pwa-logo-small.webp"],
   },
-  manifest: "manifest.json"
 };
 
 const RootLayout = ({
@@ -33,6 +31,8 @@ const RootLayout = ({
   return (
 
     <html lang="en">
+
+      <Register />
 
       <body className={montserrat.variable}>
 

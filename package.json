@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ducanh2912/next-pwa": "latest",
     "@paypal/react-paypal-js": "latest",
     "@popperjs/core": "latest",
     "bcrypt": "latest",
@@ -17,7 +18,6 @@
     "canvas": "latest",
     "mysql2": "latest",
     "next": "latest",
-    "next-pwa": "latest",
     "nodemailer": "latest",
     "react": "latest",
     "react-bootstrap-icons": "latest",
@@ -33,6 +33,7 @@
     "eslint-config-next": "latest",
     "fs": "latest",
     "sass": "latest",
-    "typescript": "latest"
+    "typescript": "latest",
+    "webpack": "latest"
   }
 }
