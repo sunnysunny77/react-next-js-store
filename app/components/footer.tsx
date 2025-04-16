@@ -2,17 +2,15 @@
 "use client"
 import { useAppContext } from "@/components/context";
 import { Linkedin } from "react-bootstrap-icons";
+import { ArrowUp } from "react-bootstrap-icons";
 import Link from "next/link";
 import Year from "@/components/year";
-import Top from "@/components/top";
 
-const Footer = (props) => {
-
-  const { navbarRef } = props;
+const Footer = () => {
 
   const { auth, log_out, setScrollingRef } = useAppContext();
 
-  const set_scroll = () => {
+  const scroll_to = () => {
 
     setScrollingRef(window.scrollY === 0 ? null : 0);
   };
@@ -37,7 +35,7 @@ const Footer = (props) => {
 
                   <div className="col-auto pb-3 ps-1 pe-3">
 
-                    <Link scroll={false} href="/">
+                    <Link onClick={scroll_to} scroll={false} href="/">
                     
                       <svg aria-label="Super Foods" viewBox="0 0 100 100" width="40" height="40">
 
@@ -95,7 +93,7 @@ const Footer = (props) => {
 
                   <li>
 
-                    <Link scroll={false} onClick={set_scroll} className="footer-link" href="/">
+                    <Link scroll={false} onClick={scroll_to} className="footer-link" href="/">
                     
                       Home 
                     
@@ -105,7 +103,7 @@ const Footer = (props) => {
 
                   <li>
 
-                    <Link scroll={false} onClick={set_scroll} className="footer-link" href={auth ? "/store" : "/auth"}>
+                    <Link scroll={false} onClick={scroll_to} className="footer-link" href={auth ? "/store" : "/auth"}>
                     
                       Store 
                       
@@ -125,9 +123,9 @@ const Footer = (props) => {
 
                     ) : (
 
-                    <Link scroll={false} onClick={set_scroll} className="footer-link" href="/auth">
+                    <Link scroll={false} onClick={scroll_to} className="footer-link" href="/auth">
 
-                    Sign In
+                      Sign In
 
                     </Link>
 
@@ -178,7 +176,11 @@ const Footer = (props) => {
 
               <div className="col-12 d-flex flex-wrap justify-content-end mt-3">
 
-                <Top navbarRef={navbarRef} />
+                <button onClick={scroll_to} className="top" aria-label="Return to top">
+
+                  <ArrowUp />
+
+                </button>
 
               </div>
 

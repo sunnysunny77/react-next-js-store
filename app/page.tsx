@@ -2,6 +2,7 @@
 import { useEffect, useRef } from "react";
 import { useAppContext } from "@/components/context";
 import CarouselSlider from "@/components/carousel-slider";
+import Scroll from "@/components/scroll";
 import Cards from "@/components/cards";
 import Header from "@/components/header";
 import Navigation from "@/components/navigation";
@@ -327,7 +328,9 @@ const Home = () => {
 
       <div ref={footerRef}></div>
 
-      <Footer navbarRef={navbarRef} />
+      <Footer />
+
+      <Scroll />
 
     </>
 

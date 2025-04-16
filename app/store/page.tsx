@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useRef } from "react";
 import { useAppContext } from "@/components/context";
+import Scroll from "@/components/scroll";
 import Cards from "@/components/cards";
 import Header from "@/components/header";
 import Paypal from "@/components/paypal";
@@ -128,7 +129,9 @@ const Store = () => {
 
       <div ref={footerRef}></div>
 
-      <Footer navbarRef={navbarRef} />
+      <Footer />
+
+      <Scroll />
 
     </>
 

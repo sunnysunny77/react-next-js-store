@@ -19,6 +19,11 @@ const Navigation = (props) => {
   const [positive, setPositive] = useState(true);
   const height = 83;
 
+  const scroll_to = () => {
+
+    setScrollingRef(window.scrollY === 0 ? null : 0);
+  };
+
   const toggle_static = () => {
 
     navbar_toggler_static.current.classList.toggle("has-collapsed");
@@ -82,11 +87,6 @@ const Navigation = (props) => {
     setScrollY(scroll_pos);
   },[footerRef, mainRef, positive, scrollY, scrollingRef, setScrollingRef]);
 
-  const set_scroll = () => {
-
-    setScrollingRef(window.scrollY === 0 ? null : 0);
-  };
-
   useEffect(() => {
 
     window.addEventListener("scroll", handle_navigationigation, { passive: true });
@@ -104,7 +104,7 @@ const Navigation = (props) => {
 
         <div className="row w-100 justify-content-between m-0 g-0">
 
-          <Link scroll={false} className="col-auto m-3"  href="/">
+          <Link onClick={scroll_to} scroll={false} className="col-auto m-3"  href="/">
 
             <svg aria-label="Super Foods" viewBox="0 0 100 100" width="50" height="50">
 
@@ -156,7 +156,7 @@ const Navigation = (props) => {
 
               <li>
 
-                <Link scroll={false} onClick={set_scroll} className="navigation-link" href="/">
+                <Link scroll={false} onClick={scroll_to} className="navigation-link" href="/">
 
                   Home
 
@@ -166,7 +166,7 @@ const Navigation = (props) => {
 
               <li>
 
-                <Link scroll={false} onClick={set_scroll} className="navigation-link" href={auth ? "/store" : "/auth"}>
+                <Link scroll={false} onClick={scroll_to} className="navigation-link" href={auth ? "/store" : "/auth"}>
 
                   Store
 
@@ -186,7 +186,7 @@ const Navigation = (props) => {
 
                 ) : (
 
-                <Link scroll={false} onClick={set_scroll} className="navigation-link" href="/auth">
+                <Link scroll={false} onClick={scroll_to} className="navigation-link" href="/auth">
 
                   Sign In
 
@@ -208,7 +208,7 @@ const Navigation = (props) => {
 
         <div className="row w-100 justify-content-between m-0 g-0">
 
-          <Link scroll={false} className="col-auto m-3"  href="/">
+          <Link onClick={scroll_to} scroll={false} className="col-auto m-3"  href="/">
 
             <svg aria-label="Super Foods" viewBox="0 0 100 100" width="50" height="50">
 
@@ -260,7 +260,7 @@ const Navigation = (props) => {
 
               <li>
                 
-                <Link scroll={false} onClick={set_scroll} className="navigation-link" href="/">
+                <Link scroll={false} onClick={scroll_to} className="navigation-link" href="/">
                 
                   Home
 
@@ -270,7 +270,7 @@ const Navigation = (props) => {
 
               <li>
 
-                <Link scroll={false} onClick={set_scroll} className="navigation-link" href={auth ? "/store" : "/auth"}>
+                <Link scroll={false} onClick={scroll_to} className="navigation-link" href={auth ? "/store" : "/auth"}>
 
                   Store
 
@@ -290,7 +290,7 @@ const Navigation = (props) => {
 
                 ) : (
 
-                <Link scroll={false} onClick={set_scroll} className="navigation-link" href="/auth">
+                <Link scroll={false} onClick={scroll_to} className="navigation-link" href="/auth">
 
                   Sign In
 

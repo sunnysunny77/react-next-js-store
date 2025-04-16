@@ -11,8 +11,6 @@ const CtaType = (props) => {
 
   const scroll_to = () => {
 
-    //const ref = itemsRef.current.offsetTop;
-   //scroll({ top: ref, behavior: "smooth" });
     setScrollingRef(itemsRef.current.offsetTop);
   };
 

@@ -41,17 +41,22 @@ const Cards = (props) => {
 
   const { heading, cardsType, storeRef } = props;
 
-  const { cartOrder, options, items, holdScroll, setHoldScroll } = useCartContext();
+  const { cartOrder, options, items } = useCartContext();
 
-  const { setScrollingRef } = useAppContext();
+  const { setScrollingRef, holdScroll, setHoldScroll, auth } = useAppContext();
 
   const optionOrder = (e) => {
 
     cartOrder[e.currentTarget.getAttribute("data-value")]();
     if(storeRef) {
+
       setScrollingRef(storeRef.current.offsetTop);
-    } else if (!storeRef) {
+    } else if (!storeRef && auth) {
+
       setHoldScroll(true);
+    } else if (!auth) {
+
+      setScrollingRef(window.scrollY === 0 ? null : 0);
     }
   };
 
@@ -66,7 +71,7 @@ const Cards = (props) => {
         setHoldScroll(false);
       };
     };
-  },[holdScroll, storeRef]);
+  },[holdScroll, storeRef, setHoldScroll, setScrollingRef]);
 
   return (
     

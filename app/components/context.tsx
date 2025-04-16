@@ -184,11 +184,9 @@ export const CartWrapper = ({
 
   const [cart, setCart] = useState({});
 
-  const [holdScroll, setHoldScroll] = useState(false);
-
   return (
 
-    <CartContext.Provider value={{ order, cartOrder, options, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, holdScroll, setHoldScroll }}>
+    <CartContext.Provider value={{ order, cartOrder, options, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled }}>
 
       {children}
 
@@ -226,9 +224,11 @@ export const AppWrapper = ({
     setAuth(cookie);
   };
 
+  const [holdScroll, setHoldScroll] = useState(false);
+
   return (
 
-    <AppContext.Provider value={{ scrollingRef, setScrollingRef, auth, log_out, checkCookie }}>
+    <AppContext.Provider value={{ scrollingRef, setScrollingRef, auth, log_out, checkCookie, holdScroll, setHoldScroll }}>
 
       {children}
 
