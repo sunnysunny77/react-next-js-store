@@ -12,7 +12,7 @@ export function middleware(request: NextRequest) {
     font-src 'self';
     object-src 'none';
     base-uri 'self';
-    connect-src 'self' https://www.sandbox.paypal.com;
+    connect-src 'self' https://www.sandbox.paypal.com https://www.paypal.com;
     form-action 'self';
     frame-src https://www.sandbox.paypal.com;
     frame-ancestors 'none';
