@@ -43,7 +43,7 @@ const Cards = (props) => {
 
   const { cartOrder, options, items } = useCartContext();
 
-  const { setScrollingRef, holdScroll, setHoldScroll, auth } = useAppContext();
+  const { setScrollingRef, holdScrollCart, setHoldScrollCart, auth } = useAppContext();
 
   const optionOrder = (e) => {
 
@@ -53,26 +53,26 @@ const Cards = (props) => {
       setScrollingRef(storeRef.current.offsetTop);
     } else if (!storeRef && auth) {
 
-      setHoldScroll(true);
+      setHoldScrollCart(true);
     } else if (!auth) {
 
-      setHoldScroll(true);
+      setHoldScrollCart(true);
       setScrollingRef(window.scrollY === 0 ? null : 0);
     }
   };
 
   useEffect(()=>{
 
-    if(holdScroll && storeRef) {
+    if(holdScrollCart && storeRef) {
 
       setScrollingRef(storeRef.current.offsetTop);
 
       return () => {
 
-        setHoldScroll(false);
+        setHoldScrollCart(false);
       };
     };
-  },[holdScroll, storeRef, setHoldScroll, setScrollingRef]);
+  },[holdScrollCart, storeRef, setHoldScrollCart, setScrollingRef]);
 
   return (
     

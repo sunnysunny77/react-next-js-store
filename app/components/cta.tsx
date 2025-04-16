@@ -37,7 +37,7 @@ const Cta = (props) => {
 
   const { ctaType, heading, bold, paragraph, button, itemsRef } = props;
 
-  const { setScrollingRef, holdScroll, setHoldScroll, auth } = useAppContext();
+  const { setScrollingRef, holdScrollCta, setHoldScrollCta, auth } = useAppContext();
 
   const scroll_to = () => {
 
@@ -46,26 +46,26 @@ const Cta = (props) => {
       setScrollingRef(itemsRef.current.offsetTop);
     } else if (!itemsRef && auth) {
 
-      setHoldScroll(true);
+      setHoldScrollCta(true);
     } else if (!auth) {
 
-      setHoldScroll(true);
+      setHoldScrollCta(true);
       setScrollingRef(window.scrollY === 0 ? null : 0);
     }
   };
 
   useEffect(()=>{
 
-    if(holdScroll && itemsRef) {
+    if(holdScrollCta && itemsRef) {
 
       setScrollingRef(itemsRef.current.offsetTop);
 
       return () => {
 
-        setHoldScroll(false);
+        setHoldScrollCta(false);
       };
     };
-  },[holdScroll, itemsRef, setHoldScroll, setScrollingRef]);
+  },[holdScrollCta, itemsRef, setHoldScrollCta, setScrollingRef]);
 
   return (
 
