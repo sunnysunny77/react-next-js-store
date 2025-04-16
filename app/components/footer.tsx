@@ -14,7 +14,7 @@ const Footer = (props) => {
 
   const set_scroll = () => {
 
-    setScrollingRef(0);
+    setScrollingRef(window.scrollY === 0 ? null : 0);
   };
 
   return (

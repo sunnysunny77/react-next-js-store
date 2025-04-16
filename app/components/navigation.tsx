@@ -33,7 +33,7 @@ const Navigation = (props) => {
 
   const handle_navigationigation = useCallback(() => {
 
-    const top = mainRef.current.offsetTop;
+    const top = mainRef.current?.offsetTop;
 
     const scroll_pos = window.scrollY;
 
@@ -42,33 +42,35 @@ const Navigation = (props) => {
       setScrollingRef(null);
     }
 
+    console.log(scrollingRef)
+
     if (scrollingRef !== null) {
 
-      navbar_fixed.current.classList.remove("has-float");
-      navbar_fixed.current.classList.add("has-positive");
-      navbar_fixed.current.classList.remove("has-negative");
+      navbar_fixed.current?.classList.remove("has-float");
+      navbar_fixed.current?.classList.add("has-positive");
+      navbar_fixed.current?.classList.remove("has-negative");
        return;
     }
 
     if (scroll_pos > 0 && scroll_pos < (top - height )) {
 
-      navbar_fixed.current.classList.add("has-float");
-      navbar_fixed.current.classList.remove("has-positive");
-      navbar_fixed.current.classList.remove("has-negative");
-      navbar_toggler_fixed.current.classList.remove("has-collapsed");
-      navbar_fixed.current.classList.remove("has-collapsed");
-    } else if (scroll_pos > (top - height) && positive || scroll_pos > (footerRef.current.offsetTop - height)) {
+      navbar_fixed.current?.classList.add("has-float");
+      navbar_fixed.current?.classList.remove("has-positive");
+      navbar_fixed.current?.classList.remove("has-negative");
+      navbar_toggler_fixed.current?.classList.remove("has-collapsed");
+      navbar_fixed.current?.classList.remove("has-collapsed");
+    } else if (scroll_pos > (top - height) && positive || scroll_pos > (footerRef.current?.offsetTop - height)) {
 
-      navbar_fixed.current.classList.remove("has-float");
-      navbar_fixed.current.classList.add("has-positive");
-      navbar_fixed.current.classList.remove("has-negative");
-      navbar_toggler_fixed.current.classList.remove("has-collapsed");
-      navbar_fixed.current.classList.remove("has-collapsed");
+      navbar_fixed.current?.classList.remove("has-float");
+      navbar_fixed.current?.classList.add("has-positive");
+      navbar_fixed.current?.classList.remove("has-negative");
+      navbar_toggler_fixed.current?.classList.remove("has-collapsed");
+      navbar_fixed.current?.classList.remove("has-collapsed");
     } else if (scroll_pos > (top - height) && !positive) {
 
-      navbar_fixed.current.classList.remove("has-float");
-      navbar_fixed.current.classList.remove("has-positive");
-      navbar_fixed.current.classList.add("has-negative");
+      navbar_fixed.current?.classList.remove("has-float");
+      navbar_fixed.current?.classList.remove("has-positive");
+      navbar_fixed.current?.classList.add("has-negative");
     };
 
     if (scroll_pos > scrollY) {
@@ -84,7 +86,7 @@ const Navigation = (props) => {
 
   const set_scroll = () => {
 
-    setScrollingRef(0);
+    setScrollingRef(window.scrollY === 0 ? null : 0);
   };
 
   useEffect(() => {
