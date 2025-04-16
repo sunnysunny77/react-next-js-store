@@ -226,11 +226,11 @@ export const AppWrapper = ({
 
   const [holdScrollCta, setHoldScrollCta] = useState(false);
 
-  const [holdScrollCart, setHoldScrollCart] = useState(false);
+  const [holdScrollCard, setHoldScrollCard] = useState(false);
 
   return (
 
-    <AppContext.Provider value={{ scrollingRef, setScrollingRef, auth, log_out, checkCookie, holdScrollCta, setHoldScrollCta, holdScrollCart, setHoldScrollCart }}>
+    <AppContext.Provider value={{ scrollingRef, setScrollingRef, auth, log_out, checkCookie, holdScrollCta, setHoldScrollCta, holdScrollCard, setHoldScrollCard }}>
 
       {children}
 
