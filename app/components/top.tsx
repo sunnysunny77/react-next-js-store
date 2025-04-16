@@ -1,4 +1,5 @@
 import { ArrowUp } from "react-bootstrap-icons";
+import { useEffect } from "react";
 
 const Top = (props) => {
 
@@ -8,7 +9,12 @@ const Top = (props) => {
 
     scroll({ top:  obj.current.offsetTop, behavior: "smooth" });
   }
-  
+
+  useEffect(() => {
+
+    scroll({ top:  obj.current.offsetTop, behavior: "smooth" });
+  }, [obj]);
+
   return (
 
     <button onClick={scroll_to} className="top" aria-label="Return to top">

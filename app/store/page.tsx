@@ -1,7 +1,6 @@
 "use client"
 import { useEffect, useRef } from "react";
 import { useAppContext } from "@/components/context";
-import Scroll from "@/components/scroll";
 import Cards from "@/components/cards";
 import Header from "@/components/header";
 import Paypal from "@/components/paypal";
@@ -12,13 +11,17 @@ import Footer from "@/components/footer";
 
 const Store = () => {
 
-  const { mainRef, checkCookie } = useAppContext();
+  const { checkCookie } = useAppContext();
 
   const navbarRef = useRef(null);
 
   const itemsRef = useRef(null);
 
   const storeRef = useRef(null);
+
+  const mainRef = useRef(null);
+
+  const footerRef = useRef(null);
 
   const heading = "STORE";
 
@@ -31,11 +34,7 @@ const Store = () => {
 
     <>
 
-      <span ref={navbarRef}></span>
-
-      <Navigation />
-
-      <Scroll obj={navbarRef} />
+      <Navigation mainRef={mainRef} footerRef={footerRef} />
 
       <Header heading={heading} />
 
@@ -124,6 +123,8 @@ const Store = () => {
         </div>
 
       </main>
+
+      <div ref={footerRef}></div>
 
       <Footer obj={navbarRef} />
 

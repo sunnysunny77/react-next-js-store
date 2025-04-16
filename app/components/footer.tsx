@@ -10,7 +10,7 @@ const Footer = (props) => {
 
   const { obj } = props;
 
-  const { footerRef, auth, log_out, setScrollingRef } = useAppContext();
+  const { auth, log_out, setScrollingRef } = useAppContext();
 
   const set_scroll = () => {
 
@@ -19,7 +19,7 @@ const Footer = (props) => {
 
   return (
   
-    <footer ref={footerRef}>
+    <footer>
 
       <div className="container-lg py-3 py-lg-5 g-0">
 

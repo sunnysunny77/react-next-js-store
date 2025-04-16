@@ -3,9 +3,11 @@ import { useAppContext } from "@/components/context";
 import { useRef, useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 
-const Navigation = () => {
+const Navigation = (props) => {
 
-  const { mainRef, footerRef, scrollingRef, setScrollingRef, auth, log_out } = useAppContext();
+  const { mainRef, footerRef } = props;
+
+  const { scrollingRef, setScrollingRef, auth, log_out } = useAppContext();
 
   const navbar_static = useRef(null);
   const navbar_toggler_static = useRef(null);
@@ -202,7 +204,7 @@ const Navigation = () => {
 
       </nav>
 
-      <nav ref={navbar_fixed} className="container-fluid slider_8-navigation navigation navigation-fixed d-flex align-items-start p-0">
+      <nav ref={navbar_fixed} className="container-fluid slider_8-navigation navigation navigation-fixed has-float d-flex align-items-start p-0">
 
         <div className="row w-100 justify-content-between m-0 g-0">
 

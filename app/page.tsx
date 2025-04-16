@@ -2,7 +2,6 @@
 import { useEffect, useRef } from "react";
 import { useAppContext } from "@/components/context";
 import CarouselSlider from "@/components/carousel-slider";
-import Scroll from "@/components/scroll";
 import Cards from "@/components/cards";
 import Header from "@/components/header";
 import Navigation from "@/components/navigation";
@@ -30,7 +29,11 @@ const Home = () => {
 
   const navbarRef = useRef(null);
 
-  const { mainRef, auth, checkCookie } = useAppContext();
+  const { auth, checkCookie } = useAppContext();
+
+  const mainRef = useRef(null);
+
+  const footerRef = useRef(null);
 
   const heading = "HOME";
 
@@ -80,11 +83,9 @@ const Home = () => {
 
     <>
 
-      <span ref={navbarRef}></span>
+      <div ref={navbarRef}></div>
 
-      <Navigation />
-
-      <Scroll obj={navbarRef} />
+      <Navigation mainRef={mainRef} footerRef={footerRef} />
 
       <Header heading={heading}>
 
@@ -323,6 +324,8 @@ const Home = () => {
         <Enquiry />
 
       </main>
+
+      <div ref={footerRef}></div>
 
       <Footer obj={navbarRef} />
 

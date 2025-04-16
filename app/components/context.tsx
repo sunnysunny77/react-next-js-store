@@ -1,5 +1,5 @@
 "use client"
-import { createContext, useContext, useState, useRef } from "react";
+import { createContext, useContext, useState } from "react";
 import { redirect } from 'next/navigation';
 import LogOut from  "@/api/log-out";
 import GetCookie from  "@/api/get-cookie";
@@ -208,9 +208,6 @@ export const AppWrapper = ({
   children: React.ReactNode,
 }) => {
 
-  const mainRef = useRef(null);
-
-  const footerRef = useRef(null);
 
   const [scrollingRef, setScrollingRef] = useState(null);
 
@@ -232,7 +229,7 @@ export const AppWrapper = ({
 
   return (
 
-    <AppContext.Provider value={{ mainRef, footerRef, scrollingRef, setScrollingRef, auth, log_out, checkCookie }}>
+    <AppContext.Provider value={{ scrollingRef, setScrollingRef, auth, log_out, checkCookie }}>
 
       {children}
 

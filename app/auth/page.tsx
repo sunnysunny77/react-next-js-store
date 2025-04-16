@@ -5,7 +5,6 @@ import { GetSignIn } from "@/api/auth";
 import { GetFactor, SetFactor } from "@/api/factor";
 import { redirect } from 'next/navigation'
 import { SetCaptcha, GetCaptcha } from "@/api/captcha";
-import Scroll from "@/components/scroll";
 import Registraion from "@/api/registraion";
 import Image from "next/image";
 import Header from "@/components/header";
@@ -15,11 +14,15 @@ import Spinner from "@/images/load.gif";
 
 const Auth = () => {
 
-  const { mainRef, checkCookie } = useAppContext();
+  const { checkCookie } = useAppContext();
 
   const captchaRef = useRef(null);
 
   const navbarRef = useRef(null);
+
+  const mainRef = useRef(null);
+
+  const footerRef = useRef(null);
 
   const heading = "STORE";
 
@@ -90,11 +93,9 @@ const Auth = () => {
 
     <>
 
-      <span ref={navbarRef}></span>
+      <div ref={navbarRef}></div>
 
-      <Navigation />
-
-      <Scroll obj={navbarRef} />
+      <Navigation mainRef={mainRef} footerRef={footerRef} />
 
       <Header heading={heading} />
 
@@ -367,6 +368,8 @@ const Auth = () => {
         </div>
 
       </main>
+
+      <div ref={footerRef}></div>
 
       <Footer obj={navbarRef} />
 
