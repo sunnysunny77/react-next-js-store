@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { AppWrapper, CartWrapper } from "@/components/context";
 import localFont from "next/font/local";
-import Register from "@/lib/register";
 import "@/styles/app.scss";
 
 //csp for build in production
@@ -31,8 +30,6 @@ const RootLayout = ({
   return (
 
     <html lang="en">
-
-      <Register />
 
       <body className={montserrat.variable}>
 
