@@ -34,6 +34,8 @@ const Store = () => {
 
     <>
 
+      <div ref={navbarRef}></div>
+
       <Navigation mainRef={mainRef} footerRef={footerRef} />
 
       <Header heading={heading} />
