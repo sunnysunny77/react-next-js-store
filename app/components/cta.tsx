@@ -1,18 +1,14 @@
 "use client"
-import Link from "next/link";
+import { useEffect } from "react";
 import { useAppContext } from "@/components/context";
 import { ArrowRightCircleFill } from "react-bootstrap-icons";
+import Link from "next/link";
 
 const CtaType = (props) => {
 
-  const { ctaType, classes, children, itemsRef } = props;
+  const { ctaType, classes, children, onClick } = props;
 
-  const { setScrollingRef, auth } = useAppContext();
-
-  const scroll_to = () => {
-
-    setScrollingRef(itemsRef.current.offsetTop);
-  };
+  const { auth } = useAppContext();
 
   return ctaType ? (
 
@@ -20,6 +16,7 @@ const CtaType = (props) => {
       className={classes}
       scroll={false}
       href={auth ? "/store" : "/auth"}
+      onClick={onClick}
     >
       {children}
     </Link>
@@ -28,7 +25,7 @@ const CtaType = (props) => {
 
     <button
         className={classes}
-        onClick={scroll_to}
+        onClick={onClick}
     >
       {children}
     </button>
@@ -40,11 +37,41 @@ const Cta = (props) => {
 
   const { ctaType, heading, bold, paragraph, button, itemsRef } = props;
 
+  const { setScrollingRef, holdScroll, setHoldScroll, auth } = useAppContext();
+
+  const scroll_to = () => {
+
+    if(itemsRef) {
+
+      setScrollingRef(itemsRef.current.offsetTop);
+    } else if (!itemsRef && auth) {
+
+      setHoldScroll(true);
+    } else if (!auth) {
+
+      setHoldScroll(true);
+      setScrollingRef(window.scrollY === 0 ? null : 0);
+    }
+  };
+
+  useEffect(()=>{
+
+    if(holdScroll && itemsRef) {
+
+      setScrollingRef(itemsRef.current.offsetTop);
+
+      return () => {
+
+        setHoldScroll(false);
+      };
+    };
+  },[holdScroll, itemsRef, setHoldScroll, setScrollingRef]);
+
   return (
 
     <>  
 
-    <CtaType itemsRef={itemsRef} ctaType={ctaType} classes="cta row justify-content-center justify-content-lg-between g-0">
+    <CtaType ctaType={ctaType} onClick={scroll_to} classes="cta row justify-content-center justify-content-lg-between g-0">
 
         <div className="col-10 col-md-4 col-lg-12 d-flex align-items-xl-center">
 
