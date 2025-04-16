@@ -2,6 +2,7 @@
 import { createCanvas } from "canvas";
 import { cookies } from 'next/headers'
 import bcrypt from "bcrypt";
+import fs from "fs";
 
 export const SetCaptcha = async () => {
 
@@ -74,7 +75,8 @@ export const SetCaptcha = async () => {
       context.stroke();
     }
   
-    return canvas.toDataURL();
+    const buffer = canvas.toBuffer("image/png");
+    fs.writeFileSync("public/images/canvas.png", buffer);
   };
 
   const res = await init();

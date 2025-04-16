@@ -12,6 +12,7 @@ import Header from "@/components/header";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import Spinner from "@/images/load.gif";
+import Canvas from "@/images/canvas.png";
 
 const Auth = () => {
 
@@ -27,15 +28,13 @@ const Auth = () => {
 
   const heading = "STORE";
 
-  const spinner = <Image className="spinner" width="40" height="40" src={Spinner} alt="Spinner" />
-
   const [stateSignIn, actionSignIn, isPendingSign] = useActionState(GetSignIn, {
     message: "",
     password: "",
     email: "",
     auth: false,
   });
-  const [captchaSrc, setCaptchaSrc] = useState(null);
+  const [captchaSrc, setCaptchaSrc] = useState(<Image className="spinner" width="40" height="40" src={Spinner} alt="Spinner" />);
   const [captchaForm, setCaptchaForm] = useState(true);
   const [response, setResponse] = useState(null);
   const [stateGetFactor, actionGetFactor, isPendingGetFactor] = useActionState(GetFactor, {
@@ -56,7 +55,7 @@ const Auth = () => {
 
   const get_cookie = async() => {
 
-    setResponse(spinner);
+    setResponse(<Image className="spinner" width="40" height="40" src={Spinner} alt="Spinner" />);
 
     const res = await GetCaptcha(captchaRef.current.value);
 
@@ -70,7 +69,10 @@ const Auth = () => {
   };
 
   const init = async () => {
-    setCaptchaSrc( await SetCaptcha());
+
+    setCaptchaSrc(<Image className="spinner" width="40" height="40" src={Spinner} alt="Spinner" />);
+    await SetCaptcha();
+    setCaptchaSrc(<Image src={Canvas} alt="canvas" />);
   };
 
   useEffect(() => {
@@ -81,13 +83,18 @@ const Auth = () => {
   useEffect(() => {
 
     import("bootstrap/js/dist/collapse");
-    init();
-  }, []);
+    const sync = async () => {
+
+      setCaptchaSrc(<Image className="spinner" width="40" height="40" src={Spinner} alt="Spinner" />);
+      await SetCaptcha();
+      setCaptchaSrc(<Image src={Canvas} alt="canvas" />);
+    };
+    sync();
+  },[]);
 
   useEffect(() => {
 
     checkCookie();
-
   }, [checkCookie]);
 
   return (
@@ -146,9 +153,13 @@ const Auth = () => {
 
                     </button>
 
-                    <p className={`alert alert-secondary display ${isPendingSign || stateSignIn?.message ?  "d-block" : "d-none"}`} role="alert">
+                    <p className={`alert alert-secondary mt-3 justify-content-center align-items-center ${isPendingSign || stateSignIn?.message ?  "d-flex" : "d-none"}`} role="alert">
 
-                        {isPendingSign ? spinner : stateSignIn?.message}
+                      <span>
+
+                        {isPendingSign ? <Image className="spinner" width="40" height="40" src={Spinner} alt="Spinner" /> : stateSignIn?.message}
+
+                      </span>
 
                     </p>
 
@@ -186,7 +197,7 @@ const Auth = () => {
 
                     </p>
 
-                    <img src={captchaSrc} alt="canvas" />
+                    {captchaSrc}
 
                     <label className="d-none" htmlFor="txtInput">
 
@@ -223,9 +234,13 @@ const Auth = () => {
 
                     </button>
 
-                    <p className={`alert alert-secondary ${response ? "display" : "displayNone" }`} role="alert">
+                    <p className={`alert alert-secondary mt-3 justify-content-center align-items-center ${response ? "d-flex" : "d-none" }`} role="alert">
 
-                      {response}
+                      <span>
+
+                        {response}
+
+                      </span>
 
                     </p>
 
@@ -261,9 +276,13 @@ const Auth = () => {
 
                       </button>
 
-                      <p className={`alert alert-secondary display ${isPendingGetFactor || stateGetFactor?.message ?  "d-block" : "d-none"}`} role="alert">
+                      <p className={`alert alert-secondary mt-3 justify-content-center align-items-center ${isPendingGetFactor || stateGetFactor?.message ?  "d-flex" : "d-none"}`} role="alert">
 
-                        {isPendingGetFactor ? spinner : stateGetFactor?.message}
+                        <span>
+
+                          {isPendingGetFactor ? <Image className="spinner" width="40" height="40" src={Spinner} alt="Spinner" /> : stateGetFactor?.message}
+
+                        </span>
 
                       </p>
 
@@ -294,9 +313,13 @@ const Auth = () => {
 
                       </button>
 
-                      <p className={`alert alert-secondary display ${isPendingSetFactor || stateSetFactor?.message ?  "d-block" : "d-none"}`} role="alert">
+                      <p className={`alert alert-secondary mt-3 justify-content-center align-items-center ${isPendingSetFactor || stateSetFactor?.message ?  "d-flex" : "d-none"}`} role="alert">
 
-                        {isPendingSetFactor ? spinner : stateSetFactor?.message}
+                        <span>
+
+                          {isPendingSetFactor ? <Image className="spinner" width="40" height="40" src={Spinner} alt="Spinner" /> : stateSetFactor?.message}
+
+                        </span>
 
                       </p>
 
@@ -340,9 +363,13 @@ const Auth = () => {
 
                     </button>
 
-                    <p className={`alert alert-secondary display ${isPendingRegistraion || stateRegistraion?.message ?  "d-block" : "d-none"}`} role="alert">
+                    <p className={`alert alert-secondary mt-3 justify-content-center align-items-center ${isPendingRegistraion || stateRegistraion?.message ?  "d-flex" : "d-none"}`} role="alert">
 
-                        {isPendingRegistraion ? spinner : stateRegistraion?.message}
+                      <span>
+
+                        {isPendingRegistraion ? <Image className="spinner" width="40" height="40" src={Spinner} alt="Spinner" /> : stateRegistraion?.message}
+
+                      </span>
 
                     </p>
 

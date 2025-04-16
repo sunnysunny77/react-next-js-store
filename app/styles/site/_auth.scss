@@ -60,14 +60,6 @@
             display: block;
             color: $echo;
         }
-        .display {
-            display: block;
-            margin-top: 16px;
-            width: 100%;
-        }
-        .displayNone {
-            display: none;
-        }
         #responseCaptcha {
             background-color: unset;
             color: $echo;
@@ -76,7 +68,7 @@
             height: 30px;
             width: fit-content;
             display: block;
-            margin: auto;
+            margin:  18px auto;
             border: none;
             background-color: $lima;
             border-radius: 50%;

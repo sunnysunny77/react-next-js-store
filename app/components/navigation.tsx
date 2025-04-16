@@ -62,14 +62,14 @@ const Navigation = (props) => {
       navbar_fixed.current?.classList.remove("has-negative");
       navbar_toggler_fixed.current?.classList.remove("has-collapsed");
       navbar_fixed.current?.classList.remove("has-collapsed");
-    } else if (scroll_pos > (top - height) && positive || scroll_pos > (footerRef.current?.offsetTop - height)) {
+    } else if ((scroll_pos > top && !positive && scroll_pos < (top + height)) || (scroll_pos > (top + height) && positive) || (scroll_pos > (footerRef.current?.offsetTop - height))) {
 
       navbar_fixed.current?.classList.remove("has-float");
       navbar_fixed.current?.classList.add("has-positive");
       navbar_fixed.current?.classList.remove("has-negative");
       navbar_toggler_fixed.current?.classList.remove("has-collapsed");
       navbar_fixed.current?.classList.remove("has-collapsed");
-    } else if (scroll_pos > (top - height) && !positive) {
+    } else if (scroll_pos > (top + height) && !positive) {
 
       navbar_fixed.current?.classList.remove("has-float");
       navbar_fixed.current?.classList.remove("has-positive");

@@ -14,13 +14,13 @@
         z-index: 1001;
     }
     &.has-float.navigation-fixed {
-        z-index: 999;
+        z-index: -1;
         position: fixed;
-        top: -83px;
+        top: 0px;
         width: 100%;
-        border-bottom: 1px solid $hotel;
+        border-bottom: "none";
         transition: "none";
-        max-height: "83px";
+        max-height: "0";
     }
     &.has-positive.navigation-fixed {
         z-index: 999;
