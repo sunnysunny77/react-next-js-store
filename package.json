@@ -16,7 +16,7 @@
     "bcrypt": "latest",
     "bootstrap": "^5.3.5",
     "canvas": "latest",
-    "fs": "^0.0.1-security",
+    "fs": "latest",
     "mysql2": "latest",
     "next": "latest",
     "nodemailer": "latest",
