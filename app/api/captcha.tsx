@@ -89,7 +89,7 @@ export const GetCaptcha = async (e) => {
 
   const cookieStore = await cookies();
   const cookie = cookieStore.get("Store-App-Captcha").value;
-  const text = e;
+  const text = e.toLowerCase();
   const match = await bcrypt.compare(text, String(cookie));
 
   if(match) {

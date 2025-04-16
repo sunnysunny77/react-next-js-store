@@ -16,11 +16,11 @@
     &.has-float.navigation-fixed {
         z-index: -1;
         position: fixed;
-        top: 0px;
+        top: -83px;
         width: 100%;
-        border-bottom: "none";
-        transition: "none";
-        max-height: "0";
+        border-bottom: 1px solid $hotel;
+        transition: top 0.375s, max-height 0.375s;
+        max-height: 0px;
     }
     &.has-positive.navigation-fixed {
         z-index: 999;
