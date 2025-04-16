@@ -6,7 +6,6 @@ import { ArrowDownShort } from "react-bootstrap-icons";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import styles from "@/module/paypal.module.scss";
-import Spinner from "@/images/load.gif";
 
 // fixed hydradion bug waiting for update
 const Select = dynamic(() => import("react-select/creatable"), { ssr: false });
@@ -130,7 +129,7 @@ const Paypal = () => {
 
         {isPending &&
 
-          <Image className="spinner col-10 col-xl-5" width="40" height="40" src={Spinner} alt="Spinner" />
+          <div className="spinner col-10 col-xl-5"></div>
 
         }
 
