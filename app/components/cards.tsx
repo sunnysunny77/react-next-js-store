@@ -56,6 +56,7 @@ const Cards = (props) => {
       setHoldScroll(true);
     } else if (!auth) {
 
+      setHoldScroll(true);
       setScrollingRef(window.scrollY === 0 ? null : 0);
     }
   };
