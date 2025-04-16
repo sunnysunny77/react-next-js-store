@@ -1,6 +1,6 @@
 "use client"
 import { useState, useRef, useEffect } from "react";
-import { useCartContext } from "@/components/context";
+import { useCartContext, useAppContext } from "@/components/context";
 import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { ArrowDownShort } from "react-bootstrap-icons";
 import dynamic from "next/dynamic";
@@ -14,6 +14,8 @@ const Select = dynamic(() => import("react-select/creatable"), { ssr: false });
 const Paypal = () => {
 
   const { order, cartOrder, options, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled } = useCartContext();
+
+  const { setScrollingRef } = useAppContext();
 
   const [outputBool, setOutputBool] = useState(false);
 
@@ -120,13 +122,19 @@ const Paypal = () => {
 
   const ButtonWrapper = () => {
         
-    const [{ isPending }] = usePayPalScriptReducer();
+  const [{ isPending }] = usePayPalScriptReducer();
     
     return (
 
       <>
 
-        { isPending ? <Image className="spinner col-10 col-xl-5" width="40" height="40" src={Spinner} alt="Spinner" /> :
+        {isPending &&
+
+          <Image className="spinner col-10 col-xl-5" width="40" height="40" src={Spinner} alt="Spinner" />
+
+        }
+
+        {!isPending &&
 
           <PayPalButtons
 
@@ -146,7 +154,7 @@ const Paypal = () => {
             onApprove={(data, actions) => onApprove(data, actions)}
 
             disabled={disabled}
-            
+
           />
 
         }
@@ -165,11 +173,6 @@ const Paypal = () => {
     setCart(obj);
 
     if (Object.keys(obj).length === 0) setDisabled(true);
-  };
-  
-  const scroll_to = (e) => {
-
-    scroll({ top: e.offsetTop,  behavior: "smooth" });
   };
 
   const optionOrder = (e) => {
@@ -229,15 +232,15 @@ const Paypal = () => {
 
   useEffect(() => {
 
-    if (outputBool) {
+    if (outputBool && outputRef) {
 
-      scroll_to(outputRef.current);
+      setScrollingRef(outputRef.current.offsetTop);
     }
     return () => {
 
       setOutputBool(false);
     }
-  }, [outputBool]);
+  }, [outputBool, outputRef]);
 
   return (
 
@@ -599,13 +602,11 @@ const Paypal = () => {
 
         </div>
 
-        <div ref={outputRef}></div>
-
         <div className="col-12 col-md-10"></div>
 
           {Object.keys(output).length > 0  &&
 
-            <section className="col-12 col-md-10">
+            <section ref={outputRef} className="col-12 col-md-10">
 
               <h3 className="m-0 pb-4 pt-5">
 
