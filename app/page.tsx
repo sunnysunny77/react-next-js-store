@@ -327,7 +327,7 @@ const Home = () => {
 
       <div ref={footerRef}></div>
 
-      <Footer obj={navbarRef} />
+      <Footer navbarRef={navbarRef} />
 
     </>
 

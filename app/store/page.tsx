@@ -15,9 +15,9 @@ const Store = () => {
 
   const navbarRef = useRef(null);
 
-  const itemsRef = useRef(null);
-
   const storeRef = useRef(null);
+
+  const itemsRef = useRef(null);
 
   const mainRef = useRef(null);
 
@@ -50,7 +50,7 @@ const Store = () => {
 
             heading={`Vestibulum eu`}
             cardsType={false}
-            obj={storeRef}
+            storeRef={storeRef}
 
           />
 
@@ -118,7 +118,7 @@ const Store = () => {
 
             button={`Vestibulum eu`}
 
-            obj={itemsRef}
+            itemsRef={itemsRef}
 
           />
 
@@ -128,7 +128,7 @@ const Store = () => {
 
       <div ref={footerRef}></div>
 
-      <Footer obj={navbarRef} />
+      <Footer navbarRef={navbarRef} />
 
     </>
 

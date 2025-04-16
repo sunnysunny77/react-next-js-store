@@ -42,8 +42,6 @@ const Navigation = (props) => {
       setScrollingRef(null);
     }
 
-    console.log(scrollingRef)
-
     if (scrollingRef !== null) {
 
       navbar_fixed.current?.classList.remove("has-float");

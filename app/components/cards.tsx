@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useCallback } from "react";
+import { useEffect } from "react";
 import { useCartContext } from "@/components/context";
 import { useAppContext } from "@/components/context";
 import { ArrowRight } from 'react-bootstrap-icons';
@@ -19,7 +19,7 @@ const CardsType = (props) => {
       onClick={onClick}
       data-value={data_value}
       scroll={false}
-      href={auth ? "/store" : "/auth"}
+      href={auth ? "/store#storeRef" : "/auth"}
     >
       {children}
     </Link>
@@ -39,42 +39,34 @@ const CardsType = (props) => {
 
 const Cards = (props) => {
 
-  const { heading, cardsType, obj } = props;
+  const { heading, cardsType, storeRef } = props;
 
-  const { cartOrder, options, items, scrollRef, setScrollRef } = useCartContext();
+  const { cartOrder, options, items, holdScroll, setHoldScroll } = useCartContext();
 
   const { setScrollingRef } = useAppContext();
-
-  const scroll_to = useCallback((e) => {
-
-    scroll({ top: e.offsetTop, behavior: "smooth" });
-    setScrollingRef(e.offsetTop);
-  },[setScrollingRef]);
 
   const optionOrder = (e) => {
 
     cartOrder[e.currentTarget.getAttribute("data-value")]();
-
-    if (cardsType) {
-
-      setScrollRef(true);
-    } else if (!cardsType) {
-
-      scroll_to(obj.current);
+    if(storeRef) {
+      setScrollingRef(storeRef.current.offsetTop);
+    } else if (!storeRef) {
+      setHoldScroll(true);
     }
   };
 
-  useEffect(() => {
+  useEffect(()=>{
 
-    if (scrollRef && !cardsType) {
+    if(holdScroll && storeRef) {
 
-      scroll_to(obj.current);
+      setScrollingRef(storeRef.current.offsetTop);
+
       return () => {
 
-        setScrollRef(false);
+        setHoldScroll(false);
       };
     };
-  }, [scrollRef, cardsType, scroll_to, setScrollRef, obj]);
+  },[holdScroll, storeRef]);
 
   return (
     

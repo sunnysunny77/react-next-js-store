@@ -1,19 +1,27 @@
 import { ArrowUp } from "react-bootstrap-icons";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
+import { useAppContext } from "@/components/context";
 
 const Top = (props) => {
 
-  const { obj } = props;
+  const { navbarRef } = props;
+
+  const { scrollingRef } = useAppContext();
 
   const scroll_to = () => {
 
-    scroll({ top:  obj.current.offsetTop, behavior: "smooth" });
-  }
+    scroll({ top: navbarRef.current.offsetTop,  behavior: "smooth" })
+  };
 
   useEffect(() => {
 
-    scroll({ top:  obj.current.offsetTop, behavior: "smooth" });
-  }, [obj]);
+    if (scrollingRef) scroll({ top: scrollingRef,  behavior: "smooth" })
+  }, [scrollingRef]);
+
+  useEffect(() => {
+
+    if (!scrollingRef) scroll({ top: navbarRef.current.offsetTop,  behavior: "smooth" })
+  }, [navbarRef]);
 
   return (
 

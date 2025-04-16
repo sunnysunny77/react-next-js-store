@@ -184,11 +184,11 @@ export const CartWrapper = ({
 
   const [cart, setCart] = useState({});
 
-  const [scrollRef, setScrollRef] = useState(false);
+  const [holdScroll, setHoldScroll] = useState(false);
 
   return (
 
-    <CartContext.Provider value={{ order, cartOrder, options, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, scrollRef, setScrollRef }}>
+    <CartContext.Provider value={{ order, cartOrder, options, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, holdScroll, setHoldScroll }}>
 
       {children}
 
@@ -207,7 +207,6 @@ export const AppWrapper = ({
 }: {
   children: React.ReactNode,
 }) => {
-
 
   const [scrollingRef, setScrollingRef] = useState(null);
 

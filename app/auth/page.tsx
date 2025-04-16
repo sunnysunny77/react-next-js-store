@@ -371,7 +371,7 @@ const Auth = () => {
 
       <div ref={footerRef}></div>
 
-      <Footer obj={navbarRef} />
+      <Footer navbarRef={navbarRef} />
 
     </>
 

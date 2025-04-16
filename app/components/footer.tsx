@@ -8,7 +8,7 @@ import Top from "@/components/top";
 
 const Footer = (props) => {
 
-  const { obj } = props;
+  const { navbarRef } = props;
 
   const { auth, log_out, setScrollingRef } = useAppContext();
 
@@ -178,7 +178,7 @@ const Footer = (props) => {
 
               <div className="col-12 d-flex flex-wrap justify-content-end mt-3">
 
-                <Top obj={obj} />
+                <Top navbarRef={navbarRef} />
 
               </div>
 
