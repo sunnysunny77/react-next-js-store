@@ -12,7 +12,6 @@ import Header from "@/components/header";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import Spinner from "@/images/load.gif";
-import Canvas from "@/images/canvas.png";
 
 const Auth = () => {
 
@@ -68,11 +67,15 @@ const Auth = () => {
     setResponse("Incorrect");
   };
 
+  const imageLoader = ({src }) => {
+    return `${src}`;
+  }
+
   const init = async () => {
 
     setCaptchaSrc(<Image className="spinner" width="40" height="40" src={Spinner} alt="Spinner" />);
-    await SetCaptcha();
-    setCaptchaSrc(<Image src={Canvas} alt="canvas" />);
+    const res = await SetCaptcha();
+    setCaptchaSrc(<Image src={res} loader={imageLoader}  width="150" height="50" alt="canvas" />);
   };
 
   useEffect(() => {
@@ -86,8 +89,8 @@ const Auth = () => {
     const sync = async () => {
 
       setCaptchaSrc(<Image className="spinner" width="40" height="40" src={Spinner} alt="Spinner" />);
-      await SetCaptcha();
-      setCaptchaSrc(<Image src={Canvas} alt="canvas" />);
+      const res = await SetCaptcha();
+      setCaptchaSrc(<Image src={res} loader={imageLoader}  width="150" height="50" alt="canvas" />);
     };
     sync();
   },[]);
