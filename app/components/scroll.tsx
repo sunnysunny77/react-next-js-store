@@ -8,9 +8,9 @@ const Scroll = () => {
 
   useEffect(() => {
 
-    if (scrollingRef !== null) {
+    if (scrollingRef.current !== null) {
 
-      scrollingRef.current?.scrollIntoView({ behavior: "smooth" })
+      scrollingRef.current.scrollIntoView({ behavior: "smooth" })
     }
   },[scrollingRef])
 
