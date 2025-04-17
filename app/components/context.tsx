@@ -230,8 +230,12 @@ export const AppWrapper = ({
 
   useEffect(() => {
 
+    console.log(holdScrollCard)
+    if (holdScrollCta || holdScrollCard) return window.scrollTo({ top: 0, left: 0, behavior: "smooth"});
+
     scrollingRef.current?.scrollIntoView({ behavior: "smooth" });
-  },[scrollingRef])
+
+  },[scrollingRef, holdScrollCta, holdScrollCard])
 
   return (
 
