@@ -5,7 +5,9 @@
     will-change: top, max-height;
     max-height: 83px;
     border-bottom: 1px solid $hotel;
-    transition: top 0.375s, max-height 0.375s;
+    transition:
+        top 0.375s,
+        max-height 0.375s;
     @include min_md {
         width: 300px;
         position: absolute;
@@ -13,32 +15,46 @@
         border: none;
         z-index: 1001;
     }
-    &.has-float.navigation-fixed {
+    &.navigation-fixed {
         z-index: -1;
         position: fixed;
         top: -83px;
-        width: 100%;
-        border-bottom: 1px solid $hotel;
-        transition: top 0.375s, max-height 0.375s;
         max-height: 0px;
-    }
-    &.has-positive.navigation-fixed {
-        z-index: 999;
-        position: fixed;
-        top: -83px;
         width: 100%;
-        border-bottom: 1px solid $hotel;
-        transition: top 0.375s, max-height 0.375s;
-        max-height: 0px;
-    }
-    &.has-negative.navigation-fixed {
-        z-index: 999;
-        position: fixed;
-        top: 0px;
-        width: 100%;
-        border-bottom: 1px solid $hotel;
-        transition: top 0.375s, max-height 0.375s;
-        max-height: 83px;
+        transition: none;
+        &.has-float {
+            z-index: 999;
+            position: fixed;
+            top: -83px;
+            width: 100%;
+            border-bottom: 1px solid $hotel;
+            transition:
+                top 0.375s,
+                max-height 0.375s;
+            max-height: 0px;
+        }
+        &.has-positive {
+            z-index: 999;
+            position: fixed;
+            top: -83px;
+            width: 100%;
+            border-bottom: 1px solid $hotel;
+            transition:
+                top 0.375s,
+                max-height 0.375s;
+            max-height: 0px;
+        }
+        &.has-negative {
+            z-index: 999;
+            position: fixed;
+            top: 0px;
+            width: 100%;
+            border-bottom: 1px solid $hotel;
+            transition:
+                top 0.375s,
+                max-height 0.375s;
+            max-height: 83px;
+        }
     }
     &.has-collapsed,
     &.has-collapsed.navigation-fixed {

@@ -55,7 +55,15 @@ const Navigation = (props) => {
        return;
     }
 
-    if (scroll_pos > 0 && scroll_pos < (top + height )) {
+    if (scroll_pos < top) {
+
+
+      navbar_fixed.current?.classList.remove("has-float");
+      navbar_fixed.current?.classList.remove("has-positive");
+      navbar_fixed.current?.classList.remove("has-negative");
+      navbar_toggler_fixed.current?.classList.remove("has-collapsed");
+      navbar_fixed.current?.classList.remove("has-collapsed");
+    } else if (scroll_pos > top && scroll_pos < (top + height)) {
 
       navbar_fixed.current?.classList.add("has-float");
       navbar_fixed.current?.classList.remove("has-positive");
