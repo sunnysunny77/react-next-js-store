@@ -1,5 +1,5 @@
 "use client";
-import { useActionState, useEffect, useState, useRef } from "react";
+import { useActionState, useEffect, useState, useRef, useCallback } from "react";
 import { useAppContext } from "@/components/context";
 import { GetSignIn } from "@/api/auth";
 import { GetFactor, SetFactor } from "@/api/factor";
@@ -68,30 +68,24 @@ const Auth = () => {
 
   const imageLoader = ({src }) => {
     return `${src}`;
-  }
+  };
 
-  const init = async () => {
+  const init = useCallback( async () => {
 
     setCaptchaSrc(<Image className="spinner" width="40" height="40" src={Spinner} alt="Spinner" />);
     const res = await SetCaptcha();
     setCaptchaSrc(<Image src={res} loader={imageLoader}  width="150" height="50" alt="canvas" />);
-  };
+  },[]);
+
+  useEffect(() => {
+
+    init();
+  },[init]);
 
   useEffect(() => {
 
     if (stateSignIn.auth || stateRegistraion.auth) redirect("/store");
   }, [stateSignIn.auth, stateRegistraion.auth]);
-
-  useEffect(() => {
-
-    const sync = async () => {
-
-      setCaptchaSrc(<Image className="spinner" width="40" height="40" src={Spinner} alt="Spinner" />);
-      const res = await SetCaptcha();
-      setCaptchaSrc(<Image src={res} loader={imageLoader}  width="150" height="50" alt="canvas" />);
-    };
-    sync();
-  },[]);
 
   useEffect(() => {
 

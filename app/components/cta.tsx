@@ -14,7 +14,6 @@ const CtaType = (props) => {
 
     <Link
       className={classes}
-      scroll={false}
       href={auth ? "/store" : "/auth"}
       onClick={onClick}
     >
