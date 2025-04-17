@@ -19,10 +19,10 @@
     "mysql2": "latest",
     "next": "latest",
     "nodemailer": "latest",
+    "overlayscrollbars": "latest",
     "react": "latest",
     "react-bootstrap-icons": "latest",
     "react-dom": "latest",
-    "overlayscrollbars": "latest",
     "react-select": "latest"
   },
   "devDependencies": {

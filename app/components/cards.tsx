@@ -19,7 +19,7 @@ const CardsType = (props) => {
       onClick={onClick}
       data-value={data_value}
       scroll={false}
-      href={auth ? "/store#storeRef" : "/auth"}
+      href={auth ? "/store" : "/auth"}
     >
       {children}
     </Link>

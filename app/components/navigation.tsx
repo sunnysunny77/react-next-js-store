@@ -57,7 +57,6 @@ const Navigation = (props) => {
 
     if (scroll_pos < top) {
 
-
       navbar_fixed.current?.classList.remove("has-float");
       navbar_fixed.current?.classList.remove("has-positive");
       navbar_fixed.current?.classList.remove("has-negative");

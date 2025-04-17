@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { AppWrapper, CartWrapper } from "@/components/context";
 import localFont from "next/font/local";
-import Init from "@/lib/init";
 import "@/styles/app.scss";
-
-
+import Overlay from "@/lib/overlay";
 //csp for build in production
 export const dynamic = 'force-dynamic';
 
@@ -31,15 +29,15 @@ const RootLayout = ({
 
   return (
 
-    <html lang="en">
+    <html data-overlayscrollbars-initialize lang="en">
 
-      <body data-overlayscrollbars-initialize className={montserrat.variable}>
+      <body data-overlayscrollbars-initialize className={`${montserrat.variable}`}>
 
         <AppWrapper>
 
           <CartWrapper>
 
-            {children}
+              {children}
 
           </CartWrapper>
 
@@ -47,7 +45,7 @@ const RootLayout = ({
         
       </body>
 
-      <Init />
+      <Overlay />
 
     </html>
 

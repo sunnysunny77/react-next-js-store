@@ -1,17 +1,18 @@
 "use client"
 import { useEffect } from "react";
-import { OverlayScrollbars } from "overlayscrollbars";
+import { useAppContext } from "@/components/context";
 
 const Init = () => {
 
+  const { scrollingRef } = useAppContext();
+
   useEffect(() => {
 
-    OverlayScrollbars(document.body, {
+    if (scrollingRef !== null) {
 
-      scrollbars: {
-        theme: "os-theme-body",
-    }});
-  },[])
+      window.scroll({ top: scrollingRef, behavior: "instant" });
+    }
+  },[scrollingRef])
 
   return null;
 };
