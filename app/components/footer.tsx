@@ -14,7 +14,7 @@ const Footer = (props) => {
 
   const scroll_to = () => {
 
-    setScrollingRef(window.scrollY === 0 ? {current: null} : navbarRef);
+    setScrollingRef(navbarRef);
   };
 
   return (

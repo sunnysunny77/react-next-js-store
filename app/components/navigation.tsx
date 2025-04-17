@@ -21,7 +21,7 @@ const Navigation = (props) => {
 
   const scroll_to = () => {
 
-    setScrollingRef(window.scrollY === 0 ? {current: null} : navbarRef);
+    setScrollingRef(navbarRef);
   };
 
   const toggle_static = () => {

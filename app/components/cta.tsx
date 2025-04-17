@@ -50,7 +50,7 @@ const Cta = (props) => {
     } else if (!auth) {
 
       setHoldScrollCta(true);
-      setScrollingRef(window.scrollY === 0 ? {current: null} : navbarRef);
+      setScrollingRef(navbarRef);
     }
   };
 

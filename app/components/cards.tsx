@@ -57,7 +57,7 @@ const Cards = (props) => {
     } else if (!auth) {
 
       setHoldScrollCard(true);
-      setScrollingRef(window.scrollY === 0 ? {current: null} : navbarRef);
+      setScrollingRef(navbarRef);
     }
   };
 
