@@ -233,7 +233,7 @@ const Paypal = () => {
 
     if (outputBool && outputRef) {
 
-      setScrollingRef(outputRef.current.offsetTop);
+      setScrollingRef(outputRef);
     }
     return () => {
 

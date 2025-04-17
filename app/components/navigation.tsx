@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Navigation = (props) => {
 
-  const { mainRef, footerRef } = props;
+  const { mainRef, footerRef, navbarRef } = props;
 
   const { scrollingRef, setScrollingRef, auth, log_out } = useAppContext();
 
@@ -21,7 +21,7 @@ const Navigation = (props) => {
 
   const scroll_to = () => {
 
-    setScrollingRef(window.scrollY === 0 ? null : 0);
+    setScrollingRef(window.scrollY === 0 ? {current: null} : navbarRef);
   };
 
   const toggle_static = () => {
@@ -42,12 +42,14 @@ const Navigation = (props) => {
 
     const scroll_pos = window.scrollY;
 
-    if (scroll_pos === scrollingRef) {
 
-      setScrollingRef(null);
+    console.log(scrollingRef)
+    if (scroll_pos === scrollingRef.current?.offsetTop) {
+
+      setScrollingRef({current: null});
     }
 
-    if (scrollingRef !== null) {
+    if (scrollingRef.current !== null) {
 
       navbar_fixed.current?.classList.remove("has-float");
       navbar_fixed.current?.classList.add("has-positive");

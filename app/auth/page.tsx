@@ -5,7 +5,7 @@ import { GetSignIn } from "@/api/auth";
 import { GetFactor, SetFactor } from "@/api/factor";
 import { redirect } from 'next/navigation'
 import { SetCaptcha, GetCaptcha } from "@/api/captcha";
-import Init from "@/lib/init";
+import Scroll from "@/components/scroll";
 import Registraion from "@/api/registraion";
 import Image from "next/image";
 import Header from "@/components/header";
@@ -118,7 +118,7 @@ const Auth = () => {
 
       <div ref={navbarRef}></div>
 
-      <Navigation mainRef={mainRef} footerRef={footerRef} />
+      <Navigation mainRef={mainRef} footerRef={footerRef} navbarRef={navbarRef} />
 
       <Header heading={heading} />
 
@@ -414,9 +414,9 @@ const Auth = () => {
 
       <div ref={footerRef}></div>
 
-      <Footer />
+      <Footer navbarRef={navbarRef} />
 
-      <Init />
+      <Scroll />
 
     </>
 

@@ -6,13 +6,15 @@ import { ArrowUp } from "react-bootstrap-icons";
 import Link from "next/link";
 import Year from "@/components/year";
 
-const Footer = () => {
+const Footer = (props) => {
+
+  const { navbarRef } = props;
 
   const { auth, log_out, setScrollingRef } = useAppContext();
 
   const scroll_to = () => {
 
-    setScrollingRef(window.scrollY === 0 ? null : 0);
+    setScrollingRef(window.scrollY === 0 ? {current: null} : navbarRef);
   };
 
   return (

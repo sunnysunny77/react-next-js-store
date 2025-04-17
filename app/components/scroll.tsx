@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { useAppContext } from "@/components/context";
 
-const Init = () => {
+const Scroll = () => {
 
   const { scrollingRef } = useAppContext();
 
@@ -10,11 +10,11 @@ const Init = () => {
 
     if (scrollingRef !== null) {
 
-      window.scroll({ top: scrollingRef, behavior: "instant" });
+      scrollingRef.current?.scrollIntoView({ behavior: "smooth" })
     }
   },[scrollingRef])
 
   return null;
 };
 
-export default Init;
+export default Scroll;

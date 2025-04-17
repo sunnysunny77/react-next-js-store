@@ -35,7 +35,7 @@ const CtaType = (props) => {
 
 const Cta = (props) => {
 
-  const { ctaType, heading, bold, paragraph, button, itemsRef } = props;
+  const { ctaType, heading, bold, paragraph, button, itemsRef, navbarRef } = props;
 
   const { setScrollingRef, holdScrollCta, setHoldScrollCta, auth } = useAppContext();
 
@@ -43,14 +43,14 @@ const Cta = (props) => {
 
     if(itemsRef) {
 
-      setScrollingRef(itemsRef.current.offsetTop);
+      setScrollingRef(itemsRef);
     } else if (!itemsRef && auth) {
 
       setHoldScrollCta(true);
     } else if (!auth) {
 
       setHoldScrollCta(true);
-      setScrollingRef(window.scrollY === 0 ? null : 0);
+      setScrollingRef(window.scrollY === 0 ? {current: null} : navbarRef);
     }
   };
 
@@ -58,7 +58,7 @@ const Cta = (props) => {
 
     if(holdScrollCta && itemsRef) {
 
-      setScrollingRef(itemsRef.current.offsetTop);
+      setScrollingRef(itemsRef);
 
       return () => {
 

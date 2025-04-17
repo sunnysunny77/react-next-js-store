@@ -206,13 +206,13 @@ export const AppWrapper = ({
   children: React.ReactNode,
 }) => {
 
-  const [scrollingRef, setScrollingRef] = useState(null);
+  const [scrollingRef, setScrollingRef] = useState({current: null});
 
   const [auth, setAuth] = useState(false);
 
   const log_out = () => {
 
-    setScrollingRef(0);
+    setScrollingRef({current: null});
     LogOut();
     setAuth(false);
     redirect("/");

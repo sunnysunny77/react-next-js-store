@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useRef } from "react";
 import { useAppContext } from "@/components/context";
-import Init from "@/lib/init";
+import Scroll from "@/components/scroll";
 import Cards from "@/components/cards";
 import Header from "@/components/header";
 import Paypal from "@/components/paypal";
@@ -37,7 +37,7 @@ const Store = () => {
 
       <div ref={navbarRef}></div>
 
-      <Navigation mainRef={mainRef} footerRef={footerRef} />
+      <Navigation mainRef={mainRef} footerRef={footerRef} navbarRef={navbarRef} />
 
       <Header heading={heading} />
 
@@ -52,6 +52,7 @@ const Store = () => {
             heading={`Vestibulum eu`}
             cardsType={false}
             storeRef={storeRef}
+            navbarRef={navbarRef}
 
           />
 
@@ -121,6 +122,8 @@ const Store = () => {
 
             itemsRef={itemsRef}
 
+            navbarRef={navbarRef}
+
           />
 
         </div>
@@ -129,9 +132,9 @@ const Store = () => {
 
       <div ref={footerRef}></div>
 
-      <Footer />
+      <Footer navbarRef={navbarRef} />
 
-      <Init />
+      <Scroll />
 
     </>
 

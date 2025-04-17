@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useRef } from "react";
 import { useAppContext } from "@/components/context";
-import Init from "@/lib/init";
+import Scroll from "@/components/scroll";
 import CarouselSlider from "@/components/carousel-slider";
 import Cards from "@/components/cards";
 import Header from "@/components/header";
@@ -86,7 +86,7 @@ const Home = () => {
 
       <div ref={navbarRef}></div>
 
-      <Navigation mainRef={mainRef} footerRef={footerRef} />
+      <Navigation mainRef={mainRef} footerRef={footerRef} navbarRef={navbarRef} />
 
       <Header heading={heading}>
 
@@ -246,6 +246,7 @@ const Home = () => {
 
             heading={`Vestibulum eu`}
             cardsType={true}
+            navbarRef={navbarRef}
 
           />
 
@@ -318,6 +319,8 @@ const Home = () => {
 
             button={`Vestibulum eu`}
 
+            navbarRef={navbarRef}
+
           />
 
         </div>
@@ -328,9 +331,9 @@ const Home = () => {
 
       <div ref={footerRef}></div>
 
-      <Footer />
+      <Footer navbarRef={navbarRef} />
 
-      <Init />
+      <Scroll />
 
     </>
 

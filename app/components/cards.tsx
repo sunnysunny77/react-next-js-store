@@ -39,7 +39,7 @@ const CardsType = (props) => {
 
 const Cards = (props) => {
 
-  const { heading, cardsType, storeRef } = props;
+  const { heading, cardsType, storeRef, navbarRef } = props;
 
   const { cartOrder, options, items } = useCartContext();
 
@@ -50,14 +50,14 @@ const Cards = (props) => {
     cartOrder[e.currentTarget.getAttribute("data-value")]();
     if(storeRef) {
 
-      setScrollingRef(storeRef.current.offsetTop);
+      setScrollingRef(storeRef);
     } else if (!storeRef && auth) {
 
       setHoldScrollCard(true);
     } else if (!auth) {
 
       setHoldScrollCard(true);
-      setScrollingRef(window.scrollY === 0 ? null : 0);
+      setScrollingRef(window.scrollY === 0 ? {current: null} : navbarRef);
     }
   };
 
@@ -65,7 +65,7 @@ const Cards = (props) => {
 
     if(holdScrollCard && storeRef) {
 
-      setScrollingRef(storeRef.current.offsetTop);
+      setScrollingRef(storeRef);
 
       return () => {
 
