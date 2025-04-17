@@ -1,9 +1,7 @@
-* {
-    scroll-behavior: smooth !important;
-}
 
 html {
     -webkit-text-size-adjust: 100%;
+    overflow: hidden;
 }
 
 body {
@@ -50,4 +48,21 @@ b {
 
 .PreText {
     white-space: pre-line;
+}
+
+.os-theme-body {
+    --os-size: 7px;
+}
+
+.os-theme-body .os-scrollbar-handle {
+    background: $alfa-1;
+    border-radius: 0px;
+    height: 84px;
+    @include min_md {
+        height: 83px;
+    }
+}
+
+.os-theme-body .os-scrollbar-track {
+    background: transparent;
 }

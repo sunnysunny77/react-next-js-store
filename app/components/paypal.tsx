@@ -239,7 +239,7 @@ const Paypal = () => {
 
       setOutputBool(false);
     }
-  }, [outputBool, outputRef]);
+  }, [outputBool, outputRef, setScrollingRef]);
 
   return (
 

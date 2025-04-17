@@ -22,6 +22,7 @@
     "react": "latest",
     "react-bootstrap-icons": "latest",
     "react-dom": "latest",
+    "overlayscrollbars": "latest",
     "react-select": "latest"
   },
   "devDependencies": {

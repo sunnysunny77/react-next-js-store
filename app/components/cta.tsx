@@ -83,7 +83,7 @@ const Cta = (props) => {
 
         </div>
 
-        <div className="col-10 col-md-8 d-flex align-items-center">
+        <div className="col-10 col-md-8 col-lg-12 col-xl-8 d-flex align-items-center">
 
           <p className="py-3 ps-md-3 py-md-5 pe-md-5 ps-lg-5 m-0">
 
@@ -111,7 +111,7 @@ const Cta = (props) => {
 
         </div>
 
-        <div className="col-11 col-lg-4 col-xl-3 d-flex align-items-end justify-content-md-center py-3 px-sm-2 py-sm-4 p-lg-4">
+        <div className="col-11 col-lg-5 col-xl-4 d-flex align-items-end justify-content-md-center py-3 px-sm-2 py-sm-4 p-lg-4 px-xl-5">
 
             <div className="div-button w-100 d-flex justify-content-between  align-items-center text-start py-3 px-4">
                 

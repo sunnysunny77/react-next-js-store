@@ -169,7 +169,7 @@ const Enquiry = () => {
 
                     <div className="col-12 col-sm-8">
 
-                      <p className="mb-4 m-sm-0">
+                      <p className="mb-0">
 
                         {stateEnquiry?.response ? stateEnquiry?.response : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."}
 
