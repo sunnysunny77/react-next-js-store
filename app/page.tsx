@@ -1,7 +1,6 @@
 "use client"
 import { useEffect, useRef } from "react";
 import { useAppContext } from "@/components/context";
-import Scroll from "@/components/scroll";
 import CarouselSlider from "@/components/carousel-slider";
 import Cards from "@/components/cards";
 import Header from "@/components/header";
@@ -332,8 +331,6 @@ const Home = () => {
       <div ref={footerRef}></div>
 
       <Footer navbarRef={navbarRef} />
-
-      <Scroll />
 
     </>
 

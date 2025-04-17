@@ -37,7 +37,7 @@ const Footer = (props) => {
 
                   <div className="col-auto pb-3 ps-1 pe-3">
 
-                    <Link onClick={scroll_to} scroll={false} href="/">
+                    <Link onClick={scroll_to} href="/">
                     
                       <svg aria-label="Super Foods" viewBox="0 0 100 100" width="40" height="40">
 
@@ -95,7 +95,7 @@ const Footer = (props) => {
 
                   <li>
 
-                    <Link scroll={false} onClick={scroll_to} className="footer-link" href="/">
+                    <Link onClick={scroll_to} className="footer-link" href="/">
                     
                       Home 
                     
@@ -105,7 +105,7 @@ const Footer = (props) => {
 
                   <li>
 
-                    <Link scroll={false} onClick={scroll_to} className="footer-link" href={auth ? "/store" : "/auth"}>
+                    <Link onClick={scroll_to} className="footer-link" href={auth ? "/store" : "/auth"}>
                     
                       Store 
                       
@@ -125,7 +125,7 @@ const Footer = (props) => {
 
                     ) : (
 
-                    <Link scroll={false} onClick={scroll_to} className="footer-link" href="/auth">
+                    <Link onClick={scroll_to} className="footer-link" href="/auth">
 
                       Sign In
 

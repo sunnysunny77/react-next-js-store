@@ -1,5 +1,5 @@
 "use client"
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { redirect } from 'next/navigation';
 import LogOut from  "@/api/log-out";
 import GetCookie from  "@/api/get-cookie";
@@ -227,6 +227,11 @@ export const AppWrapper = ({
   const [holdScrollCta, setHoldScrollCta] = useState(false);
 
   const [holdScrollCard, setHoldScrollCard] = useState(false);
+
+  useEffect(() => {
+
+    scrollingRef.current?.scrollIntoView({ behavior: "smooth" });
+  },[scrollingRef])
 
   return (
 

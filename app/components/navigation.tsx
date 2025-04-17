@@ -42,8 +42,6 @@ const Navigation = (props) => {
 
     const scroll_pos = window.scrollY;
 
-
-    console.log(scrollingRef)
     if (scroll_pos === scrollingRef.current?.offsetTop) {
 
       setScrollingRef({current: null});
@@ -113,7 +111,7 @@ const Navigation = (props) => {
 
         <div className="row w-100 justify-content-between m-0 g-0">
 
-          <Link onClick={scroll_to} scroll={false} className="col-auto m-3"  href="/">
+          <Link onClick={scroll_to} className="col-auto m-3"  href="/">
 
             <svg aria-label="Super Foods" viewBox="0 0 100 100" width="50" height="50">
 
@@ -165,7 +163,7 @@ const Navigation = (props) => {
 
               <li>
 
-                <Link scroll={false} onClick={scroll_to} className="navigation-link" href="/">
+                <Link onClick={scroll_to} className="navigation-link" href="/">
 
                   Home
 
@@ -175,7 +173,7 @@ const Navigation = (props) => {
 
               <li>
 
-                <Link scroll={false} onClick={scroll_to} className="navigation-link" href={auth ? "/store" : "/auth"}>
+                <Link onClick={scroll_to} className="navigation-link" href={auth ? "/store" : "/auth"}>
 
                   Store
 
@@ -195,7 +193,7 @@ const Navigation = (props) => {
 
                 ) : (
 
-                <Link scroll={false} onClick={scroll_to} className="navigation-link" href="/auth">
+                <Link onClick={scroll_to} className="navigation-link" href="/auth">
 
                   Sign In
 
@@ -217,7 +215,7 @@ const Navigation = (props) => {
 
         <div className="row w-100 justify-content-between m-0 g-0">
 
-          <Link onClick={scroll_to} scroll={false} className="col-auto m-3"  href="/">
+          <Link onClick={scroll_to} className="col-auto m-3"  href="/">
 
             <svg aria-label="Super Foods" viewBox="0 0 100 100" width="50" height="50">
 
@@ -269,7 +267,7 @@ const Navigation = (props) => {
 
               <li>
                 
-                <Link scroll={false} onClick={scroll_to} className="navigation-link" href="/">
+                <Link onClick={scroll_to} className="navigation-link" href="/">
                 
                   Home
 
@@ -279,7 +277,7 @@ const Navigation = (props) => {
 
               <li>
 
-                <Link scroll={false} onClick={scroll_to} className="navigation-link" href={auth ? "/store" : "/auth"}>
+                <Link onClick={scroll_to} className="navigation-link" href={auth ? "/store" : "/auth"}>
 
                   Store
 
@@ -299,7 +297,7 @@ const Navigation = (props) => {
 
                 ) : (
 
-                <Link scroll={false} onClick={scroll_to} className="navigation-link" href="/auth">
+                <Link onClick={scroll_to} className="navigation-link" href="/auth">
 
                   Sign In
 
