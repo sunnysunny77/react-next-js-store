@@ -98,19 +98,6 @@ const Auth = () => {
     checkCookie();
   }, [checkCookie]);
 
-  const ref = useRef(null);
-
-  useEffect(() => {
-
-    const sync = async () => {
-
-      const { Collapse } = await import("bootstrap");
-
-      new Collapse(ref.current, {})
-    };
-    sync();
-  }, []);
-
   return (
 
     <>
@@ -127,7 +114,7 @@ const Auth = () => {
 
           <div className="accordion px-4 px-sm-0 py-5 my-5">
 
-            <div ref={ref} className="accordion-item" id="auth-accordian">
+            <div className="accordion-item" id="auth-accordian">
 
               <h2 className="accordion-header">
 

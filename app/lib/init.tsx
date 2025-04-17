@@ -3,9 +3,11 @@ import { useEffect } from "react";
 import { OverlayScrollbars } from "overlayscrollbars";
 import "overlayscrollbars/overlayscrollbars.css";
 
-const Overlay = () => {
+const Init = () => {
 
   useEffect(() => {
+
+    import("bootstrap");
 
     OverlayScrollbars(document.body, {
 
@@ -17,4 +19,4 @@ const Overlay = () => {
   return null;
 };
 
-export default Overlay;
+export default Init;

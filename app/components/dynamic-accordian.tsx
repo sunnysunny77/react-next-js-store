@@ -1,22 +1,6 @@
-"use client"
-import { useEffect, useRef } from "react";
-
 const DynamicAccordian = (props) => {
 
     const { content } = props;
-
-    const ref = useRef(null);
-
-    useEffect(() => {
-
-      const sync = async () => {
-
-        const { Collapse } = await import("bootstrap");
-
-        new Collapse(ref.current, {})
-      };
-      sync();
-    }, []);
   
     return (
   
@@ -32,7 +16,7 @@ const DynamicAccordian = (props) => {
  
                 return (
   
-                  <div ref={ref} key={i} className="accordion-item" id="dynamic-accordian">
+                  <div key={i} className="accordion-item" id="dynamic-accordian">
   
                     <h2 className="accordion-header">
 

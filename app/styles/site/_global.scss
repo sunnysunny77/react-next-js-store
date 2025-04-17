@@ -1,6 +1,7 @@
 
 html {
     -webkit-text-size-adjust: 100%;
+    overscroll-behavior: none;
 }
 
 body {
@@ -12,6 +13,7 @@ body {
     background-color: $hotel;
     width: 100%;
     scroll-behavior: smooth;
+    overscroll-behavior: none;
     @include min_hd {
         max-width: 1920px;
         margin: auto;

@@ -13,15 +13,15 @@ const CarouselSlider = () => {
 
       const sync = async () => {
 
-      const { Carousel } = await import("bootstrap");
+        const { Carousel } = await import("bootstrap");
 
-      const inst = new Carousel(ref.current, {
-        pause: false,
-      });
+        const inst = new Carousel(ref.current, {
+          pause: false,
+        });
 
-      inst.cycle();
-    }
-    sync();
+        inst.cycle();
+      }
+      sync();
     }, []);
 
     return (

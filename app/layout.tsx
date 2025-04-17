@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { AppWrapper, CartWrapper } from "@/components/context";
 import localFont from "next/font/local";
 import "@/styles/app.scss";
-import Overlay from "@/lib/overlay";
+import Init from "@/lib/init";
+
 //csp for build in production
 export const dynamic = 'force-dynamic';
 
@@ -45,7 +46,7 @@ const RootLayout = ({
         
       </body>
 
-      <Overlay />
+      <Init />
 
     </html>
 
