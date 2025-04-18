@@ -206,7 +206,6 @@ export const AppWrapper = ({
   children: React.ReactNode,
 }) => {
 
-
   const pathname = usePathname();
 
   const [scrollingRef, setScrollingRef] = useState({current: null});
@@ -243,12 +242,8 @@ export const AppWrapper = ({
 
   useEffect(() => {
 
-    if (scrollingRef.current !== null) {
-
-      window.scroll({ top: scrollingRef.current.offsetTop || 0, left: 0, behavior: "smooth" });
-      setScrollingRef({current: null});
-    }
-    },[scrollingRef]);
+    if (scrollingRef.current !== null) window.scroll({ top: scrollingRef.current.offsetTop || 0, left: 0, behavior: "smooth" });
+  },[scrollingRef]);
 
   return (
 

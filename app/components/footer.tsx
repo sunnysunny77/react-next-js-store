@@ -3,12 +3,15 @@
 import { useAppContext } from "@/components/context";
 import { Linkedin } from "react-bootstrap-icons";
 import { ArrowUp } from "react-bootstrap-icons";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Year from "@/components/year";
 
 const Footer = () => {
 
   const { auth, log_out, setScrollingRef } = useAppContext();
+
+  const pathname = usePathname();
 
   const scroll_to = () => {
 
@@ -93,7 +96,7 @@ const Footer = () => {
 
                   <li>
 
-                    <Link className="footer-link" href="/">
+                    <Link className={`footer-link ${pathname === "/" ? "active" : ""}`} href="/">
                     
                       Home 
                     
@@ -103,7 +106,7 @@ const Footer = () => {
 
                   <li>
 
-                    <Link className="footer-link" href={auth ? "/store" : "/auth"}>
+                    <Link className={`footer-link ${pathname === "/store" || pathname === "/auth" ? "active" : ""}`} href={auth ? "/store" : "/auth"}>
                     
                       Store 
                       

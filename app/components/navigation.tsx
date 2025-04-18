@@ -1,13 +1,16 @@
 "use client"
 import { useAppContext } from "@/components/context";
 import { useRef, useEffect, useState, useCallback } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 const Navigation = (props) => {
 
   const { mainRef, footerRef } = props;
 
-  const { scrollingRef, auth, log_out } = useAppContext();
+  const { scrollingRef, setScrollingRef, auth, log_out } = useAppContext();
+
+  const pathname = usePathname();
 
   const navbar_static = useRef(null);
   const navbar_toggler_static = useRef(null);
@@ -42,7 +45,7 @@ const Navigation = (props) => {
       navbar_fixed.current?.classList.remove("has-float");
       navbar_fixed.current?.classList.add("has-positive");
       navbar_fixed.current?.classList.remove("has-negative");
-       return;
+      return;
     }
 
     if (scroll_pos < top) {
@@ -84,14 +87,21 @@ const Navigation = (props) => {
     setScrollY(scroll_pos);
   },[footerRef, mainRef, positive, scrollY, scrollingRef]);
 
+  const handle_end = useCallback(() => {
+
+    setScrollingRef({current: null});
+  },[setScrollingRef]);
+
   useEffect(() => {
 
+    window.addEventListener("scrollend", handle_end, { passive: true });
     window.addEventListener("scroll", handle_navigationigation, { passive: true });
     return () => {
 
+      window.removeEventListener("scrollend", handle_end);
       window.removeEventListener("scroll", handle_navigationigation);
     };
-  }, [handle_navigationigation]);
+  }, [handle_navigationigation, handle_end]);
 
   return (
 
@@ -153,7 +163,7 @@ const Navigation = (props) => {
 
               <li>
 
-                <Link className="navigation-link" href="/">
+                <Link className={`navigation-link ${pathname === "/" ? "active" : ""}`} href="/">
 
                   Home
 
@@ -163,7 +173,7 @@ const Navigation = (props) => {
 
               <li>
 
-                <Link className="navigation-link" href={auth ? "/store" : "/auth"}>
+                <Link className={`navigation-link ${pathname === "/store" || pathname === "/auth" ? "active" : ""}`} href={auth ? "/store" : "/auth"}>
 
                   Store
 
@@ -257,7 +267,7 @@ const Navigation = (props) => {
 
               <li>
                 
-                <Link className="navigation-link" href="/">
+                <Link className={`navigation-link ${pathname === "/" ? "active" : ""}`} href="/">
                 
                   Home
 
@@ -267,7 +277,7 @@ const Navigation = (props) => {
 
               <li>
 
-                <Link className="navigation-link" href={auth ? "/store" : "/auth"}>
+                <Link className={`navigation-link ${pathname === "/store" || pathname === "/auth" ? "active" : ""}`} href={auth ? "/store" : "/auth"}>
 
                   Store
 
