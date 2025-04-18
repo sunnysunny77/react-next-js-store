@@ -75,7 +75,7 @@ const Auth = () => {
 
   const init = useCallback( async () => {
 
-    setCaptchaSrc(<Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" />);
+    setCaptchaSrc(<Image unoptimized className="spinner type" width="40" height="40" src={Spinner} alt="spinner" />);
     const res = await SetCaptcha();
     setCaptchaSrc(<Image src={res} loader={imageLoader}  width="150" height="50" alt="canvas" />);
   },[]);
@@ -146,7 +146,7 @@ const Auth = () => {
 
                     </button>
 
-                    <p className={`alert alert-secondary mt-3 justify-content-center align-items-center ${isPendingSign || stateSignIn?.message ?  "d-flex" : "d-none"}`} role="alert">
+                    <p className={`alert alert-secondary mt-3 mb-0 justify-content-center align-items-center ${isPendingSign || stateSignIn?.message ?  "d-flex" : "d-none"}`} role="alert">
 
                       <span>
 
@@ -227,7 +227,7 @@ const Auth = () => {
 
                     </button>
 
-                    <p className={`alert alert-secondary mt-3 justify-content-center align-items-center ${response ? "d-flex" : "d-none" }`} role="alert">
+                    <p className={`alert alert-secondary mt-3 mb-0 justify-content-center align-items-center ${response ? "d-flex" : "d-none" }`} role="alert">
 
                       <span>
 
@@ -257,6 +257,7 @@ const Auth = () => {
                           autoComplete="on"
                           id="email"
                           name="email"
+                          required
                           defaultValue={stateGetFactor?.email}
 
                         />
@@ -285,6 +286,7 @@ const Auth = () => {
                           id="code"
                           name="code"
                           defaultValue={stateSetFactor?.code}
+                          required
 
                         />
 
@@ -296,16 +298,16 @@ const Auth = () => {
 
                       </button>
 
-                      <p className={`alert alert-secondary mt-3 justify-content-center align-items-center ${isPendingSetFactor || stateSetFactor?.message || isPendingGetFactor || stateGetFactor?.message ?  "d-flex" : "d-none"}`} role="alert">
+                      <p className={`alert alert-secondary mt-3 mb-0 justify-content-center align-items-center ${isPendingSetFactor || stateSetFactor?.message || isPendingGetFactor || stateGetFactor?.message ?  "d-flex" : "d-none"}`} role="alert">
 
                         <span>
 
-                          {isPendingSetFactor || isPendingGetFactor ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateSetFactor?.message && stateGetFactor?.message}
+                          {isPendingSetFactor || isPendingGetFactor ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : <><span className="d-block text-center">{stateGetFactor?.message}</span><span className="d-block text-center">{stateSetFactor?.message}</span></>}
 
                         </span>
 
                       </p>
-`
+
                     </form>
 
                   </>
@@ -327,6 +329,7 @@ const Auth = () => {
                         id="password"
                         name="password"
                         defaultValue={stateRegistraion?.password}
+                        required
 
                       />
 
@@ -346,7 +349,7 @@ const Auth = () => {
 
                     </button>
 
-                    <p className={`alert alert-secondary mt-3 justify-content-center align-items-center ${isPendingRegistraion || stateRegistraion?.message ?  "d-flex" : "d-none"}`} role="alert">
+                    <p className={`alert alert-secondary mt-3 mb-0 justify-content-center align-items-center ${isPendingRegistraion || stateRegistraion?.message ?  "d-flex" : "d-none"}`} role="alert">
 
                       <span>
 
