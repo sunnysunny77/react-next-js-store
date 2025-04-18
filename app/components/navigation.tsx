@@ -94,10 +94,12 @@ const Navigation = (props) => {
 
   useEffect(() => {
 
+    window.addEventListener("touchmove", handle_end, { passive: true });
     window.addEventListener("scrollend", handle_end, { passive: true });
     window.addEventListener("scroll", handle_navigationigation, { passive: true });
     return () => {
 
+      window.removeEventListener("touchmove", handle_end);
       window.removeEventListener("scrollend", handle_end);
       window.removeEventListener("scroll", handle_navigationigation);
     };
@@ -109,7 +111,7 @@ const Navigation = (props) => {
 
       <nav ref={navbar_static} className="container-fluid slider_8-navigation navigation navigation-static d-flex align-items-start p-0">
 
-        <div className="row w-100 justify-content-between m-0 g-0">
+        <div className="row w-100 d-flex flex-row-reverse flex-md-row justify-content-between m-0 g-0">
 
           <Link className="col-auto m-3" href="/">
 
@@ -213,7 +215,7 @@ const Navigation = (props) => {
 
       <nav ref={navbar_fixed} className="container-fluid slider_8-navigation navigation navigation-fixed has-float d-flex align-items-start p-0">
 
-        <div className="row w-100 justify-content-between m-0 g-0">
+        <div className="row d-flex flex-row-reverse w-100 justify-content-between m-0 g-0">
 
           <Link className="col-auto m-3" href="/">
 
