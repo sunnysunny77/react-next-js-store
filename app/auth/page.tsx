@@ -300,7 +300,7 @@ const Auth = () => {
 
                         <span>
 
-                          {isPendingSetFactor || isPendingGetFactor ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateSetFactor?.message || stateGetFactor?.message}
+                          {isPendingSetFactor || isPendingGetFactor ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateSetFactor?.message && stateGetFactor?.message}
 
                         </span>
 
