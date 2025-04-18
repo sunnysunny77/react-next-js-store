@@ -6,15 +6,13 @@ import { ArrowUp } from "react-bootstrap-icons";
 import Link from "next/link";
 import Year from "@/components/year";
 
-const Footer = (props) => {
-
-  const { navbarRef } = props;
+const Footer = () => {
 
   const { auth, log_out, setScrollingRef } = useAppContext();
 
   const scroll_to = () => {
 
-    setScrollingRef(navbarRef);
+    setScrollingRef({current: true});
   };
 
   return (
@@ -37,7 +35,7 @@ const Footer = (props) => {
 
                   <div className="col-auto pb-3 ps-1 pe-3">
 
-                    <Link onClick={scroll_to} href="/">
+                    <Link href="/">
                     
                       <svg aria-label="Super Foods" viewBox="0 0 100 100" width="40" height="40">
 
@@ -95,7 +93,7 @@ const Footer = (props) => {
 
                   <li>
 
-                    <Link onClick={scroll_to} className="footer-link" href="/">
+                    <Link className="footer-link" href="/">
                     
                       Home 
                     
@@ -105,7 +103,7 @@ const Footer = (props) => {
 
                   <li>
 
-                    <Link onClick={scroll_to} className="footer-link" href={auth ? "/store" : "/auth"}>
+                    <Link className="footer-link" href={auth ? "/store" : "/auth"}>
                     
                       Store 
                       
@@ -125,7 +123,7 @@ const Footer = (props) => {
 
                     ) : (
 
-                    <Link onClick={scroll_to} className="footer-link" href="/auth">
+                    <Link className="footer-link" href="/auth">
 
                       Sign In
 

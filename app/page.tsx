@@ -86,7 +86,7 @@ const Home = () => {
 
       <div ref={navbarRef}></div>
 
-      <Navigation mainRef={mainRef} footerRef={footerRef} navbarRef={navbarRef} />
+      <Navigation mainRef={mainRef} footerRef={footerRef} />
 
       <Header heading={heading}>
 
@@ -245,8 +245,8 @@ const Home = () => {
           <Cards
 
             heading={`Vestibulum eu`}
+
             cardsType={true}
-            navbarRef={navbarRef}
 
           />
 
@@ -319,8 +319,6 @@ const Home = () => {
 
             button={`Vestibulum eu`}
 
-            navbarRef={navbarRef}
-
           />
 
         </div>
@@ -331,7 +329,7 @@ const Home = () => {
 
       <div ref={footerRef}></div>
 
-      <Footer navbarRef={navbarRef} />
+      <Footer />
 
     </>
 

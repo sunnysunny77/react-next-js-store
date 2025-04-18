@@ -5,9 +5,9 @@ import Link from "next/link";
 
 const Navigation = (props) => {
 
-  const { mainRef, footerRef, navbarRef } = props;
+  const { mainRef, footerRef } = props;
 
-  const { scrollingRef, setScrollingRef, auth, log_out } = useAppContext();
+  const { scrollingRef, auth, log_out } = useAppContext();
 
   const navbar_static = useRef(null);
   const navbar_toggler_static = useRef(null);
@@ -18,11 +18,6 @@ const Navigation = (props) => {
   const [scrollY, setScrollY] = useState(0);
   const [positive, setPositive] = useState(true);
   const height = 83;
-
-  const scroll_to = () => {
-
-    setScrollingRef(navbarRef);
-  };
 
   const toggle_static = () => {
 
@@ -41,11 +36,6 @@ const Navigation = (props) => {
     const top = mainRef.current?.offsetTop;
 
     const scroll_pos = window.scrollY;
-
-    if (scroll_pos === scrollingRef.current?.offsetTop) {
-
-      setScrollingRef({current: null});
-    }
 
     if (scrollingRef.current !== null) {
 
@@ -92,7 +82,7 @@ const Navigation = (props) => {
     };
 
     setScrollY(scroll_pos);
-  },[footerRef, mainRef, positive, scrollY, scrollingRef, setScrollingRef]);
+  },[footerRef, mainRef, positive, scrollY, scrollingRef]);
 
   useEffect(() => {
 
@@ -111,7 +101,7 @@ const Navigation = (props) => {
 
         <div className="row w-100 justify-content-between m-0 g-0">
 
-          <Link onClick={scroll_to} className="col-auto m-3"  href="/">
+          <Link className="col-auto m-3" href="/">
 
             <svg aria-label="Super Foods" viewBox="0 0 100 100" width="50" height="50">
 
@@ -163,7 +153,7 @@ const Navigation = (props) => {
 
               <li>
 
-                <Link onClick={scroll_to} className="navigation-link" href="/">
+                <Link className="navigation-link" href="/">
 
                   Home
 
@@ -173,7 +163,7 @@ const Navigation = (props) => {
 
               <li>
 
-                <Link onClick={scroll_to} className="navigation-link" href={auth ? "/store" : "/auth"}>
+                <Link className="navigation-link" href={auth ? "/store" : "/auth"}>
 
                   Store
 
@@ -193,7 +183,7 @@ const Navigation = (props) => {
 
                 ) : (
 
-                <Link onClick={scroll_to} className="navigation-link" href="/auth">
+                <Link className="navigation-link" href="/auth">
 
                   Sign In
 
@@ -215,7 +205,7 @@ const Navigation = (props) => {
 
         <div className="row w-100 justify-content-between m-0 g-0">
 
-          <Link onClick={scroll_to} className="col-auto m-3"  href="/">
+          <Link className="col-auto m-3" href="/">
 
             <svg aria-label="Super Foods" viewBox="0 0 100 100" width="50" height="50">
 
@@ -267,7 +257,7 @@ const Navigation = (props) => {
 
               <li>
                 
-                <Link onClick={scroll_to} className="navigation-link" href="/">
+                <Link className="navigation-link" href="/">
                 
                   Home
 
@@ -277,7 +267,7 @@ const Navigation = (props) => {
 
               <li>
 
-                <Link onClick={scroll_to} className="navigation-link" href={auth ? "/store" : "/auth"}>
+                <Link className="navigation-link" href={auth ? "/store" : "/auth"}>
 
                   Store
 
@@ -297,7 +287,7 @@ const Navigation = (props) => {
 
                 ) : (
 
-                <Link onClick={scroll_to} className="navigation-link" href="/auth">
+                <Link className="navigation-link" href="/auth">
 
                   Sign In
 

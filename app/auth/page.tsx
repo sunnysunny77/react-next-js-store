@@ -82,7 +82,7 @@ const Auth = () => {
 
       <div ref={navbarRef}></div>
 
-      <Navigation mainRef={mainRef} footerRef={footerRef} navbarRef={navbarRef} />
+      <Navigation mainRef={mainRef} footerRef={footerRef} />
 
       <Header heading={heading} />
 
@@ -378,7 +378,7 @@ const Auth = () => {
 
       <div ref={footerRef}></div>
 
-      <Footer navbarRef={navbarRef} />
+      <Footer />
 
     </>
 

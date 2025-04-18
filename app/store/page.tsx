@@ -36,7 +36,7 @@ const Store = () => {
 
       <div ref={navbarRef}></div>
 
-      <Navigation mainRef={mainRef} footerRef={footerRef} navbarRef={navbarRef} />
+      <Navigation mainRef={mainRef} footerRef={footerRef} />
 
       <Header heading={heading} />
 
@@ -49,9 +49,10 @@ const Store = () => {
           <Cards
 
             heading={`Vestibulum eu`}
+
             cardsType={false}
+
             storeRef={storeRef}
-            navbarRef={navbarRef}
 
           />
 
@@ -121,8 +122,6 @@ const Store = () => {
 
             itemsRef={itemsRef}
 
-            navbarRef={navbarRef}
-
           />
 
         </div>
@@ -131,7 +130,7 @@ const Store = () => {
 
       <div ref={footerRef}></div>
 
-      <Footer navbarRef={navbarRef} />
+      <Footer />
 
     </>
 

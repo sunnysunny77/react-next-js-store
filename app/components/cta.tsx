@@ -34,22 +34,18 @@ const CtaType = (props) => {
 
 const Cta = (props) => {
 
-  const { ctaType, heading, bold, paragraph, button, itemsRef, navbarRef } = props;
+  const { ctaType, heading, bold, paragraph, button, itemsRef } = props;
 
-  const { setScrollingRef, holdScrollCta, setHoldScrollCta, auth } = useAppContext();
+  const { setScrollingRef, holdScrollCta, setHoldScrollCta } = useAppContext();
 
   const scroll_to = () => {
 
     if(itemsRef) {
 
       setScrollingRef(itemsRef);
-    } else if (!itemsRef && auth) {
+    } else if (!itemsRef) {
 
       setHoldScrollCta(true);
-    } else if (!auth) {
-
-      setHoldScrollCta(true);
-      setScrollingRef(navbarRef);
     }
   };
 
@@ -58,7 +54,6 @@ const Cta = (props) => {
     if(holdScrollCta && itemsRef) {
 
       setScrollingRef(itemsRef);
-
       return () => {
 
         setHoldScrollCta(false);

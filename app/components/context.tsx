@@ -237,14 +237,18 @@ export const AppWrapper = ({
     if (pathname !== route && scrollingRef.current === null)  {
 
       setRoute(pathname);
-      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+      window.scroll({ top: 0, left: 0, behavior: "instant" });
     }
   },[pathname, route, scrollingRef])
 
   useEffect(() => {
 
-    scrollingRef.current?.scrollIntoView({ behavior: "smooth" });
-  },[scrollingRef]);
+    if (scrollingRef.current !== null) {
+
+      window.scroll({ top: scrollingRef.current.offsetTop || 0, left: 0, behavior: "smooth" });
+      setScrollingRef({current: null});
+    }
+    },[scrollingRef]);
 
   return (
 
