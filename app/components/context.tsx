@@ -224,6 +224,8 @@ export const AppWrapper = ({
 
   const [holdScrollCard, setHoldScrollCard] = useState(false);
 
+  const [route, setRoute] = useState(pathname);
+
   const checkCookie = async () => {
 
     const cookie = await GetCookie();
@@ -232,11 +234,12 @@ export const AppWrapper = ({
 
   useEffect(() => {
 
-    if (pathname && scrollingRef.current === null)  {
+    if (pathname !== route && scrollingRef.current === null)  {
 
+      setRoute(pathname);
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }
-  },[pathname, scrollingRef])
+  },[pathname, route, scrollingRef])
 
   useEffect(() => {
 
