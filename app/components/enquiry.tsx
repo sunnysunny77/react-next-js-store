@@ -2,7 +2,7 @@
 import { GetEnquiry } from "@/api/enquiry";
 import { useActionState } from "react";
 import Image from "next/image";
-import Spinner from "@/images/load.gif";
+import Spinner from "@/images/spinner.gif";
 
 const Enquiry = () => {
 
@@ -175,7 +175,7 @@ const Enquiry = () => {
 
                         <br />
 
-                        <span className="spinnerSpan">{isPending ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="Spinner" /> : ""} </span>
+                        <span className="spinnerSpan">{isPending ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : ""} </span>
 
                       </p>
 

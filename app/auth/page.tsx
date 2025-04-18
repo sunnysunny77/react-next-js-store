@@ -9,7 +9,7 @@ import Image from "next/image";
 import Header from "@/components/header";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
-import Spinner from "@/images/load.gif";
+import Spinner from "@/images/spinner.gif";
 
 const Auth = () => {
 
@@ -30,19 +30,25 @@ const Auth = () => {
     password: "",
     email: "",
   });
-  const [captchaSrc, setCaptchaSrc] = useState(<Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="Spinner" />);
+
+  const [captchaSrc, setCaptchaSrc] = useState(<Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" />);
+
   const [captchaForm, setCaptchaForm] = useState(true);
+
   const [response, setResponse] = useState(null);
+
   const [stateGetFactor, actionGetFactor, isPendingGetFactor] = useActionState(GetFactor, {
     message: "",
     email: "",
     getcode: true,
   });
+
   const [stateSetFactor, actionSetFactor, isPendingSetFactor] = useActionState(SetFactor, {
     message: "",
     code: "",
     setcode: true,
   });
+
   const [stateRegistraion, actionRegistraion, isPendingRegistraion] = useActionState(Registraion, {
     message: "",
     password: "",
@@ -50,7 +56,7 @@ const Auth = () => {
 
   const get_cookie = async() => {
 
-    setResponse(<Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="Spinner" />);
+    setResponse(<Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" />);
 
     const res = await GetCaptcha(captchaRef.current.value);
 
@@ -69,7 +75,7 @@ const Auth = () => {
 
   const init = useCallback( async () => {
 
-    setCaptchaSrc(<Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="Spinner" />);
+    setCaptchaSrc(<Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" />);
     const res = await SetCaptcha();
     setCaptchaSrc(<Image src={res} loader={imageLoader}  width="150" height="50" alt="canvas" />);
   },[]);
@@ -82,7 +88,7 @@ const Auth = () => {
   useEffect(() => {
 
     checkCookie();
-  }, [checkCookie]);
+  },[checkCookie]);
 
   return (
 
@@ -144,7 +150,7 @@ const Auth = () => {
 
                       <span>
 
-                        {isPendingSign ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="Spinner" /> : stateSignIn?.message}
+                        {isPendingSign ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateSignIn?.message}
 
                       </span>
 
@@ -257,7 +263,7 @@ const Auth = () => {
 
                       </label>
 
-                      <button id="submit" type="submit" className="btnn py-1 w-100 rounded mt-2">
+                      <button type="submit" className="btnn py-1 w-100 rounded mt-2">
 
                         Submit
 
@@ -267,7 +273,7 @@ const Auth = () => {
 
                         <span>
 
-                          {isPendingGetFactor ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="Spinner" /> : stateGetFactor?.message}
+                          {isPendingGetFactor ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateGetFactor?.message}
 
                         </span>
 
@@ -294,7 +300,7 @@ const Auth = () => {
 
                       </label>
 
-                      <button id="submit" type="submit" className="btnn py-1 w-100 rounded mt-2">
+                      <button type="submit" className="btnn py-1 w-100 rounded mt-2">
 
                         Submit
 
@@ -304,7 +310,7 @@ const Auth = () => {
 
                         <span>
 
-                          {isPendingSetFactor ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="Spinner" /> : stateSetFactor?.message}
+                          {isPendingSetFactor ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateSetFactor?.message}
 
                         </span>
 
@@ -344,7 +350,7 @@ const Auth = () => {
 
                     </label>
 
-                    <button id="submit" type="submit" className="btnn py-1 w-100 rounded mt-2">
+                    <button type="submit" className="btnn py-1 w-100 rounded mt-2">
 
                       Submit
 
@@ -354,7 +360,7 @@ const Auth = () => {
 
                       <span>
 
-                        {isPendingRegistraion ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="Spinner" /> : stateRegistraion?.message}
+                        {isPendingRegistraion ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateRegistraion?.message}
 
                       </span>
 

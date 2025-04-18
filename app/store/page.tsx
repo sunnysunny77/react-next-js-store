@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useAppContext } from "@/components/context";
 import Cards from "@/components/cards";
 import Header from "@/components/header";
@@ -28,7 +28,7 @@ const Store = () => {
   useEffect(() => {
 
     checkCookie();
-  }, [checkCookie]);
+  },[checkCookie]);
 
   return (
 

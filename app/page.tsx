@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useAppContext } from "@/components/context";
 import CarouselSlider from "@/components/carousel-slider";
 import Cards from "@/components/cards";
@@ -27,15 +27,20 @@ import Aus from "@/images/australian-made.svg";
 
 const Home = () => {
 
-  const navbarRef = useRef(null);
-
   const { auth, checkCookie } = useAppContext();
+
+  const navbarRef = useRef(null);
 
   const mainRef = useRef(null);
 
   const footerRef = useRef(null);
 
   const heading = "HOME";
+
+  useEffect(() => {
+
+    checkCookie();
+  },[checkCookie]);
 
   const children = (
 
@@ -72,12 +77,8 @@ const Home = () => {
       </div>
 
     </div>
+
   );
-
-  useEffect(() => {
-
-    checkCookie();
-  }, [checkCookie]);
 
   return (
 

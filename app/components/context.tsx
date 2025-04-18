@@ -1,7 +1,8 @@
 "use client"
 import { createContext, useContext, useState, useEffect } from "react";
-import LogOut from  "@/api/log-out";
+import { usePathname } from "next/navigation";
 import GetCookie from  "@/api/get-cookie";
+import LogOut from  "@/api/log-out";
 import Basil from "@/images/basil.webp";
 import Broccoli from "@/images/broccoli.webp";
 import Chitto from "@/images/chitto.webp";
@@ -205,6 +206,9 @@ export const AppWrapper = ({
   children: React.ReactNode,
 }) => {
 
+
+  const pathname = usePathname();
+
   const [scrollingRef, setScrollingRef] = useState({current: null});
 
   const [auth, setAuth] = useState(false);
@@ -216,24 +220,32 @@ export const AppWrapper = ({
     setAuth(false);
   };
 
+  const [holdScrollCta, setHoldScrollCta] = useState(false);
+
+  const [holdScrollCard, setHoldScrollCard] = useState(false);
+
   const checkCookie = async () => {
 
     const cookie = await GetCookie();
     setAuth(cookie);
   };
 
-  const [holdScrollCta, setHoldScrollCta] = useState(false);
+  useEffect(() => {
 
-  const [holdScrollCard, setHoldScrollCard] = useState(false);
+    if (pathname && scrollingRef.current === null)  {
+
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }
+  },[pathname, scrollingRef])
 
   useEffect(() => {
 
     scrollingRef.current?.scrollIntoView({ behavior: "smooth" });
-  },[scrollingRef])
+  },[scrollingRef]);
 
   return (
 
-    <AppContext.Provider value={{ scrollingRef, setScrollingRef, auth, log_out, checkCookie, holdScrollCta, setHoldScrollCta, holdScrollCard, setHoldScrollCard }}>
+    <AppContext.Provider value={{ scrollingRef, setScrollingRef, auth, checkCookie, log_out, holdScrollCta, setHoldScrollCta, holdScrollCard, setHoldScrollCard }}>
 
       {children}
 
