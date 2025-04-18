@@ -89,8 +89,8 @@ export const SetCaptcha = async (stateSetCaptcha: StateSetCaptcha, formData: For
 
   const cookieStore = await cookies();
   const cookie = cookieStore.get("Store-App-Captcha").value;
-  const text = data.captcha as String;
-  const match = await bcrypt.compare(text.toLowerCase(), String(cookie));
+  const text = data.captcha as string;
+  const match = await bcrypt.compare(text.toLowerCase(), cookie as string);
 
   if(match) {
 
