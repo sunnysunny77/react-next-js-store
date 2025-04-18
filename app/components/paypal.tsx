@@ -129,7 +129,7 @@ const Paypal = () => {
 
         {isPending &&
 
-          <div className="spinner col-10 col-xl-5"></div>
+          <div className={`spinner col-10 col-xl-5 ${disabled ? "hidden" : "show"}`}></div>
 
         }
 
@@ -146,7 +146,7 @@ const Paypal = () => {
               disableMaxWidth: true,
             }}
 
-            className="button-container-inner col-10 col-xl-5"
+            className={`button-container-inner col-10 col-xl-5 ${disabled ? "hidden" : "show"}`}
 
             createOrder={(data, actions) => createOrder(data, actions)}
 
@@ -462,128 +462,114 @@ const Paypal = () => {
         <div className="bg col-12 col-md-10">
 
           <div className="row justify-content-center justify-content-xl-end pb-5 pe-xl-5 g-0">
-          
-            {!disabled ? (
 
-              <>
+            <div className="col-12 col-xl-7 d-flex align-items-stretch align-items-xl-center justify-content-evenly pb-4 px-4 px-md-5 pb-xl-0">
 
-                <div className="col-12 col-xl-7 d-flex align-items-stretch align-items-xl-center justify-content-evenly pb-4 px-4 px-md-5 pb-xl-0">  
+              <div className={`flex-fill h-100 ${disabled ? "hidden" : "show"}`}>
 
-                  <div className="flex-fill h-100">
+                <ul className="list-unstyled h-100 d-flex flex-column justify-content-around m-0">
 
-                    <ul className="list-unstyled h-100 d-flex flex-column justify-content-around m-0"> 
+                  {Object.keys(cart).map((index, i) => {
 
-                      {Object.keys(cart).map((index, i) => {
+                    const { quantity, name, unit_amount: {value}, ref } = cart[index];
 
-                        const { quantity, name, unit_amount: {value}, ref } = cart[index];
+                    return (
 
-                        return (
+                        <li
 
-                            <li 
-          
-                            key={i}
-                            
-                            className="d-flex flex-column flex-xl-row align-items-xl-center justify-content-xl-between mb-3"
-                    
-                          >
-                  
-                            <span
-                  
-                              className="reSelect"
-                  
-                              onClick={(e)=>optionOrder(e)}
-
-                              data-value={ref.value}
+                        key={i}
                         
-                            >
-                  
-                              {quantity} x {name}
-                  
-                            </span>
-                  
-                            <span>
-                  
-                              $ {quantity * value}
-                  
-                            </span>
-                  
-                          </li>
-                          
-                        )
-
-                      })}
+                        className="d-flex flex-column flex-xl-row align-items-xl-center justify-content-xl-between mb-3"
                 
-                    </ul>
+                      >
 
-                  </div> 
+                        <span
 
-                  <div className="flex-fill h-100">
+                          className="reSelect"
 
-                    <ul className="list-unstyled h-100 d-flex flex-column justify-content-around m-0"> 
-      
-                    {Object.keys(cart).map((index, i) => {
-                          
-                        const { name } = cart[index];
+                          onClick={(e)=>optionOrder(e)}
 
-                        return (  
-                          
-                          <li 
-      
-                            key={i}
-                            
-                            className="d-flex flex-column flex-xl-row mb-3"
-                          
-                          >
-                  
-                            <button
-                  
-                              className="remove p-0 ms-4"
-                  
-                              onClick={() =>removeCart(name)}
-                              
-                            >
-                  
-                              remove
-                  
-                            </button>
-                  
-                          </li> 
-                        
-                        )
+                          data-value={ref.value}
 
-                      })}
-                
-                    </ul>
+                        >
 
-                  </div>
+                          {quantity} x {name}
 
-                </div>
+                        </span>
 
-                <PayPalScriptProvider options={SCRIPT_PROVIDER_OPTIONS}>
-                  
-                  <ButtonWrapper /> 
-          
-                </PayPalScriptProvider>
+                        <span>
 
-              </>
+                          $ {quantity * value}
 
-            ) : (
+                        </span>
 
-              <>
+                      </li>
 
-                <div className="col-10 col-xl-5 d-flex align-items-center">
+                    )
 
-                  <ul className="w-100 list-unstyled m-0"> 
+                  })}
 
-                    <li className="button-container-inner px-4">no items</li>
+                </ul>
 
-                  </ul>
+              </div>
 
-                </div>
+              <div className="flex-fill h-100">
 
-              </>
+                <ul className="list-unstyled h-100 d-flex flex-column justify-content-around m-0">
 
-            )}  
+                {Object.keys(cart).map((index, i) => {
+
+                    const { name } = cart[index];
+
+                    return (
+
+                      <li
+
+                        key={i}
+
+                        className="d-flex flex-column flex-xl-row mb-3"
+
+                      >
+
+                        <button
+
+                          className="remove p-0 ms-4"
+
+                          onClick={() =>removeCart(name)}
+
+                        >
+
+                          remove
+
+                        </button>
+
+                      </li>
+
+                    )
+
+                  })}
+
+                </ul>
+
+              </div>
+
+            </div>
+
+            <PayPalScriptProvider options={SCRIPT_PROVIDER_OPTIONS}>
+
+              <ButtonWrapper />
+
+            </PayPalScriptProvider>
+
+            <div className={`col-10 col-xl-5 d-flex align-items-center  ${disabled ? "show" : "hidden"}`}>
+
+              <ul className="w-100 list-unstyled m-0">
+
+                <li className="button-container-inner px-4">no items</li>
+
+              </ul>
+
+            </div>
 
             <div className="col-12 ps-4 ps-md-5 pt-4">
 
