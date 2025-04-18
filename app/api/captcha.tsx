@@ -1,6 +1,6 @@
 "use server"
 import { createCanvas } from "canvas";
-import { cookies } from 'next/headers'
+import { cookies } from "next/headers";
 import bcrypt from "bcrypt";
 
 export const SetCaptcha = async () => {

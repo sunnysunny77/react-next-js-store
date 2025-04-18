@@ -3,7 +3,6 @@ import { useActionState, useEffect, useState, useRef, useCallback } from "react"
 import { useAppContext } from "@/components/context";
 import { GetSignIn } from "@/api/auth";
 import { GetFactor, SetFactor } from "@/api/factor";
-import { redirect } from 'next/navigation'
 import { SetCaptcha, GetCaptcha } from "@/api/captcha";
 import Registraion from "@/api/registraion";
 import Image from "next/image";
@@ -30,9 +29,8 @@ const Auth = () => {
     message: "",
     password: "",
     email: "",
-    auth: false,
   });
-  const [captchaSrc, setCaptchaSrc] = useState(<Image className="spinner" width="40" height="40" src={Spinner} alt="Spinner" />);
+  const [captchaSrc, setCaptchaSrc] = useState(<Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="Spinner" />);
   const [captchaForm, setCaptchaForm] = useState(true);
   const [response, setResponse] = useState(null);
   const [stateGetFactor, actionGetFactor, isPendingGetFactor] = useActionState(GetFactor, {
@@ -48,12 +46,11 @@ const Auth = () => {
   const [stateRegistraion, actionRegistraion, isPendingRegistraion] = useActionState(Registraion, {
     message: "",
     password: "",
-    auth: false,
   });
 
   const get_cookie = async() => {
 
-    setResponse(<Image className="spinner" width="40" height="40" src={Spinner} alt="Spinner" />);
+    setResponse(<Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="Spinner" />);
 
     const res = await GetCaptcha(captchaRef.current.value);
 
@@ -72,7 +69,7 @@ const Auth = () => {
 
   const init = useCallback( async () => {
 
-    setCaptchaSrc(<Image className="spinner" width="40" height="40" src={Spinner} alt="Spinner" />);
+    setCaptchaSrc(<Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="Spinner" />);
     const res = await SetCaptcha();
     setCaptchaSrc(<Image src={res} loader={imageLoader}  width="150" height="50" alt="canvas" />);
   },[]);
@@ -81,11 +78,6 @@ const Auth = () => {
 
     init();
   },[init]);
-
-  useEffect(() => {
-
-    if (stateSignIn.auth || stateRegistraion.auth) redirect("/store");
-  }, [stateSignIn.auth, stateRegistraion.auth]);
 
   useEffect(() => {
 
@@ -152,7 +144,7 @@ const Auth = () => {
 
                       <span>
 
-                        {isPendingSign ? <Image className="spinner" width="40" height="40" src={Spinner} alt="Spinner" /> : stateSignIn?.message}
+                        {isPendingSign ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="Spinner" /> : stateSignIn?.message}
 
                       </span>
 
@@ -275,7 +267,7 @@ const Auth = () => {
 
                         <span>
 
-                          {isPendingGetFactor ? <Image className="spinner" width="40" height="40" src={Spinner} alt="Spinner" /> : stateGetFactor?.message}
+                          {isPendingGetFactor ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="Spinner" /> : stateGetFactor?.message}
 
                         </span>
 
@@ -312,7 +304,7 @@ const Auth = () => {
 
                         <span>
 
-                          {isPendingSetFactor ? <Image className="spinner" width="40" height="40" src={Spinner} alt="Spinner" /> : stateSetFactor?.message}
+                          {isPendingSetFactor ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="Spinner" /> : stateSetFactor?.message}
 
                         </span>
 
@@ -362,7 +354,7 @@ const Auth = () => {
 
                       <span>
 
-                        {isPendingRegistraion ? <Image className="spinner" width="40" height="40" src={Spinner} alt="Spinner" /> : stateRegistraion?.message}
+                        {isPendingRegistraion ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="Spinner" /> : stateRegistraion?.message}
 
                       </span>
 

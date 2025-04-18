@@ -1,14 +1,14 @@
 "use server"
+import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 import Connection from "@/lib/db/connection";
 import EmptyResults from "@/lib/db/empty-results";
-import { cookies } from "next/headers";
 import bcrypt from "bcrypt";
 
 type StateSignIn = {
   message: string;
   email: string;
   password: string;
-  auth: boolean;
 };
 
 export const GetSignIn = async (stateSignIn: StateSignIn, formData: FormData) => {
@@ -41,12 +41,7 @@ export const GetSignIn = async (stateSignIn: StateSignIn, formData: FormData) =>
 
       cookieStore.set("Store-App", "true", { secure: true, httpOnly: true, sameSite: 'strict'})
 
-      return { 
-        password: "",
-        email: "",
-        message: "",
-        auth: true,
-      };
+      redirect("/store");
     };
   };
 
@@ -54,6 +49,5 @@ export const GetSignIn = async (stateSignIn: StateSignIn, formData: FormData) =>
     password: data.password as string,
     email: data.email as string,
     message: "Incorrect",
-    auth: false,
    };
 };

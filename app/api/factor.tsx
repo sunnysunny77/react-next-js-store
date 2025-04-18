@@ -1,5 +1,5 @@
 "use server"
-import { cookies } from 'next/headers'
+import { cookies } from "next/headers";
 import nodemailer from 'nodemailer';
 import Connection from "@/lib/db/connection";
 import EmptyResults from "@/lib/db/empty-results";

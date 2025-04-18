@@ -1,6 +1,5 @@
 "use client"
 import { createContext, useContext, useState, useEffect } from "react";
-import { redirect } from 'next/navigation';
 import LogOut from  "@/api/log-out";
 import GetCookie from  "@/api/get-cookie";
 import Basil from "@/images/basil.webp";
@@ -215,7 +214,6 @@ export const AppWrapper = ({
     setScrollingRef({current: null});
     LogOut();
     setAuth(false);
-    redirect("/");
   };
 
   const checkCookie = async () => {
@@ -230,8 +228,7 @@ export const AppWrapper = ({
 
   useEffect(() => {
 
-
-    scrollingRef.current?.scrollIntoView({ behavior: "smooth" })
+    scrollingRef.current?.scrollIntoView({ behavior: "smooth" });
   },[scrollingRef])
 
   return (

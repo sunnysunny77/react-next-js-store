@@ -175,7 +175,7 @@ const Enquiry = () => {
 
                         <br />
 
-                        <span className="spinnerSpan">{isPending ? <Image className="spinner" width="40" height="40" src={Spinner} alt="Spinner" /> : ""} </span>
+                        <span className="spinnerSpan">{isPending ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="Spinner" /> : ""} </span>
 
                       </p>
 

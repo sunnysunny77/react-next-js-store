@@ -1,13 +1,13 @@
 "use server"
+import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 import bcrypt from "bcrypt";
 import Connection from "@/lib/db/connection";
 import nodemailer from 'nodemailer';
-import { cookies } from "next/headers";
 
 type StateRegistraion = {
   password: string,
   message: string,
-  auth: boolean,
 };
 
 const Registraion = async (stateRegistraion : StateRegistraion , formData: FormData) => {
@@ -57,7 +57,6 @@ const Registraion = async (stateRegistraion : StateRegistraion , formData: FormD
   if (error) return {
     password: data.password as string,
     message: error_message,
-    auth: false,
   };
 
   const salt = bcrypt.genSaltSync(10);
@@ -106,11 +105,7 @@ const Registraion = async (stateRegistraion : StateRegistraion , formData: FormD
 
   cookieStore.set("Store-App", "true", { secure: true, httpOnly: true, sameSite: 'strict'})
   
-  return {
-    password: "",
-    message: "",
-    auth: true,
-  };
+  redirect("/store");
 };
 
 export default Registraion;
