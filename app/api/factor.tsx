@@ -65,7 +65,6 @@ export const GetFactor = async (stateGetFactor: StateGetFactor, formData: FormDa
         <b>Authentication code: </b> ${token}
       </html>`,
     });
-
   } catch (err) {
 
     console.log(err);
