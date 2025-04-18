@@ -269,16 +269,6 @@ const Auth = () => {
 
                       </button>
 
-                      <p className={`alert alert-secondary mt-3 justify-content-center align-items-center ${isPendingGetFactor || stateGetFactor?.message ?  "d-flex" : "d-none"}`} role="alert">
-
-                        <span>
-
-                          {isPendingGetFactor ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateGetFactor?.message}
-
-                        </span>
-
-                      </p>
-
                     </form>
 
                     <form action={actionSetFactor} className="Auth-form">
@@ -306,16 +296,16 @@ const Auth = () => {
 
                       </button>
 
-                      <p className={`alert alert-secondary mt-3 justify-content-center align-items-center ${isPendingSetFactor || stateSetFactor?.message ?  "d-flex" : "d-none"}`} role="alert">
+                      <p className={`alert alert-secondary mt-3 justify-content-center align-items-center ${isPendingSetFactor || stateSetFactor?.message || isPendingGetFactor || stateGetFactor?.message ?  "d-flex" : "d-none"}`} role="alert">
 
                         <span>
 
-                          {isPendingSetFactor ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateSetFactor?.message}
+                          {isPendingSetFactor || isPendingGetFactor ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateSetFactor?.message || stateGetFactor?.message}
 
                         </span>
 
                       </p>
-
+`
                     </form>
 
                   </>

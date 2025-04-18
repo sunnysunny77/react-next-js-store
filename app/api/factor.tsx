@@ -53,16 +53,23 @@ export const GetFactor = async (stateGetFactor: StateGetFactor, formData: FormDa
     }
   });
 
-  await transporter.sendMail({
-    from: process.env.REACT_APP_NODEMAILER_EMAIL_FROM,
-    to: data.email as string,
-    subject: "Secure Website - Authentication",
-    html: `
-    <html>
-      <h1>G'day, paste the code back into the website</h1> 
-      <b>Authentication code: </b> ${token} 
-    </html>`,
-  });
+  try {
+
+    await transporter.sendMail({
+      from: process.env.REACT_APP_NODEMAILER_EMAIL_FROM,
+      to: data.email as string,
+      subject: "Secure Website - Authentication",
+      html: `
+      <html>
+        <h1>G'day, paste the code back into the website</h1>
+        <b>Authentication code: </b> ${token}
+      </html>`,
+    });
+
+  } catch (err) {
+
+    console.log(err);
+  };
 
   return { 
     message: "Check Your Inbox", 

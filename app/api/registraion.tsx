@@ -81,25 +81,31 @@ const Registraion = async (stateRegistraion : StateRegistraion , formData: FormD
     }
   });
 
-  await transporter.sendMail({
-    from: process.env.REACT_APP_NODEMAILER_EMAIL_FROM,
-    to: data.email as string,
-    subject: "Welcome to Secure Website",
-    html: `
-    <html lang="en">
-      <h1>Welcome to Secure Website</h1> 
-      <p>Login:</p> 
-      <b>Email:</b> ${data.email} 
-      <br>
-      <b>Pass:</b> ${data.password} 
-      <br>
-      <br>
-      <p>PayPal:</p>  
-      <b>Email:</b> sb-iyl4x21604127@personal.example.com
-      <br>
-      <b>Pass:</b> *]T0%Ae8"."
-    </html>`,
-  });
+  try {
+
+    await transporter.sendMail({
+      from: process.env.REACT_APP_NODEMAILER_EMAIL_FROM,
+      to: data.email as string,
+      subject: "Welcome to Secure Website",
+      html: `
+      <html lang="en">
+        <h1>Welcome to Secure Website</h1>
+        <p>Login:</p>
+        <b>Email:</b> ${data.email}
+        <br>
+        <b>Pass:</b> ${data.password}
+        <br>
+        <br>
+        <p>PayPal:</p>
+        <b>Email:</b> sb-iyl4x21604127@personal.example.com
+        <br>
+        <b>Pass:</b> *]T0%Ae8"."
+      </html>`,
+    });
+  } catch (err) {
+
+    console.log(err);
+  };
 
   const cookieStore = await cookies();
 
