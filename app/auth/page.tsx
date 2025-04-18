@@ -134,7 +134,7 @@ const Auth = () => {
 
                   </form>
 
-                  <p className={`alert alert-secondary mt-3 mb-0 justify-content-center align-items-center ${isPendingSign || stateSignIn?.message ?  "d-flex" : "d-none"}`} role="alert">
+                  <p className={`alert alert-secondary p-1 mt-3 mb-0 justify-content-center align-items-center ${isPendingSign || stateSignIn?.message ?  "d-flex" : "d-none"}`} role="alert">
 
                     <span>
 
@@ -206,7 +206,7 @@ const Auth = () => {
 
                     </button>
 
-                    <p className={`alert alert-secondary mt-3 mb-0 justify-content-center align-items-center ${isPendingSetCaptcha || stateSetCaptcha?.message ?  "d-flex" : "d-none"}`} role="alert">
+                    <p className={`alert alert-secondary p-1 mt-3 mb-0 justify-content-center align-items-center ${isPendingSetCaptcha || stateSetCaptcha?.message ?  "d-flex" : "d-none"}`} role="alert">
 
                       <span>
 
@@ -279,21 +279,21 @@ const Auth = () => {
 
                     </form>
 
-                    <p className={`alert alert-secondary mt-3 mb-0 justify-content-center align-items-center ${isPendingSetFactor || stateSetFactor?.message ?  "d-flex" : "d-none"}`} role="alert">
+                    <p className={`alert alert-secondary p-1 mt-3 mb-0 justify-content-center align-items-center ${isPendingGetFactor || stateGetFactor?.message ?  "d-flex" : "d-none"}`} role="alert">
 
                       <span>
 
-                        {isPendingSetFactor ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateSetFactor?.message}
+                        {isPendingGetFactor ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateGetFactor?.message}
 
                       </span>
 
                     </p>
 
-                    <p className={`alert alert-secondary mt-3 mb-0 justify-content-center align-items-center ${isPendingGetFactor || stateGetFactor?.message ?  "d-flex" : "d-none"}`} role="alert">
+                    <p className={`alert alert-secondary p-1 mt-3 mb-0 justify-content-center align-items-center ${isPendingSetFactor || stateSetFactor?.message ?  "d-flex" : "d-none"}`} role="alert">
 
                       <span>
 
-                        {isPendingGetFactor ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateGetFactor?.message}
+                        {isPendingSetFactor ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateSetFactor?.message}
 
                       </span>
 
@@ -342,7 +342,7 @@ const Auth = () => {
 
                     </form>
 
-                    <p className={`alert alert-secondary mt-3 mb-0 justify-content-center align-items-center ${isPendingRegistraion || stateRegistraion?.message ?  "d-flex" : "d-none"}`} role="alert">
+                    <p className={`alert alert-secondary p-1 mt-3 mb-0 justify-content-center align-items-center ${isPendingRegistraion || stateRegistraion?.message ?  "d-flex" : "d-none"}`} role="alert">
 
                       <span>
 
