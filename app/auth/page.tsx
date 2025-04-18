@@ -3,7 +3,7 @@ import { useActionState, useEffect, useState, useRef, useCallback } from "react"
 import { useAppContext } from "@/components/context";
 import { GetSignIn } from "@/api/auth";
 import { GetFactor, SetFactor } from "@/api/factor";
-import { SetCaptcha, GetCaptcha } from "@/api/captcha";
+import { GetCaptcha, SetCaptcha } from "@/api/captcha";
 import Registraion from "@/api/registraion";
 import Image from "next/image";
 import Header from "@/components/header";
@@ -14,8 +14,6 @@ import Spinner from "@/images/spinner.gif";
 const Auth = () => {
 
   const { checkCookie } = useAppContext();
-
-  const captchaRef = useRef(null);
 
   const navbarRef = useRef(null);
 
@@ -31,16 +29,19 @@ const Auth = () => {
     email: "",
   });
 
-  const [captchaSrc, setCaptchaSrc] = useState(<Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" />);
-
-  const [captchaForm, setCaptchaForm] = useState(true);
-
-  const [response, setResponse] = useState(null);
+  const [captcha, setCaptcha] = useState(<Image unoptimized className="spinner type" width="40" height="40" src={Spinner} alt="spinner" />);
 
   const [stateGetFactor, actionGetFactor, isPendingGetFactor] = useActionState(GetFactor, {
     message: "",
     email: "",
     getcode: true,
+  });
+
+
+  const [stateSetCaptcha, actionSetCaptcha, isPendingSetCaptcha] = useActionState(SetCaptcha, {
+    message: "",
+    captcha: "",
+    setcode: true,
   });
 
   const [stateSetFactor, actionSetFactor, isPendingSetFactor] = useActionState(SetFactor, {
@@ -54,30 +55,15 @@ const Auth = () => {
     password: "",
   });
 
-  const get_cookie = async() => {
-
-    setResponse(<Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" />);
-
-    const res = await GetCaptcha(captchaRef.current.value);
-
-    if (res) {
-
-      setCaptchaForm(false);
-      return;
-    }
-
-    setResponse("Incorrect");
-  };
-
   const imageLoader = ({src }) => {
     return `${src}`;
   };
 
   const init = useCallback( async () => {
 
-    setCaptchaSrc(<Image unoptimized className="spinner type" width="40" height="40" src={Spinner} alt="spinner" />);
-    const res = await SetCaptcha();
-    setCaptchaSrc(<Image src={res} loader={imageLoader}  width="150" height="50" alt="canvas" />);
+    setCaptcha(<Image unoptimized className="spinner type" width="40" height="40" src={Spinner} alt="spinner" />);
+    const res = await GetCaptcha();
+    setCaptcha(<Image src={res} unoptimized loader={imageLoader} width="150" height="50" alt="canvas" />);
   },[]);
 
   useEffect(() => {
@@ -124,21 +110,21 @@ const Auth = () => {
 
                   <form className="Auth-form" action={actionSignIn}>
 
-                    <label>
+                    <label className="hidden" htmlFor="email">
 
-                      Email address
-
-                      <input className="rounded w-100 mt-1 mb-2 ps-2" defaultValue={stateSignIn?.email} type="email" required autoComplete="on" name="email" placeholder="Enter email" />
+                      Enter email
 
                     </label>
 
-                    <label>
+                    <input className="rounded w-100 mt-1 mb-2 ps-2" defaultValue={stateSignIn?.email} id="email" type="email" required autoComplete="on" name="email" placeholder="Enter email" />
 
-                      Password
+                    <label className="hidden" htmlFor="password">
 
-                      <input className="rounded w-100 mt-1 mb-2 ps-2" defaultValue={stateSignIn?.password} type="password" required autoComplete="on" name="password" placeholder="Enter password" />
+                      Enter password
 
                     </label>
+
+                    <input className="rounded w-100 mt-1 mb-2 ps-2" defaultValue={stateSignIn?.password} id="password" type="password" required autoComplete="on" name="password" placeholder="Enter password" />
 
                     <button type="submit" className="btnn py-1 w-100 rounded mt-2">
 
@@ -146,17 +132,17 @@ const Auth = () => {
 
                     </button>
 
-                    <p className={`alert alert-secondary mt-3 mb-0 justify-content-center align-items-center ${isPendingSign || stateSignIn?.message ?  "d-flex" : "d-none"}`} role="alert">
-
-                      <span>
-
-                        {isPendingSign ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateSignIn?.message}
-
-                      </span>
-
-                    </p>
-
                   </form>
+
+                  <p className={`alert alert-secondary mt-3 mb-0 justify-content-center align-items-center ${isPendingSign || stateSignIn?.message ?  "d-flex" : "d-none"}`} role="alert">
+
+                    <span>
+
+                      {isPendingSign ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateSignIn?.message}
+
+                    </span>
+
+                  </p>
 
                 </div>
 
@@ -180,58 +166,51 @@ const Auth = () => {
 
                 <div className="accordion-body p-5">
 
-                {captchaForm ? (
+                {stateSetCaptcha.setcode? (
 
                   <>
 
-                    <p id="responseCaptcha">
+                    {captcha}
 
-                      Please enter captcha
+                    <form action={actionSetCaptcha}>
 
-                    </p>
+                      <label className="hidden" htmlFor="captcha">
 
-                    {captchaSrc}
+                         Please enter captcha
 
-                    <label className="d-none" htmlFor="txtInput">
+                      </label>
 
-                      Captcha
+                      <input
 
-                    </label>
+                        className="rounded w-100  mt-1 mb-2 ps-2"
+                        type="text"
+                        id="captcha"
+                        name="captcha"
+                        placeholder="Please enter captcha"
+                        defaultValue={stateSetCaptcha?.captcha}
+                        required
 
-                    <input
+                      />
 
-                      className="rounded w-100  mt-1 mb-2 ps-2"
-                      type="text"
-                      id="txtInput"
-                      ref={captchaRef}
+                      <button className="btnn py-1 w-100 rounded mt-2">
 
-                    />
+                        Submit
 
-                    <button
+                      </button>
 
-                      className="btnn py-1 w-100 rounded mt-2"
-                      onClick={get_cookie}
+                    </form>
 
-                    >
-
-                      Submit
-
-                    </button>
-
-                    <button
-                      className="btnn py-1 w-100 rounded mb-3 mt-2"
-                      onClick={init}
-                    >
+                    <button onClick={init} className="btnn p-1 w-100 rounded mt-3">
 
                       Refresh
 
                     </button>
 
-                    <p className={`alert alert-secondary mt-3 mb-0 justify-content-center align-items-center ${response ? "d-flex" : "d-none" }`} role="alert">
+                    <p className={`alert alert-secondary mt-3 mb-0 justify-content-center align-items-center ${isPendingSetCaptcha || stateSetCaptcha?.message ?  "d-flex" : "d-none"}`} role="alert">
 
                       <span>
 
-                        {response}
+                        {isPendingSetCaptcha ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateSetCaptcha?.message}
 
                       </span>
 
@@ -245,24 +224,24 @@ const Auth = () => {
 
                     <form action={actionGetFactor} className="Auth-form mb-3">
 
-                      <label>
+                      <label className="hidden" htmlFor="email">
 
-                        Get Authentication code
-
-                        <input
-
-                          type="email"
-                          className="rounded w-100 mt-1 mb-2 ps-2"
-                          placeholder="Enter email"
-                          autoComplete="on"
-                          id="email"
-                          name="email"
-                          required
-                          defaultValue={stateGetFactor?.email}
-
-                        />
+                        Enter email
 
                       </label>
+
+                      <input
+
+                        type="email"
+                        className="rounded w-100 mt-1 mb-2 ps-2"
+                        placeholder="Enter email"
+                        autoComplete="on"
+                        id="email"
+                        name="email"
+                        required
+                        defaultValue={stateGetFactor?.email}
+
+                      />
 
                       <button type="submit" className="btnn py-1 w-100 rounded mt-2">
 
@@ -274,23 +253,23 @@ const Auth = () => {
 
                     <form action={actionSetFactor} className="Auth-form">
 
-                      <label>
+                      <label className="hidden" htmlFor="code">
 
-                        Enter authentication code
-
-                        <input
-
-                          type="text"
-                          className="rounded w-100 mt-1 mb-2 ps-2"
-                          placeholder="Paste code"
-                          id="code"
-                          name="code"
-                          defaultValue={stateSetFactor?.code}
-                          required
-
-                        />
+                        Enter code
 
                       </label>
+
+                      <input
+
+                        type="text"
+                        className="rounded w-100 mt-1 mb-2 ps-2"
+                        placeholder="Paste code"
+                        id="code"
+                        name="code"
+                        defaultValue={stateSetFactor?.code}
+                        required
+
+                      />
 
                       <button type="submit" className="btnn py-1 w-100 rounded mt-2">
 
@@ -298,27 +277,41 @@ const Auth = () => {
 
                       </button>
 
-                      <p className={`alert alert-secondary mt-3 mb-0 justify-content-center align-items-center ${isPendingSetFactor || stateSetFactor?.message || isPendingGetFactor || stateGetFactor?.message ?  "d-flex" : "d-none"}`} role="alert">
-
-                        <span>
-
-                          {isPendingSetFactor || isPendingGetFactor ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : <><span className="d-block text-center">{stateGetFactor?.message}</span><span className="d-block text-center">{stateSetFactor?.message}</span></>}
-
-                        </span>
-
-                      </p>
-
                     </form>
+
+                    <p className={`alert alert-secondary mt-3 mb-0 justify-content-center align-items-center ${isPendingSetFactor || stateSetFactor?.message ?  "d-flex" : "d-none"}`} role="alert">
+
+                      <span>
+
+                        {isPendingSetFactor ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateSetFactor?.message}
+
+                      </span>
+
+                    </p>
+
+                    <p className={`alert alert-secondary mt-3 mb-0 justify-content-center align-items-center ${isPendingGetFactor || stateGetFactor?.message ?  "d-flex" : "d-none"}`} role="alert">
+
+                      <span>
+
+                        {isPendingGetFactor ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateGetFactor?.message}
+
+                      </span>
+
+                    </p>
 
                   </>
 
                   ) : (
 
-                    <form action={actionRegistraion} className="Auth-form">
+                    <>
 
-                    <label>
+                      <form action={actionRegistraion} className="Auth-form">
 
-                      Create Password
+                      <label className="hidden" htmlFor="password">
+
+                        Enter password
+
+                      </label>
 
                       <input
 
@@ -341,13 +334,13 @@ const Auth = () => {
 
                       />
 
-                    </label>
+                      <button type="submit" className="btnn py-1 w-100 rounded mt-2">
 
-                    <button type="submit" className="btnn py-1 w-100 rounded mt-2">
+                        Submit
 
-                      Submit
+                      </button>
 
-                    </button>
+                    </form>
 
                     <p className={`alert alert-secondary mt-3 mb-0 justify-content-center align-items-center ${isPendingRegistraion || stateRegistraion?.message ?  "d-flex" : "d-none"}`} role="alert">
 
@@ -359,7 +352,7 @@ const Auth = () => {
 
                     </p>
 
-                  </form>
+                  </>
 
                   )
 
