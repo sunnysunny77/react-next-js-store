@@ -29,7 +29,7 @@ const Auth = () => {
     email: "",
   });
 
-  const [captcha, setCaptcha] = useState(<Image unoptimized className="spinner type" width="40" height="40" src={Spinner} alt="spinner" />);
+  const [captcha, setCaptcha] = useState(<Image className="spinner type" width="40" height="40" src={Spinner} alt="spinner" />);
 
   const [stateGetFactor, actionGetFactor, isPendingGetFactor] = useActionState(GetFactor, {
     message: "",
@@ -62,7 +62,7 @@ const Auth = () => {
 
   const init = useCallback( async () => {
 
-    setCaptcha(<Image unoptimized className="spinner type" width="40" height="40" src={Spinner} alt="spinner" />);
+    setCaptcha(<Image className="spinner type" width="40" height="40" src={Spinner} alt="spinner" />);
     const res = await GetCaptcha();
     setCaptcha(<Image src={res} unoptimized loader={imageLoader} width="150" height="50" alt="canvas" />);
   },[]);
@@ -139,7 +139,7 @@ const Auth = () => {
 
                     <span>
 
-                      {isPendingSign ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateSignIn?.message}
+                      {isPendingSign ? <Image className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateSignIn?.message}
 
                     </span>
 
@@ -211,7 +211,7 @@ const Auth = () => {
 
                       <span>
 
-                        {isPendingSetCaptcha ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateSetCaptcha?.message}
+                        {isPendingSetCaptcha ? <Image className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateSetCaptcha?.message}
 
                       </span>
 
@@ -284,7 +284,7 @@ const Auth = () => {
 
                       <span>
 
-                        {isPendingGetFactor ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateGetFactor?.message}
+                        {isPendingGetFactor ? <Image className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateGetFactor?.message}
 
                       </span>
 
@@ -294,7 +294,7 @@ const Auth = () => {
 
                       <span>
 
-                        {isPendingSetFactor ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateSetFactor?.message}
+                        {isPendingSetFactor ? <Image className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateSetFactor?.message}
 
                       </span>
 
@@ -347,7 +347,7 @@ const Auth = () => {
 
                       <span>
 
-                        {isPendingRegistraion ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateRegistraion?.message}
+                        {isPendingRegistraion ? <Image className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateRegistraion?.message}
 
                       </span>
 

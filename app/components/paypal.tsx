@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useCartContext, useAppContext } from "@/components/context";
 import { ArrowDownShort } from "react-bootstrap-icons";
+import Spinner from "@/images/spinner.gif";
 import Script from "next/script";
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -18,7 +19,7 @@ const Select = dynamic(() => import("react-select/creatable"), { ssr: false });
 
 const Paypal = () => {
 
-  const { order, cartOrder, options, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, total, setTotal } = useCartContext();
+  const { order, cartOrder, options, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, total, setTotal, show, setShow } = useCartContext();
 
   const { setScrollingRef } = useAppContext();
 
@@ -43,7 +44,11 @@ const Paypal = () => {
 
     setCart(obj);
 
-    if (Object.keys(obj).length === 0) setDisabled(true);
+    if (Object.keys(obj).length === 0) {
+
+      setDisabled(true);
+      setShow(true);
+    }
   };
 
   const optionOrder = (e) => {
@@ -57,6 +62,8 @@ const Paypal = () => {
   };
 
   const init = (obj) => {
+
+    if (smartButton !== undefined) smartButton.close();
 
     let total = 0;
 
@@ -150,8 +157,6 @@ const Paypal = () => {
 
         setCart({});
 
-        setDisabled(true);
-
         setOutput({ caption: caption, transaction: transaction, name: name, address: address, itemsOutput: itemsOutput , total: total });
 
         setOutputBool(true);
@@ -164,16 +169,16 @@ const Paypal = () => {
       },
     });
 
+    button.render(smartRef.current);
+
     setTotal(total);
 
-    if (smartButton !== undefined) smartButton.close();
-
     setSmartButton(button);
-
-    button.render(smartRef.current);
   };
 
   const addCart = async () => {
+
+    setShow(true);
 
     const obj = {
       ...cart,
@@ -189,6 +194,8 @@ const Paypal = () => {
       },
     };
 
+    init(obj);
+
     setCart(obj);
 
     setCount(1);
@@ -197,7 +204,7 @@ const Paypal = () => {
 
     setDisabled(false);
 
-    init(obj);
+    setTimeout(()=>setShow(false),667);
   };
 
   const minus = () => {
@@ -462,7 +469,7 @@ const Paypal = () => {
 
               <div className="col-12 col-xl-7 d-flex align-items-stretch align-items-xl-center justify-content-evenly pb-4 px-4 px-md-5 pb-xl-0">
 
-                <div className={`flex-fill h-100 ${disabled ? "hidden" : "show"}`}>
+                <div className="flex-fill h-100">
 
                   <ul className="list-unstyled h-100 d-flex flex-column justify-content-around m-0">
 
@@ -510,7 +517,7 @@ const Paypal = () => {
 
                 </div>
 
-                <div className="flex-fill h-100">
+                <div className="flex-fill h-100" >
 
                   <ul className="list-unstyled h-100 d-flex flex-column justify-content-around m-0">
 
@@ -552,15 +559,11 @@ const Paypal = () => {
 
               </div>
 
-              <div ref={smartRef} className={`col-10 col-xl-5 ${disabled ? "hidden" : "show"}`}></div>
+              <div className="col-10 col-xl-5">
 
-              <div className={`col-10 col-xl-5 d-flex align-items-center  ${disabled ? "show" : "hidden"}`}>
+                {disabled ? <div className="button-container-inner"> no items </div> : <div className={`button-container-inner ${show ? "show" : "d-none"}`}> <Image className="spinner" width="40" height="40" src={Spinner} alt="spinner" /></div>}
 
-                <ul className="w-100 list-unstyled m-0">
-
-                  <li className="button-container-inner px-4">no items</li>
-
-                </ul>
+                <div ref={smartRef} className={`button-container-inner ${show ? "d-none" : "show"}`}></div>
 
               </div>
 
@@ -580,7 +583,7 @@ const Paypal = () => {
 
           </div>
 
-          <div className="col-12 col-md-10"></div>
+          <div className={`col-12 col-md-10 ${disabled ? "show" : "hidden"}`}></div>
 
             {Object.keys(output).length > 0  &&
 
