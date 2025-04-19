@@ -214,13 +214,6 @@ export const AppWrapper = ({
 
   const [auth, setAuth] = useState(false);
 
-  const log_out = () => {
-
-    setScrollingRef({current: null});
-    LogOut();
-    setAuth(false);
-  };
-
   const [holdScrollCta, setHoldScrollCta] = useState(false);
 
   const [holdScrollCard, setHoldScrollCard] = useState(false);
@@ -231,6 +224,15 @@ export const AppWrapper = ({
 
     const cookie = await GetCookie();
     setAuth(cookie);
+  };
+
+  const log_out = () => {
+
+    setScrollingRef({current: null});
+    setHoldScrollCta(false);
+    setHoldScrollCard(false);
+    setAuth(false);
+    LogOut();
   };
 
   useEffect(() => {

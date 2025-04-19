@@ -56,14 +56,14 @@ const Paypal = () => {
     cartOrder[e.value]();
   };
 
-  const load = (obj) => {
+  const init = (obj) => {
 
     let total = 0;
 
     for (const index in obj) {
 
       total = total + (obj[index].quantity * obj[index].unit_amount.value);
-    }
+    };
 
     const items = Object.keys(obj).map((index) => obj[index]);
 
@@ -92,11 +92,11 @@ const Paypal = () => {
                 item_total: {
                   currency_code: "AUD",
                   value: total,
-                }
-              }
+                },
+              },
             },
             items: [
-              ...items
+              ...items,
             ],
           }],
         });
@@ -144,6 +144,8 @@ const Paypal = () => {
 
         const total = `$ ${units.amount.value}`;
 
+        setTotal(0);
+
         setCount(1);
 
         setCart({});
@@ -168,7 +170,7 @@ const Paypal = () => {
 
     setSmartButton(button);
 
-    button.render(smartRef.current)
+    button.render(smartRef.current);
   };
 
   const addCart = async () => {
@@ -184,7 +186,7 @@ const Paypal = () => {
         },
         quantity: count,
         ref: order.ref,
-      }
+      },
     };
 
     setCart(obj);
@@ -195,7 +197,7 @@ const Paypal = () => {
 
     setDisabled(false);
 
-    load(obj);
+    init(obj);
   };
 
   const minus = () => {
@@ -236,7 +238,7 @@ const Paypal = () => {
 
     <>
 
-      <Script src={`https://www.paypal.com/sdk/js?client-id=${SCRIPT_PROVIDER_OPTIONS.clientId}&currency=${SCRIPT_PROVIDER_OPTIONS.currency}`} onReady={()=>load(cart)} />
+      <Script src={`https://www.paypal.com/sdk/js?client-id=${SCRIPT_PROVIDER_OPTIONS.clientId}&currency=${SCRIPT_PROVIDER_OPTIONS.currency}`} onReady={()=>init(cart)} />
 
       <div className="paypal container-md d-flex align-items-center pt-5 px-4 px-sm-5 px-md-0 my-sm-4 g-0">
 
