@@ -1,168 +1,38 @@
 "use client"
 import { useState, useRef, useEffect } from "react";
 import { useCartContext, useAppContext } from "@/components/context";
-import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { ArrowDownShort } from "react-bootstrap-icons";
+import Script from "next/script";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import styles from "@/module/paypal.module.scss";
+
+declare global {
+    interface Window {
+      paypal?: any;
+    }
+}
 
 // fixed hydradion bug waiting for update
 const Select = dynamic(() => import("react-select/creatable"), { ssr: false });
 
 const Paypal = () => {
 
-  const { order, cartOrder, options, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled } = useCartContext();
+  const { order, cartOrder, options, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, total, setTotal } = useCartContext();
 
   const { setScrollingRef } = useAppContext();
 
   const [outputBool, setOutputBool] = useState(false);
 
+  const [smartButton, setSmartButton] = useState(undefined);
+
   const outputRef = useRef(null);
 
-  const SCRIPT_PROVIDER_OPTIONS = { 
+  const smartRef = useRef(null);
+
+  const SCRIPT_PROVIDER_OPTIONS = {
     clientId: process.env.NEXT_PUBLIC_REACT_APP_PAYPAL_ID,
-    currency: "AUD", 
-  };
-
-  const total = () => {
-
-    let total = 0;
-
-    for (const index in cart) {
-
-      total = total + (cart[index].quantity * cart[index].unit_amount.value);
-    }
-
-    return total;
-  };
-
-  const createOrder = (data, actions) => {
-
-    const items = Object.keys(cart).map((index) => cart[index]);
-
-    return actions.order.create({
-
-      purchase_units: [
-        {
-          description: "Securewebsite Transaction",
-          amount: {
-            currency_code: "AUD",
-            value: total(),
-            breakdown: {
-              item_total: {
-                currency_code: "AUD",
-                value: total()
-              }
-            }
-          },
-          items: [
-            ...items
-          ]
-        }
-      ],
-    });
-  };
-  
-  const onApprove = async (data, actions) => {
-
-    const order = await actions.order.capture();
-
-    const units = order.purchase_units[0];
-
-    const transaction = order.id;
-
-    const caption = units.description;
-
-    const shipping = units.shipping;
-
-    const name = shipping.name.full_name;
-
-    const addressObj = shipping.address;
-
-    const itemsObj = units.items;
-
-    let address = "";
-
-    for (const index in addressObj) {
-        
-      address += `${addressObj[index]} `;
-    };
-
-    const itemsOutput = {};
-
-    for (const index in itemsObj) {
-
-      const quantity = itemsObj[index].quantity;
-
-      const value = itemsObj[index].unit_amount.value;
-
-      const name = itemsObj[index].name;
-
-      const description = itemsObj[index].description;
-        
-      itemsOutput[index] = { quantity, name, value, description };
-    };
-
-    const total = `$ ${units.amount.value}`;
-
-    setCount(1);
-
-    setCart({});
-
-    setDisabled(true);
-
-    setOutput({ caption: caption, transaction: transaction, name: name, address: address, itemsOutput: itemsOutput , total: total });
-
-    setOutputBool(true);
-
-    cartOrder.cartOne();
-  };
-
-  const ButtonWrapper = () => {
-        
-  const [{ isPending }] = usePayPalScriptReducer();
-    
-    return (
-
-      <>
-
-        {isPending &&
-
-          <div className={`spinner col-10 col-xl-5 ${disabled ? "hidden" : "show"}`}></div>
-
-        }
-
-        {!isPending &&
-
-          <PayPalButtons
-
-            style={{
-              layout: "horizontal",
-              color: "silver",
-              shape: "pill",
-              label: "pay",
-              tagline: false,
-              disableMaxWidth: true,
-              height: 35,
-              borderRadius: 35,
-            }}
-
-            className={`button-container-inner col-10 col-xl-5 ${disabled ? "hidden" : "show"}`}
-
-            createOrder={createOrder}
-
-            onApprove={onApprove}
-
-            disabled={disabled}
-
-          />
-
-        }
-
-      </>
-
-    );
+    currency: "AUD",
   };
 
   const removeCart = (e) => {
@@ -186,11 +56,126 @@ const Paypal = () => {
     cartOrder[e.value]();
   };
 
-  const addCart = () => {
+  const load = (obj) => {
 
-    setCart({
-      ...cart, 
-      [order.name]: { 
+    let total = 0;
+
+    for (const index in obj) {
+
+      total = total + (obj[index].quantity * obj[index].unit_amount.value);
+    }
+
+    const items = Object.keys(obj).map((index) => obj[index]);
+
+    const button = window.paypal?.Buttons({
+
+      style: {
+        layout: "horizontal",
+        color: "silver",
+        shape: "pill",
+        label: "pay",
+        tagline: false,
+        disableMaxWidth: true,
+        height: 35,
+        borderRadius: 35,
+      },
+
+      createOrder: async (data, actions) => {
+
+        return actions.order.create({
+          purchase_units: [{
+            description: "Securewebsite Transaction",
+            amount: {
+              currency_code: "AUD",
+              value: total,
+              breakdown: {
+                item_total: {
+                  currency_code: "AUD",
+                  value: total,
+                }
+              }
+            },
+            items: [
+              ...items
+            ],
+          }],
+        });
+      },
+
+      onApprove: async (data, actions) => {
+
+        const order = await actions.order.capture();
+
+        const units = order.purchase_units[0];
+
+        const transaction = order.id;
+
+        const caption = units.description;
+
+        const shipping = units.shipping;
+
+        const name = shipping.name.full_name;
+
+        const addressObj = shipping.address;
+
+        const itemsObj = units.items;
+
+        let address = "";
+
+        for (const index in addressObj) {
+
+          address += `${addressObj[index]} `;
+        };
+
+        const itemsOutput = {};
+
+        for (const index in itemsObj) {
+
+          const quantity = itemsObj[index].quantity;
+
+          const value = itemsObj[index].unit_amount.value;
+
+          const name = itemsObj[index].name;
+
+          const description = itemsObj[index].description;
+
+          itemsOutput[index] = { quantity, name, value, description };
+        };
+
+        const total = `$ ${units.amount.value}`;
+
+        setCount(1);
+
+        setCart({});
+
+        setDisabled(true);
+
+        setOutput({ caption: caption, transaction: transaction, name: name, address: address, itemsOutput: itemsOutput , total: total });
+
+        setOutputBool(true);
+
+        cartOrder.cartOne();
+      },
+
+      onError: (err: any) => {
+        console.log(err);
+      },
+    });
+
+    setTotal(total);
+
+    if (smartButton !== undefined) smartButton.close();
+
+    setSmartButton(button);
+
+    button.render(smartRef.current)
+  };
+
+  const addCart = async () => {
+
+    const obj = {
+      ...cart,
+      [order.name]: {
         description: order.description,
         name: order.name,
         unit_amount: {
@@ -200,13 +185,17 @@ const Paypal = () => {
         quantity: count,
         ref: order.ref,
       }
-    });
+    };
+
+    setCart(obj);
 
     setCount(1);
 
     setOutput({});
 
     setDisabled(false);
+
+    load(obj);
   };
 
   const minus = () => {
@@ -245,483 +234,485 @@ const Paypal = () => {
 
   return (
 
-    <div className="paypal container-md d-flex align-items-center pt-5 px-4 px-sm-5 px-md-0 my-sm-4 g-0">
-            
-      <div className="row justify-content-center w-100 g-0">
+    <>
 
-        <div className="col-12 col-md-10">
+      <Script src={`https://www.paypal.com/sdk/js?client-id=${SCRIPT_PROVIDER_OPTIONS.clientId}&currency=${SCRIPT_PROVIDER_OPTIONS.currency}`} onReady={()=>load(cart)} />
 
-          <div className="row justify-content-between w-100 g-0">
+      <div className="paypal container-md d-flex align-items-center pt-5 px-4 px-sm-5 px-md-0 my-sm-4 g-0">
 
-            <div className="col-12 order-1">
+        <div className="row justify-content-center w-100 g-0">
 
-              <h3 className="m-0 pb-4">
-                
-                {`${order.name} $ ${order.value}`}
-                
-              </h3>
+          <div className="col-12 col-md-10">
 
-            </div>
+            <div className="row justify-content-between w-100 g-0">
 
-            <div className="bg col-12 col-xl-8 order-3 order-xl-2">
+              <div className="col-12 order-1">
 
-              <p className="p-4 m-0 pe-xl-5">
+                <h3 className="m-0 pb-4">
 
-                <b className="d-block pb-4">
+                  {`${order.name} $ ${order.value}`}
 
-                  {order.sub}
+                </h3>
+
+              </div>
+
+              <div className="bg col-12 col-xl-8 order-3 order-xl-2">
+
+                <p className="p-4 m-0 pe-xl-5">
+
+                  <b className="d-block pb-4">
+
+                    {order.sub}
+
+                  </b>
                   
-                </b>
-                
-                {order.description}
-                
-              </p>
+                  {order.description}
 
-            </div>
+                </p>
 
-            <div className="bg col-12 col-xl-4 order-2 order-xl-3">
+              </div>
 
-              <label className="w-100 py-1 px-3" htmlFor="select">
+              <div className="bg col-12 col-xl-4 order-2 order-xl-3">
 
-                <ArrowDownShort className="me-2"/>  
-                
-                Choose an option
+                <label className="w-100 py-1 px-3" htmlFor="select">
 
-              </label>
+                  <ArrowDownShort className="me-2"/>
 
-              <Select
+                  Choose an option
 
-                inputId="select"
+                </label>
 
-                value={order.ref}
+                <Select
 
-                onChange={selectOrder}
+                  inputId="select"
 
-                options={options}
+                  value={order.ref}
 
-                isSearchable={false}
+                  onChange={selectOrder}
 
-                styles={{
+                  options={options}
 
-                  menu: (provided) => ({
+                  isSearchable={false}
 
-                    ...provided,
+                  styles={{
 
-                    borderRadius: '0',
+                    menu: (provided) => ({
 
-                    margin: '0',
+                      ...provided,
 
-                    color: styles.echo,
+                      borderRadius: '0',
 
-                    backgroundColor: styles.charlie,
+                      margin: '0',
 
-                    boxShadow: 'none',
+                      color: styles.echo,
 
-                    border: '0',
-                  }),
+                      backgroundColor: styles.charlie,
 
-                  menuList: (provided) => ({
+                      boxShadow: 'none',
 
-                    ...provided,
+                      border: '0',
+                    }),
 
-                    padding: '0',
-                  }),
+                    menuList: (provided) => ({
 
-                  option: (provided) => ({
+                      ...provided,
 
-                    ...provided,
+                      padding: '0',
+                    }),
 
-                    color: styles.echo,
+                    option: (provided) => ({
 
-                    fontSize: '16px',
-      
-                    cursor: 'pointer',
+                      ...provided,
 
-                    backgroundColor: styles.charlie,
+                      color: styles.echo,
 
-                    transition: 'background-color 0.3s',
+                      fontSize: '16px',
 
-                    willChange: 'background-color',
+                      cursor: 'pointer',
 
-                    '&:hover': {
+                      backgroundColor: styles.charlie,
 
-                      backgroundColor: styles.november,
-                    },
-                  }),
+                      transition: 'background-color 0.3s',
 
-                  control: (provided) => ({
+                      willChange: 'background-color',
 
-                    ...provided,
+                      '&:hover': {
 
-                    borderRadius: '0',
+                        backgroundColor: styles.november,
+                      },
+                    }),
 
-                    border: '0',
+                    control: (provided) => ({
 
-                    boxShadow: 'none',
-    
-                    backgroundColor: styles.charlie,
+                      ...provided,
 
-                    color: styles.echo,
+                      borderRadius: '0',
 
-                    cursor: 'pointer',
+                      border: '0',
 
-                    fontSize: '16px',
+                      boxShadow: 'none',
 
-                    opacity: '1',
+                      backgroundColor: styles.charlie,
 
-                    transition: 'opacity 0.3s',
+                      color: styles.echo,
 
-                    willChange: 'opacity',
+                      cursor: 'pointer',
 
-                    '&:hover': {
+                      fontSize: '16px',
 
-                      opacity: '0.9',
-                    },
-                  }),
-                }}
+                      opacity: '1',
 
-                components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
+                      transition: 'opacity 0.3s',
 
-              />
+                      willChange: 'opacity',
+
+                      '&:hover': {
+
+                        opacity: '0.9',
+                      },
+                    }),
+                  }}
+
+                  components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
+
+                />
+
+              </div>
 
             </div>
 
           </div>
 
-        </div>
+          <div className="bg col-12 col-md-10">
 
-        <div className="bg col-12 col-md-10">
+            <div className="row justify-content-center align-items-xl-center pb-4 pb-md-5 pb-xl-0 pe-xl-5 g-0">
 
-          <div className="row justify-content-center align-items-xl-center pb-4 pb-md-5 pb-xl-0 pe-xl-5 g-0">
+              <div className="order-image col-10 col-md-4 my-5 p-0">
 
-            <div className="order-image col-10 col-md-4 my-5 p-0">
+                  <Image onLoad={srcListen} src={order.image} alt="Food" width="366" height="366" />
 
-                <Image onLoad={srcListen} src={order.image} alt="Food" width="366" height="366" />
+              </div>
 
-            </div>
+              <div className="counter col-6 col-xl-3 d-flex flex-xl-column justify-content-center align-items-center">
 
-            <div className="counter col-6 col-xl-3 d-flex flex-xl-column justify-content-center align-items-center">
+                <span
 
-              <span
+                  className="text-center"
+                  role="button"
+                  onClick={minus}
 
-                className="text-center"
-                role="button"
-                onClick={minus}
+                >
+
+                  -
+
+                </span>
+
+                <label aria-label="Quantity" htmlFor="count" className="hidden">
+
+                  Quantity
+
+                </label>
+
+                <input disabled={true} id="count" className="text-center m-4 mx-xl-0" type="text" value={count} />
+
+                <span
+
+                  className="text-center"
+                  role="button"
+                  onClick={plus}
+
+                >
+
+                  +
+
+                </span>
+
+              </div>
+
+              <button
+
+                className="button-container-inner col-10 col-xl-5"
+
+                onClick={addCart}
 
               >
 
-                -
+                {Object.keys(cart).includes(order.name) ? (
 
-              </span>
+                    "update"
 
-              <label aria-label="Quantity" htmlFor="count" className="hidden">
-                
-                Quantity
-                
-              </label>
+                  ) : (
 
-              <input disabled={true} id="count" className="text-center m-4 mx-xl-0" type="text" value={count} />
+                    "add"
+                  )
 
-              <span
+                }
 
-                className="text-center"
-                role="button"
-                onClick={plus}
-                
-              >
-
-                +
-
-              </span>
+              </button>
 
             </div>
-
-            <button 
-            
-              className="button-container-inner col-10 col-xl-5"
-
-              onClick={addCart}
-              
-            >
-
-              {Object.keys(cart).includes(order.name) ? (
-
-                  "update"
-
-                ) : (
-
-                  "add"
-                )
-
-              }
-
-            </button>
 
           </div>
 
-        </div>
+          <div className="bg col-12 col-md-10">
 
-        <div className="bg col-12 col-md-10">
+            <div className="row justify-content-center justify-content-xl-end pb-5 pe-xl-5 g-0">
 
-          <div className="row justify-content-center justify-content-xl-end pb-5 pe-xl-5 g-0">
+              <div className="col-12 col-xl-7 d-flex align-items-stretch align-items-xl-center justify-content-evenly pb-4 px-4 px-md-5 pb-xl-0">
 
-            <div className="col-12 col-xl-7 d-flex align-items-stretch align-items-xl-center justify-content-evenly pb-4 px-4 px-md-5 pb-xl-0">
+                <div className={`flex-fill h-100 ${disabled ? "hidden" : "show"}`}>
 
-              <div className={`flex-fill h-100 ${disabled ? "hidden" : "show"}`}>
+                  <ul className="list-unstyled h-100 d-flex flex-column justify-content-around m-0">
 
-                <ul className="list-unstyled h-100 d-flex flex-column justify-content-around m-0">
+                    {Object.keys(cart).map((index, i) => {
+
+                      const { quantity, name, unit_amount: {value}, ref } = cart[index];
+
+                      return (
+
+                          <li
+
+                          key={i}
+
+                          className="d-flex flex-column flex-xl-row align-items-xl-center justify-content-xl-between mb-3"
+
+                        >
+
+                          <span
+
+                            className="reSelect"
+
+                            onClick={(e)=>optionOrder(e)}
+
+                            data-value={ref.value}
+
+                          >
+
+                            {quantity} x {name}
+
+                          </span>
+
+                          <span>
+
+                            $ {quantity * value}
+
+                          </span>
+
+                        </li>
+
+                      )
+
+                    })}
+
+                  </ul>
+
+                </div>
+
+                <div className="flex-fill h-100">
+
+                  <ul className="list-unstyled h-100 d-flex flex-column justify-content-around m-0">
 
                   {Object.keys(cart).map((index, i) => {
 
-                    const { quantity, name, unit_amount: {value}, ref } = cart[index];
+                      const { name } = cart[index];
 
-                    return (
+                      return (
 
                         <li
 
-                        key={i}
-                        
-                        className="d-flex flex-column flex-xl-row align-items-xl-center justify-content-xl-between mb-3"
-                
-                      >
+                          key={i}
 
-                        <span
-
-                          className="reSelect"
-
-                          onClick={(e)=>optionOrder(e)}
-
-                          data-value={ref.value}
+                          className="d-flex flex-column flex-xl-row mb-3"
 
                         >
 
-                          {quantity} x {name}
+                          <button
 
-                        </span>
+                            className="remove p-0 ms-4"
 
-                        <span>
+                            onClick={() =>removeCart(name)}
 
-                          $ {quantity * value}
+                          >
 
-                        </span>
+                            remove
 
-                      </li>
+                          </button>
 
-                    )
+                        </li>
 
-                  })}
+                      )
+
+                    })}
+
+                  </ul>
+
+                </div>
+
+              </div>
+
+              <div ref={smartRef} className={`col-10 col-xl-5 ${disabled ? "hidden" : "show"}`}></div>
+
+              <div className={`col-10 col-xl-5 d-flex align-items-center  ${disabled ? "show" : "hidden"}`}>
+
+                <ul className="w-100 list-unstyled m-0">
+
+                  <li className="button-container-inner px-4">no items</li>
 
                 </ul>
 
               </div>
 
-              <div className="flex-fill h-100">
+              <div className="col-12 ps-4 ps-md-5 pt-4">
 
-                <ul className="list-unstyled h-100 d-flex flex-column justify-content-around m-0">
+                <span className="total pe-2">
 
-                {Object.keys(cart).map((index, i) => {
+                  total
 
-                    const { name } = cart[index];
-
-                    return (
-
-                      <li
-
-                        key={i}
-
-                        className="d-flex flex-column flex-xl-row mb-3"
-
-                      >
-
-                        <button
-
-                          className="remove p-0 ms-4"
-
-                          onClick={() =>removeCart(name)}
-
-                        >
-
-                          remove
-
-                        </button>
-
-                      </li>
-
-                    )
-
-                  })}
-
-                </ul>
+                </span>
+                
+                $ {total}
 
               </div>
-
-            </div>
-
-            <PayPalScriptProvider options={SCRIPT_PROVIDER_OPTIONS}>
-
-              <ButtonWrapper />
-
-            </PayPalScriptProvider>
-
-            <div className={`col-10 col-xl-5 d-flex align-items-center  ${disabled ? "show" : "hidden"}`}>
-
-              <ul className="w-100 list-unstyled m-0">
-
-                <li className="button-container-inner px-4">no items</li>
-
-              </ul>
-
-            </div>
-
-            <div className="col-12 ps-4 ps-md-5 pt-4">
-
-              <span className="total pe-2">
-                
-                total 
-                
-              </span> 
-              
-              $ {total()}
 
             </div>
 
           </div>
 
-        </div>
+          <div className="col-12 col-md-10"></div>
 
-        <div className="col-12 col-md-10"></div>
+            {Object.keys(output).length > 0  &&
 
-          {Object.keys(output).length > 0  &&
+              <section ref={outputRef} className="col-12 col-md-10">
 
-            <section ref={outputRef} className="col-12 col-md-10">
+                <h3 className="m-0 pb-4 pt-5">
 
-              <h3 className="m-0 pb-4 pt-5">
+                  Order Complete
 
-                Order Complete
+                </h3>
 
-              </h3>
+                <table>
 
-              <table>
+                  <caption>
 
-                <caption>
-                  
-                  {output.caption}
-                  
-                </caption>
+                    {output.caption}
 
-                <thead>
+                  </caption>
 
-                  <tr>
+                  <thead>
 
-                    <th id="transaction">
-                      
-                      Transaction
-                      
-                    </th>
+                    <tr>
 
-                    <th id="name">
-                      
-                      Name:
-                      
-                    </th>
+                      <th id="transaction">
 
-                    <th id="address">
-                      
-                      Address:
-                      
-                    </th>
+                        Transaction
 
-                    <th id="items">
-                      
-                      Items:
-                      
-                    </th>
+                      </th>
 
-                    <th id="total">
-                      
-                      Total:
-                      
-                    </th>
+                      <th id="name">
 
-                  </tr>
+                        Name:
 
-                </thead>
+                      </th>
 
-                <tbody>
+                      <th id="address">
 
-                  <tr>
+                        Address:
 
-                    <td headers="transaction">
-                      
-                      {output.transaction}
-                      
-                    </td>
+                      </th>
 
-                    <td headers="name">
-                      
-                      {output.name}
-                      
-                    </td>
+                      <th id="items">
 
-                    <td headers="address">
-                      
-                      {output.address}
-                      
-                    </td>
+                        Items:
 
-                    <td headers="items">
-                  
-                      {Object.keys(output.itemsOutput).map((index, i) => {
+                      </th>
+
+                      <th id="total">
+
+                        Total:
+
+                      </th>
+
+                    </tr>
+
+                  </thead>
+
+                  <tbody>
+
+                    <tr>
+
+                      <td headers="transaction">
+
+                        {output.transaction}
+
+                      </td>
+
+                      <td headers="name">
+
+                        {output.name}
+
+                      </td>
+
+                      <td headers="address">
+
+                        {output.address}
+
+                      </td>
+
+                      <td headers="items">
+
+                        {Object.keys(output.itemsOutput).map((index, i) => {
+
+                          const { quantity, name, value, description } = output.itemsOutput[index];
+
+                          return (
                         
-                        const { quantity, name, value, description } = output.itemsOutput[index];
+                            <div className="mt-3" key={i}>
 
-                        return (
-                      
-                          <div className="mt-3" key={i}>
+                              <div className="mb-2">
 
-                            <div className="mb-2">
+                                <div className="mb-1">
 
-                              <div className="mb-1">
+                                  {quantity} x {name} &nbsp; $ {value * quantity}
 
-                                {quantity} x {name} &nbsp; $ {value * quantity} 
+                                </div>
 
-                              </div> 
+                                <div>
 
-                              <div>
-                                
-                                {description} 
+                                  {description}
+
+                                </div>
 
                               </div> 
 
-                            </div> 
+                            </div>
 
-                          </div>
+                          )
 
-                        )
+                        })}
 
-                      })}
-                                                
-                    </td>
+                      </td>
 
-                    <td headers="total">
-                      
-                      {output.total}
-                      
-                    </td>
+                      <td headers="total">
 
-                  </tr>
+                        {output.total}
 
-                </tbody>
+                      </td>
 
-            </table>
+                    </tr>
 
-            </section>
+                  </tbody>
 
-          }
+                </table>
+
+              </section>
+
+            }
+
+        </div>
 
       </div>
 
-    </div>
+    </>
 
   );
 };

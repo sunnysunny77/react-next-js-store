@@ -184,9 +184,11 @@ export const CartWrapper = ({
 
   const [cart, setCart] = useState({});
 
+  const [total, setTotal] = useState(0);
+
   return (
 
-    <CartContext.Provider value={{ order, cartOrder, options, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled }}>
+    <CartContext.Provider value={{ order, cartOrder, options, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, total, setTotal }}>
 
       {children}
 

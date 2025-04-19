@@ -57,18 +57,15 @@
             color: $charlie;
         }
     }
-    .spinner,
-    .button-container-inner {
-        height: 35px;
-        background-color: $mike;
-        border-radius: 35px;
-    }
     .button-container-inner {
         display: flex;
         justify-content: center;
         align-items: center;
         color: $echo;
         font-weight: 500;
+        height: 35px;
+        background-color: $mike;
+        border-radius: 35px;
     }
     button {
         border: none;
