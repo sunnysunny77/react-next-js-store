@@ -141,16 +141,18 @@ const Paypal = () => {
               layout: "horizontal",
               color: "silver",
               shape: "pill",
-              label: "paypal",
+              label: "pay",
               tagline: false,
               disableMaxWidth: true,
+              height: 35,
+              borderRadius: 35,
             }}
 
             className={`button-container-inner col-10 col-xl-5 ${disabled ? "hidden" : "show"}`}
 
-            createOrder={(data, actions) => createOrder(data, actions)}
+            createOrder={createOrder}
 
-            onApprove={(data, actions) => onApprove(data, actions)}
+            onApprove={onApprove}
 
             disabled={disabled}
 
