@@ -55,7 +55,8 @@ const Auth = () => {
     password: "",
   });
 
-  const imageLoader = ({src }) => {
+  const imageLoader = ({ src }) => {
+
     return `${src}`;
   };
 
