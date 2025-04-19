@@ -157,6 +157,10 @@ const Paypal = () => {
 
         setCart({});
 
+        setDisabled(true);
+
+        setShow(true);
+
         setOutput({ caption: caption, transaction: transaction, name: name, address: address, itemsOutput: itemsOutput , total: total });
 
         setOutputBool(true);
