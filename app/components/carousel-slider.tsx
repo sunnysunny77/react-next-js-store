@@ -16,12 +16,12 @@ const CarouselSlider = () => {
 
       if (bootstrap) {
 
-        const { Carousel } = bootstrap;
+        const {Carousel} = bootstrap;
         const inst = new Carousel(ref.current, {
           pause: false,
         });
         inst.cycle();
-      }
+      };
     }, [bootstrap]);
 
     return (

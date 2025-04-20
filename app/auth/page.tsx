@@ -37,7 +37,6 @@ const Auth = () => {
     getcode: true,
   });
 
-
   const [stateSetCaptcha, actionSetCaptcha, isPendingSetCaptcha] = useActionState(SetCaptcha, {
     message: "",
     captcha: "",
