@@ -17,7 +17,6 @@ const Registraion = async (stateRegistraion : StateRegistraion , formData: FormD
     password: formData.get("password"),
   };
 
-
   let error = false;
 
   let error_message = "";
@@ -78,7 +77,7 @@ const Registraion = async (stateRegistraion : StateRegistraion , formData: FormD
     auth: {
       user: process.env.REACT_APP_NODEMAILER_EMAIL,
       pass: process.env.REACT_APP_NODEMAILER_PASSWORD,
-    }
+    },
   });
 
   try {

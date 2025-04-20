@@ -82,7 +82,7 @@ export const GetEnquiry = async (stateEnquiry: StateEnquiry, formData: FormData)
     auth: {
       user: process.env.REACT_APP_NODEMAILER_EMAIL,
       pass: process.env.REACT_APP_NODEMAILER_PASSWORD,
-    }
+    },
   });
 
   try {

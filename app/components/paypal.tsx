@@ -48,7 +48,7 @@ const Paypal = () => {
 
       setDisabled(true);
       setShow(true);
-    }
+    };
   };
 
   const optionOrder = (e) => {
@@ -213,12 +213,12 @@ const Paypal = () => {
 
   const minus = () => {
 
-    if (count > 1) setCount(count - 1)
+    if (count > 1) setCount(count - 1);
   };
 
   const plus = () => {
 
-    setCount(count + 1)
+    setCount(count + 1);
   };
 
   const srcListen = (e) => {
@@ -230,7 +230,7 @@ const Paypal = () => {
     setTimeout(()=>{
 
       obj.classList.remove("fade");
-    }, 100)
+    }, 100);
   };
 
   useEffect(() => {

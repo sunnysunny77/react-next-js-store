@@ -44,7 +44,7 @@ const init = () => {
     context.fillText(text[i], 0, 0);
     context.rotate(-sDeg);
     context.translate(-x, -y);
-  }
+  };
 
   for (let i = 0; i < 5; i++) {
 
@@ -59,7 +59,7 @@ const init = () => {
       Math.random() * canvas.height
     );
     context.stroke();
-  }
+  };
 
   for (let i = 0; i < 70; i++) {
 
@@ -70,7 +70,7 @@ const init = () => {
     context.moveTo(x, y);
     context.lineTo(x + 1, y + 1);
     context.stroke();
-  }
+  };
 
   return {canvas: canvas.toDataURL(), text: text};
 };
