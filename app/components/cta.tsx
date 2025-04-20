@@ -1,14 +1,14 @@
 "use client"
-import { useEffect } from "react";
-import { useAppContext } from "@/components/context";
-import { ArrowRightCircleFill } from "react-bootstrap-icons";
+import {useEffect} from "react";
+import {useAppContext} from "@/components/context";
+import {ArrowRightCircleFill} from "react-bootstrap-icons";
 import Link from "next/link";
 
 const CtaType = (props) => {
 
-  const { ctaType, classes, children, onClick } = props;
+  const {ctaType, classes, children, onClick} = props;
 
-  const { auth } = useAppContext();
+  const {auth} = useAppContext();
 
   return ctaType ? (
 
@@ -34,9 +34,9 @@ const CtaType = (props) => {
 
 const Cta = (props) => {
 
-  const { ctaType, heading, bold, paragraph, button, itemsRef } = props;
+  const {ctaType, heading, bold, paragraph, button, itemsRef} = props;
 
-  const { setScrollingRef, holdScrollCta, setHoldScrollCta } = useAppContext();
+  const {setScrollingRef, holdScrollCta, setHoldScrollCta} = useAppContext();
 
   const scroll_to = () => {
 
@@ -46,7 +46,7 @@ const Cta = (props) => {
     } else if (!itemsRef) {
 
       setHoldScrollCta(true);
-    }
+    };
   };
 
   useEffect(()=>{
@@ -107,9 +107,9 @@ const Cta = (props) => {
 
         <div className="col-11 col-lg-5 col-xl-4 d-flex align-items-end justify-content-md-center py-3 px-sm-2 py-sm-4 p-lg-4 px-xl-5">
 
-            <div className="div-button w-100 d-flex justify-content-between  align-items-center text-start py-3 px-4">
+            <div className="div-button w-100 d-flex justify-content-between align-items-center text-start py-3 px-4">
                 
-                {button}  <ArrowRightCircleFill className="ms-3 me-1" />
+                {button} <ArrowRightCircleFill className="ms-3 me-1"/>
                 
             </div>
 

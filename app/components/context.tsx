@@ -1,8 +1,8 @@
 "use client"
-import { createContext, useContext, useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
-import GetCookie from  "@/api/get-cookie";
-import LogOut from  "@/api/log-out";
+import {createContext, useContext, useState, useEffect} from "react";
+import {usePathname} from "next/navigation";
+import GetCookie from "@/api/get-cookie";
+import LogOut from "@/api/log-out";
 import Basil from "@/images/basil.webp";
 import Broccoli from "@/images/broccoli.webp";
 import Chitto from "@/images/chitto.webp";
@@ -78,12 +78,12 @@ export const CartWrapper = ({
 
   const options = [
 
-    { value: 'cartOne', label: items.cartOne.name },
-    { value: 'cartTwo', label: items.cartTwo.name },
-    { value: 'cartThree', label: items.cartThree.name },
-    { value: 'cartFour', label: items.cartFour.name },
-    { value: 'cartFive', label: items.cartFive.name },
-    { value: 'cartSix', label: items.cartSix.name }
+    {value: "cartOne", label: items.cartOne.name},
+    {value: "cartTwo", label: items.cartTwo.name},
+    {value: "cartThree", label: items.cartThree.name},
+    {value: "cartFour", label: items.cartFour.name},
+    {value: "cartFive", label: items.cartFive.name},
+    {value: "cartSix", label: items.cartSix.name},
   ];
 
   const cartOrder = {
@@ -190,7 +190,7 @@ export const CartWrapper = ({
 
   return (
 
-    <CartContext.Provider value={{ order, cartOrder, options, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, total, setTotal, show, setShow }}>
+    <CartContext.Provider value={{order, cartOrder, options, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, total, setTotal, show, setShow}}>
 
       {children}
 
@@ -242,18 +242,18 @@ export const AppWrapper = ({
     if (pathname !== route && scrollingRef.current === null)  {
 
       setRoute(pathname);
-      window.scroll({ top: 0, left: 0, behavior: "instant" });
+      window.scroll({top: 0, left: 0, behavior: "instant"});
     }
-  },[pathname, route, scrollingRef])
+  },[pathname, route, scrollingRef]);
 
   useEffect(() => {
 
-    if (scrollingRef.current !== null) window.scroll({ top: scrollingRef.current.offsetTop || 0, left: 0, behavior: "smooth" });
+    if (scrollingRef.current !== null) window.scroll({top: scrollingRef.current.offsetTop || 0, left: 0, behavior: "smooth"});
   },[scrollingRef]);
 
   return (
 
-    <AppContext.Provider value={{ scrollingRef, setScrollingRef, auth, checkCookie, log_out, holdScrollCta, setHoldScrollCta, holdScrollCard, setHoldScrollCard }}>
+    <AppContext.Provider value={{scrollingRef, setScrollingRef, auth, checkCookie, log_out, holdScrollCta, setHoldScrollCta, holdScrollCard, setHoldScrollCard}}>
 
       {children}
 

@@ -1,6 +1,6 @@
 "use server"
-import { createCanvas } from "canvas";
-import { cookies } from "next/headers";
+import {createCanvas} from "canvas";
+import {cookies} from "next/headers";
 import bcrypt from "bcrypt";
 
 const init = () => {
@@ -16,7 +16,7 @@ const init = () => {
     const g = Math.floor(Math.random() * 256);
     const b = Math.floor(Math.random() * 256);
   
-    return `rgb(${  r  },${  g  },${  b  })`;
+    return `rgb(${r},${g},${b})`;
   };
 
   const canvas = createCanvas(140, 50);
@@ -72,7 +72,7 @@ const init = () => {
     context.stroke();
   }
 
-  return { canvas: canvas.toDataURL(), text: text };
+  return {canvas: canvas.toDataURL(), text: text};
 };
 
 type StateSetCaptcha = {
@@ -115,6 +115,6 @@ export const GetCaptcha = async () => {
   const text = res.text;
   const hash = bcrypt.hashSync(text, salt);
   const cookieStore = await cookies();
-  cookieStore.set("Store-App-Captcha", hash, { secure: true, httpOnly: true, sameSite: 'strict'});
+  cookieStore.set("Store-App-Captcha", hash, {secure: true, httpOnly: true, sameSite: "strict"});
   return res.canvas;
 };

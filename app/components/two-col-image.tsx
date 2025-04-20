@@ -1,6 +1,6 @@
 const TwoColImage = (props) => {
 
-    const { heading, paragraph, children } = props;
+    const {heading, paragraph, children} = props;
     
     return (
       

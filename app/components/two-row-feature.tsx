@@ -1,8 +1,8 @@
-import { Check } from "react-bootstrap-icons";
+import {Check} from "react-bootstrap-icons";
 
 const TwoRowFeature = (props) => {
 
-  const { heading_top, heading_bottom, paragraph, children, items } = props;
+  const {heading_top, heading_bottom, paragraph, children, items} = props;
 
   return (
 
@@ -110,9 +110,9 @@ const TwoRowFeature = (props) => {
 
                       <div className="row justify-content-center justify-content-sm-start g-0">
 
-                        {items.map((index, i) => { 
+                        {items.map((index, i) => {
                                             
-                            const { heading, content } = index; 
+                            const {heading, content} = index;
 
                             return (
 
@@ -120,7 +120,7 @@ const TwoRowFeature = (props) => {
 
                                 <h3 className="py-2 px-4 mb-4 text-center">
 
-                                  { heading }
+                                  {heading}
 
                                 </h3>
 
@@ -128,7 +128,7 @@ const TwoRowFeature = (props) => {
 
                                   {content.map((index, i) => {
                                     
-                                    const { item } = index;
+                                    const {item} = index;
                                         
                                     return (
 
@@ -136,13 +136,13 @@ const TwoRowFeature = (props) => {
 
                                         <div>
 
-                                          <Check className="me-3" />
+                                          <Check className="me-3"/>
 
                                         </div>
                                       
                                         <div>
 
-                                          { item }
+                                          {item}
 
                                         </div>
 

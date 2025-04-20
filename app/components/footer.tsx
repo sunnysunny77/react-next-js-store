@@ -1,15 +1,15 @@
 
 "use client"
-import { useAppContext } from "@/components/context";
-import { Linkedin } from "react-bootstrap-icons";
-import { ArrowUp } from "react-bootstrap-icons";
-import { usePathname } from "next/navigation";
+import {useAppContext} from "@/components/context";
+import {Linkedin} from "react-bootstrap-icons";
+import {ArrowUp} from "react-bootstrap-icons";
+import {usePathname } from "next/navigation";
 import Link from "next/link";
 import Year from "@/components/year";
 
 const Footer = () => {
 
-  const { auth, log_out, setScrollingRef } = useAppContext();
+  const {auth, log_out, setScrollingRef} = useAppContext();
 
   const pathname = usePathname();
 
@@ -145,7 +145,7 @@ const Footer = () => {
 
           <div className="col-12 col-xxl-11">
 
-            <hr className="w-100" />  
+            <hr className="w-100"/>
 
             <div className="row w-100 g-0">
 
@@ -165,7 +165,7 @@ const Footer = () => {
 
                 <Link aria-label="LinkedIn" href="/">
                         
-                  <Linkedin />
+                  <Linkedin/>
         
                 </Link>
 
@@ -173,7 +173,7 @@ const Footer = () => {
 
               <div className="col-12">
 
-                <Year />
+                <Year/>
 
               </div>
 
@@ -181,7 +181,7 @@ const Footer = () => {
 
                 <button onClick={scroll_to} className="top" aria-label="Return to top">
 
-                  <ArrowUp />
+                  <ArrowUp/>
 
                 </button>
 

@@ -1,6 +1,6 @@
 "use client"
-import { useEffect } from "react";
-import { OverlayScrollbars } from "overlayscrollbars";
+import {useEffect} from "react";
+import {OverlayScrollbars} from "overlayscrollbars";
 import "overlayscrollbars/overlayscrollbars.css";
 
 const Init = () => {

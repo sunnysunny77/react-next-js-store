@@ -1,11 +1,11 @@
 "use client"
-import { useEffect, useState, useCallback, createRef, useRef } from "react";
-import { ArrowRight } from "react-bootstrap-icons";
+import {useEffect, useState, useCallback, createRef, useRef} from "react";
+import {ArrowRight} from "react-bootstrap-icons";
 import PreText from "@/components/pretext";
 
 const ButtonSlider = (props) => {
 
-  const { items } = props;
+  const {items} = props;
 
   const transition = "transform 0.5s"; 
 
@@ -29,7 +29,7 @@ const ButtonSlider = (props) => {
 
     for (const index of sliderItems) {
 
-      Object.assign(index.current.style,{ 
+      Object.assign(index.current.style,{
           
         transition: transition, 
         transform: `translateX(-${100 * count}%)`,
@@ -39,7 +39,7 @@ const ButtonSlider = (props) => {
 
   const reset_item = useCallback((transition) => {
 
-    Object.assign(sliderButtonContainer.current.style,{ 
+    Object.assign(sliderButtonContainer.current.style,{
       
       transition: transition,
       transform:  "translateX(0)",
@@ -50,14 +50,14 @@ const ButtonSlider = (props) => {
 
     if (count === length - 2)  {
 
-      Object.assign(sliderButtonContainer.current.style,{ 
+      Object.assign(sliderButtonContainer.current.style,{
 
         transition: transition,
         transform:  "translateX(-100%)",
       });
     } else if (count === length - 1) {
             
-      Object.assign(sliderButtonContainer.current.style,{ 
+      Object.assign(sliderButtonContainer.current.style,{
 
         transition: transition,
         transform:  "translateX(-200%)",
@@ -72,7 +72,7 @@ const ButtonSlider = (props) => {
 
     if (count === length - 1) {
         
-      Object.assign(sliderButtonContainer.current.style,{ 
+      Object.assign(sliderButtonContainer.current.style,{
 
         transition: transition,
         transform:  "translateX(-100%)",
@@ -153,7 +153,7 @@ const ButtonSlider = (props) => {
 
       const width = window.innerWidth;
   
-      if (width >= 1200) { 
+      if (width >= 1200) {
   
         transform_button_lg("none", count); 
       } else if (width >= 768 && width < 1200) {
@@ -162,10 +162,10 @@ const ButtonSlider = (props) => {
       } else {
   
         reset_item("none");
-      }
-    }
+      };
+    };
 
-    window.addEventListener("resize", resize, { passive: true })
+    window.addEventListener("resize", resize, {passive: true})
 
     return () => {
 
@@ -181,9 +181,9 @@ const ButtonSlider = (props) => {
 
           <div className="slider-container slider_1-row row d-flex flex-nowrap justify-content-start g-0">
 
-            {items.map((index, i) => { 
+            {items.map((index, i) => {
                                       
-              const { heading, bold, paragraph } = index;
+              const {heading, bold, paragraph} = index;
 
               const ref = createRef();
 
@@ -191,7 +191,7 @@ const ButtonSlider = (props) => {
 
               return (
 
-                <div ref={ref as React.RefObject<HTMLDivElement>}  key={i} className="slider-item slider_1-item">
+                <div ref={ref as React.RefObject<HTMLDivElement>} key={i} className="slider-item slider_1-item">
 
                   <div className="slider_1-item-padding slider-padding h-100">
 
@@ -199,25 +199,25 @@ const ButtonSlider = (props) => {
 
                       <h3 className="slider_1-item-heading mb-1">
 
-                        { heading }
+                        {heading}
                   
                       </h3>
 
                       <b className="slider_1-item-bold d-block mb-3">  
 
-                        { bold } 
+                        {bold}
 
                       </b>
 
                       <p className="slider_1-item-content mb-0">
 
-                        <PreText text={ paragraph } />
+                        <PreText text={paragraph}/>
               
                       </p>
 
                       <button onClick={click_sm} aria-label="next" className="position-absolute slider_1-button slider-next slider-next-sm">
                           
-                        <ArrowRight />
+                        <ArrowRight/>
                           
                       </button>
 
@@ -235,13 +235,13 @@ const ButtonSlider = (props) => {
 
               <button onClick={click_md} aria-label="next" className="slider_1-button slider-next slider-next-md">
                   
-                <ArrowRight />
+                <ArrowRight/>
                   
               </button>
 
               <button onClick={click_lg} aria-label="next" className="slider_1-button slider-next slider-next-lg">
                   
-                <ArrowRight />
+                <ArrowRight/>
                   
               </button>
 

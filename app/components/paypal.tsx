@@ -1,7 +1,7 @@
 "use client"
-import { useState, useRef, useEffect } from "react";
-import { useCartContext, useAppContext } from "@/components/context";
-import { ArrowDownShort } from "react-bootstrap-icons";
+import {useState, useRef, useEffect} from "react";
+import {useCartContext, useAppContext} from "@/components/context";
+import {ArrowDownShort} from "react-bootstrap-icons";
 import Spinner from "@/images/spinner.gif";
 import Script from "next/script";
 import dynamic from "next/dynamic";
@@ -12,16 +12,16 @@ declare global {
     interface Window {
       paypal?: any;
     }
-}
+};
 
 // fixed hydradion bug waiting for update
-const Select = dynamic(() => import("react-select/creatable"), { ssr: false });
+const Select = dynamic(() => import("react-select/creatable"), {ssr: false});
 
 const Paypal = () => {
 
-  const { order, cartOrder, options, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, total, setTotal, show, setShow } = useCartContext();
+  const {order, cartOrder, options, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, total, setTotal, show, setShow} = useCartContext();
 
-  const { setScrollingRef } = useAppContext();
+  const {setScrollingRef} = useAppContext();
 
   const [outputBool, setOutputBool] = useState(false);
 
@@ -38,7 +38,7 @@ const Paypal = () => {
 
   const removeCart = (e) => {
 
-    const obj = { ...cart };
+    const obj = {...cart};
 
     delete obj[e];
 
@@ -146,7 +146,7 @@ const Paypal = () => {
 
           const description = itemsObj[index].description;
 
-          itemsOutput[index] = { quantity, name, value, description };
+          itemsOutput[index] = {quantity, name, value, description};
         };
 
         const total = `$ ${units.amount.value}`;
@@ -161,7 +161,7 @@ const Paypal = () => {
 
         setShow(true);
 
-        setOutput({ caption: caption, transaction: transaction, name: name, address: address, itemsOutput: itemsOutput , total: total });
+        setOutput({caption: caption, transaction: transaction, name: name, address: address, itemsOutput: itemsOutput , total: total});
 
         setOutputBool(true);
 
@@ -249,7 +249,7 @@ const Paypal = () => {
 
     <>
 
-      <Script src={`https://www.paypal.com/sdk/js?client-id=${SCRIPT_PROVIDER_OPTIONS.clientId}&currency=${SCRIPT_PROVIDER_OPTIONS.currency}`} onReady={()=>init(cart)} />
+      <Script src={`https://www.paypal.com/sdk/js?client-id=${SCRIPT_PROVIDER_OPTIONS.clientId}&currency=${SCRIPT_PROVIDER_OPTIONS.currency}`} onReady={()=>init(cart)}/>
 
       <div className="paypal container-md d-flex align-items-center pt-5 px-4 px-sm-5 px-md-0 my-sm-4 g-0">
 
@@ -313,24 +313,24 @@ const Paypal = () => {
 
                       ...provided,
 
-                      borderRadius: '0',
+                      borderRadius: "0",
 
-                      margin: '0',
+                      margin: "0",
 
                       color: styles.echo,
 
                       backgroundColor: styles.charlie,
 
-                      boxShadow: 'none',
+                      boxShadow: "none",
 
-                      border: '0',
+                      border: "0",
                     }),
 
                     menuList: (provided) => ({
 
                       ...provided,
 
-                      padding: '0',
+                      padding: "0",
                     }),
 
                     option: (provided) => ({
@@ -339,17 +339,17 @@ const Paypal = () => {
 
                       color: styles.echo,
 
-                      fontSize: '16px',
+                      fontSize: "16px",
 
-                      cursor: 'pointer',
+                      cursor: "pointer",
 
                       backgroundColor: styles.charlie,
 
-                      transition: 'background-color 0.3s',
+                      transition: "background-color 0.3s",
 
-                      willChange: 'background-color',
+                      willChange: "background-color",
 
-                      '&:hover': {
+                      "&:hover": {
 
                         backgroundColor: styles.november,
                       },
@@ -359,34 +359,34 @@ const Paypal = () => {
 
                       ...provided,
 
-                      borderRadius: '0',
+                      borderRadius: "0",
 
-                      border: '0',
+                      border: "0",
 
-                      boxShadow: 'none',
+                      boxShadow: "none",
 
                       backgroundColor: styles.charlie,
 
                       color: styles.echo,
 
-                      cursor: 'pointer',
+                      cursor: "pointer",
 
-                      fontSize: '16px',
+                      fontSize: "16px",
 
-                      opacity: '1',
+                      opacity: "1",
 
-                      transition: 'opacity 0.3s',
+                      transition: "opacity 0.3s",
 
-                      willChange: 'opacity',
+                      willChange: "opacity",
 
-                      '&:hover': {
+                      "&:hover": {
 
-                        opacity: '0.9',
+                        opacity: "0.9",
                       },
                     }),
                   }}
 
-                  components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
+                  components={{DropdownIndicator:() => null, IndicatorSeparator:() => null}}
 
                 />
 
@@ -402,7 +402,7 @@ const Paypal = () => {
 
               <div className="order-image col-10 col-md-4 my-5 p-0">
 
-                  <Image onLoad={srcListen} src={order.image} alt="Food" width="366" height="366" />
+                  <Image onLoad={srcListen} src={order.image} alt="Food" width="366" height="366"/>
 
               </div>
 
@@ -426,7 +426,7 @@ const Paypal = () => {
 
                 </label>
 
-                <input disabled={true} id="count" className="text-center m-4 mx-xl-0" type="text" value={count} />
+                <input disabled={true} id="count" className="text-center m-4 mx-xl-0" type="text" value={count}/>
 
                 <span
 
@@ -479,7 +479,7 @@ const Paypal = () => {
 
                     {Object.keys(cart).map((index, i) => {
 
-                      const { quantity, name, unit_amount: {value}, ref } = cart[index];
+                      const {quantity, name, unit_amount: {value}, ref} = cart[index];
 
                       return (
 
@@ -527,7 +527,7 @@ const Paypal = () => {
 
                   {Object.keys(cart).map((index, i) => {
 
-                      const { name } = cart[index];
+                      const {name} = cart[index];
 
                       return (
 
@@ -565,7 +565,7 @@ const Paypal = () => {
 
               <div className="col-10 col-xl-5">
 
-                {disabled ? <div className="button-container-inner"> no items </div> : <div className={`button-container-inner ${show ? "show" : "d-none"}`}> <Image className="spinner" width="40" height="40" src={Spinner} alt="spinner" /></div>}
+                {disabled ? <div className="button-container-inner"> no items </div> : <div className={`button-container-inner ${show ? "show" : "d-none"}`}> <Image className="spinner" width="40" height="40" src={Spinner} alt="spinner"/></div>}
 
                 <div ref={smartRef} className={`button-container-inner ${show ? "d-none" : "show"}`}></div>
 
@@ -671,7 +671,7 @@ const Paypal = () => {
 
                         {Object.keys(output.itemsOutput).map((index, i) => {
 
-                          const { quantity, name, value, description } = output.itemsOutput[index];
+                          const {quantity, name, value, description} = output.itemsOutput[index];
 
                           return (
                         

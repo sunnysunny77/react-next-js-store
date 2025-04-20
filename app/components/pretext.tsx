@@ -1,6 +1,6 @@
 const PreText = (props) => {
 
-    const { text } = props;
+    const {text} = props;
     
     return (
       

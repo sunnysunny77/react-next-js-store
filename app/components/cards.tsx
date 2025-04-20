@@ -1,16 +1,16 @@
 "use client"
-import { useEffect } from "react";
-import { useCartContext } from "@/components/context";
-import { useAppContext } from "@/components/context";
-import { ArrowRight } from 'react-bootstrap-icons';
+import {useEffect} from "react";
+import {useCartContext} from "@/components/context";
+import {useAppContext} from "@/components/context";
+import {ArrowRight} from "react-bootstrap-icons";
 import Link from "next/link";
 import Image from "next/image";
 
 const CardsType = (props) => {
 
-  const { auth } = useAppContext();
+  const {auth} = useAppContext();
 
-  const { cardsType, classes, onClick, data_value, children } = props;
+  const {cardsType, classes, onClick, data_value, children} = props;
 
   return cardsType ? (
 
@@ -38,11 +38,11 @@ const CardsType = (props) => {
 
 const Cards = (props) => {
 
-  const { heading, cardsType, storeRef } = props;
+  const {heading, cardsType, storeRef} = props;
 
-  const { cartOrder, options, items } = useCartContext();
+  const {cartOrder, options, items} = useCartContext();
 
-  const { setScrollingRef, holdScrollCard, setHoldScrollCard } = useAppContext();
+  const {setScrollingRef, holdScrollCard, setHoldScrollCard} = useAppContext();
 
   const optionOrder = (e) => {
 
@@ -53,7 +53,7 @@ const Cards = (props) => {
     } else {
 
       setHoldScrollCard(true);
-    }
+    };
   };
 
   useEffect(()=>{
@@ -130,7 +130,7 @@ const Cards = (props) => {
 
               Order
 
-              <ArrowRight className="ms-2" />
+              <ArrowRight className="ms-2"/>
 
             </div>
 
@@ -180,7 +180,7 @@ const Cards = (props) => {
 
               Order
 
-              <ArrowRight className="ms-2" />
+              <ArrowRight className="ms-2"/>
 
             </div>
 
@@ -230,7 +230,7 @@ const Cards = (props) => {
 
               Order
 
-              <ArrowRight className="ms-2" />
+              <ArrowRight className="ms-2"/>
 
             </div>
 
@@ -280,7 +280,7 @@ const Cards = (props) => {
 
               Order
 
-              <ArrowRight className="ms-2" />
+              <ArrowRight className="ms-2"/>
 
             </div>
 
@@ -330,7 +330,7 @@ const Cards = (props) => {
 
               Order
 
-              <ArrowRight className="ms-2" />
+              <ArrowRight className="ms-2"/>
 
             </div>
 
@@ -380,7 +380,7 @@ const Cards = (props) => {
 
               Order
 
-              <ArrowRight className="ms-2" />
+              <ArrowRight className="ms-2"/>
 
             </div>
 

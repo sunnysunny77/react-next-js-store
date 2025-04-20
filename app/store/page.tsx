@@ -1,6 +1,6 @@
 "use client"
-import { useRef, useEffect } from "react";
-import { useAppContext } from "@/components/context";
+import {useRef, useEffect} from "react";
+import {useAppContext} from "@/components/context";
 import Cards from "@/components/cards";
 import Header from "@/components/header";
 import Paypal from "@/components/paypal";
@@ -11,7 +11,7 @@ import Footer from "@/components/footer";
 
 const Store = () => {
 
-  const { checkCookie } = useAppContext();
+  const {checkCookie} = useAppContext();
 
   const navbarRef = useRef(null);
 
@@ -36,9 +36,9 @@ const Store = () => {
 
       <div ref={navbarRef}></div>
 
-      <Navigation mainRef={mainRef} footerRef={footerRef} />
+      <Navigation mainRef={mainRef} footerRef={footerRef}/>
 
-      <Header heading={heading} />
+      <Header heading={heading}/>
 
       <main className="d-flex flex-column" ref={mainRef}>
 
@@ -101,7 +101,7 @@ const Store = () => {
 
         <div ref={storeRef}></div>
 
-        <Paypal />
+        <Paypal/>
 
         <div className="container-xl px-4 pb-5 px-sm-5 px-xl-0 mb-lg-5  pt-5 mt-lg-5 g-0">
 
@@ -130,7 +130,7 @@ const Store = () => {
 
       <div ref={footerRef}></div>
 
-      <Footer />
+      <Footer/>
 
     </>
 

@@ -12,7 +12,7 @@ const NotFound = () => {
 
         <>
 
-            <Header heading={heading} />
+            <Header heading={heading}/>
 
             <main className="not-found d-flex flex-column align-items-center py-5 px-4">
 
@@ -22,11 +22,11 @@ const NotFound = () => {
 
                 </Link>
 
-                <Image className="mb-5" src={Lost} alt="Finance" width="360" height="360" />
+                <Image className="mb-5" src={Lost} alt="Finance" width="360" height="360"/>
 
             </main>
 
-            <Footer />
+            <Footer/>
         
         </>
 

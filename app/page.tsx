@@ -1,6 +1,6 @@
 "use client"
-import { useRef, useEffect } from "react";
-import { useAppContext } from "@/components/context";
+import {useRef, useEffect} from "react";
+import {useAppContext} from "@/components/context";
 import CarouselSlider from "@/components/carousel-slider";
 import Cards from "@/components/cards";
 import Header from "@/components/header";
@@ -27,7 +27,7 @@ import Aus from "@/images/australian-made.svg";
 
 const Home = () => {
 
-  const { auth, checkCookie } = useAppContext();
+  const {auth, checkCookie} = useAppContext();
 
   const navbarRef = useRef(null);
 
@@ -72,7 +72,7 @@ const Home = () => {
 
         </div>
 
-        <CarouselSlider />
+        <CarouselSlider/>
 
       </div>
 
@@ -86,7 +86,7 @@ const Home = () => {
 
       <div ref={navbarRef}></div>
 
-      <Navigation mainRef={mainRef} footerRef={footerRef} />
+      <Navigation mainRef={mainRef} footerRef={footerRef}/>
 
       <Header heading={heading}>
 
@@ -127,7 +127,7 @@ const Home = () => {
 
         >
 
-          <Image src={Store} alt="store"  width="920" height="839" />
+          <Image src={Store} alt="store"  width="920" height="839"/>
 
         </TwoColCurve>
 
@@ -190,7 +190,7 @@ const Home = () => {
 
         >
 
-          <Image src={Lemons} alt="lemons" width="400" height="400" />
+          <Image src={Lemons} alt="lemons" width="400" height="400"/>
 
         </TwoRowFeature>
 
@@ -204,11 +204,11 @@ const Home = () => {
 
         >
 
-          <Image className="has-current counters" src={Vegies} width="847" height="565" alt="Vegies" />
+          <Image className="has-current counters" src={Vegies} width="847" height="565" alt="Vegies"/>
 
-          <Image className="counters" src={Greens} width="847" height="565" alt="Greens" />
+          <Image className="counters" src={Greens} width="847" height="565" alt="Greens"/>
 
-          <Image className="counters" src={Platter} width="847" height="565" alt="Platter" />
+          <Image className="counters" src={Platter} width="847" height="565" alt="Platter"/>
 
         </Slider>
 
@@ -236,7 +236,7 @@ const Home = () => {
 
         >
 
-          <Image src={Aus} alt="Australian Made" width="150" height="150" />
+          <Image src={Aus} alt="Australian Made" width="150" height="150"/>
 
         </OneColLarge>
 
@@ -323,13 +323,13 @@ const Home = () => {
 
         </div>
 
-        <Enquiry />
+        <Enquiry/>
 
       </main>
 
       <div ref={footerRef}></div>
 
-      <Footer />
+      <Footer/>
 
     </>
 

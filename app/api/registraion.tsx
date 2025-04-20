@@ -1,9 +1,9 @@
 "use server"
-import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
+import {redirect} from "next/navigation";
+import {cookies} from "next/headers";
 import bcrypt from "bcrypt";
 import Connection from "@/lib/db/connection";
-import nodemailer from 'nodemailer';
+import nodemailer from "nodemailer";
 
 type StateRegistraion = {
   password: string,
@@ -74,7 +74,7 @@ const Registraion = async (stateRegistraion : StateRegistraion , formData: FormD
   };
 
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    service: "gmail",
     auth: {
       user: process.env.REACT_APP_NODEMAILER_EMAIL,
       pass: process.env.REACT_APP_NODEMAILER_PASSWORD,
@@ -109,7 +109,7 @@ const Registraion = async (stateRegistraion : StateRegistraion , formData: FormD
 
   const cookieStore = await cookies();
 
-  cookieStore.set("Store-App", "true", { secure: true, httpOnly: true, sameSite: 'strict'})
+  cookieStore.set("Store-App", "true", {secure: true, httpOnly: true, sameSite: "strict"})
   
   redirect("/store");
 };

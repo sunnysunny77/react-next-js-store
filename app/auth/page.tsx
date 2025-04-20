@@ -1,9 +1,9 @@
 "use client";
-import { useActionState, useEffect, useState, useRef, useCallback } from "react";
-import { useAppContext } from "@/components/context";
-import { GetSignIn } from "@/api/auth";
-import { GetFactor, SetFactor } from "@/api/factor";
-import { GetCaptcha, SetCaptcha } from "@/api/captcha";
+import {useActionState, useEffect, useState, useRef, useCallback} from "react";
+import {useAppContext} from "@/components/context";
+import {GetSignIn} from "@/api/auth";
+import {GetFactor, SetFactor} from "@/api/factor";
+import {GetCaptcha, SetCaptcha} from "@/api/captcha";
 import Registraion from "@/api/registraion";
 import Image from "next/image";
 import Header from "@/components/header";
@@ -13,7 +13,7 @@ import Spinner from "@/images/spinner.gif";
 
 const Auth = () => {
 
-  const { checkCookie } = useAppContext();
+  const {checkCookie} = useAppContext();
 
   const navbarRef = useRef(null);
 
@@ -29,7 +29,7 @@ const Auth = () => {
     email: "",
   });
 
-  const [captcha, setCaptcha] = useState(<Image className="spinner type" width="40" height="40" src={Spinner} alt="spinner" />);
+  const [captcha, setCaptcha] = useState(<Image className="spinner type" width="40" height="40" src={Spinner} alt="spinner"/>);
 
   const [stateGetFactor, actionGetFactor, isPendingGetFactor] = useActionState(GetFactor, {
     message: "",
@@ -55,16 +55,16 @@ const Auth = () => {
     password: "",
   });
 
-  const imageLoader = ({ src }) => {
+  const imageLoader = ({src}) => {
 
     return `${src}`;
   };
 
   const init = useCallback( async () => {
 
-    setCaptcha(<Image className="spinner type" width="40" height="40" src={Spinner} alt="spinner" />);
+    setCaptcha(<Image className="spinner type" width="40" height="40" src={Spinner} alt="spinner"/>);
     const res = await GetCaptcha();
-    setCaptcha(<Image src={res} unoptimized loader={imageLoader} width="150" height="50" alt="canvas" />);
+    setCaptcha(<Image src={res} unoptimized loader={imageLoader} width="150" height="50" alt="canvas"/>);
   },[]);
 
   useEffect(() => {
@@ -83,9 +83,9 @@ const Auth = () => {
 
       <div ref={navbarRef}></div>
 
-      <Navigation mainRef={mainRef} footerRef={footerRef} />
+      <Navigation mainRef={mainRef} footerRef={footerRef}/>
 
-      <Header heading={heading} />
+      <Header heading={heading}/>
 
       <main className="d-flex flex-column" ref={mainRef}>
 
@@ -117,7 +117,7 @@ const Auth = () => {
 
                     </label>
 
-                    <input className="rounded w-100 mt-1 mb-2 ps-2" defaultValue={stateSignIn?.email} id="email" type="email" required autoComplete="on" name="email" placeholder="Enter email" />
+                    <input className="rounded w-100 mt-1 mb-2 ps-2" defaultValue={stateSignIn?.email} id="email" type="email" required autoComplete="on" name="email" placeholder="Enter email"/>
 
                     <label className="hidden" htmlFor="password">
 
@@ -125,7 +125,7 @@ const Auth = () => {
 
                     </label>
 
-                    <input className="rounded w-100 mt-1 mb-2 ps-2" defaultValue={stateSignIn?.password} id="password" type="password" required autoComplete="on" name="password" placeholder="Enter password" />
+                    <input className="rounded w-100 mt-1 mb-2 ps-2" defaultValue={stateSignIn?.password} id="password" type="password" required autoComplete="on" name="password" placeholder="Enter password"/>
 
                     <button type="submit" className="btnn py-1 w-100 rounded mt-2">
 
@@ -139,7 +139,7 @@ const Auth = () => {
 
                     <span>
 
-                      {isPendingSign ? <Image className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateSignIn?.message}
+                      {isPendingSign ? <Image className="spinner" width="40" height="40" src={Spinner} alt="spinner"/> : stateSignIn?.message}
 
                     </span>
 
@@ -211,7 +211,7 @@ const Auth = () => {
 
                       <span>
 
-                        {isPendingSetCaptcha ? <Image className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateSetCaptcha?.message}
+                        {isPendingSetCaptcha ? <Image className="spinner" width="40" height="40" src={Spinner} alt="spinner"/> : stateSetCaptcha?.message}
 
                       </span>
 
@@ -284,7 +284,7 @@ const Auth = () => {
 
                       <span>
 
-                        {isPendingGetFactor ? <Image className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateGetFactor?.message}
+                        {isPendingGetFactor ? <Image className="spinner" width="40" height="40" src={Spinner} alt="spinner"/> : stateGetFactor?.message}
 
                       </span>
 
@@ -294,7 +294,7 @@ const Auth = () => {
 
                       <span>
 
-                        {isPendingSetFactor ? <Image className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateSetFactor?.message}
+                        {isPendingSetFactor ? <Image className="spinner" width="40" height="40" src={Spinner} alt="spinner"/> : stateSetFactor?.message}
 
                       </span>
 
@@ -347,7 +347,7 @@ const Auth = () => {
 
                       <span>
 
-                        {isPendingRegistraion ? <Image className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : stateRegistraion?.message}
+                        {isPendingRegistraion ? <Image className="spinner" width="40" height="40" src={Spinner} alt="spinner"/> : stateRegistraion?.message}
 
                       </span>
 
@@ -365,7 +365,7 @@ const Auth = () => {
 
             </div>
 
-            <p className='rady p-3 mt-3'>
+            <p className="rady p-3 mt-3">
 
               Ut enim ad ed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
 
@@ -379,7 +379,7 @@ const Auth = () => {
 
       <div ref={footerRef}></div>
 
-      <Footer />
+      <Footer/>
 
     </>
 

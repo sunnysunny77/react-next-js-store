@@ -1,5 +1,6 @@
 "use server"
-import { cookies } from "next/headers";
+import {cookies} from "next/headers";
+
 const GetCookie = async () => {
 
   const cookieStore = await cookies();
@@ -8,7 +9,7 @@ const GetCookie = async () => {
   if (cookie) {
 
     return true;
-  }
+  };
 
   return false;
 };

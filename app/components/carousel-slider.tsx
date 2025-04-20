@@ -1,5 +1,5 @@
 "use client"
-import { useRef, useEffect } from "react";
+import {useRef, useEffect} from "react";
 import Image from "next/image";
 import Finance from "@/images/finance.webp";
 import Transport from "@/images/transport.webp";
@@ -13,7 +13,7 @@ const CarouselSlider = () => {
 
       const sync = async () => {
 
-        const { Carousel } = await import("bootstrap");
+        const {Carousel} = await import("bootstrap");
 
         const inst = new Carousel(ref.current, {
           pause: false,
@@ -32,19 +32,19 @@ const CarouselSlider = () => {
 
           <div className="carousel-item active">
 
-            <Image className="d-block w-100" src={Finance} alt="Finance" width="150" height="150" />
+            <Image className="d-block w-100" src={Finance} alt="Finance" width="150" height="150"/>
 
           </div>
 
           <div className="carousel-item">
 
-            <Image className="d-block w-100" src={Transport} alt="Transport" width="150" height="120" />
+            <Image className="d-block w-100" src={Transport} alt="Transport" width="150" height="120"/>
 
           </div>
 
           <div className="carousel-item">
 
-            <Image className="d-block w-100" src={Warehouse} alt="Warehouse" width="150" height="150" />
+            <Image className="d-block w-100" src={Warehouse} alt="Warehouse" width="150" height="150"/>
 
           </div>
 

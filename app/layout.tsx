@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
-import { AppWrapper, CartWrapper } from "@/components/context";
+import type {Metadata} from "next";
+import {AppWrapper, CartWrapper} from "@/components/context";
 import localFont from "next/font/local";
 import "@/styles/app.scss";
 import Init from "@/lib/init";
 
 //csp for build in production
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 const montserrat = localFont({
   display: "swap",
@@ -46,7 +46,7 @@ const RootLayout = ({
         
       </body>
 
-      <Init />
+      <Init/>
 
     </html>
 

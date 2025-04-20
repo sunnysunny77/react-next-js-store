@@ -1,6 +1,6 @@
 "use client"
-import { GetEnquiry } from "@/api/enquiry";
-import { useActionState } from "react";
+import {GetEnquiry} from "@/api/enquiry";
+import {useActionState} from "react";
 import Image from "next/image";
 import Spinner from "@/images/spinner.gif";
 
@@ -173,9 +173,9 @@ const Enquiry = () => {
 
                         {stateEnquiry?.response ? stateEnquiry?.response : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."}
 
-                        <br />
+                        <br/>
 
-                        <span className="spinnerSpan">{isPending ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner" /> : ""} </span>
+                        <span className="spinnerSpan">{isPending ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner"/> : ""} </span>
 
                       </p>
 
@@ -183,7 +183,7 @@ const Enquiry = () => {
 
                     <div className="col-12 col-sm-4 d-flex justify-content-sm-end">
 
-                      <input className="rounded" type="submit" value="Send" />
+                      <input className="rounded" type="submit" value="Send"/>
 
                     </div>
 

@@ -1,6 +1,6 @@
 const OneColLarge = (props) => {
 
-    const { heading, paragraph, bold, children } = props;
+    const {heading, paragraph, bold, children} = props;
     
     return (
       

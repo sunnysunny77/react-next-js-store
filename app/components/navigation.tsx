@@ -1,14 +1,14 @@
 "use client"
-import { useAppContext } from "@/components/context";
-import { useRef, useEffect, useState, useCallback } from "react";
-import { usePathname } from "next/navigation";
+import {useAppContext} from "@/components/context";
+import {useRef, useEffect, useState, useCallback} from "react";
+import {usePathname} from "next/navigation";
 import Link from "next/link";
 
 const Navigation = (props) => {
 
-  const { mainRef, footerRef } = props;
+  const {mainRef, footerRef} = props;
 
-  const { scrollingRef, setScrollingRef, auth, log_out } = useAppContext();
+  const {scrollingRef, setScrollingRef, auth, log_out} = useAppContext();
 
   const pathname = usePathname();
 
@@ -94,9 +94,9 @@ const Navigation = (props) => {
 
   useEffect(() => {
 
-    window.addEventListener("touchmove", handle_end, { passive: true });
-    window.addEventListener("scrollend", handle_end, { passive: true });
-    window.addEventListener("scroll", handle_navigationigation, { passive: true });
+    window.addEventListener("touchmove", handle_end, {passive: true});
+    window.addEventListener("scrollend", handle_end, {passive: true});
+    window.addEventListener("scroll", handle_navigationigation, {passive: true});
     return () => {
 
       window.removeEventListener("touchmove", handle_end);
@@ -145,7 +145,7 @@ const Navigation = (props) => {
 
           </Link>
 
-          <div ref={navbar_toggler_static} onClick={toggle_static} aria-label="menu" role="button" className="col-auto d-flex align-items-center slider_8-navbar-toggler navbar-toggler  p-4" >
+          <div ref={navbar_toggler_static} onClick={toggle_static} aria-label="menu" role="button" className="col-auto d-flex align-items-center slider_8-navbar-toggler navbar-toggler p-4">
 
             <div>
 
@@ -249,7 +249,7 @@ const Navigation = (props) => {
 
           </Link>
 
-          <div ref={navbar_toggler_fixed} onClick={toggle_fixed} aria-label="menu" role="button" className="col-auto d-flex align-items-center slider_8-navbar-toggler navbar-toggler  p-4" >
+          <div ref={navbar_toggler_fixed} onClick={toggle_fixed} aria-label="menu" role="button" className="col-auto d-flex align-items-center slider_8-navbar-toggler navbar-toggler p-4">
 
             <div>
 

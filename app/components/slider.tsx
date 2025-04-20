@@ -1,12 +1,12 @@
 "use client"
-import { useState, useRef } from "react";
-import { ArrowLeft } from "react-bootstrap-icons";
-import { ArrowRight } from "react-bootstrap-icons";
+import {useState, useRef} from "react";
+import {ArrowLeft} from "react-bootstrap-icons";
+import {ArrowRight} from "react-bootstrap-icons";
 import PreText from "@/components/pretext";
 
 const Slider= (props) => {
 
-  const { paragraph, children } = props;
+  const {paragraph, children} = props;
 
   const [index, setIndex] = useState(0);
 
@@ -96,7 +96,7 @@ const Slider= (props) => {
 
                 <button onClick={prev}  aria-label="prev" className="slider_9-button button-prev">
                   
-                  <ArrowLeft />
+                  <ArrowLeft/>
                   
                 </button>
               
@@ -106,7 +106,7 @@ const Slider= (props) => {
 
                 <button onClick={next} aria-label="next" className="slider_9-button button-next">
                   
-                  <ArrowRight />
+                  <ArrowRight/>
                   
                 </button>
 
@@ -124,7 +124,7 @@ const Slider= (props) => {
 
                 <p className="m-0">
 
-                   <PreText text={ paragraph } />
+                   <PreText text={paragraph}/>
 
                 </p>
 

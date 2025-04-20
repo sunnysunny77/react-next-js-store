@@ -1,6 +1,6 @@
 const DynamicAccordian = (props) => {
 
-    const { content } = props;
+    const {content} = props;
   
     return (
   
@@ -10,9 +10,9 @@ const DynamicAccordian = (props) => {
   
           <div className="accordion">
   
-            {content.map((index, i) => { 
+            {content.map((index, i) => {
   
-                const { heading, body } = index; 
+                const {heading, body} = index;
  
                 return (
   
@@ -22,7 +22,7 @@ const DynamicAccordian = (props) => {
 
                       <button className="accordion-button" type="button"  data-bs-toggle="collapse" aria-expanded={i === 0 ? "true" : "false"} aria-controls={`collapse-${i}`} data-bs-target={`#collapse-${i}`}> 
 
-                        { heading }
+                        {heading}
 
                       </button>
   
@@ -34,13 +34,13 @@ const DynamicAccordian = (props) => {
 
                         <ul className="ps-3">
     
-                          {body.map((index, i) => { 
+                          {body.map((index, i) => {
                             
                             return (
     
                               <li key={i} className="mb-3">
     
-                                { index }
+                                {index}
     
                               </li>
                             );

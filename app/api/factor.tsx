@@ -1,6 +1,6 @@
 "use server"
-import { cookies } from "next/headers";
-import nodemailer from 'nodemailer';
+import {cookies} from "next/headers";
+import nodemailer from "nodemailer";
 import Connection from "@/lib/db/connection";
 import EmptyResults from "@/lib/db/empty-results";
 import bcrypt from "bcrypt";
@@ -43,10 +43,10 @@ export const GetFactor = async (stateGetFactor: StateGetFactor, formData: FormDa
   const salt = bcrypt.genSaltSync(10);
   const hash = bcrypt.hashSync(String(token), salt);
   const cookieStore = await cookies();
-  cookieStore.set("Store-App-Auth-Token", hash, { secure: true, httpOnly: true, sameSite: 'strict'});
+  cookieStore.set("Store-App-Auth-Token", hash, {secure: true, httpOnly: true, sameSite: "strict"});
 
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    service: "gmail",
     auth: {
       user: process.env.REACT_APP_NODEMAILER_EMAIL,
       pass: process.env.REACT_APP_NODEMAILER_PASSWORD,
@@ -70,7 +70,7 @@ export const GetFactor = async (stateGetFactor: StateGetFactor, formData: FormDa
     console.log(err);
   };
 
-  return { 
+  return {
     message: "Check Your Inbox", 
     email: data.email as string,
     getcode: false,
@@ -96,16 +96,16 @@ export const SetFactor = async (stateSetFactor: StateSetFactor, formData: FormDa
 
   if(match) {
 
-  return { 
+  return {
     message: "", 
     code: data.code as string,
     setcode: false,
    };
-  }
+  };
 
-  return { 
+  return {
     message: "Incorrect code", 
     code: data.code as string,
     setcode: true,
    };
-}
+};

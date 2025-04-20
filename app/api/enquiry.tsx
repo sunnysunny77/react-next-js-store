@@ -1,5 +1,5 @@
 "use server"
-import nodemailer from 'nodemailer';
+import nodemailer from "nodemailer";
 
 type StateEnquiry = {
     name: string,
@@ -78,7 +78,7 @@ export const GetEnquiry = async (stateEnquiry: StateEnquiry, formData: FormData)
   };
 
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    service: "gmail",
     auth: {
       user: process.env.REACT_APP_NODEMAILER_EMAIL,
       pass: process.env.REACT_APP_NODEMAILER_PASSWORD,

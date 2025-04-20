@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server'
+import {NextRequest, NextResponse} from 'next/server'
 
 export function middleware(request: NextRequest) {
 
@@ -26,21 +26,21 @@ export function middleware(request: NextRequest) {
   if (request.nextUrl.pathname === "/store" &&  !token) {
 
     const response = NextResponse.redirect(new URL("/", request.url));
-    response.headers.set('Content-Security-Policy', contentSecurityPolicyHeaderValue);
+    response.headers.set("Content-Security-Policy", contentSecurityPolicyHeaderValue);
     return response;
   };
 
   if (request.nextUrl.pathname === "/auth" &&  token) {
 
     const response = NextResponse.redirect(new URL("/store", request.url));
-    response.headers.set('Content-Security-Policy', contentSecurityPolicyHeaderValue);
+    response.headers.set("Content-Security-Policy", contentSecurityPolicyHeaderValue);
     return response;
   };
 
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-nonce", nonce);
   requestHeaders.set(
-    'Content-Security-Policy', contentSecurityPolicyHeaderValue
+    "Content-Security-Policy", contentSecurityPolicyHeaderValue
   );
 
   const response = NextResponse.next({
@@ -50,7 +50,7 @@ export function middleware(request: NextRequest) {
   });
 
   response.headers.set(
-    'Content-Security-Policy',contentSecurityPolicyHeaderValue
+    "Content-Security-Policy",contentSecurityPolicyHeaderValue
   );
 
   return response;
@@ -61,8 +61,8 @@ export const config = {
     {
       source: "/((?!api|_next/static|_next/image|favicon.ico).*)",
       missing: [
-        { type: "header", key: "next-router-prefetch" },
-        { type: "header", key: "purpose", value: "prefetch" },
+        {type: "header", key: "next-router-prefetch"},
+        {type: "header", key: "purpose", value: "prefetch"},
       ],
     },
   ],

@@ -2,7 +2,7 @@ import PreText from "@/components/pretext";
 
 const TwoColCurve = (props) => {
 
-  const { heading, paragraph, children } = props;
+  const {heading, paragraph, children} = props;
   
   return (
     
@@ -24,7 +24,7 @@ const TwoColCurve = (props) => {
 
               <p className="col-12 col-xxl-11 text-end ps-md-4 m-0">
 
-                <PreText text={ paragraph } />
+                <PreText text={paragraph}/>
 
               </p>
 

@@ -1,6 +1,6 @@
 const Header = (props) => {
 
-  const { heading, children } = props;
+  const {heading, children} = props;
   
   return (
     

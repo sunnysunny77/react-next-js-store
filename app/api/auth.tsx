@@ -1,6 +1,6 @@
 "use server"
-import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
+import {redirect} from "next/navigation";
+import {cookies} from "next/headers";
 import Connection from "@/lib/db/connection";
 import EmptyResults from "@/lib/db/empty-results";
 import bcrypt from "bcrypt";
@@ -39,7 +39,7 @@ export const GetSignIn = async (stateSignIn: StateSignIn, formData: FormData) =>
 
       const cookieStore = await cookies();
 
-      cookieStore.set("Store-App", "true", { secure: true, httpOnly: true, sameSite: 'strict'})
+      cookieStore.set("Store-App", "true", {secure: true, httpOnly: true, sameSite: "strict"})
 
       redirect("/store");
     };
