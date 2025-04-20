@@ -37,7 +37,7 @@ export const GetFactor = async (stateGetFactor: StateGetFactor, formData: FormDa
       email: "",
       getcode: false,
      };
-  }
+  };
 
   const token = Math.floor(Math.random() * 900000);
   const salt = bcrypt.genSaltSync(10);
@@ -50,7 +50,7 @@ export const GetFactor = async (stateGetFactor: StateGetFactor, formData: FormDa
     auth: {
       user: process.env.REACT_APP_NODEMAILER_EMAIL,
       pass: process.env.REACT_APP_NODEMAILER_PASSWORD,
-    }
+    },
   });
 
   try {
