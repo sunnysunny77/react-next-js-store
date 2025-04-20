@@ -1,5 +1,6 @@
 "use client"
 import {useRef, useEffect} from "react";
+import {useAppContext} from "@/components/context";
 import Image from "next/image";
 import Finance from "@/images/finance.webp";
 import Transport from "@/images/transport.webp";
@@ -7,22 +8,21 @@ import Warehouse from "@/images/warehouse.webp";
 
 const CarouselSlider = () => {
 
+  const {bootstrap} = useAppContext();
+
     const ref = useRef(null);
 
     useEffect(() => {
 
-      const sync = async () => {
+      if (bootstrap) {
 
-        const {Carousel} = await import("bootstrap");
-
+        const { Carousel } = bootstrap;
         const inst = new Carousel(ref.current, {
           pause: false,
         });
-
         inst.cycle();
       }
-      sync();
-    }, []);
+    }, [bootstrap]);
 
     return (
 

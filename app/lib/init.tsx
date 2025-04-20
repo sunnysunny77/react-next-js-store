@@ -7,8 +7,6 @@ const Init = () => {
 
   useEffect(() => {
 
-    import("bootstrap");
-
     OverlayScrollbars(document.body, {
 
       scrollbars: {

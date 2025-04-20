@@ -11,6 +11,7 @@ import Fruits from "@/images/fruits.webp";
 import Schwab from "@/images/schwab.webp";
 
 const AppContext = createContext(null);
+
 const CartContext = createContext(null);
 
 export const CartWrapper = ({
@@ -220,6 +221,8 @@ export const AppWrapper = ({
 
   const [holdScrollCard, setHoldScrollCard] = useState(false);
 
+  const [bootstrap, setBootstrap] = useState(undefined);
+
   const [route, setRoute] = useState(pathname);
 
   const checkCookie = async () => {
@@ -251,9 +254,22 @@ export const AppWrapper = ({
     if (scrollingRef.current !== null) window.scroll({top: scrollingRef.current.offsetTop || 0, left: 0, behavior: "smooth"});
   },[scrollingRef]);
 
+  useEffect(() => {
+
+    if(!bootstrap) {
+
+      const sync = async () => {
+
+        const bootstrapJs = await import("bootstrap");
+        setBootstrap(bootstrapJs);
+      };
+      sync();
+    };
+  }, [bootstrap]);
+
   return (
 
-    <AppContext.Provider value={{scrollingRef, setScrollingRef, auth, checkCookie, log_out, holdScrollCta, setHoldScrollCta, holdScrollCard, setHoldScrollCard}}>
+    <AppContext.Provider value={{bootstrap, scrollingRef, setScrollingRef, auth, checkCookie, log_out, holdScrollCta, setHoldScrollCta, holdScrollCard, setHoldScrollCard}}>
 
       {children}
 
