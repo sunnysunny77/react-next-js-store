@@ -7,12 +7,12 @@
         height: 37.5rem;
         @include min_lg {
             top: -7.5rem;
-            right: -12.5rem; 
+            right: -12.5rem;
         }
         .shapes-1 {
             top: 0;
             right: 0;
-            border-left:  12.5rem solid $oscar;
+            border-left: 12.5rem solid $oscar;
             border-radius: 50%;
             height: 25rem;
             width: 25rem;
@@ -29,7 +29,7 @@
         }
     }
     .decoration {
-        border-left: 0.75rem solid  $oscar;
+        border-left: 0.75rem solid $oscar;
     }
     h2 {
         color: $hotel;
