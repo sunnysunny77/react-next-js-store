@@ -565,9 +565,9 @@ const Paypal = () => {
 
               <div className="col-10 col-xl-5">
 
-                {disabled ? <div className="button-container-inner"> no items </div> : <div className={`button-container-inner ${show ? "show" : "d-none"}`}> <Image className="spinner" width="40" height="40" src={Spinner} alt="spinner"/></div>}
+                {disabled ? <p className="button-container-inner mb-3"> no items </p> : <p className={`button-container-inner mb-3 ${show ? "show" : "d-none"}`}> <Image className="spinner" width="40" height="40" src={Spinner} alt="spinner"/></p>}
 
-                <div ref={smartRef} className={`button-container-inner ${show ? "d-none" : "show"}`}></div>
+                <div ref={smartRef} className={`button-container-inner mb-3 ${show ? "d-none" : "show"}`}></div>
 
               </div>
 
