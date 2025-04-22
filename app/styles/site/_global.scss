@@ -50,7 +50,10 @@ b {
 }
 
 .os-theme-body {
-    --os-size: 7px;
+    --os-size: 4px;
+    @include min_md {
+        --os-size: 7px;
+    }
 }
 
 .os-theme-body .os-scrollbar-handle {
