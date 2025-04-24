@@ -106,7 +106,7 @@ const Footer = () => {
 
                   <li>
 
-                    <Link className={`footer-link ${pathname === "/store" || pathname === "/auth" ? "active" : ""}`} href={auth ? "/store" : "/auth"}>
+                    <Link className={`footer-link ${pathname === "/store" || pathname === "/authentication" ? "active" : ""}`} href={auth ? "/store" : "/authentication"}>
                     
                       Store 
                       
@@ -126,7 +126,7 @@ const Footer = () => {
 
                     ) : (
 
-                    <Link className="footer-link" href="/auth">
+                    <Link className="footer-link" href="/authentication">
 
                       Sign in
 

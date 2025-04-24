@@ -9,7 +9,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/", request.url));
   };
 
-  if (request.nextUrl.pathname === "/auth" &&  token) {
+  if (request.nextUrl.pathname === "/authentication" &&  token) {
 
     return NextResponse.redirect(new URL("/store", request.url));
   };

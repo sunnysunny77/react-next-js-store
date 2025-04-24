@@ -175,7 +175,7 @@ const Navigation = (props) => {
 
               <li>
 
-                <Link className={`navigation-link ${pathname === "/store" || pathname === "/auth" ? "active" : ""}`} href={auth ? "/store" : "/auth"}>
+                <Link className={`navigation-link ${pathname === "/store" || pathname === "/authentication" ? "active" : ""}`} href={auth ? "/store" : "/authentication"}>
 
                   Store
 
@@ -195,7 +195,7 @@ const Navigation = (props) => {
 
                 ) : (
 
-                <Link className="navigation-link" href="/auth">
+                <Link className="navigation-link" href="/authentication">
 
                   Sign in
 
@@ -279,7 +279,7 @@ const Navigation = (props) => {
 
               <li>
 
-                <Link className={`navigation-link ${pathname === "/store" || pathname === "/auth" ? "active" : ""}`} href={auth ? "/store" : "/auth"}>
+                <Link className={`navigation-link ${pathname === "/store" || pathname === "/authentication" ? "active" : ""}`} href={auth ? "/store" : "/authentication"}>
 
                   Store
 
@@ -299,7 +299,7 @@ const Navigation = (props) => {
 
                 ) : (
 
-                <Link className="navigation-link" href="/auth">
+                <Link className="navigation-link" href="/authentication">
 
                   Sign In
 

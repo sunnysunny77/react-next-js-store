@@ -18,7 +18,7 @@ const CardsType = (props) => {
       className={classes}
       onClick={onClick}
       data-value={data_value}
-      href={auth ? "/store" : "/auth"}
+      href={auth ? "/store" : "/authentication"}
     >
       {children}
     </Link>

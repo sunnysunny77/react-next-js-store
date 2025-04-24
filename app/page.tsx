@@ -60,7 +60,7 @@ const Home = () => {
 
               </span>
 
-              <Link scroll={false} href={auth ? "/store" : "/auth"} className="col-auto align-self-lg-end border rounded mt-4 mb-3 px-2 py-1">
+              <Link scroll={false} href={auth ? "/store" : "/authentication"} className="col-auto align-self-lg-end border rounded mt-4 mb-3 px-2 py-1">
 
                 store
 

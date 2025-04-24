@@ -14,7 +14,7 @@ const CtaType = (props) => {
 
     <Link
       className={classes}
-      href={auth ? "/store" : "/auth"}
+      href={auth ? "/store" : "/authentication"}
       onClick={onClick}
     >
       {children}
