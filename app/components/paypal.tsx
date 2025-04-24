@@ -2,6 +2,7 @@
 import {useState, useRef, useEffect} from "react";
 import {useCartContext, useAppContext} from "@/components/context";
 import {ArrowDownShort} from "react-bootstrap-icons";
+import type { PayPalNamespace } from "@paypal/paypal-js";
 import Spinner from "@/images/spinner.gif";
 import Script from "next/script";
 import dynamic from "next/dynamic";
@@ -9,10 +10,10 @@ import Image from "next/image";
 import styles from "@/module/paypal.module.scss";
 
 declare global {
-    interface Window {
-      paypal?: any;
-    }
-};
+  interface Window {
+    paypal?: PayPalNamespace;
+  }
+}
 
 // fixed hydradion bug waiting for update
 const Select = dynamic(() => import("react-select/creatable"), {ssr: false});
@@ -90,15 +91,16 @@ const Paypal = () => {
       createOrder: async (data, actions) => {
 
         return actions.order.create({
+          intent: "CAPTURE",
           purchase_units: [{
             description: "Securewebsite Transaction",
             amount: {
               currency_code: "AUD",
-              value: total,
+              value: String(total),
               breakdown: {
                 item_total: {
                   currency_code: "AUD",
-                  value: total,
+                  value: String(total),
                 },
               },
             },
@@ -168,7 +170,7 @@ const Paypal = () => {
         cartOrder.cartOne();
       },
 
-      onError: (err: any) => {
+      onError: (err) => {
         console.log(err);
       },
     });
@@ -178,6 +180,7 @@ const Paypal = () => {
     setTotal(total);
 
     setSmartButton(button);
+
   };
 
   const addCart = async () => {

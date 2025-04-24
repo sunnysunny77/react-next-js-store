@@ -89,8 +89,8 @@ const Navigation = (props) => {
 
   const handle_end = useCallback(() => {
 
-    setScrollingRef({current: null});
-  },[setScrollingRef]);
+    if (scrollingRef.current !== null) setScrollingRef({current: null});
+  },[setScrollingRef, scrollingRef]);
 
   useEffect(() => {
 
