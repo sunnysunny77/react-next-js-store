@@ -98,7 +98,7 @@ const Auth = () => {
 
                 <button className="accordion-button" type="button"  data-bs-toggle="collapse" aria-expanded="true" aria-controls="collapse-0" data-bs-target="#collapse-0">
 
-                  Login
+                  Sign in
 
                 </button>
 
@@ -156,7 +156,7 @@ const Auth = () => {
 
                 <button className="accordion-button" type="button"  data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapse-1" data-bs-target="#collapse-1">
 
-                  Signup
+                  Sign up
 
                 </button>
 

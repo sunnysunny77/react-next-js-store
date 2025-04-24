@@ -197,7 +197,7 @@ const Navigation = (props) => {
 
                 <Link className="navigation-link" href="/auth">
 
-                  Sign In
+                  Sign in
 
                 </Link>
 

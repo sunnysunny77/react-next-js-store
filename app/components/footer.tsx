@@ -128,7 +128,7 @@ const Footer = () => {
 
                     <Link className="footer-link" href="/auth">
 
-                      Sign In
+                      Sign in
 
                     </Link>
 
