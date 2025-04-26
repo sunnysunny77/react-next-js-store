@@ -95,7 +95,7 @@ const Navigation = (props) => {
     };
 
     setScrollY(scroll_pos);
-  },[footerRef, mainRef, positive, scrollY, scrollingRef]);
+  },[footerRef, mainRef, positive, scrollY, scrollingRef, setScrollingRef]);
 
   const handle_end = useCallback(() => {
 
