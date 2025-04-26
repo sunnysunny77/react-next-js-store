@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<svg xmlns="http://www.w3.org/2000/svg" aria-label="Super Foods" viewBox="0 0 100 100" width="40" height="40">
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Super Foods" viewBox="0 0 100 100" width="50" height="50">
 
     <defs>
 
@@ -15,11 +15,11 @@
 
     </defs>
 
-    <text fill="#FFFFFF" font-size="1.2em" font-family="Verdana, sans-serif">
+    <text fill="#FFFFFF" font-size="20px" font-family="sans-serif">
 
         <textPath href="#circle-footer">
 
-            Super --- Food ---------
+            Super --- Food -------------
 
         </textPath>
 
