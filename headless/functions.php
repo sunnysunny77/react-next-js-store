@@ -11,7 +11,7 @@ function disable_wp_frontend() {
 
         return;
     }
-    wp_redirect(home_url('/404'), 404);
+    wp_redirect(home_url(), 301);
     exit;
 }
 add_action('template_redirect', 'disable_wp_frontend');
