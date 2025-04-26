@@ -48,7 +48,7 @@ const Navigation = (props) => {
 
     const scroll_pos = window.scrollY;
 
-    if (scrollingRef.current !== null && scroll_pos === scrollingRef.current.offsetTop) {setScrollingRef({current: null})}
+    if (scrollingRef.current !== null && scroll_pos === scrollingRef.current.offsetTop) setScrollingRef({current: null});
 
     if (scrollingRef.current !== null) {
 
