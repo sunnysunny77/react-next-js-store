@@ -181,7 +181,7 @@ const ButtonSlider = (props) => {
 
           <div className="slider-container slider_1-row row d-flex flex-nowrap justify-content-start g-0">
 
-            {items.map((index, i) => {
+            {items?.map((index, i) => {
                                       
               const {heading, bold, paragraph} = index;
 

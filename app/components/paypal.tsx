@@ -1,6 +1,6 @@
 "use client"
 import {useState, useRef, useEffect} from "react";
-import {useCartContext, useAppContext} from "@/components/context";
+import {useSubContext, useAppContext} from "@/components/context";
 import {ArrowDownShort} from "react-bootstrap-icons";
 import type { PayPalNamespace } from "@paypal/paypal-js";
 import Spinner from "@/images/spinner.gif";
@@ -20,7 +20,7 @@ const Select = dynamic(() => import("react-select/creatable"), {ssr: false});
 
 const Paypal = () => {
 
-  const {order, cartOrder, options, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, total, setTotal, show, setShow} = useCartContext();
+  const {order, items, setOrder, options, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, total, setTotal, show, setShow} = useSubContext();
 
   const {setScrollingRef} = useAppContext();
 
@@ -54,15 +54,15 @@ const Paypal = () => {
 
   const optionOrder = (e) => {
 
-    cartOrder[e.currentTarget.getAttribute("data-value")]();
+    setOrder(items[e.currentTarget.getAttribute("data-value")]);
   };
 
   const selectOrder = (e) => {
 
-    cartOrder[e.value]();
+    setOrder(items[e.value]);
   };
 
-  const init = (obj) => {
+  const init = (obj, reset) => {
 
     if (smartButton !== undefined) smartButton.close();
 
@@ -167,7 +167,7 @@ const Paypal = () => {
 
         setOutputBool(true);
 
-        cartOrder.cartOne();
+        setOrder(reset);
       },
 
       onError: (err) => {
@@ -201,7 +201,8 @@ const Paypal = () => {
       },
     };
 
-    init(obj);
+
+    init(obj, items["cart0"]);
 
     setCart(obj);
 
@@ -236,6 +237,11 @@ const Paypal = () => {
     }, 100);
   };
 
+  const imageLoader = ({src}) => {
+
+    return `${src}`;
+  };
+
   useEffect(() => {
 
     if (outputBool && outputRef) {
@@ -252,7 +258,7 @@ const Paypal = () => {
 
     <>
 
-      <Script src={`https://www.paypal.com/sdk/js?client-id=${SCRIPT_PROVIDER_OPTIONS.clientId}&currency=${SCRIPT_PROVIDER_OPTIONS.currency}`} onReady={()=>init(cart)}/>
+      <Script src={`https://www.paypal.com/sdk/js?client-id=${SCRIPT_PROVIDER_OPTIONS.clientId}&currency=${SCRIPT_PROVIDER_OPTIONS.currency}`} onReady={()=>init(cart, items["cart0"])}/>
 
       <div className="paypal container-md d-flex align-items-center pt-5 px-4 px-sm-5 px-md-0 my-sm-4 g-0">
 
@@ -266,7 +272,7 @@ const Paypal = () => {
 
                 <h3 className="m-0 pb-4">
 
-                  {`${order.name} $ ${order.value}`}
+                  {`${order?.name} $ ${order?.value}`}
 
                 </h3>
 
@@ -278,11 +284,11 @@ const Paypal = () => {
 
                   <b className="d-block pb-4">
 
-                    {order.sub}
+                    {order?.sub}
 
                   </b>
                   
-                  {order.description}
+                  {order?.description}
 
                 </p>
 
@@ -302,7 +308,7 @@ const Paypal = () => {
 
                   inputId="select"
 
-                  value={order.ref}
+                  value={order?.ref}
 
                   onChange={selectOrder}
 
@@ -405,7 +411,7 @@ const Paypal = () => {
 
               <div className="order-image col-10 col-md-4 my-5 p-0">
 
-                  <Image onLoad={srcListen} src={order.image} alt="Food" width="366" height="366"/>
+                {order?.image ? <Image onLoad={srcListen} src={order.image} loader={imageLoader} unoptimized alt="Food" width="366" height="366"/> : null}
 
               </div>
 
@@ -453,7 +459,7 @@ const Paypal = () => {
 
               >
 
-                {Object.keys(cart).includes(order.name) ? (
+                {Object.keys(cart).includes(order?.name) ? (
 
                     "update"
 

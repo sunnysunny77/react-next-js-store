@@ -1,6 +1,6 @@
 "use client"
 import {useRef, useEffect} from "react";
-import {useAppContext} from "@/components/context";
+import {useAppContext, useSubContext} from "@/components/context";
 import Cards from "@/components/cards";
 import Header from "@/components/header";
 import Paypal from "@/components/paypal";
@@ -13,6 +13,8 @@ const Store = () => {
 
   const {checkCookie} = useAppContext();
 
+  const {fieldsLoad, fields} = useSubContext();
+
   const navbarRef = useRef(null);
 
   const storeRef = useRef(null);
@@ -23,12 +25,12 @@ const Store = () => {
 
   const footerRef = useRef(null);
 
-  const heading = "STORE";
-
   useEffect(() => {
 
     checkCookie();
   },[checkCookie]);
+
+  if (!fieldsLoad) return;
 
   return (
 
@@ -38,7 +40,7 @@ const Store = () => {
 
       <Navigation mainRef={mainRef} footerRef={footerRef}/>
 
-      <Header heading={heading}/>
+      <Header heading={fields.cart?.title}/>
 
       <main className="d-flex flex-column" ref={mainRef}>
 
@@ -48,10 +50,8 @@ const Store = () => {
 
           <Cards
 
-            heading={`Vestibulum eu`}
-
+            heading={fields.cart?.post_items_heading}
             cardsType={false}
-
             storeRef={storeRef}
 
           />
@@ -68,26 +68,27 @@ const Store = () => {
 
                 content={[
                   {
-                    heading: "Donec integer",
+                    heading: fields.cart?.first_accordian_heading,
                     body: [
-                      "Potenti magna porta ac sit lectus cubilia fringilla nulla tempor. Per libero eleifend sapien elementum pretium mauris felis eros amet.",
-                      "Curabitur fermentum neque sagittis lacus commodo finibus dictum.",
+                      fields.cart?.first_accordian_first_row,
+                      fields.cart?.first_accordian_second_row,
+                      fields.cart?.first_accordian_third_row,
                     ],
                   },
                   {
-                    heading: "Felis aliquam malesuada",
+                    heading: fields.cart?.second_accordian_heading,
                     body: [
-                      "Scelerisque tortor placerat conubia eleifend luctus. Platea laoreet est scelerisque.",
-                      "Maximus libero primis sapien quisque ultricies. Commodo ipsum tempor pellentesque ex pulvinar iaculis.",
+                      fields.cart?.second_accordian_first_row,
+                      fields.cart?.second_accordian_second_row,
+                      fields.cart?.second_accordian_third_row,
                     ],
                   },
                   {
-                    heading: "Aenean malesuada parturient",
+                    heading: fields.cart?.third_accordian_heading,
                     body: [
-                      "Primis lectus viverra pulvinar sit nullam nisl? Adipiscing mauris lacinia parturient ornare sagittis.",
-                      "Consectetur diam pulvinar sagittis mus, orci laoreet. Donec sed ante, quis enim lectus semper.",
-                      "Quisque habitasse neque fames rutrum dis tempus. Finibus platea neque sollicitudin; commodo taciti id eleifend. Orci nisl dui ex sociosqu facilisis ipsum maecenas.",
-                    ],
+                      fields.cart?.third_accordian_first_row,
+                      fields.cart?.third_accordian_second_row,
+                      fields.cart?.third_accordian_third_row,        ],
                   },
                 ]}
 
@@ -103,23 +104,15 @@ const Store = () => {
 
         <Paypal/>
 
-        <div className="container-xl px-4 pb-5 px-sm-5 px-xl-0 mb-lg-5  pt-5 mt-lg-5 g-0">
+        <div className="container-xl px-4 pb-5 px-sm-5 px-xl-0 mb-lg-5 pt-5 mt-lg-5 g-0">
 
           <Cta
 
             ctaType={false}
-
-            heading={`Lobor Kenean`}
-
-            bold={`Mollis dui`}
-
-            paragraph={
-              `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tristique tincidunt dui, vel
-              rhoncus sapien congue non. Aenean lobortis lorem eu commodo consequat.`
-            }
-
-            button={`Vestibulum eu`}
-
+            heading={fields.cart?.cta_heading}
+            bold={fields.cart?.cta_bold}
+            paragraph={fields.cart?.cta_paragraph}
+            button={fields.cart?.cta_button}
             itemsRef={itemsRef}
 
           />

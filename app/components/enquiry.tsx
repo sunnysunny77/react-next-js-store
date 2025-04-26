@@ -4,7 +4,9 @@ import {useActionState} from "react";
 import Image from "next/image";
 import Spinner from "@/images/spinner.gif";
 
-const Enquiry = () => {
+const Enquiry = (props) => {
+
+    const {heading, paragraph, button} = props;
 
     const [stateEnquiry, actionEnquiry, isPending] = useActionState(GetEnquiry, {
       name: "",
@@ -34,7 +36,7 @@ const Enquiry = () => {
 
               <legend className="col-12 mb-4">
 
-                Enquiry
+                {heading}
 
                 <b className="ms-4"></b>
 
@@ -171,7 +173,7 @@ const Enquiry = () => {
 
                       <p className="mb-0">
 
-                        {stateEnquiry?.response ? stateEnquiry?.response : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."}
+                        {stateEnquiry?.response ? stateEnquiry?.response : paragraph}
 
                         <br/>
 
@@ -183,7 +185,7 @@ const Enquiry = () => {
 
                     <div className="col-12 col-sm-4 d-flex justify-content-sm-end">
 
-                      <input className="rounded" type="submit" value="Send"/>
+                      <input className="rounded" type="submit" value={`${button}`}/>
 
                     </div>
 

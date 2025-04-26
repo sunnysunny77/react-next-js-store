@@ -45,10 +45,6 @@ b {
     overflow: hidden;
 }
 
-.PreText {
-    white-space: pre-line;
-}
-
 .os-theme-body {
     --os-size: 4px;
     @include min_md {
@@ -67,4 +63,8 @@ b {
 
 .os-theme-body .os-scrollbar-track {
     background: transparent;
+}
+
+.mw-1285 {
+    max-width: 1285px;
 }

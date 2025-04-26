@@ -1,9 +1,10 @@
 
 "use client"
-import {useAppContext} from "@/components/context";
+import {useAppContext ,useSubContext} from "@/components/context";
 import {Linkedin} from "react-bootstrap-icons";
 import {ArrowUp} from "react-bootstrap-icons";
 import {usePathname } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
 import Year from "@/components/year";
 
@@ -11,7 +12,14 @@ const Footer = () => {
 
   const {auth, log_out, setScrollingRef} = useAppContext();
 
+  const {fields} = useSubContext();
+
   const pathname = usePathname();
+
+  const imageLoader = ({src}) => {
+
+    return `${src}`;
+  };
 
   const scroll_to = () => {
 
@@ -39,34 +47,8 @@ const Footer = () => {
                   <div className="col-auto pb-3 ps-1 pe-3">
 
                     <Link href="/">
-                    
-                      <svg aria-label="Super Foods" viewBox="0 0 100 100" width="40" height="40">
 
-                        <defs>
-
-                            <path 
-
-                              id="circle-footer"
-                              d="M 50, 50
-                              m -37, 0
-                              a 37,37 0 1,1 74,0
-                              a 37,37 0 1,1 -74,0"
-                                
-                            />
-
-                        </defs>
-
-                        <text className="font">
-
-                            <textPath href="#circle-footer">
-
-                              Super --- Food ----------
-
-                            </textPath>
-
-                        </text>
-
-                      </svg>
+                      {fields.options?.logo ?  <Image className="d-block w-100" src={fields.options.logo} loader={imageLoader} unoptimized alt={`${fields.options.logo_alt}`} width="50" height="50"/> : null}
 
                     </Link>
 
@@ -76,9 +58,7 @@ const Footer = () => {
 
                     <p className="m-0 footer-text">
 
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                      Ut enim ad minim veniam, quis nostrud exercitation.
+                      {fields.options?.paragraph}
 
                     </p>
 
@@ -98,7 +78,7 @@ const Footer = () => {
 
                     <Link className={`footer-link ${pathname === "/" ? "active" : ""}`} href="/">
                     
-                      Home 
+                      {fields.options?.front_page}
                     
                     </Link>
 
@@ -108,7 +88,7 @@ const Footer = () => {
 
                     <Link className={`footer-link ${pathname === "/store" || pathname === "/authentication" ? "active" : ""}`} href={auth ? "/store" : "/authentication"}>
                     
-                      Store 
+                      {fields.options?.cart_page}
                       
                     </Link>
 
@@ -120,7 +100,7 @@ const Footer = () => {
 
                     <button onClick={log_out} className="footer-link">
 
-                      Sign Out
+                      {fields.options?.sign_out}
 
                     </button>
 
@@ -128,7 +108,7 @@ const Footer = () => {
 
                     <Link className="footer-link" href="/authentication">
 
-                      Sign in
+                      {fields.options?.sign_in}
 
                     </Link>
 
@@ -153,17 +133,17 @@ const Footer = () => {
 
                 <address>
   
-                  7c Yander Drive Eeast Welsbrough
+                  {fields.options?.address}
 
                 </address>
 
-                <Link className="footer-link" href="tel:+61435987875">+61 435 987 875</Link>
+                <Link className="footer-link" href={`tel:${fields.options?.phone}`}>{fields.options?.phone}</Link>
 
               </div>
 
               <div className="col-8 d-flex mt-3">
 
-                <Link aria-label="LinkedIn" href="/">
+                <Link aria-label="LinkedIn" href={`${fields.options?.linked_in}`}>
                         
                   <Linkedin/>
         

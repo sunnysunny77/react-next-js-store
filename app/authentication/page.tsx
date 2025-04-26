@@ -1,9 +1,10 @@
 "use client";
 import {useActionState, useEffect, useState, useRef, useCallback} from "react";
-import {useAppContext} from "@/components/context";
+import {useAppContext, useSubContext} from "@/components/context";
 import {GetSignIn} from "@/api/authentication";
 import {GetFactor, SetFactor} from "@/api/factor";
 import {GetCaptcha, SetCaptcha} from "@/api/captcha";
+import {ArrowRepeat} from "react-bootstrap-icons";
 import Registraion from "@/api/registraion";
 import Image from "next/image";
 import Header from "@/components/header";
@@ -11,17 +12,18 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import Spinner from "@/images/spinner.gif";
 
+
 const Auth = () => {
 
   const {checkCookie} = useAppContext();
+
+  const {fieldsLoad, fields} = useSubContext();
 
   const navbarRef = useRef(null);
 
   const mainRef = useRef(null);
 
   const footerRef = useRef(null);
-
-  const heading = "STORE";
 
   const [stateSignIn, actionSignIn, isPendingSign] = useActionState(GetSignIn, {
     message: "",
@@ -76,6 +78,8 @@ const Auth = () => {
     checkCookie();
   },[checkCookie]);
 
+  if (!fieldsLoad) return;
+
   return (
 
     <>
@@ -84,7 +88,7 @@ const Auth = () => {
 
       <Navigation mainRef={mainRef} footerRef={footerRef}/>
 
-      <Header heading={heading}/>
+      <Header heading={fields.authentication?.title}/>
 
       <main className="d-flex flex-column" ref={mainRef}>
 
@@ -98,7 +102,7 @@ const Auth = () => {
 
                 <button className="accordion-button" type="button"  data-bs-toggle="collapse" aria-expanded="true" aria-controls="collapse-0" data-bs-target="#collapse-0">
 
-                  Sign in
+                  {fields.authentication.sign_in}
 
                 </button>
 
@@ -128,7 +132,7 @@ const Auth = () => {
 
                     <button type="submit" className="btnn py-1 w-100 rounded mt-2">
 
-                      Submit
+                      {fields.authentication.form_button}
 
                     </button>
 
@@ -156,7 +160,7 @@ const Auth = () => {
 
                 <button className="accordion-button" type="button"  data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapse-1" data-bs-target="#collapse-1">
 
-                  Sign up
+                  {fields.authentication.sign_up}
 
                 </button>
 
@@ -194,7 +198,7 @@ const Auth = () => {
 
                       <button className="btnn py-1 w-100 rounded mt-2">
 
-                        Submit
+                        {fields.authentication.form_button}
 
                       </button>
 
@@ -202,7 +206,7 @@ const Auth = () => {
 
                     <button onClick={init} className="btnn p-1 w-100 rounded mt-3">
 
-                      Refresh
+                      <ArrowRepeat />
 
                     </button>
 
@@ -245,7 +249,7 @@ const Auth = () => {
 
                       <button type="submit" className="btnn py-1 w-100 rounded mt-2">
 
-                        Submit
+                        {fields.authentication.form_button}
 
                       </button>
 
@@ -273,7 +277,7 @@ const Auth = () => {
 
                       <button type="submit" className="btnn py-1 w-100 rounded mt-2">
 
-                        Submit
+                        {fields.authentication.form_button}
 
                       </button>
 
@@ -336,7 +340,7 @@ const Auth = () => {
 
                       <button type="submit" className="btnn py-1 w-100 rounded mt-2">
 
-                        Submit
+                        {fields.authentication.form_button}
 
                       </button>
 
@@ -366,7 +370,7 @@ const Auth = () => {
 
             <p className="rady p-3 mt-3">
 
-              Ut enim ad ed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+              {fields.authentication.form_paragraph}
 
             </p>
 

@@ -1,5 +1,5 @@
 import type {Metadata} from "next";
-import {AppWrapper, CartWrapper} from "@/components/context";
+import {AppWrapper, SubWrapper} from "@/components/context";
 import localFont from "next/font/local";
 import "@/styles/app.scss";
 import Init from "@/lib/init";
@@ -36,11 +36,11 @@ const RootLayout = ({
 
         <AppWrapper>
 
-          <CartWrapper>
+          <SubWrapper>
 
-              {children}
+            {children}
 
-          </CartWrapper>
+          </SubWrapper>
 
         </AppWrapper>
         

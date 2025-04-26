@@ -2,7 +2,7 @@ import {Check} from "react-bootstrap-icons";
 
 const TwoRowFeature = (props) => {
 
-  const {heading_top, heading_bottom, paragraph, children, items} = props;
+  const {heading_top, heading_bottom, paragraph, children, table, tags} = props;
 
   return (
 
@@ -66,41 +66,27 @@ const TwoRowFeature = (props) => {
 
                       <div className="row text-center g-0">
 
-                        <div className="col-12 col-md-4 p-3">
+                        {tags.map((index, i) => {
 
-                          3K
+                          const {super_tag, sub_tag} = index;
 
-                          <div className="tag">
-                            
-                            elit lectus
-                            
-                          </div>
+                          if (super_tag || sub_tag !== null) return (
 
-                        </div>
+                            <div key={i} className="col-12 col-md-4 p-3">
 
-                        <div className="col-12 col-md-4 p-3">
+                              {super_tag}
 
-                          5K
+                              <div className="tag">
 
-                          <div className="tag">
-                            
-                            gravida dolor
-                            
-                          </div>
+                                {sub_tag}
 
-                        </div>
+                              </div>
 
-                        <div className="col-12 col-md-4 p-3">
+                            </div>
 
-                          10K
-                          
-                          <div className="tag">
-                            
-                            velit magna
-                            
-                          </div>
+                          );
 
-                        </div>
+                        })}
 
                       </div>
 
@@ -110,7 +96,7 @@ const TwoRowFeature = (props) => {
 
                       <div className="row justify-content-center justify-content-sm-start g-0">
 
-                        {items.map((index, i) => {
+                        {table.map((index, i) => {
                                             
                             const {heading, content} = index;
 
@@ -130,7 +116,7 @@ const TwoRowFeature = (props) => {
                                     
                                     const {item} = index;
                                         
-                                    return (
+                                    if (item !== null) return (
 
                                       <li className="col-10 col-md-11 d-flex mb-3" key={i}>
 

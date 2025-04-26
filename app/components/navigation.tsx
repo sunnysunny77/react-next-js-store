@@ -1,14 +1,17 @@
 "use client"
-import {useAppContext} from "@/components/context";
+import {useAppContext , useSubContext} from "@/components/context";
 import {useRef, useEffect, useState, useCallback} from "react";
 import {usePathname} from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 const Navigation = (props) => {
 
   const {mainRef, footerRef} = props;
 
   const {scrollingRef, setScrollingRef, auth, log_out} = useAppContext();
+
+  const {fields} = useSubContext();
 
   const pathname = usePathname();
 
@@ -21,6 +24,11 @@ const Navigation = (props) => {
   const [scrollY, setScrollY] = useState(0);
   const [positive, setPositive] = useState(true);
   const height = 83;
+
+  const imageLoader = ({src}) => {
+
+    return `${src}`;
+  };
 
   const toggle_static = () => {
 
@@ -115,33 +123,7 @@ const Navigation = (props) => {
 
           <Link className="col-auto m-3" href="/">
 
-            <svg aria-label="Super Foods" viewBox="0 0 100 100" width="50" height="50">
-
-              <defs>
-
-                  <path
-
-                    id="circle"
-                    d="M 50, 50
-                    m -37, 0
-                    a 37,37 0 1,1 74,0
-                    a 37,37 0 1,1 -74,0"
-
-                  />
-
-              </defs>
-
-              <text className="font">
-
-                  <textPath href="#circle">
-
-                    Super --- Food ----------
-
-                  </textPath>
-
-              </text>
-
-            </svg>
+            {fields.options?.logo ?  <Image className="d-block w-100" src={fields.options.logo} loader={imageLoader} unoptimized alt={`${fields.options.logo_alt}`} width="50" height="50"/> : null}
 
           </Link>
 
@@ -167,7 +149,7 @@ const Navigation = (props) => {
 
                 <Link className={`navigation-link ${pathname === "/" ? "active" : ""}`} href="/">
 
-                  Home
+                  {fields.options?.front_page}
 
                 </Link>
 
@@ -177,7 +159,7 @@ const Navigation = (props) => {
 
                 <Link className={`navigation-link ${pathname === "/store" || pathname === "/authentication" ? "active" : ""}`} href={auth ? "/store" : "/authentication"}>
 
-                  Store
+                  {fields.options?.cart_page}
 
                 </Link>
 
@@ -189,7 +171,7 @@ const Navigation = (props) => {
 
                   <button onClick={log_out} className="navigation-link">
 
-                    Sign Out
+                    {fields.options?.sign_out}
 
                   </button>
 
@@ -197,7 +179,7 @@ const Navigation = (props) => {
 
                 <Link className="navigation-link" href="/authentication">
 
-                  Sign in
+                  {fields.options?.sign_in}
 
                 </Link>
 
@@ -219,33 +201,7 @@ const Navigation = (props) => {
 
           <Link className="col-auto m-3" href="/">
 
-            <svg aria-label="Super Foods" viewBox="0 0 100 100" width="50" height="50">
-
-              <defs>
-
-                  <path
-
-                    id="circle"
-                    d="M 50, 50
-                    m -37, 0
-                    a 37,37 0 1,1 74,0
-                    a 37,37 0 1,1 -74,0"
-
-                  />
-
-              </defs>
-
-              <text className="font">
-
-                  <textPath href="#circle">
-
-                    Super --- Food ----------
-
-                  </textPath>
-
-              </text>
-
-            </svg>
+            {fields.options?.logo ?  <Image className="d-block w-100" src={fields.options.logo} loader={imageLoader} unoptimized alt={`${fields.options.logo_alt}`} width="50" height="50"/> : null}
 
           </Link>
 
@@ -271,7 +227,7 @@ const Navigation = (props) => {
                 
                 <Link className={`navigation-link ${pathname === "/" ? "active" : ""}`} href="/">
                 
-                  Home
+                  {fields.options?.front_page}
 
                 </Link>
 
@@ -281,7 +237,7 @@ const Navigation = (props) => {
 
                 <Link className={`navigation-link ${pathname === "/store" || pathname === "/authentication" ? "active" : ""}`} href={auth ? "/store" : "/authentication"}>
 
-                  Store
+                  {fields.options?.cart_page}
 
                 </Link>
 
@@ -293,7 +249,7 @@ const Navigation = (props) => {
 
                   <button onClick={log_out} className="navigation-link">
 
-                    Sign Out
+                    {fields.options?.sign_out}
 
                   </button>
 
@@ -301,7 +257,7 @@ const Navigation = (props) => {
 
                 <Link className="navigation-link" href="/authentication">
 
-                  Sign In
+                  {fields.options?.sign_in}
 
                 </Link>
 

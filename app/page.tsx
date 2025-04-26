@@ -1,6 +1,6 @@
 "use client"
 import {useRef, useEffect} from "react";
-import {useAppContext} from "@/components/context";
+import {useAppContext, useSubContext} from "@/components/context";
 import CarouselSlider from "@/components/carousel-slider";
 import Cards from "@/components/cards";
 import Header from "@/components/header";
@@ -17,17 +17,12 @@ import Cta from "@/components/cta";
 import Enquiry from "@/components/enquiry";
 import Link from "next/link";
 import Image from "next/image";
-import Store from "@/images/store.webp";
-import Lemons from "@/images/lemons.webp";
-import Vegies from "@/images/vegies.webp";
-import Greens from "@/images/greens.webp";
-import Platter from "@/images/platter.webp";
-import Roast from "@/images/roast.webp";
-import Aus from "@/images/australian-made.svg";
 
 const Home = () => {
 
   const {auth, checkCookie} = useAppContext();
+
+  const {fieldsLoad, fields} = useSubContext();
 
   const navbarRef = useRef(null);
 
@@ -35,50 +30,17 @@ const Home = () => {
 
   const footerRef = useRef(null);
 
-  const heading = "HOME";
+  const imageLoader = ({src}) => {
+
+    return `${src}`;
+  };
 
   useEffect(() => {
 
     checkCookie();
   },[checkCookie]);
 
-  const children = (
-
-    <div className="col-12 bg-11 p-4 p-sm-5 ps-md-5 pt-md-5 pb-md-5 pe-md-0 pe-xl-5">
-
-      <div className="row align-items-center justify-content-between g-0">
-
-        <div className="col-12 col-md-7 col-xl-5">
-
-          <p className="p-4 p-xxl-5">
-
-            <span className="d-flex row align-items-center justify-content-between g-0">
-
-              <span className="col-11 col-lg-9 p-2 ps-sm-0">
-
-                Ut enim ad ed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
-
-              </span>
-
-              <Link scroll={false} href={auth ? "/store" : "/authentication"} className="col-auto align-self-lg-end border rounded mt-4 mb-3 px-2 py-1">
-
-                store
-
-              </Link>
-
-            </span>
-
-          </p>
-
-        </div>
-
-        <CarouselSlider/>
-
-      </div>
-
-    </div>
-
-  );
+  if (!fieldsLoad) return;
 
   return (
 
@@ -88,9 +50,65 @@ const Home = () => {
 
       <Navigation mainRef={mainRef} footerRef={footerRef}/>
 
-      <Header heading={heading}>
+      <Header heading={fields.front?.title}>
 
-        {children}
+        <div className="col-12 bg-11 p-4 p-sm-5 ps-md-5 pt-md-5 pb-md-5 pe-md-0 pe-xl-5">
+
+          <div className="row align-items-center justify-content-between g-0">
+
+            <div className="col-12 col-md-7 col-xl-5">
+
+              <p className="p-4 p-xxl-5">
+
+                <span className="d-flex row align-items-center justify-content-between g-0">
+
+                  <span className="col-11 col-lg-9 p-2 ps-sm-0">
+
+                    {fields.front?.header_paragraph}
+
+                  </span>
+
+                  <Link scroll={false} href={auth ? "/store" : "/authentication"} className="col-auto align-self-lg-end border rounded mt-4 mb-3 px-2 py-1">
+
+                    {fields.options?.cart_page}
+
+                  </Link>
+
+                </span>
+
+              </p>
+
+            </div>
+
+            <CarouselSlider>
+
+              <div className="carousel-inner">
+
+                <div className="carousel-item active">
+
+                  {fields.front?.header_first_carousel ? <Image className="d-block w-100" src={fields.front?.header_first_carousel} loader={imageLoader} unoptimized alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/> : null}
+
+                </div>
+
+                <div className="carousel-item">
+
+                  {fields.front?.header_second_carousel ? <Image className="d-block w-100" src={fields.front?.header_second_carousel} loader={imageLoader} unoptimized alt={`${fields.front?.header_second_carousel_alt}`} width="150" height="120"/> : null}
+
+                </div>
+
+                <div className="carousel-item">
+
+                  {fields.front?.header_third_carousel ?  <Image className="d-block w-100" src={fields.front?.header_third_carousel} loader={imageLoader} unoptimized alt={`${fields.front?.header_third_carousel_alt}`} width="150" height="150"/> : null}
+
+                </div>
+
+              </div>
+
+            </CarouselSlider>
+
+          </div>
+
+        </div>
 
       </Header>
 
@@ -98,145 +116,135 @@ const Home = () => {
 
         <TwoColText
 
-          heading={
-            `Lorem
-            ipsum dolor`
-          }
-
-          paragraph={
-            `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tristique tincidunt dui, vel rhoncus sapien congue non. Aenean lobortis lorem eu commodo consequat. Etiam scelerisque mollis dui at suscipit. Donec ac diam rhoncus, porta velit at, faucibus velit.
-
-            Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris iaculis varius lectus auctor pharetra. Cras risus odio, dignissim et viverra non, aliquam eget ligula. Maecenas convallis eget felis sit amet commodo.
-
-            Integer euilgod eros ex, id posuere lorem aliquam eget. Lorem ipsum dolor sit amet.`
-          }
+          heading={fields.front?.introduction_heading}
+          paragraph={fields.front?.introduction_paragraph}
 
         />
 
         <TwoColCurve
 
-          heading={`Adipiscing elit`}
-
-          paragraph={
-            `Fusce vulputate eleifend lacus ut pharetra, integer eleifend ligula at tortor hendrerit, sed consectetur magna gravida sed purus nisl.
-
-            Posuere eget nunc non interdum laoreet dui maecenas lobortis gravida magna auctor venenatis, nunc sit amet massa hendrerit lobortis purus in iaculis augue.
-
-            Etiam tincidunt ex eget felis rhoncus, eget tristique metus rutrum.`
-          }
+          heading={fields.front?.sub_introduction_heading}
+          paragraph={fields.front?.sub_introduction_paragraph}
 
         >
 
-          <Image src={Store} alt="store"  width="920" height="839"/>
+         {fields.front?.sub_introduction_image ? <Image src={fields.front?.sub_introduction_image} loader={imageLoader} unoptimized alt={`${fields.front?.sub_introduction_image_alt}`}  width="920" height="839"/> : null}
 
         </TwoColCurve>
 
         <TwoRowFeature
 
-          heading_top={`Lorem Ipsum id posuere lorem aliquam eget. Lorem ipsum dolor sit amet.`}
-          heading_bottom={`Consectetur adipiscing elit.`}
-          paragraph={
-            `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eu gravida velit. Vestibulum eu posuere
-            elit. Cras bibendum velit dui, eget tincidunt lectus eleifend eu. Mauris et dolor magna. In accumsan
-            scelerisque lorem nec rutrum. Phasellus et turpis posuere.`
-          }
-          items={[
+          heading_top={fields.front?.table_feature_heading}
+          heading_bottom={fields.front?.table_feature_sub_heading}
+          paragraph={fields.front?.table_feature_paragraph}
+          table={[
             {
-              heading: "Eu suscipit",
+              heading: fields.front?.table_feature_firstColumn_heading,
               content: [
                 {
-                  item: "himenaeos consequat",
+                  item: fields.front?.table_feature_firstColumn_firstRow,
                 },
                 {
-                  item: "latea bibendum",
+                  item: fields.front?.table_feature_firstColumn_secondRow,
                 },
                 {
-                  item: "finibus lacinia lacus",
+                  item: fields.front?.table_feature_firstColumn_thirdRow,
                 },
                 {
-                  item: "convallis inceptos placerat",
+                  item: fields.front?.table_feature_firstColumn_fourthRow,
                 },
               ]
             },
             {
-              heading: "Nunc proin",
+              heading: fields.front?.table_feature_secondColumn_heading,
               content: [
                 {
-                  item: "aliquet augue",
+                  item: fields.front?.table_feature_secondColumn_firstRow,
                 },
                 {
-                  item: "nec libero euismod",
+                  item: fields.front?.table_feature_secondColumn_secondRow,
                 },
                 {
-                  item: "curae mollis",
+                  item: fields.front?.table_feature_secondColumn_thirdRow,
+                },
+                {
+                  item: fields.front?.table_feature_secondColumn_fourthRow,
                 },
               ]
             },
             {
-              heading: "Convallis nec",
+              heading: fields.front?.table_feature_thirdColumn_heading,
               content: [
                 {
-                  item: "rhoncus tellus habitant",
+                  item: fields.front?.table_feature_thirdColumn_firstRow,
                 },
                 {
-                  item: "fames eleifend finibus",
+                  item: fields.front?.table_feature_thirdColumn_secondRow,
                 },
                 {
-                  item: "Nunc lobortis turpis",
+                  item: fields.front?.table_feature_thirdColumn_thirdRow,
+                },
+                {
+                  item: fields.front?.table_feature_thirdColumn_fourthRow,
                 },
               ]
             },
           ]}
+          tags={[
+              {
+                super_tag: fields.front?.table_feature_firstTag_super_tag,
+                sub_tag:  fields.front?.table_feature_firstTag_sub_tag,
+              },
+              {
+                super_tag: fields.front?.table_feature_secondTag_super_tag,
+                sub_tag:  fields.front?.table_feature_secondTag_sub_tag,
+              },
+              {
+                super_tag: fields.front?.table_feature_thirdTag_super_tag,
+                sub_tag:  fields.front?.table_feature_thirdTag_sub_tag,
+              },
+          ]}
 
         >
 
-          <Image src={Lemons} alt="lemons" width="400" height="400"/>
+          {fields.front?.table_feature_image ? <Image src={fields.front?.table_feature_image} loader={imageLoader} unoptimized alt={`${fields.front?.table_feature_image_alt}`} width="400" height="400"/> : null}
 
         </TwoRowFeature>
 
         <Slider
 
-          paragraph={
-            `Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris iaculis varius lectus auctor pharetra. Cras risus odio, dignissim et viverra non, aliquam eget ligula. Maecenas convallis eget felis sit amet commodo.
-
-            Integer euilgod eros ex, id posuere lorem aliquam eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tristique tincidunt dui, vel rhoncus sapien congue non.`
-          }
+          paragraph={fields.front?.slider_paragraph}
 
         >
 
-          <Image className="has-current counters" src={Vegies} width="847" height="565" alt="Vegies"/>
+          {fields.front?.slider_first_image? <Image className="has-current counters" src={fields.front?.slider_first_image} loader={imageLoader} unoptimized alt={`${fields.front?.slider_first_image_alt}`} width="847" height="565"/> : null}
 
-          <Image className="counters" src={Greens} width="847" height="565" alt="Greens"/>
+          {fields.front?.slider_second_image? <Image className="counters" src={fields.front?.slider_second_image} loader={imageLoader} unoptimized alt={`${fields.front?.slider_second_image_alt}`} width="847" height="565"/> : null}
 
-          <Image className="counters" src={Platter} width="847" height="565" alt="Platter"/>
+          {fields.front?.slider_third_image? <Image className="counters" src={fields.front?.slider_third_image} loader={imageLoader} unoptimized alt={`${fields.front?.slider_third_image_alt}`} width="847" height="565"/> : null}
 
         </Slider>
 
         <TwoColImage
 
-          heading={`Lorem ipsum`}
-
-          paragraph={
-            `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eu gravida velit. Vestibulum eu posuere
-            elit. Cras bibendum velit dui, eget tincidunt lectus eleifend eu. Mauris et dolor magna. In accumsan
-            scelerisque lorem nec rutrum. Phasellus et turpis posuere.`
-          }
+          heading={fields.front?.feature_image_heading}
+          paragraph={fields.front?.feature_image_paragraph}
 
         >
 
-          <Image src={Roast} alt="Roast" width="929" height="619"/>
+          {fields.front?.feature_image_image? <Image className="counters" src={fields.front?.feature_image_image} loader={imageLoader} unoptimized alt={`${fields.front?.feature_image_image_alt}`} width="929" height="619"/> : null}
 
         </TwoColImage>
 
         <OneColLarge
 
-          heading={`Lorem Ipsum`}
-          paragraph={`Ut enim ad ed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.`}
-          bold={`Ut enim ad minim veniam quis nostrud exercitation.`}
+          heading={fields.front?.sub_feature_image_heading}
+          paragraph={fields.front?.sub_feature_image_sub_heading}
+          bold={fields.front?.sub_feature_image_bold}
 
         >
 
-          <Image src={Aus} alt="Australian Made" width="150" height="150"/>
+          {fields.front?.sub_feature_image_image? <Image className="counters" src={fields.front?.sub_feature_image_image} loader={imageLoader} unoptimized alt={`${fields.front?.sub_feature_image_image_alt}`} width="150" height="150"/> : null}
 
         </OneColLarge>
 
@@ -244,8 +252,7 @@ const Home = () => {
 
           <Cards
 
-            heading={`Vestibulum eu`}
-
+            heading={fields.front?.post_items_heading}
             cardsType={true}
 
           />
@@ -254,52 +261,7 @@ const Home = () => {
 
         <ButtonSlider
 
-          items={[
-            {
-              heading: "Torquent malesuada",
-              bold: "primis rhoncus",
-              paragraph:
-
-                `Aliquam nulla habitant vitae euismod viverra penatibus congue potenti. Ipsum eros odio sollicitudin feugiat leo montes magnis quis.
-
-                Dignissim aenean nec; blandit hac in cras integer tincidunt. Accumsan magna neque venenatis senectus curabitur penatibus velit. Litora fames rhoncus elementum; sollicitudin aliquet consectetur.`,
-            },
-            {
-              heading: "Tristique mus",
-              bold: "venenatis ad",
-              paragraph:
-                `Ex varius nullam sociosqu erat congue aptent. Maecenas aliquam lobortis tempus, ultrices maecenas auctor ultrices.
-
-                Tincidunt eros lobortis; nam libero nisl viverra. Ex dapibus finibus leo fames class non lobortis non. Sociosqu posuere congue imperdiet nunc maecenas`,
-            },
-            {
-              heading: "Ut nisl laoreet ",
-              bold: "himenaeos libero",
-              paragraph:
-
-                `Maecenas rutrum senectus vitae lacinia, tempor senectus malesuada? Sapien mollis class aptent convallis lobortis amet fermentum class aptent.
-
-                Montes nulla gravida ultrices in tortor arcu purus. Id ligula porttitor congue sociosqu faucibus viverra.`,
-            },
-            {
-              heading: "Auctor massa",
-              bold: "cras accumsan",
-              paragraph:
-
-                `Ultricies tortor velit consectetur nisi netus erat ullamcorper mollis fringilla. Conubia nullam eu efficitur purus tincidunt iaculis.
-
-                Dui ad dictum ridiculus ultrices proin, mollis praesent. Aliquam luctus ipsum libero eleifend aliquam. Ligula euismod feugiat interdum ante accumsan congue.`,
-            },
-            {
-              heading: "Interdum in ex",
-              bold: "eque accumsan",
-              paragraph:
-
-                `Nullam class nisi imperdiet tincidunt egestas id nibh ornare orci. Mus nulla primis, curae nisi nunc ornare. Sagittis posuere lorem ornare urna consectetur tellus.
-
-                Cubilia montes ex efficitur ut, consequat convallis? Adipiscing volutpat arcu sed auctor ultrices aliquet?`,
-            },
-          ]}
+          items={fields.slider}
 
         />
 
@@ -309,21 +271,23 @@ const Home = () => {
 
             ctaType={true}
 
-            heading={`Lobor Kenean`}
+            heading={fields.front?.cta_heading}
 
-            paragraph={
-              `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tristique tincidunt dui, vel
-              rhoncus sapien congue non. Aenean lobortis lorem eu commodo consequat. Etiam scelerisque mollis dui at
-              suscipit. Donec ac diam rhoncus, porta velit at, faucibus velit.`
-            }
+            paragraph={fields.front?.cta_paragraph}
 
-            button={`Vestibulum eu`}
+            button={fields.front?.cta_button}
 
           />
 
         </div>
 
-        <Enquiry/>
+        <Enquiry
+
+          heading={fields.front?.form_heading}
+          paragraph={fields.front?.form_paragraph}
+          button={fields.front?.form_button}
+
+        />
 
       </main>
 

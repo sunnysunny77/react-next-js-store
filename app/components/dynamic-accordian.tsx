@@ -36,7 +36,7 @@ const DynamicAccordian = (props) => {
     
                           {body.map((index, i) => {
                             
-                            return (
+                            if (index !== null)  return (
     
                               <li key={i} className="mb-3">
     
