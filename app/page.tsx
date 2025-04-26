@@ -1,5 +1,5 @@
 "use client"
-import {useRef, useEffect} from "react";
+import {useRef} from "react";
 import {useAppContext, useSubContext} from "@/components/context";
 import CarouselSlider from "@/components/carousel-slider";
 import Cards from "@/components/cards";
@@ -20,7 +20,7 @@ import Image from "next/image";
 
 const Home = () => {
 
-  const {auth, checkCookie} = useAppContext();
+  const {auth} = useAppContext();
 
   const {fieldsLoad, fields} = useSubContext();
 
@@ -30,15 +30,10 @@ const Home = () => {
 
   const footerRef = useRef(null);
 
-  const imageLoader = ({src}) => {
+  const imageLoader = ({src, width}) => {
 
-    return `${src}`;
+    return `${src}?w=${width}`;
   };
-
-  useEffect(() => {
-
-    checkCookie();
-  },[checkCookie]);
 
   if (!fieldsLoad) return;
 
@@ -86,19 +81,19 @@ const Home = () => {
 
                 <div className="carousel-item active">
 
-                  {fields.front?.header_first_carousel ? <Image className="d-block w-100" src={fields.front?.header_first_carousel} loader={imageLoader} unoptimized alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/> : null}
+                  {fields.front?.header_first_carousel ? <Image className="d-block w-100" src={fields.front?.header_first_carousel} loader={imageLoader}  alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/> : null}
 
                 </div>
 
                 <div className="carousel-item">
 
-                  {fields.front?.header_second_carousel ? <Image className="d-block w-100" src={fields.front?.header_second_carousel} loader={imageLoader} unoptimized alt={`${fields.front?.header_second_carousel_alt}`} width="150" height="120"/> : null}
+                  {fields.front?.header_second_carousel ? <Image className="d-block w-100" src={fields.front?.header_second_carousel} loader={imageLoader}  alt={`${fields.front?.header_second_carousel_alt}`} width="150" height="120"/> : null}
 
                 </div>
 
                 <div className="carousel-item">
 
-                  {fields.front?.header_third_carousel ?  <Image className="d-block w-100" src={fields.front?.header_third_carousel} loader={imageLoader} unoptimized alt={`${fields.front?.header_third_carousel_alt}`} width="150" height="150"/> : null}
+                  {fields.front?.header_third_carousel ?  <Image className="d-block w-100" src={fields.front?.header_third_carousel} loader={imageLoader}  alt={`${fields.front?.header_third_carousel_alt}`} width="150" height="150"/> : null}
 
                 </div>
 
@@ -128,7 +123,7 @@ const Home = () => {
 
         >
 
-         {fields.front?.sub_introduction_image ? <Image src={fields.front?.sub_introduction_image} loader={imageLoader} unoptimized alt={`${fields.front?.sub_introduction_image_alt}`}  width="920" height="839"/> : null}
+         {fields.front?.sub_introduction_image ? <Image src={fields.front?.sub_introduction_image} loader={imageLoader}  alt={`${fields.front?.sub_introduction_image_alt}`}  width="920" height="839"/> : null}
 
         </TwoColCurve>
 
@@ -207,7 +202,7 @@ const Home = () => {
 
         >
 
-          {fields.front?.table_feature_image ? <Image src={fields.front?.table_feature_image} loader={imageLoader} unoptimized alt={`${fields.front?.table_feature_image_alt}`} width="400" height="400"/> : null}
+          {fields.front?.table_feature_image ? <Image src={fields.front?.table_feature_image} loader={imageLoader}  alt={`${fields.front?.table_feature_image_alt}`} width="400" height="400"/> : null}
 
         </TwoRowFeature>
 
@@ -217,11 +212,11 @@ const Home = () => {
 
         >
 
-          {fields.front?.slider_first_image? <Image className="has-current counters" src={fields.front?.slider_first_image} loader={imageLoader} unoptimized alt={`${fields.front?.slider_first_image_alt}`} width="847" height="565"/> : null}
+          {fields.front?.slider_first_image? <Image className="has-current counters" src={fields.front?.slider_first_image} loader={imageLoader}  alt={`${fields.front?.slider_first_image_alt}`} width="847" height="565"/> : null}
 
-          {fields.front?.slider_second_image? <Image className="counters" src={fields.front?.slider_second_image} loader={imageLoader} unoptimized alt={`${fields.front?.slider_second_image_alt}`} width="847" height="565"/> : null}
+          {fields.front?.slider_second_image? <Image className="counters" src={fields.front?.slider_second_image} loader={imageLoader}  alt={`${fields.front?.slider_second_image_alt}`} width="847" height="565"/> : null}
 
-          {fields.front?.slider_third_image? <Image className="counters" src={fields.front?.slider_third_image} loader={imageLoader} unoptimized alt={`${fields.front?.slider_third_image_alt}`} width="847" height="565"/> : null}
+          {fields.front?.slider_third_image? <Image className="counters" src={fields.front?.slider_third_image} loader={imageLoader}  alt={`${fields.front?.slider_third_image_alt}`} width="847" height="565"/> : null}
 
         </Slider>
 
@@ -232,7 +227,7 @@ const Home = () => {
 
         >
 
-          {fields.front?.feature_image_image? <Image className="counters" src={fields.front?.feature_image_image} loader={imageLoader} unoptimized alt={`${fields.front?.feature_image_image_alt}`} width="929" height="619"/> : null}
+          {fields.front?.feature_image_image? <Image className="counters" src={fields.front?.feature_image_image} loader={imageLoader}  alt={`${fields.front?.feature_image_image_alt}`} width="929" height="619"/> : null}
 
         </TwoColImage>
 
@@ -244,7 +239,7 @@ const Home = () => {
 
         >
 
-          {fields.front?.sub_feature_image_image? <Image className="counters" src={fields.front?.sub_feature_image_image} loader={imageLoader} unoptimized alt={`${fields.front?.sub_feature_image_image_alt}`} width="150" height="150"/> : null}
+          {fields.front?.sub_feature_image_image? <Image className="counters" src={fields.front?.sub_feature_image_image} loader={imageLoader}  alt={`${fields.front?.sub_feature_image_image_alt}`} width="150" height="150"/> : null}
 
         </OneColLarge>
 

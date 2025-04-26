@@ -1,6 +1,6 @@
 "use client"
-import {useRef, useEffect} from "react";
-import {useAppContext, useSubContext} from "@/components/context";
+import {useRef} from "react";
+import {useSubContext} from "@/components/context";
 import Cards from "@/components/cards";
 import Header from "@/components/header";
 import Paypal from "@/components/paypal";
@@ -11,7 +11,6 @@ import Footer from "@/components/footer";
 
 const Store = () => {
 
-  const {checkCookie} = useAppContext();
 
   const {fieldsLoad, fields} = useSubContext();
 
@@ -24,11 +23,6 @@ const Store = () => {
   const mainRef = useRef(null);
 
   const footerRef = useRef(null);
-
-  useEffect(() => {
-
-    checkCookie();
-  },[checkCookie]);
 
   if (!fieldsLoad) return;
 

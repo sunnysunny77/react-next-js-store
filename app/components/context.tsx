@@ -29,12 +29,6 @@ export const AppWrapper = ({
 
   const [route, setRoute] = useState(pathname);
 
-  const checkCookie = async () => {
-
-    const cookie = await GetCookie();
-    setAuth(cookie);
-  };
-
   const log_out = () => {
 
     setScrollingRef({current: null});
@@ -71,9 +65,19 @@ export const AppWrapper = ({
     };
   }, [bootstrap]);
 
+  useEffect(() => {
+
+    const checkCookie = async () => {
+
+      const cookie = await GetCookie();
+      setAuth(cookie);
+    };
+    checkCookie();
+  },[]);
+
   return (
 
-    <AppContext.Provider value={{bootstrap, scrollingRef, setScrollingRef, auth, checkCookie, log_out, holdScrollCta, setHoldScrollCta, holdScrollCard, setHoldScrollCard}}>
+    <AppContext.Provider value={{bootstrap, scrollingRef, setScrollingRef, auth, log_out, holdScrollCta, setHoldScrollCta, holdScrollCard, setHoldScrollCard}}>
 
       {children}
 
@@ -121,6 +125,8 @@ export const SubWrapper = ({
       const syncFields = async () => {
 
         const Fields = await getFields();
+
+        if (!Fields) return setFieldsLoad(true);
 
         setItems(Fields.items);
 

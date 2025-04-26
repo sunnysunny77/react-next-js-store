@@ -212,7 +212,7 @@ const Paypal = () => {
 
     setDisabled(false);
 
-    setTimeout(()=>setShow(false),667);
+    setTimeout(()=>setShow(false),888);
   };
 
   const minus = () => {
@@ -237,9 +237,9 @@ const Paypal = () => {
     }, 100);
   };
 
-  const imageLoader = ({src}) => {
+  const imageLoader = ({src, width}) => {
 
-    return `${src}`;
+    return `${src}?w=${width}`;
   };
 
   useEffect(() => {
@@ -411,7 +411,7 @@ const Paypal = () => {
 
               <div className="order-image col-10 col-md-4 my-5 p-0">
 
-                {order?.image ? <Image onLoad={srcListen} src={order.image} loader={imageLoader} unoptimized alt="Food" width="366" height="366"/> : null}
+                {order?.image ? <Image onLoad={srcListen} src={order.image} loader={imageLoader}  alt="Food" width="366" height="366"/> : null}
 
               </div>
 

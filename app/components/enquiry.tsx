@@ -177,7 +177,7 @@ const Enquiry = (props) => {
 
                         <br/>
 
-                        <span className="spinnerSpan">{isPending ? <Image unoptimized className="spinner" width="40" height="40" src={Spinner} alt="spinner"/> : ""} </span>
+                        <span className="spinnerSpan">{isPending ? <Image  className="spinner" width="40" height="40" src={Spinner} alt="spinner"/> : ""} </span>
 
                       </p>
 

@@ -1,6 +1,6 @@
 "use client";
 import {useActionState, useEffect, useState, useRef, useCallback} from "react";
-import {useAppContext, useSubContext} from "@/components/context";
+import {useSubContext} from "@/components/context";
 import {GetSignIn} from "@/api/authentication";
 import {GetFactor, SetFactor} from "@/api/factor";
 import {GetCaptcha, SetCaptcha} from "@/api/captcha";
@@ -12,10 +12,7 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import Spinner from "@/images/spinner.gif";
 
-
 const Auth = () => {
-
-  const {checkCookie} = useAppContext();
 
   const {fieldsLoad, fields} = useSubContext();
 
@@ -56,27 +53,22 @@ const Auth = () => {
     password: "",
   });
 
-  const imageLoader = ({src}) => {
+  const imageLoader = ({src, width}) => {
 
-    return `${src}`;
+    return `${src}?w=${width}`;
   };
 
   const init = useCallback( async () => {
 
     setCaptcha(<Image className="spinner type" width="40" height="40" src={Spinner} alt="spinner"/>);
     const res = await GetCaptcha();
-    setCaptcha(<Image src={res} unoptimized loader={imageLoader} width="140" height="50" alt="canvas"/>);
+    setCaptcha(<Image src={res}  loader={imageLoader} width="140" height="50" alt="canvas"/>);
   },[]);
 
   useEffect(() => {
 
     init();
   },[init]);
-
-  useEffect(() => {
-
-    checkCookie();
-  },[checkCookie]);
 
   if (!fieldsLoad) return;
 
@@ -102,7 +94,7 @@ const Auth = () => {
 
                 <button className="accordion-button" type="button"  data-bs-toggle="collapse" aria-expanded="true" aria-controls="collapse-0" data-bs-target="#collapse-0">
 
-                  {fields.authentication.sign_in}
+                  {fields.authentication?.sign_in}
 
                 </button>
 
@@ -132,7 +124,7 @@ const Auth = () => {
 
                     <button type="submit" className="btnn py-1 w-100 rounded mt-2">
 
-                      {fields.authentication.form_button}
+                      {fields.authentication?.form_button}
 
                     </button>
 
@@ -160,7 +152,7 @@ const Auth = () => {
 
                 <button className="accordion-button" type="button"  data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapse-1" data-bs-target="#collapse-1">
 
-                  {fields.authentication.sign_up}
+                  {fields.authentication?.sign_up}
 
                 </button>
 
@@ -198,7 +190,7 @@ const Auth = () => {
 
                       <button className="btnn py-1 w-100 rounded mt-2">
 
-                        {fields.authentication.form_button}
+                        {fields.authentication?.form_button}
 
                       </button>
 
@@ -249,7 +241,7 @@ const Auth = () => {
 
                       <button type="submit" className="btnn py-1 w-100 rounded mt-2">
 
-                        {fields.authentication.form_button}
+                        {fields.authentication?.form_button}
 
                       </button>
 
@@ -277,7 +269,7 @@ const Auth = () => {
 
                       <button type="submit" className="btnn py-1 w-100 rounded mt-2">
 
-                        {fields.authentication.form_button}
+                        {fields.authentication?.form_button}
 
                       </button>
 
@@ -340,7 +332,7 @@ const Auth = () => {
 
                       <button type="submit" className="btnn py-1 w-100 rounded mt-2">
 
-                        {fields.authentication.form_button}
+                        {fields.authentication?.form_button}
 
                       </button>
 
@@ -370,7 +362,7 @@ const Auth = () => {
 
             <p className="rady p-3 mt-3">
 
-              {fields.authentication.form_paragraph}
+              {fields.authentication?.form_paragraph}
 
             </p>
 

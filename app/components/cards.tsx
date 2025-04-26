@@ -44,9 +44,9 @@ const Cards = (props) => {
 
   const {setScrollingRef, holdScrollCard, setHoldScrollCard} = useAppContext();
 
-  const imageLoader = ({src}) => {
+  const imageLoader = ({src, width}) => {
 
-    return `${src}`;
+    return `${src}?w=${width}`;
   };
 
   const optionOrder = (e) => {
@@ -113,7 +113,7 @@ const Cards = (props) => {
 
                   <div className="overflow-hidden">
 
-                  {items[index].image ? <Image src={items[index].image} loader={imageLoader} unoptimized alt={`${items[index].image_alt}`} width="399" height="265"/> : null}
+                  {items[index].image ? <Image src={items[index].image} loader={imageLoader}  alt={`${items[index].image_alt}`} width="399" height="265"/> : null}
 
                   </div>
 

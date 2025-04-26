@@ -16,9 +16,9 @@ const Footer = () => {
 
   const pathname = usePathname();
 
-  const imageLoader = ({src}) => {
+  const imageLoader = ({src, width}) => {
 
-    return `${src}`;
+    return `${src}?w=${width}`;
   };
 
   const scroll_to = () => {
@@ -48,7 +48,7 @@ const Footer = () => {
 
                     <Link href="/">
 
-                      {fields.options?.logo ?  <Image className="d-block w-100" src={fields.options.logo} loader={imageLoader} unoptimized alt={`${fields.options.logo_alt}`} width="50" height="50"/> : null}
+                      {fields.options?.logo ?  <Image className="d-block w-100" src={fields.options.logo} loader={imageLoader}  alt={`${fields.options.logo_alt}`} width="50" height="50"/> : null}
 
                     </Link>
 

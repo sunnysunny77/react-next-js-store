@@ -25,9 +25,9 @@ const Navigation = (props) => {
   const [positive, setPositive] = useState(true);
   const height = 83;
 
-  const imageLoader = ({src}) => {
+  const imageLoader = ({src, width}) => {
 
-    return `${src}`;
+    return `${src}?w=${width}`;
   };
 
   const toggle_static = () => {
@@ -125,7 +125,7 @@ const Navigation = (props) => {
 
           <Link className="col-auto m-3" href="/">
 
-            {fields.options?.logo ?  <Image className="d-block w-100" src={fields.options.logo} loader={imageLoader} unoptimized alt={`${fields.options.logo_alt}`} width="50" height="50"/> : null}
+            {fields.options?.logo ?  <Image className="d-block w-100" src={fields.options.logo} loader={imageLoader}  alt={`${fields.options.logo_alt}`} width="50" height="50"/> : null}
 
           </Link>
 
@@ -203,7 +203,7 @@ const Navigation = (props) => {
 
           <Link className="col-auto m-3" href="/">
 
-            {fields.options?.logo ?  <Image className="d-block w-100" src={fields.options.logo} loader={imageLoader} unoptimized alt={`${fields.options.logo_alt}`} width="50" height="50"/> : null}
+            {fields.options?.logo ?  <Image className="d-block w-100" src={fields.options.logo} loader={imageLoader}  alt={`${fields.options.logo_alt}`} width="50" height="50"/> : null}
 
           </Link>
 

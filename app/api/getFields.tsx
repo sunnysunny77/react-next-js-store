@@ -692,24 +692,32 @@ export const getFields = async () => {
     }
   }`;
 
-  const res = await fetch(`${process.env.REACT_APP_GRAPHQL_ENDPOINT}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      query: query,
-    }),
-  })
+  try {
 
-  const json = await res.json();
-  const fieldsOptions = await fields_options(json.data.pages.nodes[0].template);
-  const fieldsAuthentication = await fields_authentication(json.data.pages.nodes[1].template);
-  const fieldsCart = await fields_cart(json.data.pages.nodes[2].template);
-  const fieldsFront = await fields_front(json.data.pages.nodes[3].template);
-  const fieldsSliderPost = await fields_slider_post(json.data.postSliders);
-  const fieldsCartPost = await fields_cart_post(json.data.postItems);
-  const data = {...fieldsOptions, ...fieldsAuthentication, ...fieldsCart, ...fieldsFront, ...fieldsSliderPost, ...fieldsCartPost};
+    const res = await fetch(`${process.env.REACT_APP_GRAPHQL_ENDPOINT}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: query,
+      }),
+    })
 
-  return data;
+    const json = await res.json();
+    const fieldsOptions = await fields_options(json.data.pages.nodes[0].template);
+    const fieldsAuthentication = await fields_authentication(json.data.pages.nodes[1].template);
+    const fieldsCart = await fields_cart(json.data.pages.nodes[2].template);
+    const fieldsFront = await fields_front(json.data.pages.nodes[3].template);
+    const fieldsSliderPost = await fields_slider_post(json.data.postSliders);
+    const fieldsCartPost = await fields_cart_post(json.data.postItems);
+    const data = {...fieldsOptions, ...fieldsAuthentication, ...fieldsCart, ...fieldsFront, ...fieldsSliderPost, ...fieldsCartPost};
+
+    return data;
+  } catch (err) {
+
+    console.log(err);
+
+    return false;
+  };
 };

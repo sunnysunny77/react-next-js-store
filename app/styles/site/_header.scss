@@ -52,7 +52,7 @@ header {
             display: flex;
             align-items: center;
             order: 1;
-            width: auto;
+            width: 100%;
             min-height: 180px;
             max-width: 180px;
             img {
@@ -60,7 +60,7 @@ header {
                 margin: auto;
                 align-items: center;
                 width: auto;
-                object-fit: contain;
+                height: auto;
             }
         }
     }
