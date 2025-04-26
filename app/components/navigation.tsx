@@ -48,6 +48,8 @@ const Navigation = (props) => {
 
     const scroll_pos = window.scrollY;
 
+    if (scrollingRef.current !== null && scroll_pos === scrollingRef.current.offsetTop) {setScrollingRef({current: null})}
+
     if (scrollingRef.current !== null) {
 
       navbar_fixed.current?.classList.remove("has-float");
@@ -97,7 +99,7 @@ const Navigation = (props) => {
 
   const handle_end = useCallback(() => {
 
-    if (scrollingRef.current !== null) setScrollingRef({current: null});
+    if (scrollingRef.current !== null) {setScrollingRef({current: null})};
   },[setScrollingRef, scrollingRef]);
 
   useEffect(() => {
