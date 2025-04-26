@@ -20,11 +20,11 @@ export function middleware(request: NextRequest) {
     default-src 'self';
     script-src 'self' 'nonce-${nonce}' 'strict-dynamic' ${process.env.NODE_ENV === "development" ? "'unsafe-eval'" : ""};
     style-src 'self' 'unsafe-inline' https://*.paypal.com;
-    img-src 'self' blob: data: https://*.paypalobjects.com ${process.env.REACT_APP_ENDPOINT};
+    img-src 'self' blob: data: https://*.paypalobjects.com ${process.env.REACT_APP_ENDPOINT}/wp-content/themes/headless/files/;
     font-src 'self';
     object-src 'none';
     base-uri 'self';
-    connect-src 'self' https://www.sandbox.paypal.com https://www.paypal.com;
+    connect-src 'self' https://www.sandbox.paypal.com https://www.paypal.com ${process.env.REACT_APP_ENDPOINT};
     form-action 'self';
     frame-src https://www.sandbox.paypal.com;
     frame-ancestors 'none';
@@ -51,7 +51,12 @@ export function middleware(request: NextRequest) {
 
   response.headers.set(
 
-    'Content-Security-Policy',contentSecurityPolicyHeaderValue
+    'Content-Security-Policy',contentSecurityPolicyHeaderValue,
+  );
+
+  response.headers.set(
+
+    'Access-Control-Allow-Origin', `${process.env.REACT_APP_ENDPOINT}`,
   );
 
   return response;
