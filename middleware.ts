@@ -59,6 +59,16 @@ export function middleware(request: NextRequest) {
     'Access-Control-Allow-Origin', `${process.env.REACT_APP_ENDPOINT}`,
   );
 
+  response.headers.set(
+
+    'Strict-Transport-Security', 'max-age=63072000; includeSubdomains; preload',
+  );
+
+  response.headers.set(
+
+    'X-Content-Type-Options', 'nosniff',
+  );
+
   return response;
 };
 
