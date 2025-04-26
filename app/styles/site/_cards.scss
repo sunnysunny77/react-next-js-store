@@ -7,11 +7,15 @@
         box-shadow: none;
         padding: initial;
         text-align: initial;
+        margin-top: 48px;
+        outline: none;
         @include min_sm {
             width: 48%;
+            margin-top: 24px;
         }
         @include min_lg {
             width: 31.5%;
+            margin-top: 39px;
         }
         &:hover {
             img {

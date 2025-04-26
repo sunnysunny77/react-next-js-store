@@ -103,7 +103,7 @@ const Cards = (props) => {
 
                 onClick={optionOrder}
 
-                classes="card d-flex flex-column justify-content-between mt-5 mt-sm-4 pt-lg-3"
+                classes="card d-flex flex-column justify-content-between"
 
                 data_value={options[i].value}
 

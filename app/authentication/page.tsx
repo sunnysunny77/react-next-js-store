@@ -65,7 +65,7 @@ const Auth = () => {
 
     setCaptcha(<Image className="spinner type" width="40" height="40" src={Spinner} alt="spinner"/>);
     const res = await GetCaptcha();
-    setCaptcha(<Image src={res} unoptimized loader={imageLoader} width="150" height="50" alt="canvas"/>);
+    setCaptcha(<Image src={res} unoptimized loader={imageLoader} width="140" height="50" alt="canvas"/>);
   },[]);
 
   useEffect(() => {
