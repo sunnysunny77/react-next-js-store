@@ -73,7 +73,7 @@ export const AppWrapper = ({
       setAuth(cookie);
     };
     checkCookie();
-  },[]);
+  },[pathname]);
 
   return (
 

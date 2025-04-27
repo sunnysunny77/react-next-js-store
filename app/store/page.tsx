@@ -11,7 +11,6 @@ import Footer from "@/components/footer";
 
 const Store = () => {
 
-
   const {fieldsLoad, fields} = useSubContext();
 
   const navbarRef = useRef(null);

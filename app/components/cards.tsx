@@ -8,7 +8,7 @@ import Image from "next/image";
 
 const CardsType = (props) => {
 
-  const {auth} = useSubContext();
+  const {auth} = useAppContext();
 
   const {cardsType, classes, onClick, data_value, children} = props;
 
