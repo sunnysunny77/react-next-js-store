@@ -5,6 +5,7 @@ import {GetSignIn} from "@/api/authentication";
 import {GetFactor, SetFactor} from "@/api/factor";
 import {GetCaptcha, SetCaptcha} from "@/api/captcha";
 import {ArrowRepeat} from "react-bootstrap-icons";
+import {redirect} from "next/navigation";
 import Registraion from "@/api/registraion";
 import Image from "next/image";
 import Header from "@/components/header";
@@ -62,17 +63,19 @@ const Auth = () => {
 
     setCaptcha(<Image className="spinner type" width="40" height="40" src={Spinner} unoptimized alt="spinner"/>);
 
-    if (window.navigator.onLine) {
-
       const res = await GetCaptcha();
       setCaptcha(<Image src={res} loader={imageLoader} width="140" height="50" alt="canvas"/>);
-    };
   },[]);
 
   useEffect(() => {
 
     init();
   },[init]);
+
+  useEffect(() => {
+
+    if (!window.navigator.onLine) redirect("/");
+  },[]);
 
   if (!fieldsLoad) return;
 
