@@ -61,8 +61,12 @@ const Auth = () => {
   const init = useCallback( async () => {
 
     setCaptcha(<Image className="spinner type" width="40" height="40" src={Spinner} alt="spinner"/>);
-    const res = await GetCaptcha();
-    setCaptcha(<Image src={res}  loader={imageLoader} width="140" height="50" alt="canvas"/>);
+
+    if (window.navigator.onLine) {
+
+      const res = await GetCaptcha();
+      setCaptcha(<Image src={res}  loader={imageLoader} width="140" height="50" alt="canvas"/>);
+    };
   },[]);
 
   useEffect(() => {
