@@ -717,7 +717,5 @@ export const getFields = async () => {
   } catch (err) {
 
     console.log(err);
-
-    return false;
   };
 };

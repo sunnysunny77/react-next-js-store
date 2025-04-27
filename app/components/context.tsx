@@ -122,24 +122,42 @@ export const SubWrapper = ({
 
   useEffect(()=>{
 
-      const syncFields = async () => {
+    const init = (Fields) => {
 
-        const Fields = await getFields();
+      setItems(Fields.items);
 
-        if (!Fields) return setFieldsLoad(true);
+      setOptions(Fields.select);
 
-        setItems(Fields.items);
+      setOrder(Fields.items["cart0"]);
 
-        setOptions(Fields.select);
+      setFields(Fields);
 
-        setOrder(Fields.items["cart0"]);
+      setFieldsLoad(true);
+    };
 
-        setFields(Fields);
+    const syncFields = async () => {
 
-        setFieldsLoad(true);
-      };
+      const Fields = await getFields();
+
+      localStorage.setItem("Fields", JSON.stringify({Fields}));
+
+      init(Fields);
+    };
+
+    const parseFields = async () => {
+
+      const res = await JSON.parse(localStorage.getItem("Fields"));
+
+      init(res.Fields);
+    };
+
+    if (window.navigator.onLine) {
 
       syncFields();
+    } else {
+
+      parseFields();
+    };
   },[])
 
   return (
