@@ -1,12 +1,14 @@
 "use client"
 import {GetEnquiry} from "@/api/enquiry";
-import {useActionState} from "react";
+import {useActionState, useEffect, useRef} from "react";
 import Image from "next/image";
 import Spinner from "@/images/spinner.gif";
 
 const Enquiry = (props) => {
 
     const {heading, paragraph, button} = props;
+
+    const ref = useRef(null);
 
     const [stateEnquiry, actionEnquiry, isPending] = useActionState(GetEnquiry, {
       name: "",
@@ -19,6 +21,11 @@ const Enquiry = (props) => {
       textMessage: "",
       response: "",
     });
+
+    useEffect(() => {
+
+      if (!window.navigator.onLine) ref.current.disabled = "true";
+    },[]);
   
   return (
     
@@ -185,7 +192,7 @@ const Enquiry = (props) => {
 
                     <div className="col-12 col-sm-4 d-flex justify-content-sm-end">
 
-                      <input className="rounded" type="submit" value={`${button}`}/>
+                      <input ref={ref} className="rounded" type="submit" value={`${button}`}/>
 
                     </div>
 
