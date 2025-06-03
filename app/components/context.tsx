@@ -133,7 +133,7 @@ export const SubWrapper = ({
 
       setFields(Fields);
 
-      setFieldsLoad({...fieldsLoad, fields: true});
+      setFieldsLoad(prevState => ({...prevState, fields: true}));
     };
 
     const syncFields = async () => {
@@ -159,7 +159,7 @@ export const SubWrapper = ({
 
       parseFields();
     };
-  },[fieldsLoad]);
+  },[]);
 
   useEffect(()=>{
 
