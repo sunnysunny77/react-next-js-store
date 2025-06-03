@@ -48,7 +48,7 @@ const Footer = () => {
 
                     <Link href="/">
 
-                      {fields.options?.logo ?  <Image className="d-block" src={fields.options.logo} loader={imageLoader}  alt={`${fields.options.logo_alt}`} width="50" height="50"/> : null}
+                      {fields.options?.logo ? <Image className="d-block" src={fields.options.logo} loader={imageLoader} alt={`${fields.options.logo_alt}`} width="50" height="50"/> : null}
 
                     </Link>
 

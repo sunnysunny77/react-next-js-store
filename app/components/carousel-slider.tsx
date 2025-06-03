@@ -8,29 +8,29 @@ const CarouselSlider = (props) => {
 
   const {bootstrap} = useAppContext();
 
-    const ref = useRef(null);
+  const ref = useRef(null);
 
-    useEffect(() => {
+  useEffect(() => {
 
-      if (bootstrap) {
+    if (bootstrap) {
 
-        const {Carousel} = bootstrap;
-        const inst = new Carousel(ref.current, {
-          pause: false,
-        });
-        inst.cycle();
-      };
-    }, [bootstrap]);
+      const {Carousel} = bootstrap;
+      const inst = new Carousel(ref.current, {
+        pause: false,
+      });
+      inst.cycle();
+    };
+  }, [bootstrap]);
 
-    return (
+  return (
 
-      <div ref={ref} data-bs-ride="carousel" data-bs-pause="false" className="carousel slide col-6 col-md-4 mx-auto mx-xl-0">
+    <div ref={ref} data-bs-ride="carousel" data-bs-pause="false" className="carousel slide col-6 col-md-4 mx-auto mx-xl-0">
 
-        {children}
+      {children}
 
-      </div>
-      
-    );
+    </div>
+
+  );
 };
 
 export default CarouselSlider;

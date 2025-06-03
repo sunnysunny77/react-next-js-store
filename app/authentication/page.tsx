@@ -137,7 +137,7 @@ const Auth = () => {
 
                   </form>
 
-                  <p className={`alert alert-secondary p-1 mt-3 mb-0 justify-content-center align-items-center ${isPendingSign || stateSignIn?.message ?  "d-flex" : "d-none"}`} role="alert">
+                  <p className={`alert alert-secondary p-1 mt-3 mb-0 justify-content-center align-items-center ${isPendingSign || stateSignIn?.message ? "d-flex" : "d-none"}`} role="alert">
 
                     <span>
 
@@ -157,7 +157,7 @@ const Auth = () => {
 
               <h2 className="accordion-header">
 
-                <button className="accordion-button" type="button"  data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapse-1" data-bs-target="#collapse-1">
+                <button className="accordion-button" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapse-1" data-bs-target="#collapse-1">
 
                   {fields.authentication?.sign_up}
 
@@ -209,7 +209,7 @@ const Auth = () => {
 
                     </button>
 
-                    <p className={`alert alert-secondary p-1 mt-3 mb-0 justify-content-center align-items-center ${isPendingSetCaptcha || stateSetCaptcha?.message ?  "d-flex" : "d-none"}`} role="alert">
+                    <p className={`alert alert-secondary p-1 mt-3 mb-0 justify-content-center align-items-center ${isPendingSetCaptcha || stateSetCaptcha?.message ? "d-flex" : "d-none"}`} role="alert">
 
                       <span>
 
@@ -282,7 +282,7 @@ const Auth = () => {
 
                     </form>
 
-                    <p className={`alert alert-secondary p-1 mt-3 mb-0 justify-content-center align-items-center ${isPendingGetFactor || stateGetFactor?.message ?  "d-flex" : "d-none"}`} role="alert">
+                    <p className={`alert alert-secondary p-1 mt-3 mb-0 justify-content-center align-items-center ${isPendingGetFactor || stateGetFactor?.message ? "d-flex" : "d-none"}`} role="alert">
 
                       <span>
 
@@ -292,7 +292,7 @@ const Auth = () => {
 
                     </p>
 
-                    <p className={`alert alert-secondary p-1 mt-3 mb-0 justify-content-center align-items-center ${isPendingSetFactor || stateSetFactor?.message ?  "d-flex" : "d-none"}`} role="alert">
+                    <p className={`alert alert-secondary p-1 mt-3 mb-0 justify-content-center align-items-center ${isPendingSetFactor || stateSetFactor?.message ? "d-flex" : "d-none"}`} role="alert">
 
                       <span>
 
@@ -345,7 +345,7 @@ const Auth = () => {
 
                     </form>
 
-                    <p className={`alert alert-secondary p-1 mt-3 mb-0 justify-content-center align-items-center ${isPendingRegistraion || stateRegistraion?.message ?  "d-flex" : "d-none"}`} role="alert">
+                    <p className={`alert alert-secondary p-1 mt-3 mb-0 justify-content-center align-items-center ${isPendingRegistraion || stateRegistraion?.message ? "d-flex" : "d-none"}`} role="alert">
 
                       <span>
 

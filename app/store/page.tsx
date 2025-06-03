@@ -81,7 +81,8 @@ const Store = () => {
                     body: [
                       fields.cart?.third_accordian_first_row,
                       fields.cart?.third_accordian_second_row,
-                      fields.cart?.third_accordian_third_row,        ],
+                      fields.cart?.third_accordian_third_row,
+                    ],
                   },
                 ]}
 
