@@ -8,10 +8,11 @@ import DynamicAccordian from "@/components/dynamic-accordian";
 import Cta from "@/components/cta";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import Image from "next/image";
 
 const Store = () => {
 
-  const {fieldsLoad, fields} = useSubContext();
+  const {fieldsLoad, setFieldsLoad, fields} = useSubContext();
 
   const navbarRef = useRef(null);
 
@@ -23,7 +24,21 @@ const Store = () => {
 
   const footerRef = useRef(null);
 
-  if (!fieldsLoad) return;
+    const imageLoader = ({src, width}) => {
+
+    return `${src}?w=${width}`;
+  };
+
+  if (!fieldsLoad.fields) return;
+
+  if (!fieldsLoad.navigation) return (
+
+      <div className="hidden">
+
+        <Image onLoad={()=>{setFieldsLoad({...fieldsLoad, navigation: true})}} loader={imageLoader} src={fields.options.logo} alt={`${fields.options.logo_alt}`} width="50" height="50"/>
+
+      </div>
+  );
 
   return (
 

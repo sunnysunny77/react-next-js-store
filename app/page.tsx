@@ -22,7 +22,7 @@ const Home = () => {
 
   const {auth} = useAppContext();
 
-  const {fieldsLoad, fields} = useSubContext();
+  const {fieldsLoad, setFieldsLoad, fields} = useSubContext();
 
   const navbarRef = useRef(null);
 
@@ -35,7 +35,18 @@ const Home = () => {
     return `${src}?w=${width}`;
   };
 
-  if (!fieldsLoad) return;
+  if (!fieldsLoad.fields) return;
+
+  if (!fieldsLoad.navigation || !fieldsLoad.slider) return (
+
+      <div className="hidden">
+
+        <Image onLoad={()=>{setFieldsLoad({...fieldsLoad, navigation: true})}} loader={imageLoader} src={fields.options.logo} alt={`${fields.options.logo_alt}`} width="50" height="50"/>
+
+        <Image onLoad={()=>{setFieldsLoad({...fieldsLoad, slider: true})}} loader={imageLoader} src={fields.front?.header_first_carousel} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/>
+
+      </div>
+  );
 
   return (
 
@@ -81,19 +92,19 @@ const Home = () => {
 
                 <div className="carousel-item active">
 
-                  {fields.front?.header_first_carousel ? <Image className="d-block w-100" src={fields.front?.header_first_carousel} loader={imageLoader} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/> : null}
+                  <Image loader={imageLoader} className="d-block w-100" src={fields.front?.header_first_carousel} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/>
 
                 </div>
 
                 <div className="carousel-item">
 
-                  {fields.front?.header_second_carousel ? <Image className="d-block w-100" src={fields.front?.header_second_carousel} loader={imageLoader} alt={`${fields.front?.header_second_carousel_alt}`} width="150" height="120"/> : null}
+                  <Image loader={imageLoader} className="d-block w-100" src={fields.front?.header_second_carousel} alt={`${fields.front?.header_second_carousel_alt}`} width="150" height="120"/>
 
                 </div>
 
                 <div className="carousel-item">
 
-                  {fields.front?.header_third_carousel ? <Image className="d-block w-100" src={fields.front?.header_third_carousel} loader={imageLoader} alt={`${fields.front?.header_third_carousel_alt}`} width="150" height="150"/> : null}
+                  <Image loader={imageLoader} className="d-block w-100" src={fields.front?.header_third_carousel} alt={`${fields.front?.header_third_carousel_alt}`} width="150" height="150"/>
 
                 </div>
 

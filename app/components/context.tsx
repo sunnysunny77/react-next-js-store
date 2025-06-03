@@ -117,7 +117,7 @@ export const SubWrapper = ({
 
   const [total, setTotal] = useState(0);
 
-  const [fieldsLoad, setFieldsLoad] = useState(false);
+  const [fieldsLoad, setFieldsLoad] = useState({fields: false, navigation: false, slider: false});
 
   const [fields, setFields] = useState({});
 
@@ -133,7 +133,7 @@ export const SubWrapper = ({
 
       setFields(Fields);
 
-      setFieldsLoad(true);
+      setFieldsLoad({...fieldsLoad, fields: true});
     };
 
     const syncFields = async () => {
@@ -182,12 +182,12 @@ export const SubWrapper = ({
       });
     };
 
-    if (fieldsLoad) scrolled(document.querySelectorAll(".scrolled-init"), false);
+    if ((pathname === "/" && fieldsLoad.navigation && fieldsLoad.slider) || fieldsLoad.navigation) scrolled(document.querySelectorAll(".scrolled-init"), false);
   },[fieldsLoad, pathname]);
 
   return (
 
-    <SubContext.Provider value={{fieldsLoad, fields, order, options, setOrder, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, total, setTotal, show, setShow}}>
+    <SubContext.Provider value={{fieldsLoad, setFieldsLoad, fields, order, options, setOrder, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, total, setTotal, show, setShow}}>
 
       {children}
 

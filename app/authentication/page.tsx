@@ -15,7 +15,7 @@ import Spinner from "@/images/spinner.gif";
 
 const Auth = () => {
 
-  const {fieldsLoad, fields} = useSubContext();
+  const {fieldsLoad, setFieldsLoad, fields} = useSubContext();
 
   const navbarRef = useRef(null);
 
@@ -77,7 +77,16 @@ const Auth = () => {
     if (!window.navigator.onLine) redirect("/");
   },[]);
 
-  if (!fieldsLoad) return;
+  if (!fieldsLoad.fields) return;
+
+  if (!fieldsLoad.navigation) return (
+
+      <div className="hidden">
+
+        <Image onLoad={()=>{setFieldsLoad({...fieldsLoad, navigation: true})}} loader={imageLoader} src={fields.options.logo} alt={`${fields.options.logo_alt}`} width="50" height="50"/>
+
+      </div>
+  );
 
   return (
 
