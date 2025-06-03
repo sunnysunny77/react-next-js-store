@@ -159,7 +159,7 @@ export const SubWrapper = ({
 
       parseFields();
     };
-  },[]);
+  },[fieldsLoad]);
 
   useEffect(()=>{
 
