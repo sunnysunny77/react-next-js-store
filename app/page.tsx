@@ -37,13 +37,20 @@ const Home = () => {
 
   if (!fieldsLoad.fields) return;
 
-  if (!fieldsLoad.navigation || !fieldsLoad.slider) return (
+  if (!fieldsLoad.navigation) return (
 
       <div className="hidden">
 
         <Image onLoad={()=>{setFieldsLoad(prevState => ({...prevState, navigation: true}))}} loader={imageLoader} src={fields.options?.logo} alt={`${fields.options?.logo_alt}`} width="50" height="50"/>
 
-        <Image onLoad={()=>{setFieldsLoad(prevState => ({...prevState, slider: true}));}} loader={imageLoader} src={fields.front?.header_first_carousel} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/>
+      </div>
+  );
+
+  if (!fieldsLoad.slider) return (
+
+      <div className="hidden">
+
+        <Image onLoad={()=>{setFieldsLoad(prevState => ({...prevState, slider: true}))}} loader={imageLoader} src={fields.front?.header_first_carousel} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/>
 
       </div>
   );
