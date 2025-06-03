@@ -35,7 +35,7 @@ const Store = () => {
 
       <div className="hidden">
 
-        <Image onLoad={()=>{setFieldsLoad({...fieldsLoad, navigation: true})}} loader={imageLoader} src={fields.options.logo} alt={`${fields.options.logo_alt}`} width="50" height="50"/>
+        <Image onLoad={()=>{setFieldsLoad({...fieldsLoad, navigation: true})}} loader={imageLoader} src={fields.options?.logo} alt={`${fields.options?.logo_alt}`} width="50" height="50"/>
 
       </div>
   );
