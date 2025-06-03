@@ -92,7 +92,7 @@ const TwoRowFeature = (props) => {
 
                     </div>
 
-                    <div className="col-12 order-2 scrolled-init up pt-3 pt-lg-5 mt-lg-3 mt-xxl-5">
+                    <div className="col-12 order-2 pt-3 pt-lg-5 mt-lg-3 mt-xxl-5">
 
                       <div className="row justify-content-center justify-content-sm-start g-0">
 
@@ -102,7 +102,7 @@ const TwoRowFeature = (props) => {
 
                             return (
 
-                              <div key={i} className="col-11 col-sm-6 col-xl-4 px-3">
+                              <div key={i} className="col-11 col-sm-6 col-xl-4 scrolled-init up px-3">
 
                                 <h3 className="py-2 px-4 mb-4 text-center">
 

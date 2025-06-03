@@ -41,7 +41,7 @@ const Home = () => {
 
       <div className="hidden">
 
-        <Image onLoad={()=>{setFieldsLoad(prevState => ({...prevState, navigation: true}))}} loader={imageLoader} src={fields.options?.logo} alt={`${fields.options?.logo_alt}`} width="50" height="50"/>
+        {fields.options?.logo ? <Image onLoad={()=>{setFieldsLoad(prevState => ({...prevState, navigation: true}))}} src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/> : null}
 
       </div>
   );
@@ -50,7 +50,7 @@ const Home = () => {
 
       <div className="hidden">
 
-        <Image onLoad={()=>{setFieldsLoad(prevState => ({...prevState, slider: true}))}} loader={imageLoader} src={fields.front?.header_first_carousel} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/>
+        {fields.front?.header_first_carousel? <Image onLoad={()=>{setFieldsLoad(prevState => ({...prevState, slider: true}))}} loader={imageLoader} src={fields.front?.header_first_carousel} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/> : null}
 
       </div>
   );
@@ -99,19 +99,19 @@ const Home = () => {
 
                 <div className="carousel-item active">
 
-                  <Image loader={imageLoader} className="d-block w-100" src={fields.front?.header_first_carousel} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/>
+                  {fields.front?.header_first_carousel? <Image loader={imageLoader} className="d-block w-100" src={fields.front?.header_first_carousel} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/> : null}
 
                 </div>
 
                 <div className="carousel-item">
 
-                  <Image loader={imageLoader} className="d-block w-100" src={fields.front?.header_second_carousel} alt={`${fields.front?.header_second_carousel_alt}`} width="150" height="120"/>
+                  {fields.front?.header_second_carousel?<Image loader={imageLoader} className="d-block w-100" src={fields.front?.header_second_carousel} alt={`${fields.front?.header_second_carousel_alt}`} width="150" height="120"/> : null}
 
                 </div>
 
                 <div className="carousel-item">
 
-                  <Image loader={imageLoader} className="d-block w-100" src={fields.front?.header_third_carousel} alt={`${fields.front?.header_third_carousel_alt}`} width="150" height="150"/>
+                  {fields.front?.header_third_carousel? <Image loader={imageLoader} className="d-block w-100" src={fields.front?.header_third_carousel} alt={`${fields.front?.header_third_carousel_alt}`} width="150" height="150"/> : null}
 
                 </div>
 
