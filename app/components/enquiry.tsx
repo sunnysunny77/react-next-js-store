@@ -33,15 +33,15 @@ const Enquiry = (props) => {
 
       <div className="container-xxl row justify-content-center pb-5 mb-5 pt-4 px-xxl-4 g-0">
 
-        <div className="col-11 col-lg-10 col-xl-12">
+        <div className="col-11 col-lg-10 col-xl-12 scrolled-init up">
 
           <hr className="mb-5"/>
 
           <form className="enquiry" action={actionEnquiry}>
 
-            <fieldset className="row justify-content-between g-0">
+            <fieldset>
 
-              <legend className="col-12 mb-4">
+              <legend className="mb-4">
 
                 {heading}
 
@@ -49,7 +49,7 @@ const Enquiry = (props) => {
 
               </legend>
 
-              <div className="col-12">
+              <div>
 
                   <p className="m-0">
 
@@ -59,148 +59,148 @@ const Enquiry = (props) => {
 
               </div>
 
-              <div className="col-12 col-sm-6">
+              <div className="row justify-content-between scrolled-init up g-0">
 
-                  <label className="pe-sm-3">
+                <div className="col-12 col-sm-6">
+
+                    <label className="pe-sm-3">
+
+                      <span className="hidden d-block">
+
+                        Name
+
+                      </span>
+
+                      <span>{stateEnquiry?.nameMessage}</span>
+
+                      <input
+
+                          className={`ps-2 ${stateEnquiry?.nameMessage ? "error" : ""}`}
+                          type="text"
+                          name="name"
+                          placeholder="* Name"
+                          autoComplete="on"
+                          defaultValue={stateEnquiry?.name}
+
+                      />
+
+                    </label>
+
+                </div>
+
+                <div className="col-12 col-sm-6">
+
+                    <label className="ps-sm-3">
+
+                      <span className="hidden d-block">
+
+                        Phone
+
+                      </span>
+
+                      <span>{stateEnquiry?.phoneMessage}</span>
+
+                      <input
+
+                          className={`ps-2 ${stateEnquiry?.phoneMessage ? "error" : ""}`}
+                          type="text"
+                          name="phone"
+                          placeholder="* Phone"
+                          autoComplete="on"
+                          defaultValue={stateEnquiry?.phone}
+
+                      />
+
+                    </label>
+
+                </div>
+
+                <div className="col-12 col-sm-6">
+
+                    <label className="pe-sm-3">
+
+                      <span className="hidden d-block">
+
+                        Email
+
+                      </span>
+
+                      <span>{stateEnquiry?.emailMessage}</span>
+
+                      <input
+
+                          className={`ps-2 ${stateEnquiry?.emailMessage ? "error" : ""}`}
+                          type="text"
+                          name="email"
+                          placeholder="* Email"
+                          autoComplete="on"
+                          defaultValue={stateEnquiry?.email}
+
+                      />
+
+                    </label>
+
+                </div>
+
+                <div className="col-12">
+
+                  <label htmlFor="text">
 
                     <span className="hidden d-block">
-                      
-                      Name
+
+                      Message
 
                     </span>
 
-                    <span>{stateEnquiry?.nameMessage}</span>
+                    <span>{stateEnquiry?.textMessage}</span>
 
-                    <input
+                    <textarea
 
-                        className={`ps-2 ${stateEnquiry?.nameMessage ? "error" : ""}`}
-                        type="text"
-                        name="name"
-                        placeholder="* Name"
-                        autoComplete="on"
-                        defaultValue={stateEnquiry?.name}
+                        id="text"
+                        className={`ps-2 ${stateEnquiry?.textMessage ? "error" : ""}`}
+                        name="text"
+                        placeholder="* Message"
+                        rows={6}
+                        defaultValue={stateEnquiry?.text}
 
-                    />
-
-                  </label>
-
-              </div>
-
-              <div className="col-12 col-sm-6">
-
-                  <label className="ps-sm-3">
-
-                    <span className="hidden d-block">
-                      
-                      Phone
-
-                    </span>
-
-                    <span>{stateEnquiry?.phoneMessage}</span>
-
-                    <input
-
-                        className={`ps-2 ${stateEnquiry?.phoneMessage ? "error" : ""}`}
-                        type="text"
-                        name="phone"
-                        placeholder="* Phone"
-                        autoComplete="on"
-                        defaultValue={stateEnquiry?.phone}
-
-                    />
+                    >
+                    </textarea>
 
                   </label>
 
-              </div>
+                </div>
 
-              <div className="col-12 col-sm-6">
+                <div className="col-12 col-sm-9 pt-4">
 
-                  <label className="pe-sm-3">
+                  <div className="row justify-content-between align-items-center g-0">
 
-                    <span className="hidden d-block">
+                      <div className="col-12 col-sm-8">
 
-                      Email
+                        <p className="mb-0">
 
-                    </span>
+                          {stateEnquiry?.response ? stateEnquiry?.response : paragraph}
 
-                    <span>{stateEnquiry?.emailMessage}</span>
+                          <br/>
 
-                    <input
+                          <span className="spinnerSpan">{isPending ? <Image  className="spinner" width="40" height="40" src={Spinner} unoptimized alt="spinner"/> : ""} </span>
 
-                        className={`ps-2 ${stateEnquiry?.emailMessage ? "error" : ""}`}
-                        type="text"
-                        name="email"
-                        placeholder="* Email"
-                        autoComplete="on"
-                        defaultValue={stateEnquiry?.email}
+                        </p>
 
-                    />
+                      </div>
 
-                  </label>
+                      <div className="col-12 col-sm-4 d-flex justify-content-sm-end">
 
-              </div>
+                        <input ref={ref} className="rounded" type="submit" value={`${button}`}/>
 
-              <div className="col-12">
+                      </div>
 
-                <label htmlFor="text">
-
-                  <span className="hidden d-block">
-
-                    Message
-
-                  </span>
-
-                  <span>{stateEnquiry?.textMessage}</span>
-
-                  <textarea
-
-                      id="text"
-                      className={`ps-2 ${stateEnquiry?.textMessage ? "error" : ""}`}
-                      name="text"
-                      placeholder="* Message"
-                      rows={6}
-                      defaultValue={stateEnquiry?.text}
-
-                  >
-                  </textarea>
-
-                </label>
-
-              </div>
-
-            </fieldset>
-
-            <div className="row g-0">
-
-              <div className="col-12 col-sm-9 pt-4">
-
-                <div className="row justify-content-between align-items-center g-0">
-
-                    <div className="col-12 col-sm-8">
-
-                      <p className="mb-0">
-
-                        {stateEnquiry?.response ? stateEnquiry?.response : paragraph}
-
-                        <br/>
-
-                        <span className="spinnerSpan">{isPending ? <Image  className="spinner" width="40" height="40" src={Spinner} unoptimized alt="spinner"/> : ""} </span>
-
-                      </p>
-
-                    </div>
-
-                    <div className="col-12 col-sm-4 d-flex justify-content-sm-end">
-
-                      <input ref={ref} className="rounded" type="submit" value={`${button}`}/>
-
-                    </div>
+                  </div>
 
                 </div>
 
               </div>
 
-            </div>
+            </fieldset>
 
           </form>
 

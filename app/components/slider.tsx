@@ -122,7 +122,7 @@ const Slider= (props) => {
 
               <div className="slider_9-large-col col-10 col-sm-8 col-lg-12 h-100 d-flex justify-content-center align-items-center">
 
-                <p className="m-0">
+                <p className="scrolled-init left m-0">
 
                    <PreText text={paragraph}/>
 

@@ -47,7 +47,7 @@ const Home = () => {
 
       <Header heading={fields.front?.title}>
 
-        <div className="col-12 bg-11 p-4 p-sm-5 ps-md-5 pt-md-5 pb-md-5 pe-md-0 pe-xl-5">
+        <div className="col-12 bg-11 scrolled-init up p-4 p-sm-5 ps-md-5 pt-md-5 pb-md-5 pe-md-0 pe-xl-5">
 
           <div className="row align-items-center justify-content-between g-0">
 
@@ -202,7 +202,7 @@ const Home = () => {
 
         >
 
-          {fields.front?.table_feature_image ? <Image src={fields.front?.table_feature_image} loader={imageLoader} alt={`${fields.front?.table_feature_image_alt}`} width="400" height="400"/> : null}
+          {fields.front?.table_feature_image ? <Image className="scrolled-init left" src={fields.front?.table_feature_image} loader={imageLoader} alt={`${fields.front?.table_feature_image_alt}`} width="400" height="400"/> : null}
 
         </TwoRowFeature>
 
@@ -239,7 +239,7 @@ const Home = () => {
 
         >
 
-          {fields.front?.sub_feature_image_image? <Image className="counters" src={fields.front?.sub_feature_image_image} loader={imageLoader} alt={`${fields.front?.sub_feature_image_image_alt}`} width="150" height="150"/> : null}
+          {fields.front?.sub_feature_image_image? <Image className="scrolled-init up" src={fields.front?.sub_feature_image_image} loader={imageLoader} alt={`${fields.front?.sub_feature_image_image_alt}`} width="150" height="150"/> : null}
 
         </OneColLarge>
 
@@ -260,7 +260,7 @@ const Home = () => {
 
         />
 
-        <div className="container-xl py-5 px-sm-5 px-xl-0 my-lg-5 g-0">
+        <div className="container-xl scrolled-init up py-5 px-sm-5 px-xl-0 my-lg-5 g-0">
 
           <Cta
 

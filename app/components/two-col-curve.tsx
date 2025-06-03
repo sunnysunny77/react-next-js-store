@@ -10,7 +10,7 @@ const TwoColCurve = (props) => {
 
       <div className="row flex-column flex-sm-row justify-content-end g-0">
 
-        <div className="curve col-12 col-md-9 col-lg-8 d-flex justify-content-end px-3 px-md-4 py-sm-5 px-lg-5">
+        <div className="curve col-12 col-md-9 col-lg-8 d-flex justify-content-end scrolled-init left px-3 px-md-4 py-sm-5 px-lg-5">
 
           <div className="inner-curve col-11 d-flex flex-column g-0 ">  
 

@@ -1,3 +1,17 @@
+.slider_8-container {
+    background-color: $alfa;
+    border-bottom: 1px solid $hotel;
+    max-height: 83px;
+    transition: max-height 0.375s;
+    will-change: max-height;
+    @include min_md {
+        border: none;
+    }
+    &.has-collapsed {
+        max-height: 212px;
+    }
+}
+
 .slider_8-navigation {
     background-color: $alfa;
     z-index: 999;

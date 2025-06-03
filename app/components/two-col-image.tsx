@@ -12,7 +12,7 @@ const TwoColImage = (props) => {
   
             <div className="row h-100 justify-content-center g-0">
   
-                <div className="col-12 col-md-9 col-lg-8">
+                <div className="col-12 col-md-9 col-lg-8 scrolled-init right">
   
                   <h2 className="pb-1 mt-lg-5 mb-0">
                     

@@ -42,7 +42,7 @@ const Footer = () => {
 
                 <hr className="w-100"/>
 
-                <div className="row justify-content-between justify-content-sm-around g-0 mt-4 mt-md-0">
+                <div className="row justify-content-between justify-content-sm-around scrolled-init right mt-4 mt-md-0 g-0">
 
                   <div className="col-auto pb-3 ps-1 pe-3">
 
@@ -68,7 +68,7 @@ const Footer = () => {
 
               </div>
 
-              <div className="col-4 col-md-2">
+              <div className="col-4 col-md-2 scrolled-init right">
 
                 <hr className="w-100"/>
 
@@ -123,7 +123,7 @@ const Footer = () => {
 
           </div>
 
-          <div className="col-12 col-xxl-11">
+          <div className="col-12 col-xxl-11 scrolled-init left">
 
             <hr className="w-100"/>
 

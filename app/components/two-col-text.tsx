@@ -10,7 +10,7 @@ const TwoColText = (props) => {
     
       <div className="col-12 col-lg-3 my-xl-5">
 
-        <h2 className="pt-4 ps-4 ms-xxl-5">
+        <h2 className="scrolled-init right pt-4 ps-4 ms-xxl-5">
 
           <PreText text={heading}/>
 
@@ -22,7 +22,7 @@ const TwoColText = (props) => {
 
         <div className="row">
 
-          <div className="col-12 col-xxl-11 pt-4">
+          <div className="col-12 col-xxl-11 scrolled-init left pt-4">
 
             <p className="m-0">
 

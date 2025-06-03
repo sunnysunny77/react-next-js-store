@@ -8,7 +8,7 @@ const Header = (props) => {
     
         <div className="row position-relative overflow-hidden g-0">
 
-            <div className="col-12 bg-1">
+            <div className="col-12 bg-1 scrolled-init right">
 
                 <h1 className="py-3 px-4 m-0">
                   
@@ -18,7 +18,7 @@ const Header = (props) => {
 
             </div>
 
-            <div className="shunt"></div>
+            <div className="shunt scrolled-init right"></div>
 
         </div>
 

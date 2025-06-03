@@ -22,7 +22,7 @@ const TwoRowFeature = (props) => {
                   
                   <h2 className="mb-0">
 
-                    <span className="row g-0">
+                    <span className="row scrolled-init right g-0">
 
                       <span className="col-12">
 
@@ -54,7 +54,7 @@ const TwoRowFeature = (props) => {
 
                     <div className="col-11 col-lg-12 order-3 order-lg-1">
 
-                      <p className="mb-0 text-center text-md-start pe-xxl-5">
+                      <p className="mb-0 text-center text-md-start scrolled-init right pe-xxl-5">
 
                         {paragraph}
 
@@ -62,7 +62,7 @@ const TwoRowFeature = (props) => {
 
                     </div>
 
-                    <div className="points col-12 col-xl-10 py-4 px-3 mt-lg-5 mb-5 order-1 order-lg-3">
+                    <div className="points col-12 col-xl-10 scrolled-init up py-4 px-3 mt-lg-5 mb-5 order-1 order-lg-3">
 
                       <div className="row text-center g-0">
 
@@ -92,7 +92,7 @@ const TwoRowFeature = (props) => {
 
                     </div>
 
-                    <div className="col-12 order-2 pt-3 pt-lg-5 mt-lg-3 mt-xxl-5">
+                    <div className="col-12 order-2 scrolled-init up pt-3 pt-lg-5 mt-lg-3 mt-xxl-5">
 
                       <div className="row justify-content-center justify-content-sm-start g-0">
 

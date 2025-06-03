@@ -51,7 +51,7 @@ const Store = () => {
 
         </div>
 
-        <div className="container-md g-0">
+        <div className="container-md scrolled-init up g-0">
 
           <div className="row justify-content-center w-100 mt-5 px-3 px-md-0  g-0">
 
@@ -98,7 +98,7 @@ const Store = () => {
 
         <Paypal/>
 
-        <div className="container-xl px-4 pb-5 px-sm-5 px-xl-0 mb-lg-5 pt-5 mt-lg-5 g-0">
+        <div className="container-xl scrolled-init up px-4 pb-5 px-sm-5 px-xl-0 mb-lg-5 pt-5 mt-lg-5 g-0">
 
           <Cta
 

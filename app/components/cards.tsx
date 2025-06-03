@@ -81,7 +81,7 @@ const Cards = (props) => {
     
         <div className="col-11 col-lg-10">
 
-          <h2 className="pt-4 ps-4 pb-sm-4 mb-0 mt-3">
+          <h2 className="scrolled-init right pt-4 ps-4 pb-sm-4 mb-0 mt-3">
 
             {heading}
 
@@ -103,7 +103,7 @@ const Cards = (props) => {
 
                 onClick={optionOrder}
 
-                classes="card d-flex flex-column justify-content-between"
+                classes="card d-flex flex-column justify-content-between scrolled-init up"
 
                 data_value={options[i].value}
 

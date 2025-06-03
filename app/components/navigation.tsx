@@ -16,6 +16,7 @@ const Navigation = (props) => {
   const pathname = usePathname();
 
   const navbar_static = useRef(null);
+  const navbar_container = useRef(null);
   const navbar_toggler_static = useRef(null);
   const navbar_collapse_static = useRef(null);
   const navbar_fixed = useRef(null);
@@ -34,6 +35,7 @@ const Navigation = (props) => {
 
     navbar_toggler_static.current.classList.toggle("has-collapsed");
     navbar_static.current.classList.toggle("has-collapsed");
+    navbar_container.current.classList.toggle("has-collapsed");
   };
 
   const toggle_fixed = () => {
@@ -119,83 +121,87 @@ const Navigation = (props) => {
 
     <>
 
-      <nav ref={navbar_static} className="container-fluid slider_8-navigation navigation navigation-static d-flex align-items-start p-0">
+      <div ref={navbar_container} className="container-fluid slider_8-container g-0">
 
-        <div className="row w-100 d-flex flex-row-reverse flex-md-row justify-content-between m-0 g-0">
+        <nav ref={navbar_static} className="container-fluid slider_8-navigation navigation navigation-static scrolled-init left d-flex align-items-start p-0">
 
-          <Link className="col-auto m-3" href="/">
+          <div className="row w-100 d-flex flex-row-reverse flex-md-row justify-content-between m-0 g-0">
 
-            {fields.options?.logo ?  <Image className="d-block" src={fields.options.logo} loader={imageLoader} alt={`${fields.options.logo_alt}`} width="50" height="50"/> : null}
+            <Link className="col-auto m-3" href="/">
 
-          </Link>
+              {fields.options?.logo ?  <Image className="d-block" src={fields.options.logo} loader={imageLoader} alt={`${fields.options.logo_alt}`} width="50" height="50"/> : null}
 
-          <div ref={navbar_toggler_static} onClick={toggle_static} aria-label="menu" role="button" className="col-auto d-flex align-items-center slider_8-navbar-toggler navbar-toggler p-4">
+            </Link>
 
-            <div>
+            <div ref={navbar_toggler_static} onClick={toggle_static} aria-label="menu" role="button" className="col-auto d-flex align-items-center slider_8-navbar-toggler navbar-toggler p-4">
 
-                <div className="slider_8-bar slider_nav-bar-1"></div>
+              <div>
 
-                <div className="slider_8-bar slider_nav-bar-2"></div>
+                  <div className="slider_8-bar slider_nav-bar-1"></div>
 
-                <div className="slider_8-bar slider_nav-bar-3"></div>
+                  <div className="slider_8-bar slider_nav-bar-2"></div>
+
+                  <div className="slider_8-bar slider_nav-bar-3"></div>
+
+              </div>
+
+            </div>
+
+            <div ref={navbar_collapse_static} className="col-12 slider_8-navbar-collapse navbar-collapse py-1">
+
+              <ul className="list-unstyled ms-3 my-3">
+
+                <li>
+
+                  <Link className={`navigation-link ${pathname === "/" ? "active" : ""}`} href="/">
+
+                    {fields.options?.front_page}
+
+                  </Link>
+
+                </li>
+
+                <li>
+
+                  <Link className={`navigation-link ${pathname === "/store" || pathname === "/authentication" ? "active" : ""}`} href={auth ? "/store" : "/authentication"}>
+
+                    {fields.options?.cart_page}
+
+                  </Link>
+
+                </li>
+
+                <li>
+
+                  {auth ? (
+
+                    <button onClick={log_out} className="navigation-link">
+
+                      {fields.options?.sign_out}
+
+                    </button>
+
+                  ) : (
+
+                  <Link className="navigation-link" href="/authentication">
+
+                    {fields.options?.sign_in}
+
+                  </Link>
+
+                  )}
+
+                </li>
+
+              </ul>
 
             </div>
 
           </div>
 
-          <div ref={navbar_collapse_static} className="col-12 slider_8-navbar-collapse navbar-collapse py-1">
+        </nav>
 
-            <ul className="list-unstyled ms-3 my-3">
-
-              <li>
-
-                <Link className={`navigation-link ${pathname === "/" ? "active" : ""}`} href="/">
-
-                  {fields.options?.front_page}
-
-                </Link>
-
-              </li>
-
-              <li>
-
-                <Link className={`navigation-link ${pathname === "/store" || pathname === "/authentication" ? "active" : ""}`} href={auth ? "/store" : "/authentication"}>
-
-                  {fields.options?.cart_page}
-
-                </Link>
-
-              </li>
-
-              <li>
-
-                {auth ? (
-
-                  <button onClick={log_out} className="navigation-link">
-
-                    {fields.options?.sign_out}
-
-                  </button>
-
-                ) : (
-
-                <Link className="navigation-link" href="/authentication">
-
-                  {fields.options?.sign_in}
-
-                </Link>
-
-                )}
-
-              </li>
-
-            </ul>
-
-          </div>
-
-        </div>
-
-      </nav>
+      </div>
 
       <nav ref={navbar_fixed} className="container-fluid slider_8-navigation navigation navigation-fixed has-float d-flex align-items-start p-0">
 

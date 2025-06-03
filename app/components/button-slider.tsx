@@ -175,7 +175,7 @@ const ButtonSlider = (props) => {
 
   return (
 
-    <div className="container-lg my-5 g-0">
+    <div className="container-lg scrolled-init up my-5 g-0">
 
       <div className="slider_1-outer position-relative">
 

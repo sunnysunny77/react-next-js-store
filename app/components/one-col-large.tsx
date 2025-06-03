@@ -22,7 +22,7 @@ const OneColLarge = (props) => {
   
           </div>
   
-          <div className="decoration col-10 col-md-8 col-lg-7 ps-4">
+          <div className="decoration col-10 col-md-8 col-lg-7 scrolled-init right ps-4">
   
             <h2 className="my-2">
   
@@ -40,7 +40,7 @@ const OneColLarge = (props) => {
   
           <div className="col-10 col-md-8 col-lg-7 pt-4 mt-4">
   
-            <b className="d-block my-5 pb-md-5"> 
+            <b className="d-block scrolled-init left my-5 pb-md-5">
               
               {bold}
               

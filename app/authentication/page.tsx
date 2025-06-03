@@ -91,7 +91,7 @@ const Auth = () => {
 
       <main className="d-flex flex-column" ref={mainRef}>
 
-        <div className="Auth-form-container w-100">
+        <div className="Auth-form-container scrolled-init up w-100">
 
           <div className="accordion px-4 px-sm-0 py-5 my-5">
 
