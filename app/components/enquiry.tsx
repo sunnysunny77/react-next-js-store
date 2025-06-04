@@ -31,9 +31,9 @@ const Enquiry = (props) => {
     
     <div className="container-xl g-0">
 
-      <div className="container-xxl row justify-content-center pb-5 mb-5 pt-4 px-xxl-4 g-0">
+      <div className="container-xxl row justify-content-center scrolled-init up pb-5 mb-5 pt-4 px-xxl-4 g-0">
 
-        <div className="col-11 col-lg-10 col-xl-12 scrolled-init up">
+        <div className="col-11 col-lg-10 col-xl-12">
 
           <hr className="mb-5"/>
 
@@ -59,7 +59,7 @@ const Enquiry = (props) => {
 
               </div>
 
-              <div className="row justify-content-between scrolled-init up g-0">
+              <div className="row justify-content-between g-0">
 
                 <div className="col-12 col-sm-6">
 

@@ -54,7 +54,7 @@ const TwoRowFeature = (props) => {
 
                     <div className="col-11 col-lg-12 order-3 order-lg-1">
 
-                      <p className="mb-0 text-center text-md-start scrolled-init right pe-xxl-5">
+                      <p className="mb-0 text-center text-md-start scrolled-init up-right pe-xxl-5">
 
                         {paragraph}
 

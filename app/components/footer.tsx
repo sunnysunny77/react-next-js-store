@@ -28,7 +28,7 @@ const Footer = () => {
 
   return (
   
-    <footer>
+    <footer className="position-relative">
 
       <div className="container-lg py-3 py-lg-5 g-0">
 

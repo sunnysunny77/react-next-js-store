@@ -8,6 +8,9 @@
     &.left {
         animation: scrolled-left 0.67s forwards;
     }
+    &.up-right {
+        animation: scrolled-up-right 0.67s forwards;
+    }
 }
 
 .scrolled-init {
@@ -19,6 +22,9 @@
     }
     &.left {
         transform: translateX(22%);
+    }
+    &.up-right {
+        transform: translate(-22%, 22%);
     }
 }
 
@@ -46,5 +52,14 @@
     }
     100% {
         transform: translateX(0%);
+    }
+}
+
+@keyframes scrolled-up-right {
+    0% {
+        transform: translate(-22%, 22%);
+    }
+    100% {
+        transform: translate(0%, 0%);
     }
 }
