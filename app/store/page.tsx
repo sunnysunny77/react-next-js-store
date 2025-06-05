@@ -1,5 +1,5 @@
 "use client"
-import {useRef} from "react";
+import {useRef, useState, useEffect} from "react";
 import {useSubContext} from "@/components/context";
 import Cards from "@/components/cards";
 import Header from "@/components/header";
@@ -12,7 +12,7 @@ import Image from "next/image";
 
 const Store = () => {
 
-  const {fieldsLoad, setFieldsLoad, fields} = useSubContext();
+  const {fieldsLoad, fields, setObs} = useSubContext();
 
   const navbarRef = useRef(null);
 
@@ -24,20 +24,32 @@ const Store = () => {
 
   const footerRef = useRef(null);
 
-    const imageLoader = ({src, width}) => {
+  const [logo, setLogo] = useState(false);
+
+  const imageLoader = ({src, width}) => {
 
     return `${src}?w=${width}`;
   };
 
+  useEffect(() => {
+
+    if (logo) {
+      setObs(true);
+
+      return () => setObs(false);
+    }
+  },[logo, setObs]);
+
   if (!fieldsLoad.fields) return;
 
-  if (!fieldsLoad.navigation) return (
+  if (!logo) return (
 
     <div className="hidden">
 
-      {fields.options?.logo ? <Image onLoad={()=>{setFieldsLoad(prevState => ({...prevState, navigation: true}))}} src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/> : null}
+      <Image onLoad={() => setLogo(true)} src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/>
 
     </div>
+
   );
 
   return (
@@ -46,7 +58,7 @@ const Store = () => {
 
       <div ref={navbarRef}></div>
 
-      <Navigation mainRef={mainRef} footerRef={footerRef}/>
+      <Navigation mainRef={mainRef} footerRef={footerRef} />
 
       <Header heading={fields.cart?.title}/>
 

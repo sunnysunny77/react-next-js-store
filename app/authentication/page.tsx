@@ -15,13 +15,15 @@ import Spinner from "@/images/spinner.gif";
 
 const Auth = () => {
 
-  const {fieldsLoad, setFieldsLoad, fields} = useSubContext();
+  const {fieldsLoad, fields, setObs} = useSubContext();
 
   const navbarRef = useRef(null);
 
   const mainRef = useRef(null);
 
   const footerRef = useRef(null);
+
+  const [logo, setLogo] = useState(false);
 
   const [stateSignIn, actionSignIn, isPendingSign] = useActionState(GetSignIn, {
     message: "",
@@ -63,8 +65,8 @@ const Auth = () => {
 
     setCaptcha(<Image className="spinner type" width="40" height="40" src={Spinner} unoptimized alt="spinner"/>);
 
-      const res = await GetCaptcha();
-      setCaptcha(<Image src={res} loader={imageLoader} width="140" height="50" alt="canvas"/>);
+    const res = await GetCaptcha();
+    setCaptcha(<Image src={res} loader={imageLoader} width="140" height="50" alt="canvas"/>);
   },[]);
 
   useEffect(() => {
@@ -79,19 +81,23 @@ const Auth = () => {
 
   useEffect(() => {
 
+    if (logo) {
+      setObs(true);
 
-    console.log(fieldsLoad.navigation)
-  },[fieldsLoad.navigation]);
+      return () => setObs(false);
+    }
+  },[logo, setObs]);
 
   if (!fieldsLoad.fields) return;
 
-  if (!fieldsLoad.navigation) return (
+  if (!logo) return (
 
     <div className="hidden">
 
-      {fields.options?.logo ? <Image onLoad={()=>{setFieldsLoad(prevState => ({...prevState, navigation: true}))}} src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/> : null}
+      <Image onLoad={() => setLogo(true)} src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/>
 
     </div>
+
   );
 
   return (
@@ -100,7 +106,7 @@ const Auth = () => {
 
       <div ref={navbarRef}></div>
 
-      <Navigation mainRef={mainRef} footerRef={footerRef}/>
+      <Navigation mainRef={mainRef} footerRef={footerRef} logo={logo}/>
 
       <Header heading={fields.authentication?.title}/>
 

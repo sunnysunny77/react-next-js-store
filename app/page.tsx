@@ -1,5 +1,5 @@
 "use client"
-import {useRef} from "react";
+import {useRef, useEffect, useState} from "react";
 import {useAppContext, useSubContext} from "@/components/context";
 import CarouselSlider from "@/components/carousel-slider";
 import Cards from "@/components/cards";
@@ -22,7 +22,7 @@ const Home = () => {
 
   const {auth} = useAppContext();
 
-  const {fieldsLoad, setFieldsLoad, fields} = useSubContext();
+  const {fieldsLoad, fields, setObs} = useSubContext();
 
   const navbarRef = useRef(null);
 
@@ -30,29 +30,36 @@ const Home = () => {
 
   const footerRef = useRef(null);
 
+  const [logo, setLogo] = useState(false);
+
+  const [slider, setSlider] = useState(false);
+
   const imageLoader = ({src, width}) => {
 
     return `${src}?w=${width}`;
   };
 
+  useEffect(() => {
+
+    if (logo && slider) {
+      setObs(true);
+
+      return () => setObs(false);
+    }
+  },[logo, slider, setObs]);
+
   if (!fieldsLoad.fields) return;
 
-  if (!fieldsLoad.navigation) return (
+  if (!logo || !slider) return (
 
     <div className="hidden">
 
-      {fields.options?.logo ? <Image onLoad={()=>{setFieldsLoad(prevState => ({...prevState, navigation: true}))}} src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/> : null}
+      <Image onLoad={() => setLogo(true)} src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/>
+
+      <Image onLoad={() => setSlider(true)} src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/>
 
     </div>
-  );
 
-  if (!fieldsLoad.slider) return (
-
-    <div className="hidden">
-
-      {fields.front?.header_first_carousel? <Image onLoad={()=>{setFieldsLoad(prevState => ({...prevState, slider: true}))}} loader={imageLoader} src={fields.front?.header_first_carousel} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/> : null}
-
-    </div>
   );
 
   return (
@@ -61,7 +68,7 @@ const Home = () => {
 
       <div ref={navbarRef}></div>
 
-      <Navigation mainRef={mainRef} footerRef={footerRef}/>
+      <Navigation mainRef={mainRef} footerRef={footerRef} />
 
       <Header heading={fields.front?.title}>
 
@@ -99,19 +106,19 @@ const Home = () => {
 
                 <div className="carousel-item active">
 
-                  {fields.front?.header_first_carousel? <Image loader={imageLoader} className="d-block w-100" src={fields.front?.header_first_carousel} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/> : null}
+                   {fields.front?.header_first_carousel ? <Image loader={imageLoader} className="d-block w-100" src={fields.front?.header_first_carousel} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/> : null}
 
                 </div>
 
                 <div className="carousel-item">
 
-                  {fields.front?.header_second_carousel?<Image loader={imageLoader} className="d-block w-100" src={fields.front?.header_second_carousel} alt={`${fields.front?.header_second_carousel_alt}`} width="150" height="120"/> : null}
+                  {fields.front?.header_second_carousel ? <Image loader={imageLoader} className="d-block w-100" src={fields.front?.header_second_carousel} alt={`${fields.front?.header_second_carousel_alt}`} width="150" height="120"/> : null}
 
                 </div>
 
                 <div className="carousel-item">
 
-                  {fields.front?.header_third_carousel? <Image loader={imageLoader} className="d-block w-100" src={fields.front?.header_third_carousel} alt={`${fields.front?.header_third_carousel_alt}`} width="150" height="150"/> : null}
+                  {fields.front?.header_third_carousel ? <Image loader={imageLoader} className="d-block w-100" src={fields.front?.header_third_carousel} alt={`${fields.front?.header_third_carousel_alt}`} width="150" height="150"/> : null}
 
                 </div>
 

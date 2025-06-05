@@ -126,9 +126,11 @@ export const SubWrapper = ({
 
   const [total, setTotal] = useState(0);
 
-  const [fieldsLoad, setFieldsLoad] = useState({fields: false, navigation: false, slider: false});
+  const [fieldsLoad, setFieldsLoad] = useState({fields: false});
 
   const [fields, setFields] = useState({});
+
+  const [obs, setObs] = useState(false);
 
   useEffect(()=>{
 
@@ -191,16 +193,17 @@ export const SubWrapper = ({
       });
     };
 
-    if ((pathname === "/" && fieldsLoad.navigation && fieldsLoad.slider) || fieldsLoad.navigation) {
+    if (obs) {
+
       scrolled(document.querySelectorAll(".scrolled-init"), false, null);
       scrolled(document.querySelectorAll(".scrolled-init-offset"), true, "50");
       scrolled(document.querySelectorAll(".scrolled-init-offset-top"), true, false);
     }
-  },[fieldsLoad, pathname]);
+  },[obs, pathname]);
 
   return (
 
-    <SubContext.Provider value={{fieldsLoad, setFieldsLoad, fields, order, options, setOrder, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, total, setTotal, show, setShow}}>
+    <SubContext.Provider value={{setObs, fieldsLoad, fields, order, options, setOrder, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, total, setTotal, show, setShow}}>
 
       {children}
 
