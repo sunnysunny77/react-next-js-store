@@ -33,11 +33,11 @@ const Store = () => {
 
   if (!fieldsLoad.navigation) return (
 
-      <div className="hidden">
+    <div className="hidden">
 
-        {fields.options?.logo ? <Image onLoad={()=>{setFieldsLoad(prevState => ({...prevState, navigation: true}))}} src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/> : null}
+      {fields.options?.logo ? <Image onLoad={()=>{setFieldsLoad(prevState => ({...prevState, navigation: true}))}} src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/> : null}
 
-      </div>
+    </div>
   );
 
   return (

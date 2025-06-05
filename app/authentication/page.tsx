@@ -77,15 +77,21 @@ const Auth = () => {
     if (!window.navigator.onLine) redirect("/");
   },[]);
 
+  useEffect(() => {
+
+
+    console.log(fieldsLoad.navigation)
+  },[fieldsLoad.navigation]);
+
   if (!fieldsLoad.fields) return;
 
   if (!fieldsLoad.navigation) return (
 
-      <div className="hidden">
+    <div className="hidden">
 
-        {fields.options?.logo ? <Image onLoad={()=>{setFieldsLoad(prevState => ({...prevState, navigation: true}))}} src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/> : null}
+      {fields.options?.logo ? <Image onLoad={()=>{setFieldsLoad(prevState => ({...prevState, navigation: true}))}} src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/> : null}
 
-      </div>
+    </div>
   );
 
   return (
@@ -100,7 +106,7 @@ const Auth = () => {
 
       <main className="d-flex flex-column" ref={mainRef}>
 
-        <div className="Auth-form-container scrolled-init up w-100">
+        <div className="Auth-form-container scrolled-init-offset-top up w-100">
 
           <div className="accordion px-4 px-sm-0 py-5 my-5">
 

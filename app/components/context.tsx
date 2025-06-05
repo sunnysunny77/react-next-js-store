@@ -186,7 +186,7 @@ export const SubWrapper = ({
       obj.forEach(index => {
 
         new IntersectionObserver(obsIsnt, {
-          rootMargin: bool ? `${offset}px` : "0px",
+          rootMargin: bool ? offset ? `${offset}px` : `${index.offsetTop}px` : "0px",
         }).observe(index);
       });
     };
@@ -194,6 +194,7 @@ export const SubWrapper = ({
     if ((pathname === "/" && fieldsLoad.navigation && fieldsLoad.slider) || fieldsLoad.navigation) {
       scrolled(document.querySelectorAll(".scrolled-init"), false, null);
       scrolled(document.querySelectorAll(".scrolled-init-offset"), true, "50");
+      scrolled(document.querySelectorAll(".scrolled-init-offset-top"), true, false);
     }
   },[fieldsLoad, pathname]);
 
