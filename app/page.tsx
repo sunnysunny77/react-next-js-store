@@ -50,11 +50,19 @@ const Home = () => {
 
   if (!fieldsLoad.fields) return;
 
-  if (!logo || !slider) return (
+  if (!logo) return (
 
     <div className="hidden">
 
       <Image onLoad={() => setLogo(true)} src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/>
+
+    </div>
+
+  );
+
+  if (!slider) return (
+
+    <div className="hidden">
 
       <Image onLoad={() => setSlider(true)} src={fields.front?.header_first_carousel} loader={imageLoader} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/>
 
