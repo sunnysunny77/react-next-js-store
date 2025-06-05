@@ -13,7 +13,8 @@
     }
 }
 
-.scrolled-init {
+.scrolled-init,
+.scrolled-init-offset {
     &.up {
         transform: translatey(42%);
     }

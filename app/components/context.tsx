@@ -49,7 +49,16 @@ export const AppWrapper = ({
 
   useEffect(() => {
 
-    if (scrollingRef.current !== null) window.scroll({top: scrollingRef.current.offsetTop || 0, left: 0, behavior: "smooth"});
+    if (scrollingRef.current !== null) {
+
+      if (scrollingRef.current !== false) {
+
+        scrollingRef.current.scrollIntoView({behavior: "smooth"});
+      } else if (scrollingRef.current === false) {
+
+        window.scroll({top: 0, left: 0, behavior: "smooth"});
+      }
+    }
   },[scrollingRef]);
 
   useEffect(() => {
@@ -172,17 +181,20 @@ export const SubWrapper = ({
       });
     };
 
-    const scrolled = (obj, bool) => {
+    const scrolled = (obj, bool, offset) => {
 
       obj.forEach(index => {
 
         new IntersectionObserver(obsIsnt, {
-          rootMargin: bool ? `${index.offsetTop}px` : "0px",
+          rootMargin: bool ? `${offset}px` : "0px",
         }).observe(index);
       });
     };
 
-    if ((pathname === "/" && fieldsLoad.navigation && fieldsLoad.slider) || fieldsLoad.navigation) scrolled(document.querySelectorAll(".scrolled-init"), false);
+    if ((pathname === "/" && fieldsLoad.navigation && fieldsLoad.slider) || fieldsLoad.navigation) {
+      scrolled(document.querySelectorAll(".scrolled-init"), false, null);
+      scrolled(document.querySelectorAll(".scrolled-init-offset"), true, "50");
+    }
   },[fieldsLoad, pathname]);
 
   return (

@@ -260,7 +260,7 @@ const Paypal = () => {
 
       <Script src={`https://www.paypal.com/sdk/js?client-id=${SCRIPT_PROVIDER_OPTIONS.clientId}&currency=${SCRIPT_PROVIDER_OPTIONS.currency}`} onReady={()=>init(cart, items["cart0"])}/>
 
-      <div className="paypal container-md d-flex align-items-center scrolled-init up pt-5 px-4 px-sm-5 px-md-0 my-sm-4 g-0">
+      <div className="paypal container-md d-flex align-items-center scrolled-init-offset up pt-5 px-4 px-sm-5 px-md-0 my-sm-4 g-0">
 
         <div className="row justify-content-center w-100 g-0">
 

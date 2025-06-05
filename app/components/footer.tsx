@@ -23,7 +23,7 @@ const Footer = () => {
 
   const scroll_to = () => {
 
-    setScrollingRef({current: true});
+    setScrollingRef({current: false});
   };
 
   return (
