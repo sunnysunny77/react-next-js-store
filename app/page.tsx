@@ -1,5 +1,5 @@
 "use client"
-import {useRef, useEffect, useState} from "react";
+import {useRef} from "react";
 import {useAppContext, useSubContext} from "@/components/context";
 import CarouselSlider from "@/components/carousel-slider";
 import Cards from "@/components/cards";
@@ -22,7 +22,7 @@ const Home = () => {
 
   const {auth} = useAppContext();
 
-  const {fieldsLoad, fields, setObs} = useSubContext();
+  const {fieldsLoad, fields} = useSubContext();
 
   const navbarRef = useRef(null);
 
@@ -30,45 +30,12 @@ const Home = () => {
 
   const footerRef = useRef(null);
 
-  const [logo, setLogo] = useState(false);
-
-  const [slider, setSlider] = useState(false);
-
   const imageLoader = ({src, width}) => {
 
     return `${src}?w=${width}`;
   };
 
-  useEffect(() => {
-
-    if (logo && slider) {
-      setObs(true);
-
-      return () => setObs(false);
-    }
-  },[logo, slider, setObs]);
-
-  if (!fieldsLoad.fields) return;
-
-  if (!logo) return (
-
-    <div className="hidden">
-
-      <Image onLoad={() => setLogo(true)} src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/>
-
-    </div>
-
-  );
-
-  if (!slider) return (
-
-    <div className="hidden">
-
-      <Image onLoad={() => setSlider(true)} src={fields.front?.header_first_carousel} loader={imageLoader} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/>
-
-    </div>
-
-  );
+  if (!fieldsLoad) return;
 
   return (
 
@@ -114,7 +81,7 @@ const Home = () => {
 
                 <div className="carousel-item active">
 
-                   {fields.front?.header_first_carousel ? <Image loader={imageLoader} className="d-block w-100" src={fields.front?.header_first_carousel} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/> : null}
+                   {fields.front?.header_first_carousel ? <Image decoding="sync" loader={imageLoader} className="d-block w-100" src={fields.front?.header_first_carousel} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/> : null}
 
                 </div>
 

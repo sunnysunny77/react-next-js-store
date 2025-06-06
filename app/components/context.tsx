@@ -126,11 +126,9 @@ export const SubWrapper = ({
 
   const [total, setTotal] = useState(0);
 
-  const [fieldsLoad, setFieldsLoad] = useState({fields: false});
+  const [fieldsLoad, setFieldsLoad] = useState(false);
 
   const [fields, setFields] = useState({});
-
-  const [obs, setObs] = useState(false);
 
   useEffect(()=>{
 
@@ -144,7 +142,7 @@ export const SubWrapper = ({
 
       setFields(Fields);
 
-      setFieldsLoad(prevState => ({...prevState, fields: true}));
+      setFieldsLoad(true);
     };
 
     const syncFields = async () => {
@@ -193,17 +191,17 @@ export const SubWrapper = ({
       });
     };
 
-    if (obs) {
+    if (fieldsLoad) {
 
       scrolled(document.querySelectorAll(".scrolled-init"), false, null);
       scrolled(document.querySelectorAll(".scrolled-init-offset"), true, "50");
       scrolled(document.querySelectorAll(".scrolled-init-offset-top"), true, false);
     }
-  },[obs, pathname]);
+  },[fieldsLoad, pathname]);
 
   return (
 
-    <SubContext.Provider value={{setObs, fieldsLoad, fields, order, options, setOrder, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, total, setTotal, show, setShow}}>
+    <SubContext.Provider value={{fieldsLoad, fields, order, options, setOrder, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, total, setTotal, show, setShow}}>
 
       {children}
 

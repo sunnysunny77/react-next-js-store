@@ -1,5 +1,5 @@
 "use client"
-import {useRef, useState, useEffect} from "react";
+import {useRef} from "react";
 import {useSubContext} from "@/components/context";
 import Cards from "@/components/cards";
 import Header from "@/components/header";
@@ -8,11 +8,10 @@ import DynamicAccordian from "@/components/dynamic-accordian";
 import Cta from "@/components/cta";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
-import Image from "next/image";
 
 const Store = () => {
 
-  const {fieldsLoad, fields, setObs} = useSubContext();
+  const {fieldsLoad, fields} = useSubContext();
 
   const navbarRef = useRef(null);
 
@@ -24,33 +23,7 @@ const Store = () => {
 
   const footerRef = useRef(null);
 
-  const [logo, setLogo] = useState(false);
-
-  const imageLoader = ({src, width}) => {
-
-    return `${src}?w=${width}`;
-  };
-
-  useEffect(() => {
-
-    if (logo) {
-      setObs(true);
-
-      return () => setObs(false);
-    }
-  },[logo, setObs]);
-
-  if (!fieldsLoad.fields) return;
-
-  if (!logo) return (
-
-    <div className="hidden">
-
-      <Image onLoad={() => setLogo(true)} src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/>
-
-    </div>
-
-  );
+  if (!fieldsLoad) return;
 
   return (
 
