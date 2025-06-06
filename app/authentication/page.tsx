@@ -15,7 +15,7 @@ import Spinner from "@/images/spinner.gif";
 
 const Auth = () => {
 
-  const {obsLoad, setObsLoad, fieldsLoad, fields} = useSubContext();
+  const {setObsLoad, fieldsLoad, fields} = useSubContext();
 
   const navbarRef = useRef(null);
 
@@ -91,15 +91,16 @@ const Auth = () => {
 
   if (!fieldsLoad) return;
 
-  if (!obsLoad) return (
+  if (!images.logo) {
 
-    <>
+    if (fields.options?.logo !== undefined) {
 
-      {fields.options?.logo ? <Image onLoad={()=>{setImages(prevState => ({...prevState, logo: true}))}} className="d-flex hidden" src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/> : null}
+      return <Image onLoad={()=>{setImages(prevState => ({...prevState, logo: true}))}} className="d-flex hidden" src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/>;
+    } else {
 
-    </>
-
-  );
+      return setImages(prevState => ({...prevState, logo: true}));
+    };
+  };
 
   return (
 

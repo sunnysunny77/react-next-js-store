@@ -22,7 +22,7 @@ const Home = () => {
 
   const {auth} = useAppContext();
 
-  const {obsLoad, setObsLoad, fieldsLoad, fields} = useSubContext();
+  const {setObsLoad, fieldsLoad, fields} = useSubContext();
 
   const navbarRef = useRef(null);
 
@@ -49,17 +49,27 @@ const Home = () => {
 
   if (!fieldsLoad) return;
 
-  if (!obsLoad) return (
+  if (!images.logo) {
 
-    <>
+    if (fields.options?.logo !== undefined) {
 
-      {fields.options?.logo ? <Image onLoad={()=>{setImages(prevState => ({...prevState, logo: true}))}} className="d-flex hidden" src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/> : null}
+      return <Image onLoad={()=>{setImages(prevState => ({...prevState, logo: true}))}} className="d-flex hidden" src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/>;
+    } else {
 
-      {fields.front?.header_first_carousel ? <Image onLoad={()=>{setImages(prevState => ({...prevState, header_first_carousel: true}))}} className="d-flex hidden" loader={imageLoader} src={fields.front?.header_first_carousel} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/> : null}
+      return setImages(prevState => ({...prevState, logo: true}));
+    };
+  };
 
-    </>
+  if (!images.header_first_carousel) {
 
-  );
+    if (fields.front?.header_first_carousel !== undefined) {
+
+      return <Image onLoad={()=>{setImages(prevState => ({...prevState, header_first_carousel: true}))}} className="d-flex hidden" src={fields.front?.header_first_carousel} loader={imageLoader} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/>;
+    } else {
+
+      return setImages(prevState => ({...prevState, header_first_carousel: true}));
+    };
+  };
 
   return (
 
