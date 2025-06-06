@@ -1,5 +1,5 @@
 "use client"
-import {useRef} from "react";
+import {useRef, useState, useEffect} from "react";
 import {useSubContext} from "@/components/context";
 import Cards from "@/components/cards";
 import Header from "@/components/header";
@@ -8,10 +8,11 @@ import DynamicAccordian from "@/components/dynamic-accordian";
 import Cta from "@/components/cta";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import Image from "next/image";
 
 const Store = () => {
 
-  const {fieldsLoad, fields} = useSubContext();
+  const {obsLoad, setObsLoad, fieldsLoad, fields} = useSubContext();
 
   const navbarRef = useRef(null);
 
@@ -23,7 +24,34 @@ const Store = () => {
 
   const footerRef = useRef(null);
 
+  const [images, setImages] = useState({logo: false});
+
+  const imageLoader = ({src, width}) => {
+
+    return `${src}?w=${width}`;
+  };
+
+  useEffect(() => {
+
+    if (images.logo) {
+
+      setObsLoad(true);
+
+      return () => setObsLoad(false);
+    }
+  },[images, setObsLoad]);
+
   if (!fieldsLoad) return;
+
+  if (!obsLoad) return (
+
+    <>
+
+      {fields.options?.logo ? <Image onLoad={()=>{setImages(prevState => ({...prevState, logo: true}))}} className="d-flex hidden" src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/> : null}
+
+    </>
+
+  );
 
   return (
 

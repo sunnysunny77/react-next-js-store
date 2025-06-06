@@ -15,13 +15,15 @@ import Spinner from "@/images/spinner.gif";
 
 const Auth = () => {
 
-  const {fieldsLoad, fields} = useSubContext();
+  const {obsLoad, setObsLoad, fieldsLoad, fields} = useSubContext();
 
   const navbarRef = useRef(null);
 
   const mainRef = useRef(null);
 
   const footerRef = useRef(null);
+
+  const [images, setImages] = useState({logo: false});
 
   const [stateSignIn, actionSignIn, isPendingSign] = useActionState(GetSignIn, {
     message: "",
@@ -77,7 +79,27 @@ const Auth = () => {
     if (!window.navigator.onLine) redirect("/");
   },[]);
 
+  useEffect(() => {
+
+    if (images.logo) {
+
+      setObsLoad(true);
+
+      return () => setObsLoad(false);
+    }
+  },[images, setObsLoad]);
+
   if (!fieldsLoad) return;
+
+  if (!obsLoad) return (
+
+    <>
+
+      {fields.options?.logo ? <Image onLoad={()=>{setImages(prevState => ({...prevState, logo: true}))}} className="d-flex hidden" src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/> : null}
+
+    </>
+
+  );
 
   return (
 

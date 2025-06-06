@@ -1,5 +1,5 @@
 "use client"
-import {useRef} from "react";
+import {useRef, useState, useEffect} from "react";
 import {useAppContext, useSubContext} from "@/components/context";
 import CarouselSlider from "@/components/carousel-slider";
 import Cards from "@/components/cards";
@@ -22,7 +22,7 @@ const Home = () => {
 
   const {auth} = useAppContext();
 
-  const {fieldsLoad, fields} = useSubContext();
+  const {obsLoad, setObsLoad, fieldsLoad, fields} = useSubContext();
 
   const navbarRef = useRef(null);
 
@@ -30,12 +30,36 @@ const Home = () => {
 
   const footerRef = useRef(null);
 
+  const [images, setImages] = useState({logo: false, header_first_carousel: false});
+
   const imageLoader = ({src, width}) => {
 
     return `${src}?w=${width}`;
   };
 
+  useEffect(() => {
+
+    if (images.logo && images.header_first_carousel) {
+
+      setObsLoad(true);
+
+      return () => setObsLoad(false);
+    }
+  },[images, setObsLoad]);
+
   if (!fieldsLoad) return;
+
+  if (!obsLoad) return (
+
+    <>
+
+      {fields.options?.logo ? <Image onLoad={()=>{setImages(prevState => ({...prevState, logo: true}))}} className="d-flex hidden" src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/> : null}
+
+      {fields.front?.header_first_carousel ? <Image onLoad={()=>{setImages(prevState => ({...prevState, header_first_carousel: true}))}} className="d-flex hidden" loader={imageLoader} src={fields.front?.header_first_carousel} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/> : null}
+
+    </>
+
+  );
 
   return (
 
@@ -81,7 +105,7 @@ const Home = () => {
 
                 <div className="carousel-item active">
 
-                   {fields.front?.header_first_carousel ? <Image  priority={true} decoding="sync" loader={imageLoader} className="d-block w-100" src={fields.front?.header_first_carousel} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/> : null}
+                  {fields.front?.header_first_carousel ? <Image loader={imageLoader} className="d-block w-100" src={fields.front?.header_first_carousel} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/> : null}
 
                 </div>
 
@@ -123,7 +147,7 @@ const Home = () => {
 
         >
 
-         {fields.front?.sub_introduction_image ? <Image src={fields.front?.sub_introduction_image} loader={imageLoader} alt={`${fields.front?.sub_introduction_image_alt}`}  width="920" height="839"/> : null}
+        {fields.front?.sub_introduction_image ? <Image src={fields.front?.sub_introduction_image} loader={imageLoader} alt={`${fields.front?.sub_introduction_image_alt}`}  width="920" height="839"/> : null}
 
         </TwoColCurve>
 

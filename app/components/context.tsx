@@ -130,6 +130,8 @@ export const SubWrapper = ({
 
   const [fields, setFields] = useState({});
 
+  const [obsLoad, setObsLoad] = useState(false);
+
   useEffect(()=>{
 
     const init = (Fields) => {
@@ -191,17 +193,17 @@ export const SubWrapper = ({
       });
     };
 
-    if (fieldsLoad) {
+    if (obsLoad) {
 
       scrolled(document.querySelectorAll(".scrolled-init"), false, null);
       scrolled(document.querySelectorAll(".scrolled-init-offset"), true, "50");
       scrolled(document.querySelectorAll(".scrolled-init-offset-top"), true, false);
     }
-  },[fieldsLoad, pathname]);
+  },[obsLoad, pathname]);
 
   return (
 
-    <SubContext.Provider value={{fieldsLoad, fields, order, options, setOrder, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, total, setTotal, show, setShow}}>
+    <SubContext.Provider value={{obsLoad, setObsLoad, fieldsLoad, fields, order, options, setOrder, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, total, setTotal, show, setShow}}>
 
       {children}
 
