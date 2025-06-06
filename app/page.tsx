@@ -81,7 +81,7 @@ const Home = () => {
 
                 <div className="carousel-item active">
 
-                   {fields.front?.header_first_carousel ? <Image decoding="sync" loader={imageLoader} className="d-block w-100" src={fields.front?.header_first_carousel} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/> : null}
+                   {fields.front?.header_first_carousel ? <Image  priority={true} decoding="sync" loader={imageLoader} className="d-block w-100" src={fields.front?.header_first_carousel} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/> : null}
 
                 </div>
 
