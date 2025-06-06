@@ -132,6 +132,8 @@ export const SubWrapper = ({
 
   const [obsLoad, setObsLoad] = useState(false);
 
+  const [images, setImages] = useState({navigation: false, header: false});
+
   useEffect(()=>{
 
     const init = (Fields) => {
@@ -145,6 +147,11 @@ export const SubWrapper = ({
       setFields(Fields);
 
       setFieldsLoad(true);
+
+      if (!Fields.options?.logo || !Fields.front?.header_first_carousel) {
+
+        setObsLoad(true);
+      }
     };
 
     const syncFields = async () => {
@@ -201,9 +208,19 @@ export const SubWrapper = ({
     }
   },[obsLoad, pathname]);
 
+  useEffect(() => {
+
+    if ((pathname === "/" && images.navigation && images.header) || (pathname !== "/" && images.navigation)) {
+
+      setObsLoad(true);
+
+      return () => setObsLoad(false);
+    }
+  },[images, setObsLoad, pathname]);
+
   return (
 
-    <SubContext.Provider value={{setObsLoad, fieldsLoad, fields, order, options, setOrder, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, total, setTotal, show, setShow}}>
+    <SubContext.Provider value={{obsLoad, images, setImages, fieldsLoad, fields, order, options, setOrder, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, total, setTotal, show, setShow}}>
 
       {children}
 

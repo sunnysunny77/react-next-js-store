@@ -1,5 +1,5 @@
 "use client"
-import {useRef, useState, useEffect} from "react";
+import {useRef} from "react";
 import {useSubContext} from "@/components/context";
 import Cards from "@/components/cards";
 import Header from "@/components/header";
@@ -12,7 +12,7 @@ import Image from "next/image";
 
 const Store = () => {
 
-  const {setObsLoad, fieldsLoad, fields} = useSubContext();
+  const {obsLoad, images, setImages, fieldsLoad, fields} = useSubContext();
 
   const navbarRef = useRef(null);
 
@@ -24,34 +24,25 @@ const Store = () => {
 
   const footerRef = useRef(null);
 
-  const [images, setImages] = useState({logo: false});
-
   const imageLoader = ({src, width}) => {
 
     return `${src}?w=${width}`;
   };
 
-  useEffect(() => {
-
-    if (images.logo) {
-
-      setObsLoad(true);
-
-      return () => setObsLoad(false);
-    }
-  },[images, setObsLoad]);
-
   if (!fieldsLoad) return;
 
-  if (!images.logo) {
+  if (!obsLoad) {
 
-    if (fields.options?.logo !== undefined) {
+    return (
 
-      return <Image onLoad={()=>{setImages(prevState => ({...prevState, logo: true}))}} className="d-flex hidden" src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/>;
-    } else {
+      <>
 
-      return setImages(prevState => ({...prevState, logo: true}));
-    };
+        {fields.options?.logo ? <Image priority onLoad={()=>setImages({...images, navigation: true})} className="d-flex hidden" src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/> : null}
+
+      </>
+
+    );
+
   };
 
   return (

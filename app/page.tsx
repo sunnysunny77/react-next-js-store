@@ -1,5 +1,5 @@
 "use client"
-import {useRef, useState, useEffect} from "react";
+import {useRef} from "react";
 import {useAppContext, useSubContext} from "@/components/context";
 import CarouselSlider from "@/components/carousel-slider";
 import Cards from "@/components/cards";
@@ -22,7 +22,7 @@ const Home = () => {
 
   const {auth} = useAppContext();
 
-  const {setObsLoad, fieldsLoad, fields} = useSubContext();
+  const {obsLoad, images, setImages, fieldsLoad, fields} = useSubContext();
 
   const navbarRef = useRef(null);
 
@@ -30,45 +30,27 @@ const Home = () => {
 
   const footerRef = useRef(null);
 
-  const [images, setImages] = useState({logo: false, header_first_carousel: false});
-
   const imageLoader = ({src, width}) => {
 
     return `${src}?w=${width}`;
   };
 
-  useEffect(() => {
-
-    if (images.logo && images.header_first_carousel) {
-
-      setObsLoad(true);
-
-      return () => setObsLoad(false);
-    }
-  },[images, setObsLoad]);
-
   if (!fieldsLoad) return;
 
-  if (!images.logo) {
+  if (!obsLoad) {
 
-    if (fields.options?.logo !== undefined) {
+    return (
 
-      return <Image onLoad={()=>{setImages(prevState => ({...prevState, logo: true}))}} className="d-flex hidden" src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/>;
-    } else {
+      <>
 
-      return setImages(prevState => ({...prevState, logo: true}));
-    };
-  };
+        {fields.options?.logo ? <Image priority onLoad={()=>setImages({...images, navigation: true})} className="d-flex hidden" src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/> : null}
 
-  if (!images.header_first_carousel) {
+        {fields.front?.header_first_carousel ? <Image priority onLoad={()=>setImages({...images, header: true})} className="d-flex hidden" src={fields.front?.header_first_carousel} loader={imageLoader} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/> : null}
 
-    if (fields.front?.header_first_carousel !== undefined) {
+      </>
 
-      return <Image onLoad={()=>{setImages(prevState => ({...prevState, header_first_carousel: true}))}} className="d-flex hidden" src={fields.front?.header_first_carousel} loader={imageLoader} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/>;
-    } else {
+    );
 
-      return setImages(prevState => ({...prevState, header_first_carousel: true}));
-    };
   };
 
   return (
@@ -115,7 +97,7 @@ const Home = () => {
 
                 <div className="carousel-item active">
 
-                  {fields.front?.header_first_carousel ? <Image loader={imageLoader} className="d-block w-100" src={fields.front?.header_first_carousel} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/> : null}
+                  {fields.front?.header_first_carousel ? <Image priority loader={imageLoader} className="d-block w-100" src={fields.front?.header_first_carousel} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/> : null}
 
                 </div>
 

@@ -15,15 +15,13 @@ import Spinner from "@/images/spinner.gif";
 
 const Auth = () => {
 
-  const {setObsLoad, fieldsLoad, fields} = useSubContext();
+  const {obsLoad, images, setImages, fieldsLoad, fields} = useSubContext();
 
   const navbarRef = useRef(null);
 
   const mainRef = useRef(null);
 
   const footerRef = useRef(null);
-
-  const [images, setImages] = useState({logo: false});
 
   const [stateSignIn, actionSignIn, isPendingSign] = useActionState(GetSignIn, {
     message: "",
@@ -79,27 +77,20 @@ const Auth = () => {
     if (!window.navigator.onLine) redirect("/");
   },[]);
 
-  useEffect(() => {
-
-    if (images.logo) {
-
-      setObsLoad(true);
-
-      return () => setObsLoad(false);
-    }
-  },[images, setObsLoad]);
-
   if (!fieldsLoad) return;
 
-  if (!images.logo) {
+  if (!obsLoad) {
 
-    if (fields.options?.logo !== undefined) {
+    return (
 
-      return <Image onLoad={()=>{setImages(prevState => ({...prevState, logo: true}))}} className="d-flex hidden" src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/>;
-    } else {
+      <>
 
-      return setImages(prevState => ({...prevState, logo: true}));
-    };
+        {fields.options?.logo ? <Image priority onLoad={()=>setImages({...images, navigation: true})} className="d-flex hidden" src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/> : null}
+
+      </>
+
+    );
+
   };
 
   return (
