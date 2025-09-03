@@ -10,7 +10,6 @@ const nextConfig = {
   sassOptions: {
     quietDeps: true,
     silenceDeprecations: [
-      "mixed-decls",
       "import",
       "color-functions",
       "global-builtin",
@@ -20,7 +19,7 @@ const nextConfig = {
 };
 
 module.exports = (phase) => {
-  if (phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_BUILD) {
+  if (phase === PHASE_PRODUCTION_BUILD) {
     const withPWA = require("@ducanh2912/next-pwa").default({
       dest: "public",
       register: true,
