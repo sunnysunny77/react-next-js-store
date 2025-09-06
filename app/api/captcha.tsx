@@ -1,7 +1,7 @@
 "use server"
 import {createCanvas} from "canvas";
-import {cookies} from "next/headers";
-import bcrypt from "bcrypt";
+
+let current = "";
 
 const init = () => {
 
@@ -97,10 +97,10 @@ export const SetCaptcha = async (stateSetCaptcha: StateSetCaptcha, formData: For
     captcha: formData.get("captcha"),
   };
 
-  const cookieStore = await cookies();
-  const cookie = cookieStore.get("Store-App-Captcha").value;
+
+
   const text = data.captcha as string;
-  const match = await bcrypt.compare(text.toUpperCase(), cookie as string);
+  const match = (text.toUpperCase() == current);
 
   if(match) {
 
@@ -121,10 +121,7 @@ export const SetCaptcha = async (stateSetCaptcha: StateSetCaptcha, formData: For
 export const GetCaptcha = async () => {
 
   const res = await init();
-  const salt = bcrypt.genSaltSync(10);
-  const text = res.text;
-  const hash = bcrypt.hashSync(text, salt);
-  const cookieStore = await cookies();
-  cookieStore.set("Store-App-Captcha", hash, {secure: true, httpOnly: true, sameSite: "strict"});
+  current = res.text;
+
   return res.canvas;
 };
