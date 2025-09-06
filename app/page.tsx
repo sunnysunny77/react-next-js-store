@@ -22,7 +22,7 @@ const Home = () => {
 
   const {auth} = useAppContext();
 
-  const {obsLoad, images, setImages, fieldsLoad, fields} = useSubContext();
+  const {obsLoad, setImages, fieldsLoad, fields} = useSubContext();
 
   const navbarRef = useRef(null);
 

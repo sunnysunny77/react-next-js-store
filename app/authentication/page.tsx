@@ -15,7 +15,7 @@ import Spinner from "@/images/spinner.gif";
 
 const Auth = () => {
 
-  const {obsLoad, images, setImages, fieldsLoad, fields} = useSubContext();
+  const {obsLoad, setImages, fieldsLoad, fields} = useSubContext();
 
   const navbarRef = useRef(null);
 

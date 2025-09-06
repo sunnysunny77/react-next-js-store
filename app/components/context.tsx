@@ -220,7 +220,7 @@ export const SubWrapper = ({
 
   return (
 
-    <SubContext.Provider value={{obsLoad, images, setImages, fieldsLoad, fields, order, options, setOrder, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, total, setTotal, show, setShow}}>
+    <SubContext.Provider value={{obsLoad, setImages, fieldsLoad, fields, order, options, setOrder, items, count, setCount, cart, setCart, output, setOutput, disabled, setDisabled, total, setTotal, show, setShow}}>
 
       {children}
 

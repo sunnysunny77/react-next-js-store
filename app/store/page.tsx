@@ -12,7 +12,7 @@ import Image from "next/image";
 
 const Store = () => {
 
-  const {obsLoad, images, setImages, fieldsLoad, fields} = useSubContext();
+  const {obsLoad, setImages, fieldsLoad, fields} = useSubContext();
 
   const navbarRef = useRef(null);
 
