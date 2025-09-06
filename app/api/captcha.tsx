@@ -5,74 +5,84 @@ import bcrypt from "bcrypt";
 
 const init = () => {
 
-  const alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
-    "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const alpha = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",];
 
-  let text = "";
-  
-  const randomColor = () => {
-  
-    const r = Math.floor(Math.random() * 256);
-    const g = Math.floor(Math.random() * 256);
-    const b = Math.floor(Math.random() * 256);
-  
-    return `rgb(${r},${g},${b})`;
-  };
-
-  const canvas = createCanvas(140, 50);
-  text = "";
+  let word = "";
 
   for (let i = 1; i <= 7; i++) {
 
-    text += alpha[Math.floor(Math.random() * alpha.length)];
+    word += alpha[Math.floor(Math.random() * alpha.length)];
   }
 
-  const context = canvas.getContext("2d");
-  context.font = "25px Bold";
+  const width = 140;
+  const height = 50;
+  const fill = "white";
+  const dotCount = 50;
+  const lineStyle = "rgba(0,0,0,0.34)";
+  const lineWidth = 0.5;
+  const fontSize = 18;
+  const font = `bold ${fontSize}px Sans`;
+  const overlap = 0.1;
 
-  let i = text.length;
+  const canvas = createCanvas(width, height);
+  const ctx = canvas.getContext("2d");
 
-  while (i--) {
+  ctx.fillStyle = fill;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    const sDeg = (Math.random() * 45 * Math.PI) / 180;
-    const x = (i * 18) + 8;
-    const y = (Math.random() * 10) + 25;
+  for (let i = 0; i < dotCount; i++) {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    const alpha = Math.random() < 0.5 ? 0.3 : 0.6;
+    const radius = Math.random() * 3 + 1;
+    ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
+    ctx.beginPath();
+    ctx.arc(Math.random() * canvas.width, Math.random() * canvas.height, radius, 0, 2 * Math.PI);
+    ctx.fill();
+  }
 
-    context.translate(x, y);
-    context.rotate(sDeg);
-    context.fillStyle = randomColor();
-    context.fillText(text[i], 0, 0);
-    context.rotate(-sDeg);
-    context.translate(-x, -y);
-  };
+  ctx.strokeStyle = lineStyle;
+  ctx.lineWidth = lineWidth;
+  for (let j = 0; j < 2; j++) {
+    ctx.beginPath();
+    ctx.moveTo(0, Math.random() * canvas.height);
+    for (let x = 0; x < canvas.width; x += 5) {
+      ctx.lineTo(
+        x,
+        (canvas.height / 2) + Math.sin(x / 5 + Math.random() * 2) * 12 + (Math.random() * 20 - 10)
+      );
+    }
+    ctx.stroke();
+  }
 
-  for (let i = 0; i < 5; i++) {
+  ctx.font = font;
+  let totalWidth = 0;
+  for (let char of word) {
+    totalWidth += ctx.measureText(char).width * 0.8;
+  }
+  let x = (canvas.width - totalWidth) / 2;
+  for (let char of word) {
+    const angle = (Math.random() - 0.5) * 0.6;
+    const offsetY = (Math.random() - 0.5) * 18;
+    const min = 50;
+    const max = 150;
+    const r = Math.floor(Math.random() * (max - min) + min);
+    const g = Math.floor(Math.random() * (max - min) + min);
+    const b = Math.floor(Math.random() * (max - min) + min);
+    const color = `rgba(${r},${g},${b},1)`;
+    ctx.save();
+    ctx.fillStyle = color;
+    ctx.translate(x, canvas.height / 2 + offsetY);
+    ctx.rotate(angle);
+    ctx.fillText(char, 0, 0);
+    ctx.restore();
 
-    context.strokeStyle = randomColor();
-    context.beginPath();
-    context.moveTo(
-      Math.random() * canvas.width,
-      Math.random() * canvas.height
-    );
-    context.lineTo(
-      Math.random() * canvas.width,
-      Math.random() * canvas.height
-    );
-    context.stroke();
-  };
+    const overlapCalc = ctx.measureText(char).width * overlap;
+    x += ctx.measureText(char).width * 0.8 + overlapCalc;
+  }
 
-  for (let i = 0; i < 70; i++) {
-
-    context.strokeStyle = randomColor();
-    context.beginPath();
-    const x = Math.random() * canvas.width;
-    const y = Math.random() * canvas.height;
-    context.moveTo(x, y);
-    context.lineTo(x + 1, y + 1);
-    context.stroke();
-  };
-
-  return {canvas: canvas.toDataURL(), text: text};
+  return {canvas: canvas.toDataURL(), text: word};
 };
 
 type StateSetCaptcha = {
@@ -90,7 +100,7 @@ export const SetCaptcha = async (stateSetCaptcha: StateSetCaptcha, formData: For
   const cookieStore = await cookies();
   const cookie = cookieStore.get("Store-App-Captcha").value;
   const text = data.captcha as string;
-  const match = await bcrypt.compare(text.toLowerCase(), cookie as string);
+  const match = await bcrypt.compare(text.toUpperCase(), cookie as string);
 
   if(match) {
 
