@@ -39,13 +39,14 @@ const Home = () => {
 
   if (!obsLoad) {
 
+
     return (
 
       <>
 
-        {fields.options?.logo ? <Image priority onLoad={()=>setImages({...images, navigation: true})} className="d-flex hidden" src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/> : null}
+        {fields.options?.logo ? <Image priority onLoad={() => setImages(prevImages => ({ ...prevImages, navigation: true }))} className="d-flex hidden" src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/> : null}
 
-        {fields.front?.header_first_carousel ? <Image priority onLoad={()=>setImages({...images, header: true})} className="d-flex hidden" src={fields.front?.header_first_carousel} loader={imageLoader} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/> : null}
+        {fields.front?.header_first_carousel ? <Image priority onLoad={() => setImages(prevImages => ({ ...prevImages, header: true }))} className="d-flex hidden" src={fields.front?.header_first_carousel} loader={imageLoader} alt={`${fields.front?.header_first_carousel_alt}`} width="150" height="150"/> : null}
 
       </>
 

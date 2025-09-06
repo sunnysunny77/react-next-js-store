@@ -37,7 +37,7 @@ const Store = () => {
 
       <>
 
-        {fields.options?.logo ? <Image priority onLoad={()=>setImages({...images, navigation: true})} className="d-flex hidden" src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/> : null}
+        {fields.options?.logo ? <Image priority onLoad={() => setImages(prevImages => ({ ...prevImages, navigation: true }))} className="d-flex hidden" src={fields.options?.logo} loader={imageLoader} alt={`${fields.options?.logo_alt}`} width="50" height="50"/> : null}
 
       </>
 
