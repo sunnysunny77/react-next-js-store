@@ -29,7 +29,7 @@ const Auth = () => {
     email: "",
   });
 
-  const [captcha, setCaptcha] = useState(<Image className="spinner type" width="40" height="40" src={Spinner} unoptimized alt="spinner"/>);
+  const [captcha, setCaptcha] = useState(Spinner.src);
 
   const [stateGetFactor, actionGetFactor, isPendingGetFactor] = useActionState(GetFactor, {
     message: "",
@@ -61,10 +61,10 @@ const Auth = () => {
 
   const init = useCallback( async () => {
 
-    setCaptcha(<Image className="spinner type" width="40" height="40" src={Spinner} unoptimized alt="spinner"/>);
+    setCaptcha(Spinner.src);
 
     const res = await GetCaptcha();
-    setCaptcha(<Image src={res} loader={imageLoader} width="140" height="50" alt="canvas"/>);
+    setCaptcha(res);
   },[]);
 
   useEffect(() => {
@@ -187,7 +187,7 @@ const Auth = () => {
 
                   <>
 
-                    {captcha}
+                    {captcha ? <Image className="captchaImg" width="140" height="50" src={captcha} loader={imageLoader} unoptimized alt="captcha"/> : null}
 
                     <form action={actionSetCaptcha}>
 

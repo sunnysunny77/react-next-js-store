@@ -73,9 +73,11 @@
             background-color: $lima;
             border-radius: 50%;
             padding: 0.2rem;
-            &.type {
-                background-color: $romeo;
-            }
+        }
+        .captchaImg {
+            background-color: $romeo;
+            object-fit: contain;
+            object-position: left;
         }
     }
     .rady {
