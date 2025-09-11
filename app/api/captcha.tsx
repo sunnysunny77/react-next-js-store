@@ -7,11 +7,11 @@ const init = () => {
 
   const alpha = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",];
 
-  let word = "";
+  let label = "";
 
   for (let i = 1; i <= 7; i++) {
 
-    word += alpha[Math.floor(Math.random() * alpha.length)];
+    label += alpha[Math.floor(Math.random() * alpha.length)];
   }
 
   const width = 140;
@@ -22,7 +22,7 @@ const init = () => {
   const lineWidth = 0.5;
   const fontSize = 18;
   const font = `bold ${fontSize}px Sans`;
-  const overlap = 0.1;
+  const spacing = 0.1;
 
   const canvas = createCanvas(width, height);
   const ctx = canvas.getContext("2d");
@@ -58,11 +58,17 @@ const init = () => {
 
   ctx.font = font;
   let totalWidth = 0;
-  for (const char of word) {
-    totalWidth += ctx.measureText(char).width * 0.8;
+  const charWidths = [];
+  for (const char of label) {
+    const w = ctx.measureText(char).width;
+    charWidths.push(w);
+    totalWidth += w * (1 + spacing);
   }
-  let x = (canvas.width - totalWidth) / 2;
-  for (const char of word) {
+
+  let x = (width - totalWidth) / 2;
+
+  for (let i = 0; i < label.length; i++) {
+    const char = label[i];
     const angle = (Math.random() - 0.5) * 0.6;
     const offsetY = (Math.random() - 0.5) * 18;
     const min = 50;
@@ -70,19 +76,17 @@ const init = () => {
     const r = Math.floor(Math.random() * (max - min) + min);
     const g = Math.floor(Math.random() * (max - min) + min);
     const b = Math.floor(Math.random() * (max - min) + min);
-    const color = `rgba(${r},${g},${b},1)`;
     ctx.save();
-    ctx.fillStyle = color;
-    ctx.translate(x, canvas.height / 2 + offsetY);
+    ctx.fillStyle = `rgba(${r},${g},${b},1)`;
+    ctx.translate(x, height / 2 + offsetY);
     ctx.rotate(angle);
     ctx.fillText(char, 0, 0);
     ctx.restore();
 
-    const overlapCalc = ctx.measureText(char).width * overlap;
-    x += ctx.measureText(char).width * 0.8 + overlapCalc;
+    x += charWidths[i] * (1 + spacing);
   }
 
-  return {canvas: canvas.toDataURL(), text: word};
+  return {canvas: canvas.toDataURL(), text: label};
 };
 
 type StateSetCaptcha = {
