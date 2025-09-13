@@ -1,7 +1,7 @@
 "use server"
 import {createCanvas} from "canvas";
-
-let current = "";
+import {cookies} from "next/headers";
+import crypto from "crypto";
 
 const init = () => {
 
@@ -101,10 +101,15 @@ export const SetCaptcha = async (stateSetCaptcha: StateSetCaptcha, formData: For
     captcha: formData.get("captcha"),
   };
 
+  const cookieStore = await cookies();
+  const storedHash = cookieStore.get("Store-App-Captcha").value;
+  const secret = process.env.REACT_APP_AUTH_SECRET;
+  const incomingHash = crypto.createHmac("sha256", secret).update(String(data.captcha)).digest("hex");
 
-
-  const text = data.captcha as string;
-  const match = (text.toUpperCase() == current);
+  const match = crypto.timingSafeEqual(
+    Buffer.from(incomingHash, "hex"),
+    Buffer.from(storedHash, "hex")
+  );
 
   if(match) {
 
@@ -125,7 +130,10 @@ export const SetCaptcha = async (stateSetCaptcha: StateSetCaptcha, formData: For
 export const GetCaptcha = async () => {
 
   const res = await init();
-  current = res.text;
+  const secret = process.env.REACT_APP_AUTH_SECRET;
+  const hash = crypto.createHmac("sha256", secret).update(res.text).digest("hex");
+  const cookieStore = await cookies();
+  cookieStore.set("Store-App-Captcha", hash, {secure: true, httpOnly: true, sameSite: "strict"});
 
   return res.canvas;
 };

@@ -3,7 +3,7 @@ import {cookies} from "next/headers";
 import nodemailer from "nodemailer";
 import Connection from "@/lib/db/connection";
 import EmptyResults from "@/lib/db/empty-results";
-import bcrypt from "bcrypt";
+import crypto from "crypto";
 
 type StateGetFactor = {
   message: string,
@@ -39,9 +39,9 @@ export const GetFactor = async (stateGetFactor: StateGetFactor, formData: FormDa
      };
   };
 
-  const token = Math.floor(Math.random() * 900000);
-  const salt = bcrypt.genSaltSync(10);
-  const hash = bcrypt.hashSync(String(token), salt);
+  const token = Math.floor(100000 + Math.random() * 900000).toString();
+  const secret = process.env.REACT_APP_AUTH_SECRET;
+  const hash = crypto.createHmac("sha256", secret).update(token).digest("hex");
   const cookieStore = await cookies();
   cookieStore.set("Store-App-Auth-Token", hash, {secure: true, httpOnly: true, sameSite: "strict"});
 
@@ -90,9 +90,14 @@ export const SetFactor = async (stateSetFactor: StateSetFactor, formData: FormDa
   };
 
   const cookieStore = await cookies();
-  const cookie = cookieStore.get("Store-App-Auth-Token").value;
-  const text = data.code;
-  const match = await bcrypt.compare(text, String(cookie));
+  const storedHash = cookieStore.get("Store-App-Auth-Token").value;
+  const secret = process.env.REACT_APP_AUTH_SECRET;
+  const incomingHash = crypto.createHmac("sha256", secret).update(String(data.code)).digest("hex");
+
+  const match = crypto.timingSafeEqual(
+    Buffer.from(incomingHash, "hex"),
+    Buffer.from(storedHash, "hex")
+  );
 
   if(match) {
 
